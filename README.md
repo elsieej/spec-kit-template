@@ -36,7 +36,7 @@ docs/06-release  (theo Gitflow: release/* → main + develop)
         └──▶ lặp lại: quay về Sprint Planning cho sprint kế tiếp, tới khi dự án kết thúc
 
 ── Đa repo (nếu triển khai code ở repo khác repo spec-kit này) ──
-Mỗi Epic ứng với 1 repo triển khai (field `repo` trong EPIC-xxx) → xem AGENTS.md
+Mỗi Epic ứng với 1 container/repo triển khai (`source_container` + `repo` trong EPIC-xxx) → xem AGENTS.md
 
 ── Luồng ngoài (tác động ngược bất kỳ lúc nào) ──
 docs/05-meetings/notes            → có thể tạo open-questions
@@ -66,8 +66,9 @@ CLAUDE.md                         → quy ước đặt tên + versioning xuyên
 - `.claude/skills/setup-context` — skill hỏi WHY/WHO/HOW rồi tạo thẳng BR-001/UR-001/FR-001
 - `.claude/skills/c4-model` — skill giải thích C4 Model + dẫn dắt tạo docs/03-system-overview
 - `.claude/skills/plan-backlog` — skill phân rã Epic/Feature/User Story/Task + kéo vào Sprint
-- `.claude/skills/backlog-status` — skill đọc frontmatter để trả lời sprint nào đang active +
-  backlog hiện có gì (không có dashboard/file trạng thái riêng, luôn tính lại từ frontmatter)
+- `.claude/skills/backlog-status` — skill đọc frontmatter để trả lời sprint nào đang active,
+  backlog hiện có gì, hoặc cây Epic→Feature→User Story→Task (không có dashboard/file trạng
+  thái riêng, luôn tính lại từ frontmatter)
 - `docs/00-03` — 3 tầng yêu cầu + system overview (C4 Context/Container)
 - `docs/04-backlog` — Epic/Feature/User Story/Task, `sprints/` — Sprint Planning (start/end date)
 - `docs/05-meetings` — biên bản họp + open questions (luồng ngoài)

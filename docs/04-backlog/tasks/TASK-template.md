@@ -17,7 +17,7 @@ blocked_by_open_questions: []
 
 ## Context cho Agent (đọc trước khi thực hiện)
 - Business/Functional requirement liên quan: FR-001
-- System overview liên quan: SYS-CTR-001 (container: <tên>)
+- System overview liên quan: SYS-CTR-001 (container: <mã container, xem c4-container.md>)
 - Glossary liên quan: xem docs/07-glossary/glossary.md
 
 ## Mô tả công việc

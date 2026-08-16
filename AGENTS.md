@@ -130,8 +130,9 @@ trong lúc có `SPRINT-xxx` đang `active`, commit các thay đổi tài liệu 
 ## Làm việc đa repo
 
 Kit này là repo trung tâm chứa spec/backlog; việc triển khai code có thể nằm ở (các) repo
-khác — quy ước: **mỗi Epic ứng với một repo triển khai** (một hệ thống/service), ghi ở field
-`repo` trong frontmatter của `EPIC-xxx`.
+khác — quy ước: **mỗi Epic ứng với một container/repo triển khai** (một hệ thống/service),
+ghi ở field `source_container` (mã container trong `c4-container.md`) và `repo` (tên repo
+tương ứng) trong frontmatter của `EPIC-xxx`.
 
 - Repo triển khai xác định công việc của mình qua chuỗi `parent_epic` → field `repo` — chỉ
   nhận Task thuộc Epic có `repo` trỏ đúng tên mình.

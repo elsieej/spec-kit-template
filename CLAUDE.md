@@ -30,7 +30,8 @@ không nơi nào khác có: quy ước đặt tên/ID/versioning, và vài ghi c
 
   | Nhóm tài liệu | Vòng đời `status` |
   |---|---|
-  | BR / UR / FR / SYS-CTX / SYS-CTR | `draft → in-review → approved` (→ `changed` nếu tài liệu đã `approved` bị sửa nội dung, cần re-review trước khi tiếp tục dùng làm nguồn cho tầng sau) |
+  | BR / UR / FR (không có `blocked`, dùng `related_open_questions`) | `draft → in-review → approved` (→ `changed` nếu tài liệu đã `approved` bị sửa nội dung, cần re-review trước khi tiếp tục dùng làm nguồn cho tầng sau) |
+  | SYS-CTX / SYS-CTR (có `blocked`, dùng `blocked_by_open_questions`) | `draft → in-review → approved → blocked` (→ `changed` như trên) |
   | Epic / Feature | `draft → ready → in-progress → blocked → done` |
   | User Story / Task | `draft → ready → in-progress → in-review → blocked → done` |
   | Sprint | `planned → active → blocked → done` |
@@ -63,8 +64,8 @@ không nơi nào khác có: quy ước đặt tên/ID/versioning, và vài ghi c
 - Khởi tạo BR/UR/FR bằng câu hỏi WHY/WHO/HOW: skill `setup-context`.
 - Giải thích C4 Model + tạo `docs/03-system-overview`: skill `c4-model`.
 - Phân rã Epic → Feature → User Story → Task, kéo vào Sprint: skill `plan-backlog`.
-- Sprint nào đang active + backlog hiện có gì (đọc trực tiếp frontmatter, không có dashboard
-  riêng): skill `backlog-status`.
+- Sprint nào đang active, backlog hiện có gì, hoặc cây Epic→Feature→User Story→Task (đọc trực
+  tiếp frontmatter, không có dashboard/index riêng): skill `backlog-status`.
 
 ## Làm việc trong repo này
 

@@ -16,10 +16,10 @@ blocked_by_open_questions: []
 # US-001 — <Tên user story>
 
 ## Story
-Là <persona>, tôi muốn <hành động> để <lợi ích>.
+**Là** <persona>, **tôi muốn** <hành động>, **để** <lợi ích>.
 
 ## Acceptance Criteria (Given/When/Then)
-1. Given ..., When ..., Then ...
+1. **Giả sử** <điều kiện ban đầu>, **khi** <hành động xảy ra>, **thì** <kết quả mong đợi>.
 2.
 
 ## Tasks thuộc story này

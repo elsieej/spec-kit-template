@@ -35,9 +35,10 @@ mọi bước. Chi tiết đầy đủ về quy trình xem `CLAUDE.md`, về hà
   `plan-backlog` dẫn dắt phân rã); mức sprint quản lý ở `docs/04-backlog/sprints` (có
   `start_date`/`end_date`, kéo Task từ backlog vào sprint qua Bước F). Liên kết thủ công tới
   GitHub Issues/Jira qua field `external_ref`.
-- **Đa repo** — mỗi Epic có thể ứng với một repo triển khai riêng (field `repo` trong
-  `EPIC-xxx`); repo triển khai chỉ đọc backlog từ đây, không phải nguồn sự thật (xem
-  `AGENTS.md`, "Làm việc đa repo").
+- **Đa repo** — mỗi Epic ứng với một container/repo triển khai riêng (`source_container` +
+  `repo` trong `EPIC-xxx`, tra theo cột "Mã"/"Repo triển khai" ở `c4-container.md`); repo
+  triển khai chỉ đọc backlog từ đây, không phải nguồn sự thật (xem `AGENTS.md`, "Làm việc đa
+  repo").
 - **Meetings & Open Questions** — `docs/05-meetings`: biên bản họp và câu hỏi mở; một OQ đang
   mở có thể block bất kỳ Epic/Feature/Story/Task nào phụ thuộc vào nó.
 - **Release** — `docs/06-release`: kế hoạch release theo Gitflow (`release/*` → `main` +
