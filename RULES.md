@@ -57,6 +57,14 @@ kỹ thuật nào giữ nguyên tiếng Anh, thuật ngữ nào dịch).
   backlog, endpoint, container...) trừ khi glossary quy định khác.
 - **Không viết tắt tự chế.** Chỉ dùng viết tắt đã chuẩn hoá trong glossary hoặc phổ biến
   trong ngành (PR, CI/CD, API...); viết tắt lần đầu xuất hiện nên kèm dạng đầy đủ.
+- **Link tham chiếu tới glossary khi trích xuất thuật ngữ.** Ở lần xuất hiện đầu tiên của một
+  thuật ngữ trong tài liệu, nếu thuật ngữ đó đã có trong `docs/07-glossary/glossary.md` →
+  gắn link Markdown tới đúng mục (heading) chứa thuật ngữ đó, ví dụ
+  `[sprint](../../07-glossary/glossary.md#quy-trình--agile)` (đường dẫn tương đối tuỳ vị trí
+  file đang viết). Không lặp lại link ở các lần nhắc lại sau trong cùng tài liệu. Nếu thuật
+  ngữ **chưa có** trong glossary → không bắt buộc phải thêm link — chỉ thêm vào glossary khi
+  thuật ngữ đó cần chuẩn hoá cách dùng (theo quy tắc phía trên), không phải mọi từ đều cần vào
+  glossary chỉ để có chỗ link tới.
 
 ## 3. Traceability & trạng thái tài liệu
 
