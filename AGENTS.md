@@ -157,6 +157,64 @@ biệt 2 trường hợp:
     traceability của việc đã xong); tạo Task mới cho phần chênh lệch, `parent_user_story` trỏ
     về đúng User Story, kéo vào sprint đang active nếu vẫn kịp, hoặc dời sang sprint kế tiếp.
 
+## Ma trận lan truyền thay đổi
+
+Không có cơ chế tự động (không hook, không CI) — mọi lan truyền dưới đây đều cần agent/người
+chủ động rà soát khi thấy 1 tài liệu chuyển sang trạng thái kích hoạt (`changed`, `blocked`,
+container đổi Mã, OQ được trả lời, `depends_on` hoàn tất, sprint `done`...). Sơ đồ này chỉ để
+tra cứu nhanh "sửa cái này thì phải xem lại cái gì" — không thay thế nội dung chi tiết ở Bước
+A–F phía trên.
+
+```mermaid
+flowchart TD
+    BR["BR approved bị sửa<br/>→ status: changed"]
+    UR["UR approved bị sửa<br/>→ status: changed"]
+    FR["FR approved bị sửa<br/>→ status: changed"]
+    CTX["SYS-CTX bị sửa<br/>→ status: changed/blocked"]
+    CTR["SYS-CTR bị sửa<br/>(thêm/xoá/đổi Mã, đổi Repo triển khai)"]
+    EPIC["Epic"]
+    FEAT["Feature"]
+    US["User Story"]
+    TASK["Task"]
+    OQ["OQ được trả lời<br/>(answered/closed)"]
+    DEP["depends_on của 1 item<br/>đã done hết"]
+    SPR["Sprint chuyển done"]
+
+    BR -->|rà soát| UR
+    BR -->|rà soát source_docs chứa BR| CTX
+    BR -->|rà soát parent_business_requirement| EPIC
+    UR -->|rà soát| FR
+    UR -->|rà soát source_docs chứa UR| CTX
+    UR -->|rà soát parent_user_requirement| FEAT
+    FR -->|rà soát source_docs chứa FR| CTX
+    FR -->|rà soát parent_functional_requirement| US
+    CTX -->|rà soát source_docs: SYS-CTX-xxx| CTR
+    CTR -->|Mã/repo đổi → rà soát source_container/repo| EPIC
+    EPIC -->|rà soát parent_epic| FEAT
+    FEAT -.->|nếu đang active sprint, xem Bước E| US
+    US -.->|nếu đang active sprint, xem Bước E| TASK
+    OQ -->|trả status về trước khi block| EPIC
+    OQ -->|trả status về trước khi block| FEAT
+    OQ -->|trả status về trước khi block| US
+    OQ -->|trả status về trước khi block| TASK
+    DEP -->|đủ điều kiện xét ready| FEAT
+    DEP -->|đủ điều kiện xét ready| US
+    DEP -->|đủ điều kiện xét ready| TASK
+    SPR -->|việc chưa xong| SPR2["dời sang sprint kế tiếp<br/>hoặc huỷ (ghi rõ lý do)"]
+```
+
+| Nguồn thay đổi | Cần rà soát/cập nhật | Chi tiết ở đâu |
+|---|---|---|
+| BR đã `approved` bị sửa nội dung → `status: changed` | UR con (`parent_business_requirement`), SYS-CTX có `source_docs` chứa BR đó, Epic có `parent_business_requirement` trỏ tới BR đó | Nguyên tắc chung #2; sau khi rà soát xong mới đưa BR về lại `approved` |
+| UR đã `approved` bị sửa → `status: changed` | FR con, SYS-CTX (`source_docs`), Feature (`parent_user_requirement`) | như trên |
+| FR đã `approved` bị sửa → `status: changed` | SYS-CTX (`source_docs`), User Story (`parent_functional_requirement`) | như trên |
+| SYS-CTX đã `approved` bị sửa → `status: changed`/`blocked` | SYS-CTR có `source_docs: [SYS-CTX-xxx]` | Bước A |
+| SYS-CTR đổi (thêm/xoá/đổi Mã hoặc Repo triển khai của 1 container) | Epic có `source_container` trỏ tới Mã đó — cập nhật lại `source_container`/`repo`, hoặc báo "liên kết gãy" nếu Mã bị xoá | Bước B, mục "Epic ứng với container/repo nào?" |
+| Feature/User Story đổi khi Task con đã trong sprint đang active | Task con (`parent_user_story`) — còn khớp mô tả/DoD không | Bước E, mục "Họp làm thay đổi Feature/User Story..." |
+| OQ được trả lời (`answered`/`closed`) | Mọi item trong `blocks: []` của OQ đó — trả `status` về trạng thái trước khi bị block | Bước E |
+| `depends_on` của 1 item đã `done` hết | Chính item đó — có thể xét chuyển `ready` (vẫn cần review, không tự động) | Bước B, mục "Phụ thuộc giữa Feature/User Story/Task" |
+| Sprint chuyển `done` | Task/US chưa xong trong sprint đó — dời sang sprint kế tiếp hoặc huỷ (ghi rõ lý do) | Bước F |
+
 ## Làm việc đa repo
 
 Kit này là repo trung tâm chứa spec/backlog; việc triển khai code có thể nằm ở (các) repo

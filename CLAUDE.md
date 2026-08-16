@@ -65,7 +65,8 @@ không nơi nào khác có: quy ước đặt tên/ID/versioning, và vài ghi c
 ## Tham khảo nhanh
 
 - Sơ đồ luồng đầy đủ (docs/00 → release, kèm sprint/đa-repo): `README.md`.
-- Nguyên tắc chung + quy trình agent theo Bước A–F + "Làm việc đa repo" (kèm sơ đồ mermaid): `AGENTS.md`.
+- Nguyên tắc chung + quy trình agent theo Bước A–F + "Ma trận lan truyền thay đổi" (sơ đồ
+  mermaid: sửa 1 tài liệu thì cần rà soát gì) + "Làm việc đa repo": `AGENTS.md`.
 - Ngôn ngữ/giọng văn, thuật ngữ, traceability, bảo mật, git/commit: `RULES.md`.
 - Thuật ngữ nghiệp vụ + kỹ thuật/văn phong: `docs/07-glossary/glossary.md`.
 - Bối cảnh dự án cụ thể + các thành phần chính của kit: `CONTEXT.md`.
