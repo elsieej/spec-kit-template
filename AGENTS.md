@@ -64,10 +64,20 @@ Story hay Task:
 
 | Cấp | Trả lời câu hỏi | Quy mô điển hình | `parent_*` bắt buộc | Ai review |
 |---|---|---|---|---|
-| Epic | Mục tiêu kinh doanh lớn nào (từ 1 BR) đang được hiện thực hoá? 1 Epic ≈ 1 mảng giá trị lớn, có thể ứng với 1 repo triển khai (field `repo`) | Kéo dài nhiều sprint | `parent_business_requirement` | Product owner / tech lead |
+| Epic | Mục tiêu kinh doanh lớn nào (từ 1 BR) đang được hiện thực hoá? 1 Epic ≈ 1 mảng giá trị lớn, ứng với 1 container triển khai (`source_container` + `repo`) | Kéo dài nhiều sprint | `parent_business_requirement` | Product owner / tech lead |
 | Feature | Epic này gồm những nhóm chức năng con nào? | Vài sprint | `parent_epic`, `parent_user_requirement` | Product owner |
 | User Story | Persona cụ thể nào (từ UR) cần làm gì, để được lợi ích gì? Đủ nhỏ để xong trong 1 sprint, phải có Acceptance Criteria | Trong 1 sprint | `parent_feature`, `parent_functional_requirement` | Cả team lúc Sprint Planning (Bước F) |
 | Task | Việc kỹ thuật cụ thể nào để hoàn thành User Story đó? Đủ nhỏ để 1 dev làm xong trong vài giờ–1-2 ngày | Giờ tới 1-2 ngày | `parent_user_story` | Dev nhận Task |
+
+**Epic ứng với container/repo nào?** Không tự đặt mã/tên repo mới ở bước này — số lượng và mã
+hệ thống đã được chốt từ Bước A (`c4-container.md`, cột "Mã"). Đối chiếu "Mục tiêu" của Epic
+với cột "Trách nhiệm" của từng container trong bảng đó:
+- Khớp đúng 1 container → lấy "Mã" của container đó cho `source_container`, và giá trị ở cột
+  "Repo triển khai" cho field `repo` của Epic.
+- Khớp Trách nhiệm của nhiều container (Epic cần nhiều hệ thống phối hợp) → tách thành nhiều
+  Epic, mỗi Epic ứng với 1 `source_container`, cùng trỏ `parent_business_requirement` về BR gốc.
+- Không container nào khớp → `c4-container.md` đang thiếu/lỗi thời, quay lại Bước A cập nhật
+  container diagram trước, không tự bịa repo ở backlog.
 
 **"Backlog"** không phải 1 file riêng — đó là trạng thái gộp của mọi Epic/Feature/User
 Story/Task trong `docs/04-backlog` đang `draft`/`ready` (chưa gắn vào sprint nào). Ưu tiên xử

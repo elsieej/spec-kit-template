@@ -13,23 +13,25 @@ description: >
 Mục tiêu: giúp user tạo `BR-001` (`docs/00-business-requirement`), `UR-001`
 (`docs/01-user-requirement`), `FR-001` (`docs/02-functional-requirement`) bằng cách hỏi lần
 lượt WHY → WHO → HOW, thay vì bắt user tự viết đủ 3 tài liệu chuẩn từ đầu. Đây là bước đầu
-tiên trong pipeline (xem `AGENTS.md`, `README.md`, `CONTEXT.md`).
+tiên khi chưa có BR/UR/FR nào trong dự án — Business Requirement là gốc, User Requirement và
+Functional Requirement sinh ra từ đó.
 
 ## Nguyên tắc khi chạy skill này
 
 - Hỏi **từng câu một, đợi trả lời** — WHY trước, vì câu trả lời cho WHO/HOW thường phụ thuộc
   vào WHY. Không hỏi dồn.
-- Ghi thẳng vào file chính thức (BR/UR/FR) — **không** tạo file nháp trung gian, không ghi
-  vào `CONTEXT.md`. Trả lời tới đâu, tài liệu được tạo/cập nhật tới đó, tránh giữ hai bản.
-- Vẫn phải điền đủ frontmatter theo `CLAUDE.md` (mục "Đặt tên, ID và versioning"): `id`,
-  `type`, `status: draft`, `version: 1`, `created`/`last_updated` (lấy ngày hiện tại), và
-  `parent_*` nối UR-001 → BR-001, FR-001 → UR-001.
+- Ghi thẳng vào file chính thức (BR/UR/FR) — **không** tạo file nháp trung gian. Trả lời tới
+  đâu, tài liệu được tạo/cập nhật tới đó, tránh giữ hai bản.
+- Vẫn phải điền đủ frontmatter theo template của từng loại: `id`, `type`, `status: draft`,
+  `version: 1`, `created`/`last_updated` (lấy ngày hiện tại), và `parent_*` nối UR-001 →
+  BR-001, FR-001 → UR-001.
 - Nếu user chưa có câu trả lời rõ ràng cho một mục con trong template (ví dụ Success metrics,
   Edge cases), để nguyên placeholder gốc của template — không bịa nội dung, không tự suy diễn
   chi tiết user chưa cung cấp.
 - Không tự set `status: approved` — skill chỉ tạo bản `draft`. Review/approve là bước riêng
-  của user/team (xem `AGENTS.md`, nguyên tắc chung #2 — tầng sau chỉ được sinh khi tầng trước
-  `approved`).
+  của user/team. Quy ước xuyên suốt kit này: tài liệu tầng sau (User Requirement từ Business
+  Requirement, Functional Requirement từ User Requirement, System Overview từ Functional
+  Requirement) chỉ được tạo khi tài liệu tầng trước đã `status: approved` — không nhảy cấp.
 - Nếu user có nhiều hơn 1 WHY/WHO/HOW cần tách (ví dụ nhiều persona khác nhau → nhiều UR),
   tạo thêm `UR-002`, `UR-003`... theo đúng naming convention thay vì nhồi vào 1 file.
 
@@ -48,6 +50,6 @@ tiên trong pipeline (xem `AGENTS.md`, `README.md`, `CONTEXT.md`).
    business rule nào cần biết trước không?" → tạo `docs/02-functional-requirement/FR-001_<slug>.md`,
    điền "Mô tả chức năng (HOW)", "Business rules", `parent_user_requirement: UR-001`.
 5. Cập nhật ngược mục "Liên kết" ở BR-001/UR-001 để trỏ xuôi tới UR-001/FR-001 vừa tạo.
-6. Nhắc user: review và set `status: approved` cho từng tầng trước khi sang Bước A (System
-   Overview) — xem `AGENTS.md`. Sau đó điền "Giai đoạn hiện tại" và "Team & đầu mối liên hệ"
-   trong `CONTEXT.md` nếu chưa có.
+6. Nhắc user: review và set `status: approved` cho từng tầng trước khi tạo System Overview
+   (C4 Context + Container Diagram). Sau đó điền "Giai đoạn hiện tại" và "Team & đầu mối liên
+   hệ" trong `CONTEXT.md` nếu chưa có.

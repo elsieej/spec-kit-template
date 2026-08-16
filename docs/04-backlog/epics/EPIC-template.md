@@ -7,7 +7,8 @@ created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
 parent_business_requirement: BR-001
 sprint: null
-repo: null            # repo triển khai Epic này — mỗi epic ứng với 1 hệ thống/repo (xem AGENTS.md, "Làm việc đa repo")
+source_container: null # Mã container trong c4-container.md mà Epic này thuộc về (bảng "Danh sách container")
+repo: null            # copy đúng giá trị ở cột "Repo triển khai" của container ứng với source_container ở trên
 external_ref: null    # ID GitHub Issue/PR liên quan (điền thủ công)
 blocked_by_open_questions: []
 ---

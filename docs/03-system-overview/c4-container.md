@@ -14,8 +14,14 @@ blocked_by_open_questions: []
 > Audience: kỹ thuật (architect, developer, ops). Cho thấy các container và công nghệ.
 
 ## Danh sách container
-| Container | Loại (web app / mobile / DB / service...) | Công nghệ | Trách nhiệm |
-|---|---|---|---|
+Cột "Mã" là slug ngắn, duy nhất trong bảng này (vd `checkout-web`, `checkout-api`, `db`) —
+Epic tham chiếu tới container qua đúng mã này (field `source_container`), không dò theo tên
+hay câu chữ ở cột Trách nhiệm. Cột "Repo triển khai" để trống nếu container không có repo
+riêng (DB, service bên thứ 3, hoặc chung repo với container khác trong monorepo thì ghi cùng
+1 tên repo).
+
+| Mã | Container | Loại (web app / mobile / DB / service...) | Công nghệ | Trách nhiệm | Repo triển khai |
+|---|---|---|---|---|---|
 
 ## Giao tiếp giữa các container
 | Từ | Đến | Giao thức | Mô tả |
