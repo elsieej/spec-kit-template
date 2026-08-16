@@ -11,6 +11,7 @@ story_points: null
 sprint: null           # SPRINT-xxx sau khi kéo vào sprint (xem AGENTS.md, Bước F)
 external_ref: null
 blocked_by_open_questions: []
+depends_on: []         # ID Feature/US/Task khác phải status:done trước khi story này ready
 ---
 
 # US-001 — <Tên user story>

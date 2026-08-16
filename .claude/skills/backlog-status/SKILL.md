@@ -45,6 +45,9 @@ cha-con (vẫn dựa vào `parent_*`, không suy ra Epic sở hữu từ tên su
    - `blocked` → liệt kê riêng, kèm `blocked_by_open_questions` để user biết đang chờ OQ nào.
    - `draft`/`ready` → liệt kê theo nhóm, ưu tiên hiển thị `ready` trước (đây là phần có thể kéo
      vào sprint kế tiếp).
+   - Với mỗi item còn ID trong `depends_on` mà ID đó chưa `status: done` → đánh dấu riêng
+     "chưa thể ready (chờ <ID> xong)", kể cả khi `status` hiện tại đang là `ready` (nghĩa là ai
+     đó set `ready` trước khi dependency xong — vẫn báo cho user biết, không tự sửa `status`).
    - Không liệt kê item đã có `sprint: <khác null>` — item đó thuộc về sprint đang chạy/đã xong,
      không còn tính là backlog.
 
@@ -62,6 +65,8 @@ cha-con (vẫn dựa vào `parent_*`, không suy ra Epic sở hữu từ tên su
    - **Phát hiện item mồ côi ở đúng cấp của nó**: Epic không có `parent_business_requirement`
      trỏ tới BR tồn tại, hoặc Feature/US/Task không match được vào cây (parent không tồn tại)
      → liệt kê ở "Liên kết gãy" cùng mục trên, không tự đoán nên gắn vào đâu.
+   - Nếu node có `depends_on` khác rỗng, ghi kèm ngay sau status, ví dụ
+     `TASK-007 (ready, chờ TASK-004) — ...` khi TASK-004 chưa `done`.
 
 4. Trình bày kết quả dạng bảng/cây/gạch đầu dòng ngắn gọn, không diễn giải dài dòng. Nếu user
    chỉ hỏi 1 trong 3 phần (sprint, backlog, hoặc cây phân cấp), chỉ trả lời phần đó.

@@ -11,6 +11,7 @@ estimate: null         # giờ hoặc story points
 sprint: null           # SPRINT-xxx sau khi kéo vào sprint (xem AGENTS.md, Bước F)
 external_ref: null
 blocked_by_open_questions: []
+depends_on: []         # ID Feature/US/Task khác phải status:done trước khi task này ready
 ---
 
 # TASK-001 — <Tên task kỹ thuật>

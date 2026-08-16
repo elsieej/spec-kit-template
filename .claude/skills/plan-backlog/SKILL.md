@@ -51,6 +51,10 @@ cùng 1 BR, thay vì giữ 1 Epic khổng lồ.
 - Nếu một item phụ thuộc vào điều chưa rõ, không tự đoán — tạo file mới từ
   `docs/05-meetings/open-questions/OQ-template.md` và set `status: blocked` kèm
   `blocked_by_open_questions` trên item đó.
+- Nếu một Feature/US/Task chỉ thực hiện được sau khi Feature/US/Task khác xong (phụ thuộc thứ
+  tự, không phải chờ quyết định) → ghi ID đó vào field `depends_on` của item, KHÔNG dùng
+  `status: blocked`/`blocked_by_open_questions` cho trường hợp này. Không set `status: ready`
+  khi `depends_on` còn ID chưa `status: done`.
 
 ## Quy trình
 
@@ -81,17 +85,21 @@ cùng 1 BR, thay vì giữ 1 Epic khổng lồ.
    story này?" → tạo `docs/04-backlog/tasks/{EPIC-ID}_{slug-epic}/TASK-xxx_<slug>.md` (cùng
    Epic với User Story cha), điền "Context cho Agent" (trỏ tới FR + system overview liên quan)
    và "Definition of Done".
-6. Cập nhật ngược: liệt kê Feature vào phần "Phạm vi" của Epic, US vào "User stories thuộc
+6. Với mỗi Feature/User Story/Task vừa tạo, hỏi user: "Có phụ thuộc item nào khác cần xong
+   trước không?" → nếu có, điền ID vào `depends_on`.
+7. Cập nhật ngược: liệt kê Feature vào phần "Phạm vi" của Epic, US vào "User stories thuộc
    feature này" của Feature, Task vào "Tasks thuộc story này" của User Story.
 
 ### Phần 2 — Đưa vào Sprint
 
-7. Hỏi user: đã có `SPRINT-xxx` đang `active` chưa (chỉ được có tối đa 1 sprint active tại một
+8. Hỏi user: đã có `SPRINT-xxx` đang `active` chưa (chỉ được có tối đa 1 sprint active tại một
    thời điểm)? Nếu chưa, hỏi Sprint Goal + `start_date`/`end_date`, tạo từ
    `docs/04-backlog/sprints/SPRINT-template.md`.
-8. Hỏi user muốn kéo User Story/Task nào (trong số đang `ready`, không `blocked`) vào sprint
-   này — không tự ý kéo hết backlog vào, để user chọn theo năng lực team.
-9. Với mỗi item được chọn: điền `sprint: SPRINT-xxx` trên US/Task đó, thêm vào bảng "User
-   Stories / Tasks cam kết" trong file Sprint.
-10. Nhắc user: cuối sprint quay lại điền mục "Review" và "Retro" trong `SPRINT-xxx`, set
+9. Hỏi user muốn kéo User Story/Task nào (trong số đang `ready`, không `blocked`) vào sprint
+   này — không tự ý kéo hết backlog vào, để user chọn theo năng lực team. Với mỗi item, kiểm
+   tra `depends_on`: nếu còn ID chưa `status: done`, cảnh báo rõ cho user trước khi kéo vào
+   (không tự ý loại ra — để team quyết định có chấp nhận rủi ro hay không).
+10. Với mỗi item được chọn: điền `sprint: SPRINT-xxx` trên US/Task đó, thêm vào bảng "User
+    Stories / Tasks cam kết" trong file Sprint.
+11. Nhắc user: cuối sprint quay lại điền mục "Review" và "Retro" trong `SPRINT-xxx`, set
     `status: done`, dời việc chưa xong sang sprint kế tiếp hoặc huỷ (ghi rõ lý do).

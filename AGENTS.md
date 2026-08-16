@@ -75,6 +75,13 @@ Nếu 1 Epic vượt xa mức ~20 Feature, đó là dấu hiệu Epic đang gộ
 — tách thành nhiều Epic nhỏ hơn, cùng trỏ `parent_business_requirement` về BR gốc (và cùng
 `source_container` nếu vẫn chung 1 hệ thống), thay vì giữ 1 Epic khổng lồ.
 
+**Phụ thuộc giữa Feature/User Story/Task** (khác với `blocked_by_open_questions`): field
+`depends_on` trên Feature/US/Task ghi ID của (các) item khác phải `status: done` trước khi
+item này được coi là thực hiện được. Đây không phải trạng thái `blocked` — không cần
+`blocked_by_open_questions`, không cần ai quyết định gì, chỉ đơn giản là "chưa tới lượt" và tự
+hết khi dependency xong. Không set `status: ready` cho một item khi `depends_on` của nó còn ID
+chưa `done`.
+
 **Epic ứng với container/repo nào?** Không tự đặt mã/tên repo mới ở bước này — số lượng và mã
 hệ thống đã được chốt từ Bước A (`c4-container.md`, cột "Mã"). Đối chiếu "Mục tiêu" của Epic
 với cột "Trách nhiệm" của từng container trong bảng đó:
@@ -104,7 +111,9 @@ Chỉ một `SPRINT-xxx` được `status: active` tại một thời điểm �
 `docs/04-backlog/sprints/SPRINT-template.md` với `start_date`/`end_date` và Sprint Goal rõ
 ràng, set `status: active`. Kéo các User
 Story/Task đang `ready` trong backlog vào sprint (điền field `sprint: SPRINT-xxx` trên US/Task
-tương ứng, liệt kê vào bảng "User Stories / Tasks cam kết"). Cuối sprint: điền Review/Retro,
+tương ứng, liệt kê vào bảng "User Stories / Tasks cam kết") — trước khi kéo, kiểm tra
+`depends_on` của item đó đã `done` hết chưa; nếu chưa, cảnh báo rõ cho user (không tự ý loại
+item ra, để team quyết định có chấp nhận rủi ro hay không). Cuối sprint: điền Review/Retro,
 set `status: done`, việc chưa xong dời sang sprint kế tiếp hoặc huỷ (ghi rõ lý do).
 
 ### Bước C — Thực thi Task

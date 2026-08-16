@@ -10,6 +10,7 @@ parent_user_requirement: UR-001
 sprint: null
 external_ref: null
 blocked_by_open_questions: []
+depends_on: []        # ID Feature/US/Task khác phải status:done trước khi feature này ready
 ---
 
 # FEAT-001 — <Tên feature>
