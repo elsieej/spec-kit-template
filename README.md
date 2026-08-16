@@ -70,7 +70,8 @@ CLAUDE.md                         → quy ước đặt tên + versioning xuyên
   backlog hiện có gì, hoặc cây Epic→Feature→User Story→Task (không có dashboard/file trạng
   thái riêng, luôn tính lại từ frontmatter)
 - `docs/00-03` — 3 tầng yêu cầu + system overview (C4 Context/Container)
-- `docs/04-backlog` — Epic/Feature/User Story/Task, `sprints/` — Sprint Planning (start/end date)
+- `docs/04-backlog` — Epic/Feature/User Story/Task (Epic phẳng, Feature/US/Task nằm trong
+  subfolder theo Epic — xem `CLAUDE.md`), `sprints/` — Sprint Planning (start/end date)
 - `docs/05-meetings` — biên bản họp + open questions (luồng ngoài)
 - `docs/06-release` — kế hoạch release theo Gitflow
 - `docs/07-glossary` — từ điển thuật ngữ dự án

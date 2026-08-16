@@ -57,17 +57,23 @@ Không sinh Component/Code diagram trừ khi được yêu cầu rõ ràng.
 ### Bước B — Sinh Backlog
 Input: `docs/00-03` (đã approved).
 Output theo thứ tự: Epic → Feature → User Story → Task, mỗi cấp dùng đúng template
-trong `docs/04-backlog/*/`. Liên kết `parent_*` bắt buộc.
+trong `docs/04-backlog/*/`. Liên kết `parent_*` bắt buộc. Epic nằm phẳng trong
+`docs/04-backlog/epics/`; Feature/User Story/Task nằm trong subfolder theo Epic sở hữu (xem
+`CLAUDE.md`, mục "Đặt tên, ID và versioning") — không tạo phẳng chung 1 thư mục.
 
 **Tiêu chí phân rã từng cấp** — dùng để quyết định một ý tưởng nên là Epic, Feature, User
 Story hay Task:
 
 | Cấp | Trả lời câu hỏi | Quy mô điển hình | `parent_*` bắt buộc | Ai review |
 |---|---|---|---|---|
-| Epic | Mục tiêu kinh doanh lớn nào (từ 1 BR) đang được hiện thực hoá? 1 Epic ≈ 1 mảng giá trị lớn, ứng với 1 container triển khai (`source_container` + `repo`) | Kéo dài nhiều sprint | `parent_business_requirement` | Product owner / tech lead |
+| Epic | Mục tiêu kinh doanh lớn nào (từ 1 BR) đang được hiện thực hoá? 1 Epic ≈ 1 mảng giá trị lớn, ứng với 1 container triển khai (`source_container` + `repo`) | Kéo dài nhiều sprint, thường ~5-20 Feature | `parent_business_requirement` | Product owner / tech lead |
 | Feature | Epic này gồm những nhóm chức năng con nào? | Vài sprint | `parent_epic`, `parent_user_requirement` | Product owner |
 | User Story | Persona cụ thể nào (từ UR) cần làm gì, để được lợi ích gì? Đủ nhỏ để xong trong 1 sprint, phải có Acceptance Criteria | Trong 1 sprint | `parent_feature`, `parent_functional_requirement` | Cả team lúc Sprint Planning (Bước F) |
 | Task | Việc kỹ thuật cụ thể nào để hoàn thành User Story đó? Đủ nhỏ để 1 dev làm xong trong vài giờ–1-2 ngày | Giờ tới 1-2 ngày | `parent_user_story` | Dev nhận Task |
+
+Nếu 1 Epic vượt xa mức ~20 Feature, đó là dấu hiệu Epic đang gộp nhiều mảng giá trị khác nhau
+— tách thành nhiều Epic nhỏ hơn, cùng trỏ `parent_business_requirement` về BR gốc (và cùng
+`source_container` nếu vẫn chung 1 hệ thống), thay vì giữ 1 Epic khổng lồ.
 
 **Epic ứng với container/repo nào?** Không tự đặt mã/tên repo mới ở bước này — số lượng và mã
 hệ thống đã được chốt từ Bước A (`c4-container.md`, cột "Mã"). Đối chiếu "Mục tiêu" của Epic

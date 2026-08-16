@@ -19,6 +19,12 @@ từng file Epic/Feature/US là bản tóm tắt cho người đọc, có thể 
 mới thủ công (không qua skill `plan-backlog`) — skill này KHÔNG dựa vào các mục đó, chỉ dựa
 vào field `parent_*` (nguồn duy nhất, luôn đúng vì mỗi file backlog bắt buộc có field này).
 
+Epic nằm phẳng trong `docs/04-backlog/epics/`; Feature/User Story/Task nằm trong subfolder
+theo Epic sở hữu (`docs/04-backlog/{features,user-stories,tasks}/{EPIC-ID}_{slug}/...`) — khi
+quét các thư mục này, đọc đệ quy qua mọi subfolder (không chỉ cấp ngay bên dưới), vẫn loại trừ
+mọi `*-template.md`. Subfolder chỉ là tổ chức vật lý, không thay đổi cách xác định quan hệ
+cha-con (vẫn dựa vào `parent_*`, không suy ra Epic sở hữu từ tên subfolder).
+
 ## Quy trình
 
 1. **Sprint đang active**: đọc frontmatter mọi file trong `docs/04-backlog/sprints/` (trừ
@@ -32,7 +38,8 @@ vào field `parent_*` (nguồn duy nhất, luôn đúng vì mỗi file backlog b
      ý chọn 1 sprint để sửa `status`.
 
 2. **Backlog hiện có**: đọc frontmatter mọi file trong
-   `docs/04-backlog/{epics,features,user-stories,tasks}/` (trừ các `*-template.md`). "Backlog"
+   `docs/04-backlog/{epics,features,user-stories,tasks}/` (đệ quy qua subfolder theo Epic, trừ
+   các `*-template.md`). "Backlog"
    là mọi item có `sprint: null` (chưa gắn vào sprint nào). Nhóm theo loại (Epic/Feature/US/
    Task) rồi theo `status`:
    - `blocked` → liệt kê riêng, kèm `blocked_by_open_questions` để user biết đang chờ OQ nào.
@@ -42,7 +49,8 @@ vào field `parent_*` (nguồn duy nhất, luôn đúng vì mỗi file backlog b
      không còn tính là backlog.
 
 3. **Cây phân cấp Epic → Feature → User Story → Task**: đọc frontmatter mọi file trong
-   `docs/04-backlog/{epics,features,user-stories,tasks}/` (trừ `*-template.md`), dựng cây từ
+   `docs/04-backlog/{epics,features,user-stories,tasks}/` (đệ quy qua subfolder theo Epic, trừ
+   `*-template.md`), dựng cây từ
    `parent_epic` (Feature), `parent_feature` (User Story), `parent_user_story` (Task):
    - Với 1 Epic cụ thể được hỏi tới, hoặc toàn bộ backlog nếu user không chỉ định: in cây thụt
      lề theo cấp, mỗi node kèm ID + tên + `status` (ví dụ

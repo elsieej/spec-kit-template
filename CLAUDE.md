@@ -24,6 +24,14 @@ không nơi nào khác có: quy ước đặt tên/ID/versioning, và vài ghi c
 | Release | REL | REL-v1.2.0 |
 
 - Tên file theo mẫu: `{PREFIX}-{ID}_{slug-ngan-gon}.md`, ví dụ `EPIC-003_checkout-flow.md`.
+- Feature/User Story/Task nằm trong subfolder theo Epic sở hữu, KHÔNG để phẳng chung 1 thư mục
+  — tránh thư mục có hàng nghìn file khi backlog lớn (nhiều Epic × nhiều Feature × nhiều US ×
+  nhiều Task):
+  `docs/04-backlog/{features,user-stories,tasks}/{EPIC-ID}_{slug-epic}/{PREFIX}-xxx_{slug}.md`,
+  trong đó `{EPIC-ID}_{slug-epic}` trùng đúng tên file Epic sở hữu (bỏ đuôi `.md`), ví dụ
+  `docs/04-backlog/features/EPIC-003_checkout-flow/FEAT-012_luu-the.md`. Epic vẫn nằm phẳng
+  trong `docs/04-backlog/epics/` (số lượng Epic luôn nhỏ, không cần subfolder). Đây chỉ là tổ
+  chức vật lý để dễ duyệt — `parent_*` trong frontmatter mới là nguồn sự thật cho quan hệ cha-con.
 - Frontmatter của mỗi file có `version` (số nguyên tăng dần), `status`, và `last_updated`. Không xoá nội dung cũ khi sửa lớn — tăng `version`, dùng `git log`/`git blame` để xem lịch sử; không tạo file riêng cho mỗi version.
 - Vòng đời `status` KHÔNG dùng chung một enum cho mọi loại tài liệu — mỗi nhóm có vòng đời
   riêng, khớp đúng với enum ghi trong comment frontmatter của template loại đó:
