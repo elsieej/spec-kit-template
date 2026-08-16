@@ -1,0 +1,89 @@
+# RULES.md — Quy tắc dự án
+
+Tập hợp các nhóm quy tắc áp dụng khi làm việc với Spec Kit này (agent hoặc người đóng góp).
+Mỗi nhóm là một phần độc lập bên dưới — không phải tất cả đều về văn phong. Dùng cùng với
+`CLAUDE.md` (quy trình pipeline + naming convention) và `AGENTS.md` (hành vi agent theo
+từng bước); những file đó là nguồn chi tiết, RULES.md không lặp lại nội dung của chúng.
+
+## Danh mục
+
+1. [Ngôn ngữ & giọng văn](#1-ngôn-ngữ--giọng-văn)
+2. [Thuật ngữ](#2-thuật-ngữ)
+3. [Traceability & trạng thái tài liệu](#3-traceability--trạng-thái-tài-liệu)
+4. [Bảo mật & thông tin nhạy cảm](#4-bảo-mật--thông-tin-nhạy-cảm)
+5. [Git & commit](#5-git--commit)
+
+---
+
+## 1. Ngôn ngữ & giọng văn
+
+**Đối tượng đọc:** mặc định là **developer/kỹ sư phần mềm** (kể cả tài liệu tầng nghiệp vụ
+như BR/UR, vì agent và dev đọc cùng một bộ tài liệu để lấy context). Viết cho người đã quen
+thao tác kỹ thuật, không cần giải thích lại khái niệm phổ thông trong ngành.
+
+1. **Ngắn gọn, đi thẳng vào vấn đề.** Không rào đón, không lặp lại yêu cầu, không câu văn
+   hoa mỹ/marketing trong tài liệu kỹ thuật.
+2. **Ưu tiên thuật ngữ chuyên ngành** khi nói về vấn đề kỹ thuật, thay vì dịch gượng ép sang
+   tiếng Việt (chi tiết ở mục 2 — Thuật ngữ).
+3. **Nhất quán thuật ngữ xuyên suốt.** Một khái niệm chỉ dùng một cách gọi trong toàn bộ dự
+   án — không đổi qua lại giữa các cách dịch/viết khác nhau cho cùng một thứ.
+4. **Khách quan, trung lập.** Mô tả sự việc/yêu cầu/kết quả, không đánh giá chủ quan
+   ("rất tốt", "cực kỳ quan trọng") trừ khi đó là nhận định có căn cứ (metric, test result).
+5. **Câu mệnh lệnh rõ ràng** trong checklist, Definition of Done, test case: dùng động từ
+   hành động ở đầu câu (Thêm / Sửa / Xoá / Kiểm tra / Cập nhật...), tránh câu bị động dài dòng.
+
+Áp dụng theo loại nội dung:
+- **Tài liệu 00–03 (BR/UR/FR/System Overview):** văn phong nghiệp vụ nhưng vẫn ưu tiên thuật
+  ngữ kỹ thuật chuẩn khi mô tả giải pháp/hệ thống; tránh diễn giải mơ hồ.
+- **Backlog (Epic/Feature/User Story/Task):** ngắn, cụ thể, có thể thực thi được — đặc biệt
+  phần "Mô tả công việc" và "Definition of Done" trong Task phải đủ chi tiết để agent code
+  không cần đoán thêm.
+- **Giao tiếp với người dùng (chat, PR description):** vẫn ngắn gọn, kỹ thuật, nhưng có thể
+  thêm ngữ cảnh/giải thích quyết định nếu người đọc không phải lúc nào cũng theo sát toàn bộ
+  tài liệu.
+
+## 2. Thuật ngữ
+
+`docs/07-glossary/glossary.md` gồm hai phần: **Thuật ngữ nghiệp vụ** (định nghĩa
+business/domain riêng của dự án) và **Thuật ngữ kỹ thuật / văn phong** (quy định thuật ngữ
+kỹ thuật nào giữ nguyên tiếng Anh, thuật ngữ nào dịch).
+
+- Trước khi viết một thuật ngữ kỹ thuật hoặc thuật ngữ riêng của dự án vào tài liệu, **tra
+  glossary trước** (đúng phần tương ứng).
+- Nếu thuật ngữ đã có → dùng đúng hình thức đã quy định ở đó, không tự sáng tạo cách viết khác.
+- Nếu thuật ngữ chưa có → thêm một dòng mới vào nhóm phù hợp trong glossary (kèm định nghĩa
+  hoặc cách dùng + ví dụ) **trước khi** dùng thuật ngữ đó trong tài liệu đang viết.
+- Không tự ý dịch các thuật ngữ đã chuẩn hoá trong ngành (commit, pull request, sprint,
+  backlog, endpoint, container...) trừ khi glossary quy định khác.
+- **Không viết tắt tự chế.** Chỉ dùng viết tắt đã chuẩn hoá trong glossary hoặc phổ biến
+  trong ngành (PR, CI/CD, API...); viết tắt lần đầu xuất hiện nên kèm dạng đầy đủ.
+
+## 3. Traceability & trạng thái tài liệu
+
+- Mọi tài liệu backlog (Epic/Feature/User Story/Task) phải có field `parent_*` trỏ ngược lên
+  tài liệu đã sinh ra nó — không tạo tài liệu backlog mà thiếu liên kết này (xem
+  `CLAUDE.md` (mục "Đặt tên, ID và versioning")).
+- Không sinh tài liệu ở tầng N+1 khi tài liệu tầng N liên quan chưa có `status: approved`
+  (xem `AGENTS.md`).
+- Khi một item bị chặn bởi open question, set `status: blocked` và điền
+  `blocked_by_open_questions: [OQ-xxx]` — không được để `blocked` mà thiếu field này, và
+  không tự suy đoán câu trả lời để né trạng thái `blocked`.
+
+## 4. Bảo mật & thông tin nhạy cảm
+
+- Không đưa credential, API key, token, hoặc dữ liệu cá nhân thật vào bất kỳ tài liệu nào
+  (kể cả ví dụ minh hoạ) — dùng placeholder rõ ràng (`<token>`, `xxx-xxx-xxx`...).
+- Khi trích dẫn nội dung từ meeting notes hoặc nguồn bên ngoài vào tài liệu dự án, rà lại để
+  loại bỏ thông tin nhạy cảm không cần thiết cho ngữ cảnh kỹ thuật.
+
+## 5. Git & commit
+
+- Mỗi thay đổi tài liệu là một commit riêng, không gộp nhiều thay đổi không liên quan vào
+  cùng một commit (xem `README.md`).
+- Định dạng commit message (kèm gắn sprint + phân biệt `docs`/`hotfix`): xem `CLAUDE.md` (mục
+  "Đặt tên, ID và versioning"). Mô tả ngắn dùng động từ hành động, tiếng Việt hoặc tiếng Anh
+  đều được nhưng phải nhất quán trong cùng một dự án.
+- Thay đổi tài liệu phát sinh từ họp trong sprint (Bước E) commit theo sprint đang active,
+  không dồn nhiều sprint vào một commit (xem `AGENTS.md`, Bước E).
+- Release tuân theo Gitflow (`release/*` → `main` + `develop`); không thêm feature mới vào
+  branch release (xem `AGENTS.md`, bước D).
