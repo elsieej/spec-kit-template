@@ -127,6 +127,21 @@ trong lúc có `SPRINT-xxx` đang `active`, commit các thay đổi tài liệu 
 định dạng có gắn sprint (xem `CLAUDE.md`, mục "Đặt tên, ID và versioning") — dùng prefix
 `hotfix` thay vì `docs` nếu là sửa gấp một tài liệu đã `approved`/`done`.
 
+**Họp làm thay đổi Feature/User Story khi Task con đã nằm trong sprint đang active** — phân
+biệt 2 trường hợp:
+- Thay đổi **chưa chốt**, còn cần quyết định → xử lý như open question bình thường ở trên: tạo
+  `OQ-*`, set `blocked_by_open_questions` + `status: blocked` trên Task (và US/Feature liên
+  quan). Task vẫn giữ nguyên `sprint: SPRINT-xxx` (không rút khỏi sprint), chỉ dừng thực thi
+  cho tới khi OQ được trả lời.
+- Thay đổi **đã chốt ngay tại họp** (không cần OQ) → sửa thẳng Feature/User Story bị ảnh hưởng
+  (tăng `version`, cập nhật `last_updated`), rồi đối chiếu với Task con đang trong sprint:
+  - Mô tả/Definition of Done của Task vẫn còn khớp → không cần sửa Task.
+  - Không còn khớp và Task đang ở `draft`/`ready`/`in-progress` → sửa lại nội dung Task cho
+    khớp, tăng `version`, ghi lý do + liên kết `MEET-xxx` vào mục "Ghi chú" của Task.
+  - Không còn khớp nhưng Task đã `in-review`/`done` → KHÔNG sửa ngược Task đã hoàn thành (phá
+    traceability của việc đã xong); tạo Task mới cho phần chênh lệch, `parent_user_story` trỏ
+    về đúng User Story, kéo vào sprint đang active nếu vẫn kịp, hoặc dời sang sprint kế tiếp.
+
 ## Làm việc đa repo
 
 Kit này là repo trung tâm chứa spec/backlog; việc triển khai code có thể nằm ở (các) repo
