@@ -12,6 +12,8 @@ sprint: null           # SPRINT-xxx sau khi kéo vào sprint (xem AGENTS.md, Bư
 external_ref: null
 blocked_by_open_questions: []
 depends_on: []         # ID Feature/US/Task khác phải status:done trước khi task này ready
+priority: null         # P0 | P1 | P2 | P3 — ưu tiên backlog tại thời điểm lên sprint, xem AGENTS.md mục "Backlog"
+severity: null         # Sev1 | Sev2 | Sev3 | Sev4 — chỉ điền nếu Task này là bug/hotfix, xem AGENTS.md mục "Backlog"
 ---
 
 # TASK-001 — <Tên task kỹ thuật>

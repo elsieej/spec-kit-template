@@ -104,7 +104,36 @@ với cột "Trách nhiệm" của từng container trong bảng đó:
 
 **"Backlog"** không phải 1 file riêng — đó là trạng thái gộp của mọi Epic/Feature/User
 Story/Task trong `docs/04-backlog` đang `draft`/`ready` (chưa gắn vào sprint nào). Ưu tiên xử
-lý: loại các item đang `blocked` trước, còn lại ưu tiên theo mức MoSCoW đã ghi ở UR nguồn.
+lý: loại các item đang `blocked` trước, còn lại sắp theo field `priority` trên Feature/US/Task
+(`P0` xử lý trước, `P3` sau cùng).
+
+**`priority` khác gì với "Ưu tiên" (MoSCoW) ở UR?** Hai lớp riêng biệt, không dùng thay cho
+nhau:
+- MoSCoW ở UR (`Must/Should/Could/Won't have`) là ưu tiên **của yêu cầu**, chốt 1 lần lúc UR
+  được approve, hiếm khi đổi.
+- `priority` (`P0`-`P3`) trên Feature/User Story/Task là ưu tiên **của backlog tại thời điểm
+  lên sprint**, có thể khác giá trị suy ra từ MoSCoW gốc vì bối cảnh thay đổi (deadline khách
+  hàng, rủi ro kỹ thuật mới phát sinh...).
+
+Khi tạo mới Feature/US/Task ở Bước B, suy `priority` mặc định từ mức MoSCoW của UR nguồn: `Must
+have` → `P0`/`P1`, `Should have` → `P1`/`P2`, `Could have` → `P2`/`P3`, `Won't have` → không
+đưa vào backlog. Trước mỗi lần Sprint Planning (Bước F), review lại `priority` của các item
+đang `ready` — có thể điều chỉnh nếu bối cảnh sprint hiện tại khác lúc tạo, nhưng phải ghi lý
+do đổi vào mục "Ghi chú"/"Ghi chú kỹ thuật" của item đó.
+
+**Task là bug/hotfix thì ưu tiên thế nào?** Bug phát sinh ngoài luồng UR nên không có MoSCoW để
+suy — dùng field `severity` trên `TASK-template.md` thay vì suy từ `priority` của US cha:
+- `Sev1` — production ngừng hoạt động/mất dữ liệu: xử lý ngay, không chờ sprint kế tiếp (cắt
+  nhánh `hotfix/*` theo Gitflow, xem `docs/06-release/release-plan-template.md` và prefix
+  commit `hotfix` trong `CLAUDE.md`).
+- `Sev2` — tính năng chính hỏng nhưng có workaround: ưu tiên nhét vào sprint đang active nếu
+  còn chỗ, không thì mở đầu sprint kế tiếp.
+- `Sev3` — lỗi nhỏ, không chặn luồng chính: xếp vào backlog bình thường theo `priority` như
+  Task khác.
+- `Sev4` — lỗi thẩm mỹ/cosmetic: không cam kết ngày xử lý.
+
+Task có `severity` thì đồng thời set `priority` tương ứng để vẫn xếp chung hàng đợi với Task
+tính năng khi lên sprint: `Sev1`/`Sev2` → `P0`, `Sev3` → `P2`, `Sev4` → `P3`.
 
 **Ví dụ minh hoạ** (một luồng xuyên suốt, rút gọn):
 `BR-001` "Tăng tỉ lệ chuyển đổi checkout" → `UR-001` "Khách hàng mua sắm online, pain point:

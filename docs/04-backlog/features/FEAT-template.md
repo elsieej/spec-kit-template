@@ -11,6 +11,7 @@ sprint: null
 external_ref: null
 blocked_by_open_questions: []
 depends_on: []        # ID Feature/US/Task khác phải status:done trước khi feature này ready
+priority: null        # P0 | P1 | P2 | P3 — ưu tiên backlog tại thời điểm lên sprint, xem AGENTS.md mục "Backlog"
 ---
 
 # FEAT-001 — <Tên feature>
