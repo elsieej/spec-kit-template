@@ -1,0 +1,10 @@
+# Ép line ending LF cho mọi file text, bất kể OS của contributor (tránh CRLF lẫn vào repo trên Windows).
+* text=auto eol=lf
+
+# Nhị phân — không normalize line ending, không diff dạng text.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
