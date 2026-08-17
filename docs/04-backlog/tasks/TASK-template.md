@@ -31,6 +31,10 @@ depends_on: []         # ID Feature/US/Task khác phải status:done trước kh
 - [ ] Cập nhật external_ref (GitHub/Jira) sang trạng thái Done
 
 ## Testing
+Bắt buộc điền ít nhất 1 dòng ngay khi tạo Task (trước khi code) — nếu không hình dung được
+test case cụ thể nào, Task đang quá mơ hồ hoặc quá lớn, phải hỏi lại user/tách nhỏ hơn trước
+khi tạo.
+
 | Test case | Input | Expected output | Status |
 |---|---|---|---|
 | | | | |

@@ -27,6 +27,16 @@ Nếu 1 Epic vượt xa mức ~20 Feature, đó là dấu hiệu đang gộp nhi
 Epic — đề xuất user tách thành nhiều Epic nhỏ hơn, cùng trỏ `parent_business_requirement` về
 cùng 1 BR, thay vì giữ 1 Epic khổng lồ.
 
+**Task đủ nhỏ để dễ test là thế nào?** "Giờ tới 1-2 ngày" chỉ là ước lượng phụ, tự nó không
+kiểm chứng được — dùng 3 dấu hiệu cụ thể để quyết định có cần tách Task tiếp không:
+1. 1 Task = 1 hành động kỹ thuật cụ thể (thêm 1 endpoint, sửa 1 hàm, viết 1 migration, thêm 1
+   UI component...). Mô tả phải nối nhiều việc bằng "và"/"rồi" → tách thành nhiều Task.
+2. Phải viết được ít nhất 1 test case cụ thể (Input → Expected output) ngay lúc tạo Task, điền
+   thẳng vào bảng "Testing" của Task — không hình dung được test case cụ thể nghĩa là Task còn
+   mơ hồ hoặc còn quá lớn, hỏi lại user hoặc tách tiếp trước khi tạo.
+3. Definition of Done chỉ nên xoay quanh 1 nhóm tiêu chí liên quan — nhiều nhóm không liên
+   quan tới nhau (vừa "thêm API" vừa "cập nhật UI" vừa "viết doc") là dấu hiệu đang gộp việc.
+
 ## Nguyên tắc khi chạy skill này
 
 - Đi từ trên xuống: xác nhận Epic trước, rồi mới hỏi Feature bên trong Epic đó, rồi User
@@ -44,8 +54,9 @@ cùng 1 BR, thay vì giữ 1 Epic khổng lồ.
   subfolder này khi tạo Feature đầu tiên của Epic đó.
 - User Story bắt buộc có Acceptance Criteria dạng Given/When/Then — không tạo US thiếu mục
   này, hỏi lại user nếu họ chỉ đưa ý tưởng chung chung.
-- Task phải đủ nhỏ (vài giờ đến 1–2 ngày); nếu user mô tả một Task lớn hơn mức đó, đề xuất
-  tách thành nhiều Task hoặc nâng thành User Story riêng.
+- Task phải đủ nhỏ theo 3 dấu hiệu ở trên (1 hành động cụ thể, có ít nhất 1 test case rõ ràng,
+  DoD chỉ 1 nhóm tiêu chí liên quan); nếu user mô tả một Task không đạt, đề xuất tách thành
+  nhiều Task hoặc nâng thành User Story riêng.
 - Tất cả tạo mới ở `status: draft`. Không tự set `ready`/`approved` — đó là quyết định của
   team khi review.
 - Nếu một item phụ thuộc vào điều chưa rõ, không tự đoán — tạo file mới từ
@@ -84,7 +95,10 @@ cùng 1 BR, thay vì giữ 1 Epic khổng lồ.
 5. Hỏi **Task** (cho từng User Story): "Cần làm những việc kỹ thuật cụ thể nào để hoàn thành
    story này?" → tạo `docs/04-backlog/tasks/{EPIC-ID}_{slug-epic}/TASK-xxx_<slug>.md` (cùng
    Epic với User Story cha), điền "Context cho Agent" (trỏ tới FR + system overview liên quan)
-   và "Definition of Done".
+   và "Definition of Done". Hỏi tiếp: "Test case nào xác nhận Task này xong?" → điền ít nhất 1
+   dòng vào bảng "Testing" (Input → Expected output) ngay lúc tạo — nếu không trả lời được cụ
+   thể, coi đây là dấu hiệu Task chưa đủ rõ/nhỏ (xem tiêu chí "Task đủ nhỏ" ở trên), hỏi lại
+   hoặc tách tiếp trước khi tạo file.
 6. Với mỗi Feature/User Story/Task vừa tạo, hỏi user: "Có phụ thuộc item nào khác cần xong
    trước không?" → nếu có, điền ID vào `depends_on`.
 7. Cập nhật ngược: liệt kê Feature vào phần "Phạm vi" của Epic, US vào "User stories thuộc

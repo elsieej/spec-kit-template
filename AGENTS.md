@@ -75,6 +75,16 @@ Nếu 1 Epic vượt xa mức ~20 Feature, đó là dấu hiệu Epic đang gộ
 — tách thành nhiều Epic nhỏ hơn, cùng trỏ `parent_business_requirement` về BR gốc (và cùng
 `source_container` nếu vẫn chung 1 hệ thống), thay vì giữ 1 Epic khổng lồ.
 
+**Task đủ nhỏ để dễ test là thế nào?** "Giờ tới 1-2 ngày" chỉ là ước lượng phụ, tự nó không
+kiểm chứng được — dùng 3 dấu hiệu cụ thể sau để quyết định có cần tách Task tiếp không:
+1. 1 Task = 1 hành động kỹ thuật cụ thể (thêm 1 endpoint, sửa 1 hàm, viết 1 migration, thêm 1
+   UI component...). Mô tả phải nối nhiều việc bằng "và"/"rồi" → tách thành nhiều Task.
+2. Phải viết được ít nhất 1 test case cụ thể (Input → Expected output) ngay lúc tạo Task, điền
+   thẳng vào bảng "Testing" của `TASK-template.md` — không hình dung được test case cụ thể
+   nghĩa là Task còn mơ hồ hoặc còn quá lớn, hỏi lại user hoặc tách tiếp trước khi tạo.
+3. Definition of Done chỉ nên xoay quanh 1 nhóm tiêu chí liên quan — nhiều nhóm không liên
+   quan tới nhau (vừa "thêm API" vừa "cập nhật UI" vừa "viết doc") là dấu hiệu đang gộp việc.
+
 **Phụ thuộc giữa Feature/User Story/Task** (khác với `blocked_by_open_questions`): field
 `depends_on` trên Feature/US/Task ghi ID của (các) item khác phải `status: done` trước khi
 item này được coi là thực hiện được. Đây không phải trạng thái `blocked` — không cần
