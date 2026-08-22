@@ -9,8 +9,10 @@
    (backlog grooming là việc liên tục), miễn `parent_*` trỏ đúng và `status: deprecated` thì
    không thêm con mới nữa.
 3. Mọi tài liệu mới phải điền đủ frontmatter (id, type, status, version, parent_*).
-4. Nếu một item liên quan tới `OQ-xxx` chưa được trả lời (`status: draft`), set
-   `status: blocked` thay vì tiếp tục.
+4. Nếu một **Epic/Feature/User Story/Open Question** liên quan tới `OQ-xxx` khác chưa được trả
+   lời (`status: draft`), set `status: blocked` thay vì tiếp tục. BR/UR/FR/SYS-CTX/SYS-CTR/
+   SYS-CMP/SYS-IFC KHÔNG có trạng thái `blocked` — dùng `related_open_questions` thay vì
+   `blocked_by_open_questions`, không tự chặn tiến độ (xem `CLAUDE.md`, Bước E bên dưới).
 5. Spec-kit này dừng ở User Story — không có tầng Task kỹ thuật, Sprint, hay Release riêng.
 
 ## Quy trình theo bước
@@ -48,6 +50,12 @@ Input: `docs/00-glossary/glossary.md` (thuật ngữ dự án, đảm bảo đ�
 Output: `docs/04-system-overview/c4-context.md`, `c4-container.md`, và 1 `c4-component-*.md`
 cho mỗi container có codebase thực sự (xem skill `c4-model`). Không sinh Code diagram (Level 4)
 trừ khi được yêu cầu rõ ràng.
+
+Khi giao tiếp giữa 2 container có dữ liệu thật cần thống nhất trước (để 2 container do 2
+phiên/agent khác nhau thực thi không lệch schema), tạo thêm `docs/04-system-overview/
+interface-contracts.md` (`SYS-IFC-xxx`, xem skill `c4-model`) — chỉ chốt schema dữ liệu (field
+nào bắt buộc/tuỳ chọn, request/response cần gì) và DB schema cho container DB thuần, KHÔNG quy
+định API cụ thể (method HTTP, path, status code) — đó là Code (Level 4), quyết định ở Bước C.
 
 ### Bước B — Sinh Backlog
 Input: `docs/01-04` (đã approved).
@@ -116,6 +124,8 @@ Trước khi code, đọc theo thứ tự:
 4. `docs/04-system-overview/c4-container.md` (container liên quan), và `c4-component-<mã
    container>.md` của container đó nếu file này tồn tại (container đơn giản, không có cấu
    trúc nội bộ đáng vẽ, sẽ không có file Component — xem skill `c4-model`)
+5. `docs/04-system-overview/interface-contracts.md` nếu tồn tại — schema dữ liệu cần gửi/nhận
+   qua container liên quan, tránh tự bịa field khác với container ở đầu kia đã thống nhất
 
 ### Bước E — Xử lý Meeting/Open Question
 Khi có input từ cuộc họp: tạo `MEET-*`, nếu phát sinh điều chưa rõ → tạo `OQ-*`
@@ -143,8 +153,11 @@ Epic/Feature/Story.
 
 Không có cơ chế tự động (không hook, không CI) — mọi lan truyền dưới đây đều cần agent/người
 chủ động rà soát khi thấy 1 tài liệu chuyển sang trạng thái kích hoạt (`draft` trở lại sau
-`approved`, `blocked`, container đổi Mã, OQ được trả lời, `depends_on` hoàn tất...). Sơ đồ này
-chỉ để tra cứu nhanh "sửa cái này thì phải xem lại cái gì" — không thay thế nội dung chi tiết
+`approved`, `blocked`, container đổi Mã, OQ được trả lời, `depends_on` hoàn tất...). Ghi lại việc
+đã rà soát trong message của commit đưa tài liệu về lại `approved` (ví dụ: "reviewed UR-001,
+SYS-CTX-001, EPIC-001/002 — no downstream change needed") — kit này không có dashboard/log riêng
+để tra lại việc rà soát đã xảy ra hay chưa, git log là nơi duy nhất giữ lại bằng chứng đó. Sơ đồ
+này chỉ để tra cứu nhanh "sửa cái này thì phải xem lại cái gì" — không thay thế nội dung chi tiết
 ở Bước A–C, E phía trên.
 
 ```mermaid
