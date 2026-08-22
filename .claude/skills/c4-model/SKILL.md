@@ -3,9 +3,10 @@ name: c4-model
 description: >
   Giải thích phương pháp C4 Model (Context, Container, Component, Code — c4model.com) và
   dẫn dắt tạo docs/04-system-overview/c4-context.md + c4-container.md + c4-component-*.md
-  đúng tầng, đúng audience. Dùng khi user hỏi "C4 model là gì", "vẽ context/container/
-  component diagram", "system overview", "kiến trúc hệ thống", hoặc khi BR/UR/FR đã approved
-  và cần sinh system overview.
+  đúng tầng, đúng audience, cùng interface-contracts.md (schema giao tiếp giữa container, khi
+  cần) đúng phạm vi (schema, không phải API/Code). Dùng khi user hỏi "C4 model là gì", "vẽ
+  context/container/component diagram", "system overview", "kiến trúc hệ thống", "interface
+  contract giữa các container", hoặc khi BR/UR/FR đã approved và cần sinh system overview.
 ---
 
 # c4-model
@@ -28,6 +29,10 @@ Component riêng cho mỗi container có codebase thực sự (bỏ qua containe
 nội bộ để mô hình hoá, ví dụ DB thuần hoặc dịch vụ bên thứ ba dùng nguyên trạng). Level 4
 (Code) không tạo — để code + IDE tự giải thích, tránh diagram chi tiết đến mức không ai
 maintain nổi, nhanh lỗi thời hơn cả code.
+
+Ngoài 4 Level trên (đây KHÔNG phải 1 Level mới, chỉ là phụ lục dữ liệu đi kèm Container/
+Component): khi giao tiếp giữa 2 container có dữ liệu thật cần thống nhất trước, tạo thêm
+`interface-contracts.md` — xem mục "Quy trình tạo Interface Contract" bên dưới.
 
 ## Khi nào dùng skill này
 
@@ -75,10 +80,33 @@ maintain nổi, nhanh lỗi thời hơn cả code.
    skill này).
 3. Vẽ giao tiếp giữa các component trong cùng container (gọi hàm, event nội bộ...) bằng
    diagram mermaid `graph TD`.
-4. Nếu container quá đơn giản (1-2 component, không có cấu trúc nội bộ đáng vẽ), không tạo
-   file Component cho container đó — ghi chú lý do trong `c4-container.md` thay vì tạo file
-   rỗng/hình thức.
+4. Trước khi kết luận "container quá đơn giản, bỏ qua Component diagram": phải thử liệt kê
+   candidate component trước (kể cả khi kết quả là 1-2 component) — không kết luận "quá đơn
+   giản" mà không có danh sách này. Nếu sau khi liệt kê, container thực sự chỉ có 1-2 component
+   không có cấu trúc nội bộ đáng vẽ → không tạo file Component, nhưng vẫn ghi trong
+   `c4-container.md` danh sách candidate đã xét qua và lý do gộp/bỏ qua (không chỉ ghi kết luận
+   suông) — tránh việc bỏ qua vì muốn giảm số file thay vì vì container thực sự đơn giản.
 5. Dừng ở Level 3. Không tự vẽ Code diagram trừ khi user yêu cầu rõ ràng.
+
+## Quy trình tạo Interface Contract (schema giao tiếp)
+
+Không phải 1 Level của C4 — là phụ lục dữ liệu đi kèm Container/Component, trả lời câu hỏi
+"dữ liệu thật trao đổi giữa 2 container là gì" mà bảng "Giao tiếp" trong `c4-container.md` (chỉ
+có cột giao thức + mô tả ngắn) không đủ chỗ trả lời.
+
+1. Chỉ tạo khi có dữ liệu thật cần 2 container thống nhất trước khi Bước C thực thi độc lập
+   (ví dụ 2 User Story ở 2 container khác nhau cùng chạm 1 giao tiếp). Không bắt buộc tạo cho
+   mọi hệ thống.
+2. Tạo `docs/04-system-overview/interface-contracts.md` (`SYS-IFC-xxx`, dùng
+   `interface-contracts-template.md`), `source_docs` trỏ về `c4-container.md`/
+   `c4-component-*.md` liên quan.
+3. Với mỗi cặp container giao tiếp: liệt kê theo từng thao tác (kèm US liên quan nếu có) —
+   dữ liệu cần gửi đi (field nào bắt buộc/tuỳ chọn) và dữ liệu cần nhận lại. Với container DB
+   thuần: liệt kê schema bảng (cột, kiểu, ghi chú).
+4. **KHÔNG quy định API cụ thể** — không viết method HTTP, path, status code, hay hình dạng
+   response chi tiết. Đó là Code (Level 4), quyết định ở Bước C khi thực thi User Story, không
+   phải việc của tài liệu này. Chỉ chốt schema dữ liệu, để 2 container độc lập triển khai không
+   lệch nhau.
 
 ## Lỗi thường gặp cần tránh
 
@@ -91,3 +119,5 @@ maintain nổi, nhanh lỗi thời hơn cả code.
   Container Diagram cần tham chiếu.
 - Không cập nhật diagram khi kiến trúc đổi — review lại Container/Component Diagram mỗi khi có Epic mới
   ảnh hưởng kiến trúc (bump `version`, không tạo file mới cho mỗi lần sửa).
+- Nhồi method HTTP/path/status code cụ thể vào `interface-contracts.md` — đó là Code (Level 4),
+  ngoài phạm vi tài liệu này (xem mục "Quy trình tạo Interface Contract").
