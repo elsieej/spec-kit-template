@@ -44,24 +44,29 @@ Functional Requirement sinh ra từ đó.
 
 ## Quy trình
 
-1. Kiểm tra `docs/01-business-requirement/` đã có file `BR-*` nào ngoài `template.md` chưa.
+1. Kiểm tra `docs/00-glossary/glossary.md` đã tồn tại chưa (AGENTS.md, nguyên tắc chung #1 bắt
+   buộc đọc file này trước mọi tài liệu). Đây thường là task đầu tiên chạy trên 1 dự án mới nên
+   file này nhiều khả năng chưa có — nếu chưa có, copy nguyên trạng
+   `docs/00-glossary/template.md` thành `glossary.md` trước khi hỏi WHY, không hỏi user, không
+   bỏ qua bước này. Nếu đã có, đọc qua để nắm thuật ngữ dự án hiện tại.
+2. Kiểm tra `docs/01-business-requirement/` đã có file `BR-*` nào ngoài `template.md` chưa.
    Nếu có, hỏi user muốn tạo BR mới hay tiếp tục/refine BR đang có — không tự ý ghi đè.
-2. Hỏi **WHY**: "Vì sao dự án này cần tồn tại? Đang giải quyết vấn đề gì, hoặc nắm bắt cơ hội
+3. Hỏi **WHY**: "Vì sao dự án này cần tồn tại? Đang giải quyết vấn đề gì, hoặc nắm bắt cơ hội
    gì? Nếu không làm, điều gì sẽ tệ hơn? Có gì cải thiện được (IMPROVE) và đánh đổi gì
    (COST)?" — nếu câu trả lời còn chung chung, brainstorm 2-4 hướng cụ thể rồi hỏi lại (xem
    nguyên tắc ở trên) → tạo `docs/01-business-requirement/BR-001_<slug>.md` từ `template.md`,
    điền mục "Bối cảnh (WHY)", "Mục tiêu kinh doanh", "Lợi ích & chi phí (IMPROVE/COST)".
-3. Hỏi **WHO**: "Ai dùng hệ thống này — persona nào, pain point hiện tại của họ là gì? Nhu cầu
+4. Hỏi **WHO**: "Ai dùng hệ thống này — persona nào, pain point hiện tại của họ là gì? Nhu cầu
    cụ thể là gì?" — nếu câu trả lời còn chung chung, brainstorm persona/pain point cụ thể rồi
    hỏi lại → tạo `docs/02-user-requirement/UR-001_<slug>.md`, điền "Đối tượng người
    dùng (WHO)", "Nhu cầu người dùng", `parent_business_requirement: BR-001`.
-4. Hỏi **WHAT**: "Hệ thống cần đạt được kết quả/đầu ra gì để đáp ứng nhu cầu đó? (mô tả
+5. Hỏi **WHAT**: "Hệ thống cần đạt được kết quả/đầu ra gì để đáp ứng nhu cầu đó? (mô tả
    chức năng ở mức kết quả cần đạt, chưa cần nói cách triển khai kỹ thuật — cách hiện thực sẽ
    quyết định ở System Overview/C4 và khi phân rã Epic/Feature/User Story). Có business rule nào cần
    biết trước không?" — nếu câu trả lời còn chung chung, brainstorm kết quả/business rule cụ
    thể rồi hỏi lại → tạo `docs/03-functional-requirement/FR-001_<slug>.md`, điền "Mô tả
    chức năng (WHAT)", "Business rules", `parent_user_requirement: UR-001`.
-5. Cập nhật ngược mục "Liên kết" ở BR-001/UR-001 để trỏ xuôi tới UR-001/FR-001 vừa tạo.
-6. Nhắc user: review và set `status: approved` cho từng tầng trước khi tạo System Overview
+6. Cập nhật ngược mục "Liên kết" ở BR-001/UR-001 để trỏ xuôi tới UR-001/FR-001 vừa tạo.
+7. Nhắc user: review và set `status: approved` cho từng tầng trước khi tạo System Overview
    (C4 Context + Container Diagram). Sau đó điền "Giai đoạn hiện tại" và "Team & đầu mối liên
    hệ" trong `CONTEXT.md` nếu chưa có.
