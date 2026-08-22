@@ -9,9 +9,8 @@ có frontmatter/ID/status như tài liệu trong `docs/` — nội dung ở đâ
 ## Spec Kit này là gì
 
 Spec Kit là một khung tài liệu tái sử dụng cho việc phân tích nghiệp vụ → thiết kế kiến trúc
-(C4) → backlog (Agile), có agent AI hỗ trợ ở mọi bước. Spec-kit dừng ở User Story — task kỹ
-thuật, lịch trình (sprint), branching, và release là việc của (các) repo triển khai. Chi tiết
-đầy đủ về quy trình xem `CLAUDE.md`, về hành vi agent xem `AGENTS.md`.
+(C4) → backlog (Agile), có agent AI hỗ trợ ở mọi bước. Spec-kit dừng ở User Story. Chi tiết đầy
+đủ về quy trình xem `CLAUDE.md`, về hành vi agent xem `AGENTS.md`.
 
 ## Để bắt đầu
 
@@ -19,12 +18,13 @@ thuật, lịch trình (sprint), branching, và release là việc của (các) 
    tài liệu nào.
 2. Chạy skill `/setup-context` — sẽ hỏi dẫn dắt qua WHY (vì sao) → WHO (ai dùng) → WHAT (nhu
    cầu/kết quả cần đạt được, chưa cần nói cách hiện thực), rồi ghi thẳng kết quả vào
-   `docs/01-business-requirement`, `01-user-requirement`,
-   `02-functional-requirement` (đúng template của từng tầng). Không có bước nháp trung gian —
+   `docs/01-business-requirement`, `02-user-requirement`,
+   `03-functional-requirement` (đúng template của từng tầng). Không có bước nháp trung gian —
    trả lời tới đâu, tài liệu chính thức được tạo tới đó, tránh giữ hai bản.
 3. Review từng tầng xong mới sang tầng kế tiếp — không nhảy cấp (xem `AGENTS.md`).
-4. Chạy skill `/c4-model` để tạo `docs/04-system-overview` (Context + Container Diagram) khi
-   `docs/01-03` đã `status: approved` — xem Bước A trong `AGENTS.md`.
+4. Chạy skill `/c4-model` để tạo `docs/04-system-overview` (Context + Container + Component
+   Diagram) khi `docs/00-glossary` đã đọc và `docs/01-03` đã `status: approved` — xem Bước A
+   trong `AGENTS.md`.
 5. Chạy skill `/plan-backlog` để phân rã thành Epic → Feature → User Story — xem tiêu chí
    phân rã + ví dụ minh hoạ ở `AGENTS.md` (Bước B).
 6. Điền "Giai đoạn hiện tại" và "Team & đầu mối liên hệ" bên dưới — hai mục này không thuộc
@@ -36,20 +36,16 @@ thuật, lịch trình (sprint), branching, và release là việc của (các) 
 - **Glossary** — `docs/00-glossary/glossary.md`: từ điển thuật ngữ nghiệp vụ + thuật ngữ kỹ
   thuật/văn phong, agent luôn đọc trước khi xử lý tài liệu.
 - **Tài liệu hệ thống & kỹ thuật** — `docs/01-04`: Business/User/Functional Requirement, rồi
-  C4 Context + Container. Trả lời WHY → WHO → WHAT → kiến trúc ở mức tổng quan.
+  C4 Context + Container + Component. Trả lời WHY → WHO → WHAT → kiến trúc ở mức tổng quan.
 - **Tracker quản lý issues** — `docs/05-backlog`: Epic → Feature → User Story (skill
-  `plan-backlog` dẫn dắt phân rã). User Story là đơn vị thực thi cuối cùng trong spec-kit —
-  task kỹ thuật, sprint, và release thuộc repo triển khai. Liên kết thủ công tới GitHub
-  Issues/Jira qua field `external_ref`.
-- **Đa repo** — mỗi Epic ứng với một container/repo triển khai riêng (`source_container` +
-  `repo` trong `EPIC-xxx`, tra theo cột "Mã"/"Repo triển khai" ở `c4-container.md`); repo
-  triển khai chỉ đọc backlog từ đây, không phải nguồn sự thật (xem `AGENTS.md`, "Làm việc đa
-  repo").
+  `plan-backlog` dẫn dắt phân rã). User Story là đơn vị thực thi cuối cùng trong spec-kit. Mỗi
+  Epic ứng với 1 container (`source_container` trong `EPIC-xxx`, tra theo cột "Mã" ở
+  `c4-container.md`).
 - **Meetings & Open Questions** — `docs/06-meetings`: biên bản họp và câu hỏi mở; một OQ đang
   mở có thể block bất kỳ Epic/Feature/Story nào phụ thuộc vào nó.
 - **Quy trình & naming convention** — `CLAUDE.md`: pipeline tổng thể, quy ước đặt tên/ID/
   versioning cho mọi loại tài liệu.
-- **Hướng dẫn agent** — `AGENTS.md`: nguyên tắc chung + quy trình theo từng bước (A, B, C, E) + đa repo.
+- **Hướng dẫn agent** — `AGENTS.md`: nguyên tắc chung + quy trình theo từng bước (A, B, C, E).
 - **Quy tắc dự án** — `RULES.md`: ngôn ngữ/giọng văn, thuật ngữ, traceability, bảo mật,
   git/commit.
 

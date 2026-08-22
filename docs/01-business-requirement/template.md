@@ -5,7 +5,6 @@ status: draft        # draft | approved | deprecated
 version: 1
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
-owner:
 related_open_questions: []
 ---
 

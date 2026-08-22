@@ -14,6 +14,7 @@ không nơi nào khác có: quy ước đặt tên/ID/versioning, và vài ghi c
 | Functional Requirement | FR | FR-001 |
 | System Overview (Context) | SYS-CTX | SYS-CTX-001 |
 | System Overview (Container) | SYS-CTR | SYS-CTR-001 |
+| System Overview (Component) | SYS-CMP | SYS-CMP-001 |
 | Epic | EPIC | EPIC-001 |
 | Feature | FEAT | FEAT-001 |
 | User Story | US | US-001 |
@@ -21,9 +22,7 @@ không nơi nào khác có: quy ước đặt tên/ID/versioning, và vài ghi c
 | Open Question | OQ | OQ-001 |
 
 Spec-kit này dừng ở User Story — đây là đơn vị thực thi cuối cùng, không có tầng Task kỹ thuật
-riêng. Việc chia User Story thành task/ticket kỹ thuật cụ thể, lên lịch (sprint), và release là
-việc của repo triển khai (gắn với tech stack + công cụ PM riêng của từng container), nằm ngoài
-phạm vi spec-kit này — xem `AGENTS.md`, "Làm việc đa repo".
+riêng.
 
 - Tên file theo mẫu: `{PREFIX}-{ID}_{slug-ngan-gon}.md`, ví dụ `EPIC-003_checkout-flow.md`.
 - Feature/User Story nằm trong subfolder theo Epic sở hữu, KHÔNG để phẳng chung 1 thư mục —
@@ -39,13 +38,13 @@ phạm vi spec-kit này — xem `AGENTS.md`, "Làm việc đa repo".
 
   | Nhóm tài liệu | Vòng đời `status` |
   |---|---|
-  | BR / UR / FR / SYS-CTX / SYS-CTR (không có `blocked`, dùng `related_open_questions`) | `draft → approved` (→ `deprecated` khi không còn dùng — bị thay thế hoặc lỗi thời) |
+  | BR / UR / FR / SYS-CTX / SYS-CTR / SYS-CMP (không có `blocked`, dùng `related_open_questions`) | `draft → approved` (→ `deprecated` khi không còn dùng — bị thay thế hoặc lỗi thời) |
   | Epic, Feature, User Story, Open Question (có `blocked`, dùng `blocked_by_open_questions`) | `draft → approved → blocked → deprecated` |
 
   Ý nghĩa từng giá trị, áp dụng thống nhất cho mọi loại:
   - `draft` — đang soạn hoặc đang thực hiện, CHƯA hoàn tất/CHƯA được chấp nhận là kết quả cuối
     (gộp chung mọi mức "chưa xong" trước đây — chưa bắt đầu, đang làm, đang review).
-  - `approved` — đã hoàn tất và được chấp nhận: với BR/UR/FR/SYS-CTX/SYS-CTR là nội dung đã
+  - `approved` — đã hoàn tất và được chấp nhận: với BR/UR/FR/SYS-CTX/SYS-CTR/SYS-CMP là nội dung đã
     chốt, dùng làm nguồn cho tầng sau; với Epic/Feature/User Story/Open Question là công việc/
     mục đó đã xong và được chấp nhận (thay cho `done`/`answered` trước đây).
   - `blocked` — chỉ áp dụng cho Epic/Feature/User Story/Open Question: đang bị chặn bởi ít nhất
@@ -53,27 +52,28 @@ phạm vi spec-kit này — xem `AGENTS.md`, "Làm việc đa repo".
     hoặc `approved`), không mặc định về `draft`.
   - `deprecated` — không còn dùng nữa (bị thay thế, huỷ, hoặc lỗi thời).
 
-  Sửa nội dung một tài liệu đã `approved` (BR/UR/FR/SYS-CTX/SYS-CTR) thì đưa lại về `draft` để
-  review lại trước khi tiếp tục dùng làm nguồn cho tầng sau — không còn trạng thái `changed`
-  riêng.
+  Sửa nội dung một tài liệu đã `approved` (BR/UR/FR/SYS-CTX/SYS-CTR/SYS-CMP) thì đưa lại về `draft` để
+  review lại trước khi tiếp tục dùng làm nguồn cho tầng sau.
 
   Mọi tài liệu có `blocked` trong enum của nó đều bắt buộc kèm
   `blocked_by_open_questions: [OQ-xxx]` khi ở trạng thái đó (không được để `blocked` mà thiếu
-  field này). BR/UR/FR/SYS-CTX/SYS-CTR không có trạng thái `blocked` — chỉ dùng field
+  field này). BR/UR/FR/SYS-CTX/SYS-CTR/SYS-CMP không có trạng thái `blocked` — chỉ dùng field
   `related_open_questions` để ghi nhận OQ liên quan (không chặn tiến độ vì tầng sau chỉ cần các
   tầng này ở trạng thái `approved`, không tự sinh khi còn OQ mở).
 - Định dạng commit message: `docs(<prefix>): <ID> <mô tả ngắn>`. Ví dụ:
-  `docs(us): US-004 add acceptance criteria for refund flow`. Branching/release/hotfix theo
-  Gitflow hay quy ước khác là việc của repo triển khai, không thuộc spec-kit này.
-- Mọi file backlog phải có field `parent_*` trỏ ngược lên tài liệu đã sinh ra nó, để truy vết một User Story qua Feature → Epic → Business Requirement.
+  `docs(us): US-004 add acceptance criteria for refund flow`.
+- Mọi file backlog phải trỏ ngược lên tài liệu đã sinh ra nó: `parent_*` cho quan hệ cha-con
+  trong backlog (`parent_epic` trên Feature, `parent_feature` trên User Story), và
+  `docs_requirements` (mảng ID BR/UR/FR) cho liên kết tới tầng 01-03 — để truy vết một User
+  Story qua Feature → Epic → BR/UR/FR liên quan.
 
 Đây là nguồn duy nhất cho naming convention trong repo — không tạo file trùng nội dung này ở nơi khác.
 
 ## Tham khảo nhanh
 
-- Sơ đồ luồng đầy đủ (docs/01 → backlog, kèm đa-repo): `README.md`.
+- Sơ đồ luồng đầy đủ (docs/01 → backlog): `README.md`.
 - Nguyên tắc chung + quy trình agent theo Bước A–C, E + "Ma trận lan truyền thay đổi" (sơ đồ
-  mermaid: sửa 1 tài liệu thì cần rà soát gì) + "Làm việc đa repo": `AGENTS.md`.
+  mermaid: sửa 1 tài liệu thì cần rà soát gì): `AGENTS.md`.
 - Ngôn ngữ/giọng văn, thuật ngữ, traceability, bảo mật, git/commit: `RULES.md`.
 - Thuật ngữ nghiệp vụ + kỹ thuật/văn phong: `docs/00-glossary/glossary.md`.
 - Bối cảnh dự án cụ thể + các thành phần chính của kit: `CONTEXT.md`.
