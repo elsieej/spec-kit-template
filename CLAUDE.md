@@ -15,6 +15,7 @@ không nơi nào khác có: quy ước đặt tên/ID/versioning, và vài ghi c
 | System Overview (Context) | SYS-CTX | SYS-CTX-001 |
 | System Overview (Container) | SYS-CTR | SYS-CTR-001 |
 | System Overview (Component) | SYS-CMP | SYS-CMP-001 |
+| System Overview (Interface Contract) | SYS-IFC | SYS-IFC-001 |
 | Epic | EPIC | EPIC-001 |
 | Feature | FEAT | FEAT-001 |
 | User Story | US | US-001 |
@@ -38,30 +39,33 @@ riêng.
 
   | Nhóm tài liệu | Vòng đời `status` |
   |---|---|
-  | BR / UR / FR / SYS-CTX / SYS-CTR / SYS-CMP (không có `blocked`, dùng `related_open_questions`) | `draft → approved` (→ `deprecated` khi không còn dùng — bị thay thế hoặc lỗi thời) |
+  | BR / UR / FR / SYS-CTX / SYS-CTR / SYS-CMP / SYS-IFC (không có `blocked`, dùng `related_open_questions`) | `draft → approved` (→ `deprecated` khi không còn dùng — bị thay thế hoặc lỗi thời) |
   | Epic, Feature, User Story, Open Question (có `blocked`, dùng `blocked_by_open_questions`) | `draft → approved → blocked → deprecated` |
 
   Ý nghĩa từng giá trị, áp dụng thống nhất cho mọi loại:
   - `draft` — đang soạn hoặc đang thực hiện, CHƯA hoàn tất/CHƯA được chấp nhận là kết quả cuối
     (gộp chung mọi mức "chưa xong" trước đây — chưa bắt đầu, đang làm, đang review).
-  - `approved` — đã hoàn tất và được chấp nhận: với BR/UR/FR/SYS-CTX/SYS-CTR/SYS-CMP là nội dung đã
-    chốt, dùng làm nguồn cho tầng sau; với Epic/Feature/User Story/Open Question là công việc/
-    mục đó đã xong và được chấp nhận (thay cho `done`/`answered` trước đây).
+  - `approved` — đã hoàn tất và được chấp nhận: với BR/UR/FR/SYS-CTX/SYS-CTR/SYS-CMP/SYS-IFC là
+    nội dung đã chốt, dùng làm nguồn cho tầng sau; với Epic/Feature/User Story/Open Question là
+    công việc/mục đó đã xong và được chấp nhận (thay cho `done`/`answered` trước đây).
   - `blocked` — chỉ áp dụng cho Epic/Feature/User Story/Open Question: đang bị chặn bởi ít nhất
     1 Open Question đang mở; hết bị chặn thì trả lại đúng `status` trước khi bị block (`draft`
     hoặc `approved`), không mặc định về `draft`.
   - `deprecated` — không còn dùng nữa (bị thay thế, huỷ, hoặc lỗi thời).
 
-  Sửa nội dung một tài liệu đã `approved` (BR/UR/FR/SYS-CTX/SYS-CTR/SYS-CMP) thì đưa lại về `draft` để
-  review lại trước khi tiếp tục dùng làm nguồn cho tầng sau.
+  Sửa nội dung một tài liệu đã `approved` (BR/UR/FR/SYS-CTX/SYS-CTR/SYS-CMP/SYS-IFC) thì đưa lại
+  về `draft` để review lại trước khi tiếp tục dùng làm nguồn cho tầng sau.
 
   Mọi tài liệu có `blocked` trong enum của nó đều bắt buộc kèm
   `blocked_by_open_questions: [OQ-xxx]` khi ở trạng thái đó (không được để `blocked` mà thiếu
-  field này). BR/UR/FR/SYS-CTX/SYS-CTR/SYS-CMP không có trạng thái `blocked` — chỉ dùng field
-  `related_open_questions` để ghi nhận OQ liên quan (không chặn tiến độ vì tầng sau chỉ cần các
-  tầng này ở trạng thái `approved`, không tự sinh khi còn OQ mở).
+  field này). BR/UR/FR/SYS-CTX/SYS-CTR/SYS-CMP/SYS-IFC không có trạng thái `blocked` — chỉ dùng
+  field `related_open_questions` để ghi nhận OQ liên quan (không chặn tiến độ vì tầng sau chỉ
+  cần các tầng này ở trạng thái `approved`, không tự sinh khi còn OQ mở).
 - Định dạng commit message: `docs(<prefix>): <ID> <mô tả ngắn>`. Ví dụ:
-  `docs(us): US-004 add acceptance criteria for refund flow`.
+  `docs(us): US-004 add acceptance criteria for refund flow`. Khi 1 skill tạo nhiều tài liệu
+  khác loại cùng lúc trong 1 lần chạy (ví dụ `setup-context` tạo BR-001+UR-001+FR-001), gộp
+  thành 1 commit, dùng prefix của tài liệu gốc/thấp nhất trong chuỗi và liệt kê mọi ID còn lại
+  trong mô tả ngắn, ví dụ `docs(br): BR-001 setup context (+ UR-001, FR-001)`.
 - Mọi file backlog phải trỏ ngược lên tài liệu đã sinh ra nó: `parent_*` cho quan hệ cha-con
   trong backlog (`parent_epic` trên Feature, `parent_feature` trên User Story), và
   `docs_requirements` (mảng ID BR/UR/FR) cho liên kết tới tầng 01-03 — để truy vết một User

@@ -65,7 +65,8 @@ CLAUDE.md                         → quy ước đặt tên + versioning xuyên
 - `.claude/skills/backlog-status` — skill đọc frontmatter để trả lời backlog hiện có gì, hoặc
   cây Epic→Feature→User Story (không có dashboard/file trạng thái riêng, luôn tính lại từ
   frontmatter)
-- `docs/01-04` — 3 tầng yêu cầu + system overview (C4 Context/Container/Component)
+- `docs/01-04` — 3 tầng yêu cầu + system overview (C4 Context/Container/Component +
+  interface-contracts khi có dữ liệu thật cần thống nhất trước giữa 2 container)
 - `docs/05-backlog` — Epic/Feature/User Story (Epic phẳng, Feature/US nằm trong subfolder
   theo Epic — xem `CLAUDE.md`)
 - `docs/06-meetings` — biên bản họp + open questions (luồng ngoài)
