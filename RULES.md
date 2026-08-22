@@ -74,7 +74,10 @@ kỹ thuật nào giữ nguyên tiếng Anh, thuật ngữ nào dịch).
   `docs_requirements` cho liên kết tới BR/UR/FR — không tạo tài liệu backlog mà thiếu các liên
   kết này (xem `CLAUDE.md`, mục "Đặt tên, ID và versioning").
 - Không sinh tài liệu ở tầng N+1 khi tài liệu tầng N liên quan chưa có `status: approved`
-  (xem `AGENTS.md`).
+  (xem `AGENTS.md`) — **trừ tầng backlog** (Epic → Feature → User Story): được phép thêm
+  Feature/User Story mới vào 1 Epic/Feature đang `draft` bất kỳ lúc nào (backlog grooming là
+  việc liên tục), miễn `parent_*` trỏ đúng và item cha chưa `deprecated` (xem `AGENTS.md`,
+  nguyên tắc chung #2).
 - Khi một item bị chặn bởi open question, set `status: blocked` và điền
   `blocked_by_open_questions: [OQ-xxx]` — không được để `blocked` mà thiếu field này, và
   không tự suy đoán câu trả lời để né trạng thái `blocked`.
