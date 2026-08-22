@@ -33,10 +33,10 @@ thao tác kỹ thuật, không cần giải thích lại khái niệm phổ thô
    hành động ở đầu câu (Thêm / Sửa / Xoá / Kiểm tra / Cập nhật...), tránh câu bị động dài dòng.
 
 Áp dụng theo loại nội dung:
-- **Tài liệu 00–03 (BR/UR/FR/System Overview):** văn phong nghiệp vụ nhưng vẫn ưu tiên thuật
+- **Tài liệu 01–04 (BR/UR/FR/System Overview):** văn phong nghiệp vụ nhưng vẫn ưu tiên thuật
   ngữ kỹ thuật chuẩn khi mô tả giải pháp/hệ thống; tránh diễn giải mơ hồ.
-- **Backlog (Epic/Feature/User Story/Task):** ngắn, cụ thể, có thể thực thi được — đặc biệt
-  phần "Mô tả công việc" và "Definition of Done" trong Task phải đủ chi tiết để agent code
+- **Backlog (Epic/Feature/User Story):** ngắn, cụ thể, có thể thực thi được — đặc biệt phần
+  "Context cho Agent" và "Definition of Done" trong User Story phải đủ chi tiết để agent code
   không cần đoán thêm.
 - **Giao tiếp với người dùng (chat, PR description):** vẫn ngắn gọn, kỹ thuật, nhưng có thể
   thêm ngữ cảnh/giải thích quyết định nếu người đọc không phải lúc nào cũng theo sát toàn bộ
@@ -44,7 +44,7 @@ thao tác kỹ thuật, không cần giải thích lại khái niệm phổ thô
 
 ## 2. Thuật ngữ
 
-`docs/07-glossary/glossary.md` gồm hai phần: **Thuật ngữ nghiệp vụ** (định nghĩa
+`docs/00-glossary/glossary.md` gồm hai phần: **Thuật ngữ nghiệp vụ** (định nghĩa
 business/domain riêng của dự án) và **Thuật ngữ kỹ thuật / văn phong** (quy định thuật ngữ
 kỹ thuật nào giữ nguyên tiếng Anh, thuật ngữ nào dịch).
 
@@ -58,9 +58,9 @@ kỹ thuật nào giữ nguyên tiếng Anh, thuật ngữ nào dịch).
 - **Không viết tắt tự chế.** Chỉ dùng viết tắt đã chuẩn hoá trong glossary hoặc phổ biến
   trong ngành (PR, CI/CD, API...); viết tắt lần đầu xuất hiện nên kèm dạng đầy đủ.
 - **Link tham chiếu tới glossary khi trích xuất thuật ngữ.** Ở lần xuất hiện đầu tiên của một
-  thuật ngữ trong tài liệu, nếu thuật ngữ đó đã có trong `docs/07-glossary/glossary.md` →
+  thuật ngữ trong tài liệu, nếu thuật ngữ đó đã có trong `docs/00-glossary/glossary.md` →
   gắn link Markdown tới đúng mục (heading) chứa thuật ngữ đó, ví dụ
-  `[sprint](../../07-glossary/glossary.md#quy-trình--agile)` (đường dẫn tương đối tuỳ vị trí
+  `[sprint](../../00-glossary/glossary.md#quy-trình--agile)` (đường dẫn tương đối tuỳ vị trí
   file đang viết). Không lặp lại link ở các lần nhắc lại sau trong cùng tài liệu. Nếu thuật
   ngữ **chưa có** trong glossary → không bắt buộc phải thêm link — chỉ thêm vào glossary khi
   thuật ngữ đó cần chuẩn hoá cách dùng (theo quy tắc phía trên), không phải mọi từ đều cần vào
@@ -68,7 +68,7 @@ kỹ thuật nào giữ nguyên tiếng Anh, thuật ngữ nào dịch).
 
 ## 3. Traceability & trạng thái tài liệu
 
-- Mọi tài liệu backlog (Epic/Feature/User Story/Task) phải có field `parent_*` trỏ ngược lên
+- Mọi tài liệu backlog (Epic/Feature/User Story) phải có field `parent_*` trỏ ngược lên
   tài liệu đã sinh ra nó — không tạo tài liệu backlog mà thiếu liên kết này (xem
   `CLAUDE.md` (mục "Đặt tên, ID và versioning")).
 - Không sinh tài liệu ở tầng N+1 khi tài liệu tầng N liên quan chưa có `status: approved`
@@ -88,10 +88,8 @@ kỹ thuật nào giữ nguyên tiếng Anh, thuật ngữ nào dịch).
 
 - Mỗi thay đổi tài liệu là một commit riêng, không gộp nhiều thay đổi không liên quan vào
   cùng một commit (xem `README.md`).
-- Định dạng commit message (kèm gắn sprint + phân biệt `docs`/`hotfix`): xem `CLAUDE.md` (mục
-  "Đặt tên, ID và versioning"). Mô tả ngắn dùng động từ hành động, tiếng Việt hoặc tiếng Anh
-  đều được nhưng phải nhất quán trong cùng một dự án.
-- Thay đổi tài liệu phát sinh từ họp trong sprint (Bước E) commit theo sprint đang active,
-  không dồn nhiều sprint vào một commit (xem `AGENTS.md`, Bước E).
-- Release tuân theo Gitflow (`release/*` → `main` + `develop`); không thêm feature mới vào
-  branch release (xem `AGENTS.md`, bước D).
+- Định dạng commit message: xem `CLAUDE.md` (mục "Đặt tên, ID và versioning"). Mô tả ngắn dùng
+  động từ hành động, tiếng Việt hoặc tiếng Anh đều được nhưng phải nhất quán trong cùng một dự
+  án.
+- Branching, sprint, và release tuân theo quy ước riêng của repo triển khai — không thuộc
+  phạm vi spec-kit này (xem `AGENTS.md`, "Làm việc đa repo").

@@ -1,12 +1,11 @@
 ---
 id: EPIC-001
 type: epic
-status: draft        # draft | ready | in-progress | blocked | done
+status: draft        # draft | approved | blocked | deprecated
 version: 1
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
 parent_business_requirement: BR-001
-sprint: null
 source_container: null # Mã container trong c4-container.md mà Epic này thuộc về (bảng "Danh sách container")
 repo: null            # copy đúng giá trị ở cột "Repo triển khai" của container ứng với source_container ở trên
 external_ref: null    # ID GitHub Issue/PR liên quan (điền thủ công)

@@ -2,7 +2,7 @@
 name: c4-model
 description: >
   Giải thích phương pháp C4 Model (Context, Container, Component, Code — c4model.com) và
-  dẫn dắt tạo docs/03-system-overview/c4-context.md + c4-container.md đúng tầng, đúng
+  dẫn dắt tạo docs/04-system-overview/c4-context.md + c4-container.md đúng tầng, đúng
   audience. Dùng khi user hỏi "C4 model là gì", "vẽ context diagram/container diagram",
   "system overview", "kiến trúc hệ thống", hoặc khi BR/UR/FR đã approved và cần sinh system
   overview.
@@ -30,15 +30,15 @@ chi tiết rồi không ai maintain, nhanh lỗi thời hơn cả code.
 ## Khi nào dùng skill này
 
 - User hỏi C4 model là gì / vì sao kit tách riêng Context và Container.
-- `docs/00-business-requirement`, `01-user-requirement`, `02-functional-requirement` liên
+- `docs/01-business-requirement`, `01-user-requirement`, `02-functional-requirement` liên
   quan đã `status: approved`, cần sinh system overview.
 
 ## Quy trình tạo Context Diagram (Level 1)
 
-1. Đọc toàn bộ `docs/00-03` đã approved (đặc biệt UR để lấy Actor/Persona, FR để lấy hệ thống
+1. Đọc toàn bộ `docs/01-04` đã approved (đặc biệt UR để lấy Actor/Persona, FR để lấy hệ thống
    ngoài cần tích hợp).
 2. Viết 1–2 câu mô tả hệ thống trung tâm.
-3. Điền `docs/03-system-overview/c4-context.md`: bảng Actors/Personas, bảng Hệ thống ngoài
+3. Điền `docs/04-system-overview/c4-context.md`: bảng Actors/Personas, bảng Hệ thống ngoài
    liên quan (mục đích tích hợp + hướng dữ liệu in/out), diagram mermaid `graph TD`.
 4. **Không** đưa chi tiết kỹ thuật (tên container, công nghệ, API) vào tầng này — đó là việc
    của Container Diagram. Audience tầng này gồm cả người phi kỹ thuật.

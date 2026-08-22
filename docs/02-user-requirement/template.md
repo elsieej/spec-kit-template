@@ -1,7 +1,7 @@
 ---
 id: UR-001
 type: user_requirement
-status: draft        # draft | in-review | approved | changed
+status: draft        # draft | approved | deprecated
 version: 1
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
