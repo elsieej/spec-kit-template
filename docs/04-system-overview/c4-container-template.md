@@ -16,9 +16,9 @@ related_open_questions: []
 Mỗi container gán 1 mã (slug ngắn, duy nhất) — dữ liệu gốc mà Epic (`source_container`) và mọi
 việc lập kế hoạch sau này tham chiếu theo đúng mã, không nơi nào khác tự đặt mã container mới.
 
-| Mã | Loại | Công nghệ | Trách nhiệm |
-|---|---|---|---|
-| | | | |
+| Mã | Loại | Trách nhiệm |
+|---|---|---|
+| | | |
 
 ## Giao tiếp
 

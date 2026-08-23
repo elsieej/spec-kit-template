@@ -55,9 +55,11 @@ Component): khi giao tiếp giữa 2 container có dữ liệu thật cần th�
 
 1. Bắt đầu từ Context Diagram đã có (`source_docs: [SYS-CTX-001]`).
 2. Liệt kê từng container, mỗi container gán 1 **mã** (slug ngắn, duy nhất trong bảng, vd
-   `checkout-web`, `checkout-api`, `db`), kèm loại (web app/mobile/service/DB...), công nghệ,
-   và trách nhiệm. Bảng này là dữ liệu gốc mà mọi việc lập kế hoạch sau này sẽ đọc lại và tham
-   chiếu đúng theo mã — không nơi nào khác tự đặt mã container mới.
+   `checkout-web`, `checkout-api`, `db`), kèm loại (web app/mobile/service/DB...) và trách
+   nhiệm. Không liệt kê công nghệ/stack cụ thể — Container Diagram dừng ở mức giao tiếp/
+   interface abstract (container nào tồn tại, giao tiếp với nhau ra sao), chọn công nghệ là
+   quyết định triển khai ở Bước C. Bảng này là dữ liệu gốc mà mọi việc lập kế hoạch sau này sẽ
+   đọc lại và tham chiếu đúng theo mã — không nơi nào khác tự đặt mã container mới.
 3. Nếu chưa rõ hệ thống nên tách thành bao nhiêu container độc lập (mô hình còn mơ hồ, ranh
    giới trách nhiệm giữa các phần chưa rõ): hỏi trực tiếp user, ví dụ "hệ thống này gồm bao
    nhiêu service/app độc lập?" — không tự suy đoán ranh giới. Nếu user chưa có tên cụ thể cho
