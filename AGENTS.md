@@ -8,7 +8,16 @@
    cha — được phép thêm Feature/User Story mới vào một Epic/Feature đang `draft` bất kỳ lúc nào
    (backlog grooming là việc liên tục), miễn `parent_*` trỏ đúng và `status: deprecated` thì
    không thêm con mới nữa.
-3. Mọi tài liệu mới phải điền đủ frontmatter (id, type, status, version, parent_*).
+3. Mọi tài liệu mới phải điền đủ **toàn bộ** field frontmatter đúng theo `template.md`/
+   `*-template.md` của loại tài liệu đó — KHÔNG chỉ `id`/`type`/`status`/`version`/`parent_*`
+   (danh sách này không đầy đủ, mỗi loại có thêm field riêng, ví dụ: Epic/Feature/US còn có
+   `docs_requirements`, `blocked_by_open_questions`; Feature/US thêm `depends_on`, `priority`;
+   User Story thêm `story_points`, `assignee`; SYS-CTX/CTR/CMP/IFC có `source_docs` (SYS-CTR có
+   thêm `source_container` ở Epic); OQ có `raised_in_meeting`, `blocks`). Không tự bỏ field nào
+   có trong template dù thấy chưa cần ngay lúc tạo — để giá trị rỗng đúng kiểu (`[]`, `null`),
+   không xoá field. Template của từng loại là nguồn duy nhất cho danh sách field bắt buộc —
+   danh sách ví dụ ở trên chỉ để tránh nhầm với 5 field chung, không thay thế việc đọc
+   template.
 4. Nếu một **Epic/Feature/User Story/Open Question** liên quan tới `OQ-xxx` khác chưa được trả
    lời (`status: draft`), set `status: blocked` thay vì tiếp tục. BR/UR/FR/SYS-CTX/SYS-CTR/
    SYS-CMP/SYS-IFC KHÔNG có trạng thái `blocked` — dùng `related_open_questions` thay vì
