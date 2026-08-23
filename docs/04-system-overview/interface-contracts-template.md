@@ -30,10 +30,37 @@ Nguồn: `c4-container.md` (giao tiếp `<container A>` ↔ `<container B>`).
 |---|---|---|
 | | | |
 
-Ví dụ 1 dòng cho cặp container thường ↔ container DB thuần (minh hoạ ranh giới "dữ liệu cần
-lưu" — ĐÚNG phạm vi — khác với "thiết kế bảng" — SAI phạm vi, xem cảnh báo ở trên):
+## Ví dụ (ĐÚNG phạm vi vs SAI phạm vi)
+
+### Cặp container thường ↔ container thường (vd `todo-web` ↔ `todo-api`)
+
+ĐÚNG — chỉ chốt dữ liệu:
+
+| Tạo task mới (US-001) | `title` (bắt buộc, không rỗng), `deadline` (tuỳ chọn) | Task vừa tạo: `id`, `title`, `deadline`, `status` (`open`) |
+
+SAI — đây là thiết kế API cụ thể, thuộc Code (Bước C), KHÔNG viết vào tài liệu này:
+```
+POST /tasks
+Request: { "title": string, "deadline": string | null }
+Response 201: { "id": string, "title": string, "deadline": string | null, "status": "open" }
+Response 400: { "error": "title_required" }
+```
+
+### Cặp container thường ↔ container DB thuần (vd `todo-api` ↔ `todo-db`)
+
+ĐÚNG — chỉ chốt dữ liệu cần lưu/đọc lại ("gửi đi" = ghi, "nhận lại" = đọc):
 
 | Lưu task mới (US-001) | `title` (bắt buộc), `deadline` (tuỳ chọn), `status` khởi tạo `open` | (không cần đọc lại ngay) |
 
-KHÔNG viết thành `bảng tasks(id uuid PK, title text NOT NULL, deadline timestamptz NULL, ...)`
-— đó là thiết kế DDL, thuộc Bước C.
+SAI — đây là thiết kế DDL, thuộc Code (Bước C), KHÔNG viết vào tài liệu này:
+```
+CREATE TABLE tasks (
+  id uuid PRIMARY KEY,
+  title text NOT NULL,
+  deadline timestamptz NULL,
+  status text NOT NULL
+);
+```
+
+Cách phân biệt nhanh: nếu 1 dòng sắp viết có method HTTP, path, status code, hoặc từ khoá SQL
+(`CREATE TABLE`, kiểu cột, `PRIMARY KEY`...) → đó là SAI phạm vi, thuộc Bước C.
