@@ -24,7 +24,10 @@ related_open_questions: []
 
 1 mục cho mỗi cặp container giao tiếp trong `c4-container.md` cần chốt trước (xem "Ghi chú
 Interface Contract" ở `c4-container.md`) — kể cả khi 1 trong 2 bên là container DB thuần (khi
-đó "gửi đi" nghĩa là ghi/lưu, "nhận lại" nghĩa là đọc).
+đó "gửi đi" nghĩa là ghi/lưu, "nhận lại" nghĩa là đọc), **hoặc là hệ thống ngoài** đã liệt kê ở
+`c4-context.md` (payment gateway, hệ thống bên thứ ba...) — khi đó mục đích là ghi lại kỳ vọng
+tích hợp cần xác nhận với bên thứ ba, không phải hợp đồng 2 team nội bộ tự chốt (xem ví dụ 3
+bên dưới).
 
 Nguồn: `c4-container.md` (giao tiếp `<container A>` ↔ `<container B>`). Mỗi field ghi kèm kiểu
 ở mức khái niệm (text/số/ngày-giờ/boolean/enum) và bắt buộc/tuỳ chọn — xem ví dụ bên dưới.
@@ -70,3 +73,13 @@ Cách phân biệt nhanh: nếu 1 dòng sắp viết có method HTTP, path, stat
 mức khái niệm (text/số/ngày-giờ/boolean/enum) LUÔN được viết — không phải trường hợp ngoại lệ
 của quy tắc trên; chỉ **kiểu cụ thể của ngôn ngữ/DB** (`varchar(255)`, `timestamptz`, `int32`,
 `string` kiểu TypeScript...) mới SAI phạm vi.
+
+### Container nội bộ ↔ hệ thống ngoài (vd `todo-api` ↔ Notification Service, bên thứ ba)
+
+Khác 2 ví dụ trên: đây không phải 2 team nội bộ tự thoả thuận, nên có thể CHƯA xác nhận được
+hết với bên thứ ba — vẫn phải ghi, không được bỏ qua vì "chưa chắc":
+
+| Gửi reminder (US-003) | `task_id` (text), `title` (text), kênh ưu tiên (enum: `push`/`email`), `send_at` (ngày-giờ) — **chưa xác nhận với Notification Service**: định dạng `send_at` họ yêu cầu, giới hạn rate limit | Xác nhận đã nhận yêu cầu gửi (chưa đảm bảo đã gửi) |
+
+Nếu việc chưa xác nhận này đủ quan trọng để chặn Bước C → tạo `OQ-*` (xem `AGENTS.md` Bước E)
+thay vì chỉ ghi "chưa xác nhận" rồi để đó.

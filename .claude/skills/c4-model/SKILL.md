@@ -44,7 +44,9 @@ Component): khi giao tiếp giữa 2 container có dữ liệu thật cần th�
 
 1. Đọc `docs/00-glossary/glossary.md` (thuật ngữ dự án, dùng nhất quán khi đặt tên hệ thống/
    container/component), rồi toàn bộ `docs/01-03` đã approved (đặc biệt UR để lấy
-   Actor/Persona, FR để lấy hệ thống ngoài cần tích hợp).
+   Actor/Persona, FR để lấy hệ thống ngoài cần tích hợp). Khi viết nội dung ở Context/
+   Container/Component/Interface Contract, thuật ngữ đã có trong glossary → gắn link Markdown
+   tới đúng mục ở lần xuất hiện đầu tiên trong mỗi tài liệu (xem `RULES.md` mục 2).
 2. Viết 1–2 câu mô tả hệ thống trung tâm.
 3. Điền `docs/04-system-overview/c4-context.md`: bảng Actors/Personas, bảng Hệ thống ngoài
    liên quan (mục đích tích hợp + hướng dữ liệu in/out), diagram mermaid `graph TD`.
@@ -88,7 +90,11 @@ Component): khi giao tiếp giữa 2 container có dữ liệu thật cần th�
    không có cấu trúc nội bộ đáng vẽ → không tạo file Component, nhưng vẫn ghi trong
    `c4-container.md` danh sách candidate đã xét qua và lý do gộp/bỏ qua (không chỉ ghi kết luận
    suông) — tránh việc bỏ qua vì muốn giảm số file thay vì vì container thực sự đơn giản.
-5. Dừng ở Level 3. Không tự vẽ Code diagram trừ khi user yêu cầu rõ ràng.
+5. Trước khi ghi chính thức vào file Component: liệt kê danh sách component vừa xác định (tên +
+   trách nhiệm 1 dòng) và cho user xác nhận nhanh — cùng mức xác nhận nhẹ như bước 3 ở Container
+   Diagram (không phải hỏi lại từng chi tiết, chỉ để user chỉnh trước khi ghi thành dữ liệu gốc
+   mà `Context cho Agent` của User Story sau này sẽ trỏ tới).
+6. Dừng ở Level 3. Không tự vẽ Code diagram trừ khi user yêu cầu rõ ràng.
 
 ## Quy trình tạo Interface Contract (schema giao tiếp)
 
@@ -99,6 +105,14 @@ có cột giao thức + mô tả ngắn) không đủ chỗ trả lời.
 1. Chỉ tạo khi có dữ liệu thật cần 2 container thống nhất trước khi Bước C thực thi độc lập
    (ví dụ 2 User Story ở 2 container khác nhau cùng chạm 1 giao tiếp). Không bắt buộc tạo cho
    mọi hệ thống.
+1b. **"Cặp container" ở đây cũng áp dụng cho container nội bộ ↔ hệ thống ngoài** đã liệt kê ở
+   bảng "Hệ thống ngoài liên quan" trong `c4-context.md` (ví dụ payment gateway, hệ thống chấm
+   công bên thứ ba) — không chỉ 2 container nội bộ tự thoả thuận với nhau. Khác biệt duy nhất:
+   với hệ thống ngoài, mục đích của phần schema là **ghi lại kỳ vọng tích hợp cần xác nhận với
+   bên thứ ba** (dữ liệu team mình cần gửi/nhận theo hiểu biết hiện tại), không phải 1 hợp đồng
+   2 bên nội bộ tự chốt — nếu chưa xác nhận được với bên thứ ba, ghi rõ "chưa xác nhận với
+   <hệ thống ngoài>" thay vì để trống hoặc bỏ qua không ghi gì (bỏ qua là sai, vì đây chính là
+   dữ liệu Bước C cần để không tự bịa hợp đồng tích hợp).
 2. Tạo `docs/04-system-overview/interface-contracts.md` (`SYS-IFC-xxx`, dùng
    `interface-contracts-template.md`), `source_docs` trỏ về `c4-container.md`/
    `c4-component-*.md` liên quan.

@@ -43,6 +43,9 @@ component đã xét qua trước khi kết luận, xem skill `c4-model`).
 ## Ghi chú Interface Contract
 
 Cặp container nào cần `interface-contracts.md` (schema dữ liệu trao đổi) — chỉ cần khi có dữ
-liệu thật phải thống nhất trước lúc 2 container được thực thi độc lập, xem skill `c4-model`.
+liệu thật phải thống nhất trước lúc 2 container được thực thi độc lập; "cặp container" bao gồm
+cả container nội bộ ↔ hệ thống ngoài đã liệt kê ở "Hệ thống ngoài liên quan" trong
+`c4-context.md` (payment gateway, hệ thống bên thứ ba...), không chỉ 2 container nội bộ — xem
+skill `c4-model`, mục "Quy trình tạo Interface Contract".
 
 -
