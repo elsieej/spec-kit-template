@@ -108,7 +108,11 @@ nhau:
 
 Khi tạo mới Feature/US ở Bước B, suy `priority` mặc định từ mức MoSCoW của UR nguồn: `Must
 have` → `P0`/`P1`, `Should have` → `P1`/`P2`, `Could have` → `P2`/`P3`, `Won't have` → không
-đưa vào backlog. Review định kỳ `priority` của các item đang `draft` (chưa `approved`) — có
+đưa vào backlog. Mỗi mức MoSCoW ứng với 2 giá trị `priority` liền kề, không phải 1 — tiêu chí
+chọn giữa 2 giá trị đó: item **chặn** các Feature/US khác (nằm trong `depends_on` của item
+khác) hoặc thuộc container/luồng chính đang triển khai đầu tiên → lấy giá trị cao hơn (`P0` cho
+`Must have`, `P1` cho `Should have`...); item độc lập, không ai chờ nó → lấy giá trị thấp hơn
+liền kề. Review định kỳ `priority` của các item đang `draft` (chưa `approved`) — có
 thể điều chỉnh nếu bối cảnh thực tế khác lúc tạo, nhưng phải ghi lý do đổi vào mục "Ghi chú"/
 "Ghi chú kỹ thuật" của item đó.
 
@@ -143,6 +147,11 @@ Khi có input từ cuộc họp: tạo `MEET-*`, nếu phát sinh điều chưa 
 (`status: draft`) và cập nhật `blocked_by_open_questions` + `status: blocked` trên các
 Epic/Feature/Story liên quan (SYS-CTX/SYS-CTR không có `blocked` — chỉ ghi
 `related_open_questions`, không tự chặn tiến độ, xem `CLAUDE.md`).
+
+`OQ-*` bắt buộc field `raised_in_meeting` trỏ về 1 `MEET-*` có thật — không tạo OQ mà chưa có
+meeting note tương ứng. Nếu điều chưa rõ phát sinh ngoài 1 cuộc họp chính thức (trao đổi trực
+tiếp, phát hiện lúc review), vẫn tạo `MEET-*` ngắn ghi lại bối cảnh đó trước, rồi mới tạo `OQ-*`
+trỏ về nó — không bỏ qua bước này chỉ vì "không phải cuộc họp thật".
 Không tự suy đoán câu trả lời cho open question — chỉ ghi nhận. Khi OQ được trả lời: điền
 mục "Trả lời" trong `OQ-xxx`, set `status: approved`, rồi gỡ block trên mọi item liệt kê
 trong `blocks: []` của OQ đó — đưa `status` của từng item quay về trạng thái **trước khi bị
@@ -194,6 +203,7 @@ flowchart TD
     FR -->|rà soát docs_requirements| US
     CTX -->|rà soát source_docs: SYS-CTX-xxx| CTR
     CTR -->|Mã đổi → rà soát source_container| EPIC
+    CTR -->|Mã đổi → đổi tên file + rà soát tham chiếu| CMPIFC["c4-component-&lt;mã&gt;.md<br/>+ interface-contracts.md"]
     EPIC -->|rà soát parent_epic| FEAT
     FEAT -->|rà soát parent_feature| US
     OQ -->|trả status về trước khi block| EPIC
@@ -209,7 +219,7 @@ flowchart TD
 | UR đã `approved` bị sửa → `status: draft` | FR con, SYS-CTX (`source_docs`), Feature (`docs_requirements`) | như trên |
 | FR đã `approved` bị sửa → `status: draft` | SYS-CTX (`source_docs`), User Story (`docs_requirements`) | như trên |
 | SYS-CTX đã `approved` bị sửa → `status: draft` | SYS-CTR có `source_docs: [SYS-CTX-xxx]` | Bước A |
-| SYS-CTR đổi (đổi/xoá Mã của 1 container) | Epic có `source_container` trỏ tới Mã đó — cập nhật lại `source_container`, hoặc báo "liên kết gãy" nếu Mã bị xoá | Bước B, mục "Epic ứng với container nào?" |
+| SYS-CTR đổi (đổi/xoá Mã của 1 container) | Epic có `source_container` trỏ tới Mã đó — cập nhật lại `source_container`, hoặc báo "liên kết gãy" nếu Mã bị xoá. Đồng thời: file `c4-component-<mã cũ>.md` (tên file chứa Mã) cần đổi tên theo Mã mới, và mọi tham chiếu tới Mã đó trong `interface-contracts.md` (tên container trong mục "Schema giao tiếp") cần cập nhật — không rà soát 2 chỗ này thì tài liệu vẫn tham chiếu Mã đã lỗi thời | Bước B, mục "Epic ứng với container nào?"; Bước A cho file Component/Interface Contract |
 | Feature/User Story đổi trong cuộc họp | User Story liên quan — còn `draft` thì sửa thẳng, đã `approved` thì tạo item mới cho phần chênh lệch | Bước E, mục "Họp làm thay đổi Feature/User Story" |
 | OQ được trả lời (`status: approved`) | Mọi item trong `blocks: []` của OQ đó — trả `status` về trạng thái trước khi bị block | Bước E |
 | `depends_on` của 1 item đã `approved` hết | Chính item đó — có thể xét bắt đầu thực hiện (Bước C, vẫn cần review, không tự động) | Bước B, mục "Phụ thuộc giữa Feature/User Story" |
