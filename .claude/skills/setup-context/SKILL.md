@@ -41,6 +41,8 @@ Functional Requirement sinh ra từ đó.
   Requirement) chỉ được tạo khi tài liệu tầng trước đã `status: approved` — không nhảy cấp.
 - Nếu user có nhiều hơn 1 WHY/WHO/WHAT cần tách (ví dụ nhiều persona khác nhau → nhiều UR),
   tạo thêm `UR-002`, `UR-003`... theo đúng naming convention thay vì nhồi vào 1 file.
+- Khi viết nội dung BR/UR/FR, thuật ngữ đã có trong `docs/00-glossary/glossary.md` → gắn link
+  Markdown tới đúng mục ở lần xuất hiện đầu tiên trong tài liệu (xem `RULES.md` mục 2).
 
 ## Quy trình
 
