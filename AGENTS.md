@@ -63,7 +63,8 @@ trừ khi được yêu cầu rõ ràng.
 Khi giao tiếp giữa 2 container có dữ liệu thật cần thống nhất trước (để 2 container do 2
 phiên/agent khác nhau thực thi không lệch schema), tạo thêm `docs/04-system-overview/
 interface-contracts.md` (`SYS-IFC-xxx`, xem skill `c4-model`) — chỉ chốt schema dữ liệu (field
-nào bắt buộc/tuỳ chọn, dữ liệu cần gửi/lưu, dữ liệu cần nhận lại/đọc), xác định từ Container/
+nào bắt buộc/tuỳ chọn, kiểu ở mức khái niệm — text/số/ngày-giờ/boolean/enum, dữ liệu cần
+gửi/lưu, dữ liệu cần nhận lại/đọc), xác định từ Container/
 Component diagram đã có, KHÔNG thiết kế API hay DB cụ thể (method HTTP, path, status code, tên
 bảng/cột/kiểu SQL) — kể cả với container DB thuần. Đó là Code (Level 4), quyết định ở Bước C.
 

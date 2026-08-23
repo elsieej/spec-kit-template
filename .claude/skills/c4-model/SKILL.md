@@ -103,14 +103,19 @@ có cột giao thức + mô tả ngắn) không đủ chỗ trả lời.
    `interface-contracts-template.md`), `source_docs` trỏ về `c4-container.md`/
    `c4-component-*.md` liên quan.
 3. Với mỗi cặp container giao tiếp trong bảng "Giao tiếp" của `c4-container.md` cần chốt trước:
-   liệt kê theo từng thao tác (kèm US liên quan nếu có) — dữ liệu cần gửi đi/lưu (field nào bắt
-   buộc/tuỳ chọn) và dữ liệu cần nhận lại/đọc. Áp dụng **như nhau** cho mọi cặp container, kể cả
-   khi 1 bên là container DB thuần (không có Component diagram) — xác định dữ liệu cần trao đổi
-   từ vai trò của container đó trong Context/Container/Component, không thiết kế riêng cho DB.
+   liệt kê theo từng thao tác (kèm US liên quan nếu có) — dữ liệu cần gửi đi/lưu và dữ liệu cần
+   nhận lại/đọc, mỗi field kèm kiểu ở mức khái niệm (text/số/ngày-giờ/boolean/enum — liệt kê
+   giá trị hợp lệ nếu là enum) và bắt buộc/tuỳ chọn. Áp dụng **như nhau** cho mọi cặp container,
+   kể cả khi 1 bên là container DB thuần (không có Component diagram) — xác định dữ liệu cần
+   trao đổi từ vai trò của container đó trong Context/Container/Component, không thiết kế riêng
+   cho DB.
 4. **KHÔNG thiết kế API hay DB cụ thể** — không viết method HTTP, path, status code, hình dạng
-   response chi tiết, hay tên bảng/cột/kiểu SQL/index. Đó đều là Code (Level 4), quyết định ở
-   Bước C khi thực thi User Story, không phải việc của tài liệu này. Chỉ chốt schema dữ liệu, để
-   2 container độc lập triển khai không lệch nhau.
+   response chi tiết, hay tên bảng/cột/**kiểu cột SQL/ngôn ngữ cụ thể** (`varchar(255)`,
+   `timestamptz`, `int32`...), index. Đó đều là Code (Level 4), quyết định ở Bước C khi thực thi
+   User Story, không phải việc của tài liệu này. Kiểu dữ liệu khái niệm (text/số/ngày-giờ/
+   boolean/enum) vẫn phải ghi — không phải ngoại lệ của quy tắc này, chỉ kiểu cụ thể của DB/
+   ngôn ngữ mới ngoài phạm vi. Chỉ chốt schema dữ liệu, để 2 container độc lập triển khai không
+   lệch nhau.
 
 ## Lỗi thường gặp cần tránh
 
