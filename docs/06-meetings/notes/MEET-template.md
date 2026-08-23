@@ -1,6 +1,9 @@
 ---
 id: MEET-YYYYMMDD-01
 type: meeting_notes
+version: 1
+created: YYYY-MM-DD
+last_updated: YYYY-MM-DD
 date: YYYY-MM-DD
 attendees: []
 ---

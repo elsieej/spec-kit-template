@@ -33,7 +33,11 @@ riêng.
   `docs/05-backlog/features/EPIC-003_checkout-flow/FEAT-012_luu-the.md`. Epic vẫn nằm phẳng
   trong `docs/05-backlog/epics/` (số lượng Epic luôn nhỏ, không cần subfolder). Đây chỉ là tổ
   chức vật lý để dễ duyệt — `parent_*` trong frontmatter mới là nguồn sự thật cho quan hệ cha-con.
-- Frontmatter của mỗi file có `version` (số nguyên tăng dần), `status`, và `last_updated`. Không xoá nội dung cũ khi sửa lớn — tăng `version`, dùng `git log`/`git blame` để xem lịch sử; không tạo file riêng cho mỗi version.
+- Frontmatter của mỗi file có `version` (số nguyên tăng dần) và `last_updated`, **trừ Meeting
+  Notes** (`MEET-*`) — biên bản họp là bản ghi sự việc đã xảy ra, không theo vòng đời
+  draft/approved nên không có field `status`, nhưng vẫn có `version`/`last_updated` để theo dõi
+  khi có sửa/bổ sung sau này. Không xoá nội dung cũ khi sửa lớn — tăng `version`, dùng
+  `git log`/`git blame` để xem lịch sử; không tạo file riêng cho mỗi version.
 - Vòng đời `status` dùng chung 1 bộ 4 giá trị `draft | approved | blocked | deprecated` cho
   mọi loại tài liệu — chỉ khác nhau ở việc có dùng `blocked` hay không:
 

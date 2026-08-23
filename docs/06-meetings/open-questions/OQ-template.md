@@ -1,10 +1,13 @@
 ---
 id: OQ-001
 type: open_question
-status: draft         # draft| approved | blocked | deprecated
+status: draft         # draft | approved | blocked | deprecated
+version: 1
 created: YYYY-MM-DD
-raised_in_meeting: MEET-YYYYMMDD-01
-blocks: []            # danh sách EPIC/FEAT/US id bị block bởi câu hỏi này (SYS-CTX/SYS-CTR không có blocked, dùng related_open_questions)
+last_updated: YYYY-MM-DD
+raised_in_meeting: MEET-YYYYMMDD-01     # bắt buộc trỏ về 1 MEET-* có thật, tạo MEET-* trước nếu chưa có
+blocked_by_open_questions: []  # ID các OQ khác đang block OQ này (nếu câu trả lời của OQ này phụ thuộc OQ khác trả lời trước)
+blocks: []            # danh sách EPIC/FEAT/US/OQ id bị block bởi câu hỏi này (SYS-CTX/SYS-CTR không có blocked, dùng related_open_questions)
 ---
 
 # OQ-001 — <Câu hỏi cần làm rõ>
