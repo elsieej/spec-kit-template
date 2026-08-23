@@ -3,8 +3,8 @@ name: plan-backlog
 description: >
   Dẫn dắt team phân rã BR/UR/FR đã approved thành Epic → Feature → User Story. Dùng skill
   này khi user nói "tạo backlog", "phân rã epic/feature/user story", "backlog hoạt động thế
-  nào", hoặc sau khi docs/01-04 đã `status: approved` mà chưa có Epic nào trong
-  docs/05-backlog.
+  nào", hoặc sau khi docs/01-03 đã `status: approved` và `docs/04-system-overview/
+  c4-container.md` đã có mà chưa có Epic nào trong docs/05-backlog.
 ---
 
 # plan-backlog
@@ -62,6 +62,14 @@ sau để quyết định có cần tách User Story tiếp không:
   (đủ rõ, bao phủ edge case quan trọng) và "Context cho Agent" — không tạo US thiếu các mục
   này, hỏi lại user nếu họ chỉ đưa ý tưởng chung chung. (US tạo trước khi `US-template.md` có
   các mục này có thể chưa đủ — không bắt buộc bổ sung ngược, chỉ áp dụng cho US mới.)
+- **"AC phải phủ edge case" (trên) và "không tự bịa nội dung" (nguyên tắc chung của kit) có thể
+  đụng nhau** trên cùng 1 dòng AC — ví dụ hành vi lỗi cụ thể, ngưỡng số, thứ tự ưu tiên khi xung
+  đột mà user chưa xác nhận chi tiết. Khi gặp trường hợp này, KHÔNG tự chọn ngầm giữa 3 lối tắt
+  (bịa chi tiết cụ thể / bỏ trống dòng AC / chỉ ghi vào "Ghi chú kỹ thuật" mà không tạo OQ):
+  brainstorm 1 đề xuất cụ thể (xem nguyên tắc brainstorm-rồi-hỏi ở trên), viết vào dòng AC kèm
+  nhãn `[Agent đề xuất — cần PO xác nhận]`, và nếu edge case này đủ quan trọng để không thể bắt
+  đầu Bước C mà chưa rõ → tạo `OQ-*` + set `blocked_by_open_questions` trên US đó (theo
+  AGENTS.md nguyên tắc chung #4), không chỉ ghi chú suông rồi bỏ qua.
 - User Story phải đủ nhỏ theo 2 dấu hiệu ở trên; nếu user mô tả một User Story không đạt, đề
   xuất tách thành nhiều User Story.
 - Tất cả tạo mới ở `status: draft`. Không tự set `approved` — đó là quyết định của
@@ -73,12 +81,16 @@ sau để quyết định có cần tách User Story tiếp không:
   tự, không phải chờ quyết định) → ghi ID đó vào field `depends_on` của item, KHÔNG dùng
   `status: blocked`/`blocked_by_open_questions` cho trường hợp này. Không bắt đầu thực hiện
   một item khi `depends_on` còn ID chưa `status: approved`.
+- Khi viết nội dung Epic/Feature/US, thuật ngữ đã có trong `docs/00-glossary/glossary.md` → gắn
+  link Markdown tới đúng mục ở lần xuất hiện đầu tiên trong tài liệu (xem `RULES.md` mục 2).
 
 ## Quy trình
 
 1. Xác nhận `docs/01-business-requirement`, `docs/02-user-requirement`,
-   `docs/03-functional-requirement` liên quan đã `status: approved`. Nếu chưa, dừng lại và
-   nhắc user hoàn thiện BR/UR/FR trước.
+   `docs/03-functional-requirement` liên quan đã `status: approved`, và
+   `docs/04-system-overview/c4-container.md` đã tồn tại (không bắt buộc `status: approved`,
+   nhưng phải có bảng "Danh sách container" để tra `source_container` ở bước 2). Nếu thiếu điều
+   nào, dừng lại và nhắc user hoàn thiện trước.
 2. Hỏi **Epic**: "Mục tiêu kinh doanh lớn nào từ BR-xxx đang cần hiện thực hoá?" (điền
    `docs_requirements: [BR-xxx, ...]` — có thể nhiều BR nếu Epic hiện thực hoá mục tiêu chung
    của nhiều BR) → đối chiếu mục tiêu đó với cột "Trách nhiệm" trong
