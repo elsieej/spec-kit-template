@@ -100,13 +100,15 @@ có cột giao thức + mô tả ngắn) không đủ chỗ trả lời.
 2. Tạo `docs/04-system-overview/interface-contracts.md` (`SYS-IFC-xxx`, dùng
    `interface-contracts-template.md`), `source_docs` trỏ về `c4-container.md`/
    `c4-component-*.md` liên quan.
-3. Với mỗi cặp container giao tiếp: liệt kê theo từng thao tác (kèm US liên quan nếu có) —
-   dữ liệu cần gửi đi (field nào bắt buộc/tuỳ chọn) và dữ liệu cần nhận lại. Với container DB
-   thuần: liệt kê schema bảng (cột, kiểu, ghi chú).
-4. **KHÔNG quy định API cụ thể** — không viết method HTTP, path, status code, hay hình dạng
-   response chi tiết. Đó là Code (Level 4), quyết định ở Bước C khi thực thi User Story, không
-   phải việc của tài liệu này. Chỉ chốt schema dữ liệu, để 2 container độc lập triển khai không
-   lệch nhau.
+3. Với mỗi cặp container giao tiếp trong bảng "Giao tiếp" của `c4-container.md` cần chốt trước:
+   liệt kê theo từng thao tác (kèm US liên quan nếu có) — dữ liệu cần gửi đi/lưu (field nào bắt
+   buộc/tuỳ chọn) và dữ liệu cần nhận lại/đọc. Áp dụng **như nhau** cho mọi cặp container, kể cả
+   khi 1 bên là container DB thuần (không có Component diagram) — xác định dữ liệu cần trao đổi
+   từ vai trò của container đó trong Context/Container/Component, không thiết kế riêng cho DB.
+4. **KHÔNG thiết kế API hay DB cụ thể** — không viết method HTTP, path, status code, hình dạng
+   response chi tiết, hay tên bảng/cột/kiểu SQL/index. Đó đều là Code (Level 4), quyết định ở
+   Bước C khi thực thi User Story, không phải việc của tài liệu này. Chỉ chốt schema dữ liệu, để
+   2 container độc lập triển khai không lệch nhau.
 
 ## Lỗi thường gặp cần tránh
 
@@ -119,5 +121,6 @@ có cột giao thức + mô tả ngắn) không đủ chỗ trả lời.
   Container Diagram cần tham chiếu.
 - Không cập nhật diagram khi kiến trúc đổi — review lại Container/Component Diagram mỗi khi có Epic mới
   ảnh hưởng kiến trúc (bump `version`, không tạo file mới cho mỗi lần sửa).
-- Nhồi method HTTP/path/status code cụ thể vào `interface-contracts.md` — đó là Code (Level 4),
-  ngoài phạm vi tài liệu này (xem mục "Quy trình tạo Interface Contract").
+- Nhồi method HTTP/path/status code, hoặc tên bảng/cột/kiểu SQL cụ thể vào
+  `interface-contracts.md` — đó đều là Code (Level 4), ngoài phạm vi tài liệu này (xem mục
+  "Quy trình tạo Interface Contract").
