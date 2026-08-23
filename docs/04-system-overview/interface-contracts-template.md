@@ -29,3 +29,11 @@ Nguồn: `c4-container.md` (giao tiếp `<container A>` ↔ `<container B>`).
 | Thao tác (US liên quan) | Dữ liệu cần gửi đi / lưu | Dữ liệu cần nhận lại / đọc |
 |---|---|---|
 | | | |
+
+Ví dụ 1 dòng cho cặp container thường ↔ container DB thuần (minh hoạ ranh giới "dữ liệu cần
+lưu" — ĐÚNG phạm vi — khác với "thiết kế bảng" — SAI phạm vi, xem cảnh báo ở trên):
+
+| Lưu task mới (US-001) | `title` (bắt buộc), `deadline` (tuỳ chọn), `status` khởi tạo `open` | (không cần đọc lại ngay) |
+
+KHÔNG viết thành `bảng tasks(id uuid PK, title text NOT NULL, deadline timestamptz NULL, ...)`
+— đó là thiết kế DDL, thuộc Bước C.
