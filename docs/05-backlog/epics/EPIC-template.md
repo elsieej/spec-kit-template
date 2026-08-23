@@ -23,3 +23,9 @@ blocked_by_open_questions: []
 
 ## Rủi ro / phụ thuộc
 -
+
+## Ghi chú
+Lý do các thay đổi không hiển nhiên từ nội dung phía trên (quyết định tại họp — kèm liên kết
+`MEET-xxx`, thay đổi phạm vi, lý do tách/gộp Epic...).
+
+-
