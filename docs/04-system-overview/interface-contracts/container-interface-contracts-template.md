@@ -33,7 +33,7 @@ related_open_questions: []
   mà bảng kia (chỉ có cột giao thức + mô tả ngắn) không đủ chỗ trả lời.
 - Không chọn giao thức/định dạng, không thiết kế API/DB, không đặt số liệu vận hành (rate limit,
   timeout, kích thước tối đa) — xem mục 7.
-- Nếu `docs/04-system-overview/schema-interface-contracts.md` (`SYS-SIC-xxx`) tồn tại và đã định
+- Nếu `docs/04-system-overview/interface-contracts/schema-interface-contracts.md` (`SYS-SIC-xxx`) tồn tại và đã định
   nghĩa entity mà 1 CIC gửi/nhận, CIC đó trỏ về entity ở tài liệu kia (`xem SYS-SIC-001 §3.x`)
   thay vì tự liệt kê lại toàn bộ field — tránh 2 nguồn field cho cùng 1 entity dễ lệch nhau.
 

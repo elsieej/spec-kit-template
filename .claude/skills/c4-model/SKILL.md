@@ -93,7 +93,10 @@ xem mục "Quy trình tạo Schema Interface Contract" bên dưới.
 2. Liệt kê từng component/module bên trong container, mỗi component gán tên ngắn gọn kèm
    trách nhiệm chính — ở mức đủ để dev trong team sở hữu container hiểu bố cục mà không cần
    đọc code trước. Không xuống tới class/function cụ thể (đó là Level 4, không thuộc phạm vi
-   skill này).
+   skill này). Nếu `container-interface-contracts.md` đã tồn tại và container này tham gia ít
+   nhất 1 mã CIC, điền cột "CIC liên quan" cho đúng component khởi tạo/xử lý CIC đó (đối chiếu
+   tên component phải khớp với bảng tổng hợp CIC — không tự đặt tên khác ở đây); nếu chưa tạo
+   `container-interface-contracts.md`, để trống cột này, không tự suy đoán mã CIC chưa tồn tại.
 3. Vẽ giao tiếp giữa các component trong cùng container (gọi hàm, event nội bộ...) bằng
    diagram mermaid `graph TD`.
 4. Trước khi kết luận "container quá đơn giản, bỏ qua Component diagram": phải thử liệt kê
@@ -136,7 +139,7 @@ Không phải 1 Level của C4 — là phụ lục dữ liệu đi kèm Containe
    phải 1 hợp đồng 2 bên nội bộ tự chốt — nếu chưa xác nhận được với bên thứ ba, ghi rõ "chưa xác
    nhận với <hệ thống ngoài>" thay vì để trống hoặc bỏ qua không ghi gì (bỏ qua là sai, vì đây
    chính là dữ liệu Bước C cần để không tự bịa hợp đồng tích hợp).
-2. Tạo `docs/04-system-overview/container-interface-contracts.md` (`SYS-IFC-xxx`, dùng
+2. Tạo `docs/04-system-overview/interface-contracts/container-interface-contracts.md` (`SYS-IFC-xxx`, dùng
    `container-interface-contracts-template.md`), `source_docs` trỏ về `c4-container.md`/
    `c4-component-*.md` liên quan.
 3. Gán 1 mã **CIC** (`CIC-001` tăng dần) cho mỗi **hàng (cạnh có hướng)** trong bảng "Giao tiếp"
@@ -145,7 +148,9 @@ Không phải 1 Level của C4 — là phụ lục dữ liệu đi kèm Containe
    không đánh số lại các mã còn lại. Điền bảng tổng hợp CIC (mục 3 của template): Từ, Tới, Loại
    (`nội bộ`/`hệ thống ngoài`), đồng bộ/bất đồng bộ, component khởi tạo/xử lý (lấy tên thật từ
    `c4-component-*.md` nếu container đó có file Component, ngược lại ghi `—`) — không tự đặt tên
-   component mới ở đây.
+   component mới ở đây. Sau khi điền, cập nhật ngược cột "CIC liên quan" ở đúng file
+   `c4-component-*.md` của component vừa ghi tên (xem Component Diagram bước 2) — 2 chỗ phải
+   khớp tên component và mã CIC.
 4. Với mỗi mã CIC: liệt kê theo từng thao tác nghiệp vụ (kèm US liên quan nếu có, tên đọc hiểu
    ngay như "Tạo task mới" — KHÔNG phải tên kỹ thuật của endpoint) — dữ liệu cần gửi đi/lưu và
    dữ liệu cần nhận lại/đọc, mỗi field kèm kiểu ở mức khái niệm (text/số/ngày-giờ/boolean/enum —
@@ -176,7 +181,7 @@ xuất hiện ở nhiều luồng/nhiều container.
 1. Chỉ tạo khi nhiều entity dùng chung bởi nhiều CIC/container, và mô tả rời rạc trong từng CIC
    sẽ bị lặp lại hoặc lệch nhau. Không bắt buộc cho mọi hệ thống — hệ thống ít entity/quan hệ
    rời rạc thì field list ngay trong từng CIC là đủ, dừng ở `container-interface-contracts.md`.
-2. Tạo `docs/04-system-overview/schema-interface-contracts.md` (`SYS-SIC-xxx`, dùng
+2. Tạo `docs/04-system-overview/interface-contracts/schema-interface-contracts.md` (`SYS-SIC-xxx`, dùng
    `schema-interface-contracts-template.md`), `source_docs` trỏ về `c4-container.md` (container/
    DB sở hữu entity) và/hoặc `container-interface-contracts.md` liên quan.
 3. Vẽ sơ đồ quan hệ entity (mermaid `erDiagram`) + bảng mô tả quan hệ: cardinality (`1–1`,

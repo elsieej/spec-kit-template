@@ -67,8 +67,9 @@ cho mỗi container có codebase thực sự (xem skill `c4-model`). Không sinh
 trừ khi được yêu cầu rõ ràng.
 
 Khi giao tiếp giữa 2 container có dữ liệu thật cần thống nhất trước (để 2 container do 2
-phiên/agent khác nhau thực thi không lệch schema), tạo thêm `docs/04-system-overview/
-container-interface-contracts.md` (`SYS-IFC-xxx`, mỗi luồng gán 1 mã `CIC-xxx` cục bộ trong file
+phiên/agent khác nhau thực thi không lệch schema), tạo thêm
+`docs/04-system-overview/interface-contracts/container-interface-contracts.md` (`SYS-IFC-xxx`,
+mỗi luồng gán 1 mã `CIC-xxx` cục bộ trong file
 đó — xem skill `c4-model`) — chỉ chốt schema dữ liệu (field nào bắt buộc/tuỳ chọn, kiểu ở mức
 khái niệm — text/số/ngày-giờ/boolean/enum, dữ liệu cần
 gửi/lưu, dữ liệu cần nhận lại/đọc), xác định từ Container/
@@ -76,7 +77,7 @@ Component diagram đã có, KHÔNG thiết kế API hay DB cụ thể (method HT
 bảng/cột/kiểu SQL) — kể cả với container DB thuần. Đó là Code (Level 4), quyết định ở Bước C.
 
 Nếu nhiều entity dùng chung bởi nhiều CIC/container mà mô tả rời rạc trong từng CIC sẽ bị lặp
-hoặc lệch nhau, tạo thêm `docs/04-system-overview/schema-interface-contracts.md` (`SYS-SIC-xxx`,
+hoặc lệch nhau, tạo thêm `docs/04-system-overview/interface-contracts/schema-interface-contracts.md` (`SYS-SIC-xxx`,
 xem skill `c4-model`) — định nghĩa entity, field (kiểu khái niệm), và quan hệ giữa các entity
 (1-nhiều, nhiều-nhiều, đệ quy...) ở mức logic, độc lập công nghệ lưu trữ. Không bắt buộc cho mọi
 hệ thống — hệ thống ít entity/quan hệ rời rạc thì field list trong từng CIC là đủ. Tài liệu này
@@ -183,10 +184,10 @@ Trước khi code, đọc theo thứ tự:
 4. `docs/04-system-overview/c4-container.md` (container liên quan), và `c4-component-<mã
    container>.md` của container đó nếu file này tồn tại (container đơn giản, không có cấu
    trúc nội bộ đáng vẽ, sẽ không có file Component — xem skill `c4-model`)
-5. `docs/04-system-overview/container-interface-contracts.md` nếu tồn tại — mục CIC-xxx tương
+5. `docs/04-system-overview/interface-contracts/container-interface-contracts.md` nếu tồn tại — mục CIC-xxx tương
    ứng luồng giao tiếp qua container liên quan, tránh tự bịa field khác với container ở đầu kia
    đã thống nhất
-6. `docs/04-system-overview/schema-interface-contracts.md` nếu tồn tại — entity liên quan (field
+6. `docs/04-system-overview/interface-contracts/schema-interface-contracts.md` nếu tồn tại — entity liên quan (field
    + quan hệ), đặc biệt khi CIC ở bước 5 trỏ về entity trong tài liệu này thay vì liệt kê lại
    field
 

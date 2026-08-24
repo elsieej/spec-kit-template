@@ -62,11 +62,12 @@ kỹ thuật nào giữ nguyên tiếng Anh, thuật ngữ nào dịch).
   thuật ngữ trong tài liệu, nếu thuật ngữ đó đã có trong `docs/00-glossary/glossary.md` →
   gắn link Markdown tới đúng mục (heading) chứa thuật ngữ đó — **số cấp `../` tuỳ độ sâu thư
   mục của file đang viết so với `docs/`, không cố định 1 con số**:
-  - File nằm ngay trong `docs/{00-04}-.../` (BR/UR/FR, C4 Context/Container/Component, Interface
-    Contract) — 1 cấp: ví dụ từ `docs/01-business-requirement/BR-001.md`:
+  - File nằm ngay trong `docs/{00-04}-.../` (BR/UR/FR, C4 Context/Container/Component) — 1 cấp:
+    ví dụ từ `docs/01-business-requirement/BR-001.md`:
     `[sprint](../00-glossary/glossary.md#quy-trình--agile)`.
-  - File nằm trong 1 subfolder của `docs/05-backlog/` hoặc `docs/06-meetings/` (Epic trong
-    `docs/05-backlog/epics/`, meeting notes, open question) — 2 cấp: ví dụ từ
+  - File nằm trong 1 subfolder của `docs/05-backlog/`, `docs/06-meetings/`, hoặc
+    `docs/04-system-overview/interface-contracts/` (Epic trong `docs/05-backlog/epics/`, meeting
+    notes, open question, Container/Schema Interface Contract) — 2 cấp: ví dụ từ
     `docs/05-backlog/epics/EPIC-001.md`:
     `[sprint](../../00-glossary/glossary.md#quy-trình--agile)`.
   - Feature/User Story trong subfolder theo Epic (`docs/05-backlog/{features,user-stories}/
