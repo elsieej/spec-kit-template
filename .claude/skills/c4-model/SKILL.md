@@ -94,9 +94,13 @@ Component): khi giao tiếp giữa 2 container có dữ liệu thật cần th�
    `c4-container.md` danh sách candidate đã xét qua và lý do gộp/bỏ qua (không chỉ ghi kết luận
    suông) — tránh việc bỏ qua vì muốn giảm số file thay vì vì container thực sự đơn giản.
 5. Trước khi ghi chính thức vào file Component: liệt kê danh sách component vừa xác định (tên +
-   trách nhiệm 1 dòng) và cho user xác nhận nhanh — cùng mức xác nhận nhẹ như bước 3 ở Container
-   Diagram (không phải hỏi lại từng chi tiết, chỉ để user chỉnh trước khi ghi thành dữ liệu gốc
-   mà `Context cho Agent` của User Story sau này sẽ trỏ tới).
+   trách nhiệm 1 dòng) và **thực sự dừng lại chờ user xác nhận** — cùng mức xác nhận nhẹ như
+   bước 3 ở Container Diagram (không phải hỏi lại từng chi tiết, chỉ để user chỉnh trước khi ghi
+   thành dữ liệu gốc mà `Context cho Agent` của User Story sau này sẽ trỏ tới). Không được coi
+   im lặng là đồng ý, và không được tự liệt kê rồi tự đi tiếp ghi file luôn trong cùng lượt —
+   đây chính là chỗ 1 component không ai yêu cầu (ví dụ tự thêm 1 cơ chế retry/queue nội bộ) dễ
+   lọt vào dữ liệu gốc mà không ai bắt lại, vì các bước tự-rà-soát ở `setup-context`/
+   `plan-backlog` không quét tới tầng C4 (xem 2 skill đó).
 6. Dừng ở Level 3. Không tự vẽ Code diagram trừ khi user yêu cầu rõ ràng.
 
 ## Quy trình tạo Interface Contract (schema giao tiếp)
@@ -151,3 +155,6 @@ có cột giao thức + mô tả ngắn) không đủ chỗ trả lời.
 - Nhồi method HTTP/path/status code, hoặc tên bảng/cột/kiểu SQL cụ thể vào
   `interface-contracts.md` — đó đều là Code (Level 4), ngoài phạm vi tài liệu này (xem mục
   "Quy trình tạo Interface Contract").
+- Liệt kê component rồi tự ghi file luôn mà không thực sự dừng lại chờ xác nhận (bước 5 ở Quy
+  trình tạo Component Diagram) — dễ để lọt 1 component không ai yêu cầu vào dữ liệu gốc mà
+  không cơ chế nào ở tầng sau bắt lại được.
