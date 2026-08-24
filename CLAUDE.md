@@ -15,7 +15,7 @@ không nơi nào khác có: quy ước đặt tên/ID/versioning, và vài ghi c
 | System Overview (Context) | SYS-CTX | SYS-CTX-001 |
 | System Overview (Container) | SYS-CTR | SYS-CTR-001 |
 | System Overview (Component) | SYS-CMP | SYS-CMP-001 |
-| System Overview (Interface Contract) | SYS-IFC | SYS-IFC-001 |
+| System Overview (Container Interface Contract) | SYS-IFC | SYS-IFC-001 |
 | Epic | EPIC | EPIC-001 |
 | Feature | FEAT | FEAT-001 |
 | User Story | US | US-001 |

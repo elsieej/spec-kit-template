@@ -135,11 +135,12 @@ sau để quyết định có cần tách User Story tiếp không:
    đủ quan trọng) — không chỉ áp dụng cho chi tiết đã được hỏi tường minh trong hội thoại rồi bỏ
    qua các chi tiết tương tự khác.
    **Phạm vi quét bao gồm cả tầng C4** mà backlog vừa tham chiếu tới (`c4-container.md`,
-   `c4-component-*.md`, `interface-contracts.md` trong `source_container`/`Context cho Agent`
-   của Epic/US vừa tạo) — xác minh bước "liệt kê Component rồi chờ user xác nhận" của `c4-model`
-   thực sự đã xảy ra (có phản hồi thật của user), không chỉ được ghi lại như đã xảy ra; nếu phát
-   hiện component/interface contract nào chưa từng được xác nhận, xử lý như 1 chi tiết chưa xác
-   nhận ở trên, không im lặng dùng tiếp.
+   `c4-component-*.md`, `container-interface-contracts.md` trong `source_container`/
+   `Context cho Agent` của Epic/US vừa tạo) — xác minh bước "liệt kê Component rồi chờ user xác
+   nhận" của `c4-model` thực sự đã xảy ra (có phản hồi thật của user trong mục "Xác nhận với
+   user" của file Component/Container, không chỉ khẳng định suông), và mọi mã CIC được US tham
+   chiếu đều có mặt trong bảng tổng hợp CIC; nếu phát hiện component/CIC nào chưa từng được xác
+   nhận, xử lý như 1 chi tiết chưa xác nhận ở trên, không im lặng dùng tiếp.
    Đây là giới hạn cố hữu, không phải checklist làm 1 lần là triệt để: cùng 1 lượt suy luận vừa
    viết vừa tự rà dễ chỉ nhớ lại đúng những chỗ nó tự thấy "cần chú ý" lúc viết, bỏ sót chi tiết
    nó không nhớ là đã tự thêm vào. Nếu khả thi, chạy bước này như 1 lượt riêng, đọc lại toàn bộ
