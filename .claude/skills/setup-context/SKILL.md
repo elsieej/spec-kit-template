@@ -71,7 +71,11 @@ Functional Requirement sinh ra từ đó.
    biết trước không?" — nếu câu trả lời còn chung chung, brainstorm kết quả/business rule cụ
    thể rồi hỏi lại → tạo `docs/03-functional-requirement/FR-001_<slug>.md`, điền "Mô tả
    chức năng (WHAT)", "Business rules", `parent_user_requirement: UR-001`.
-6. Cập nhật ngược mục "Liên kết" ở BR-001/UR-001 để trỏ xuôi tới UR-001/FR-001 vừa tạo.
+6. Cập nhật ngược mục "Liên kết" ở BR-001/UR-001 để trỏ xuôi tới UR-001/FR-001 vừa tạo. **Trước
+   khi coi bước này xong**: kiểm lại riêng việc gắn link glossary — mọi thuật ngữ đã có trong
+   `docs/00-glossary/glossary.md` dùng trong BR/UR/FR vừa viết có link ở lần xuất hiện đầu tiên
+   chưa (xem nguyên tắc ở trên, `RULES.md` mục 2) — quy tắc này hay bị bỏ quên trong lúc tập
+   trung viết nội dung, kiểm lại rõ ràng ở đây thay vì chỉ tin đã làm đúng lúc viết.
 7. **Trước khi kết thúc phiên**, quét lại toàn bộ nội dung BR/UR/FR vừa viết trong phiên (không
    chỉ mục user vừa hỏi lại tường minh) — tìm mọi chi tiết cụ thể mà user chưa thực sự xác nhận,
    cả **định lượng** (con số, ngưỡng, success metric) lẫn **định tính** (business rule diễn đạt

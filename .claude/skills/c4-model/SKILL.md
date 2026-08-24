@@ -150,6 +150,15 @@ có cột giao thức + mô tả ngắn) không đủ chỗ trả lời.
    ngôn ngữ mới ngoài phạm vi. Chỉ chốt schema dữ liệu, để 2 container độc lập triển khai không
    lệch nhau.
 
+## Trước khi kết thúc phiên
+
+Kiểm lại riêng việc gắn link glossary trên mọi file C4/Interface Contract vừa tạo/sửa trong
+phiên (`c4-context.md`, `c4-container.md`, `c4-component-*.md`, `interface-contracts.md`) — mọi
+thuật ngữ đã có trong `docs/00-glossary/glossary.md` dùng trong các file đó có link ở lần xuất
+hiện đầu tiên chưa (xem bước 1 ở Context Diagram, `RULES.md` mục 2). Quy tắc này hay bị bỏ quên
+trong lúc tập trung vẽ diagram/viết schema, kiểm lại rõ ràng ở đây thay vì chỉ tin đã làm đúng
+lúc viết.
+
 ## Lỗi thường gặp cần tránh
 
 - Nhồi chi tiết kỹ thuật vào Context Diagram — sai audience, người phi kỹ thuật không đọc nổi.
