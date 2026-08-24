@@ -22,6 +22,10 @@ việc lập kế hoạch sau này tham chiếu theo đúng mã, không nơi nà
 
 ## Giao tiếp
 
+Gồm cả giao tiếp giữa 2 container nội bộ lẫn container ↔ hệ thống ngoài đã liệt kê ở "Hệ thống
+ngoài liên quan" trong `c4-context.md`, nếu container đó gọi trực tiếp hệ thống ngoài — đây là
+bảng duy nhất mà Interface Contract (nếu cần tạo) quét qua để tìm cặp cần chốt schema.
+
 | Từ | Tới | Giao thức | Mô tả |
 |---|---|---|---|
 | | | | |

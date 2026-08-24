@@ -68,7 +68,10 @@ Component): khi giao tiếp giữa 2 container có dữ liệu thật cần th�
    container, có thể tự đề xuất tên gợi ý theo trách nhiệm (ví dụ `checkout-service`,
    `notification-service`) nhưng phải để user xác nhận trước khi ghi chính thức vào bảng.
 4. Vẽ giao tiếp giữa các container: từ đâu → tới đâu, giao thức (REST/HTTPS, gRPC, message
-   queue...), mô tả ngắn.
+   queue...), mô tả ngắn. Nếu 1 container gọi trực tiếp tới hệ thống ngoài đã liệt kê ở
+   `c4-context.md` (payment gateway, hệ thống bên thứ ba...) — thêm 1 hàng riêng cho giao tiếp
+   đó vào cùng bảng "Giao tiếp" này (không chỉ nhắc ở Context Diagram) — đây là bảng duy nhất mà
+   "Quy trình tạo Interface Contract" bên dưới quét qua để tìm cặp cần chốt schema.
 5. Với mỗi container có codebase thực sự (không phải DB thuần/dịch vụ bên thứ ba dùng nguyên
    trạng), tiếp tục sang Quy trình tạo Component Diagram bên dưới. Không tự vẽ Code diagram
    (Level 4) trừ khi user yêu cầu rõ ràng.
@@ -107,7 +110,10 @@ có cột giao thức + mô tả ngắn) không đủ chỗ trả lời.
    mọi hệ thống.
 1b. **"Cặp container" ở đây cũng áp dụng cho container nội bộ ↔ hệ thống ngoài** đã liệt kê ở
    bảng "Hệ thống ngoài liên quan" trong `c4-context.md` (ví dụ payment gateway, hệ thống chấm
-   công bên thứ ba) — không chỉ 2 container nội bộ tự thoả thuận với nhau. Khác biệt duy nhất:
+   công bên thứ ba) — không chỉ 2 container nội bộ tự thoả thuận với nhau. Điều kiện: giao tiếp
+   đó đã có 1 hàng riêng trong bảng "Giao tiếp" của `c4-container.md` (xem Container Diagram
+   bước 4) — nếu chưa có, thêm vào đó trước, vì đây là bảng duy nhất bước 3 bên dưới quét qua.
+   Khác biệt duy nhất so với cặp container nội bộ:
    với hệ thống ngoài, mục đích của phần schema là **ghi lại kỳ vọng tích hợp cần xác nhận với
    bên thứ ba** (dữ liệu team mình cần gửi/nhận theo hiểu biết hiện tại), không phải 1 hợp đồng
    2 bên nội bộ tự chốt — nếu chưa xác nhận được với bên thứ ba, ghi rõ "chưa xác nhận với
