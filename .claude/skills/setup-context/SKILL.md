@@ -69,6 +69,14 @@ Functional Requirement sinh ra từ đó.
    thể rồi hỏi lại → tạo `docs/03-functional-requirement/FR-001_<slug>.md`, điền "Mô tả
    chức năng (WHAT)", "Business rules", `parent_user_requirement: UR-001`.
 6. Cập nhật ngược mục "Liên kết" ở BR-001/UR-001 để trỏ xuôi tới UR-001/FR-001 vừa tạo.
-7. Nhắc user: review và set `status: approved` cho từng tầng trước khi tạo System Overview
+7. **Trước khi kết thúc phiên**, quét lại toàn bộ nội dung BR/UR/FR vừa viết trong phiên (không
+   chỉ mục user vừa hỏi lại tường minh) — tìm mọi chi tiết cụ thể (con số, ngưỡng, business rule,
+   success metric) mà user chưa thực sự xác nhận, kể cả chi tiết agent chèn thêm khi diễn giải
+   lại câu trả lời chung chung của user. Với mỗi chi tiết như vậy: hỏi lại user, hoặc để nguyên
+   placeholder gốc của template (xem nguyên tắc "không bịa nội dung" ở trên) — không chỉ dựa vào
+   trí nhớ những chỗ agent tự thấy "cần chú ý" lúc viết, vì cùng 1 lượt suy luận vừa viết vừa tự
+   rà thường bỏ sót đúng những chi tiết nó không nhớ là đã tự thêm vào. Nếu khả thi, chạy bước
+   này như 1 lượt riêng sau khi đã viết xong toàn bộ, thay vì xen kẽ ngay trong lúc viết.
+8. Nhắc user: review và set `status: approved` cho từng tầng trước khi tạo System Overview
    (C4 Context + Container Diagram). Sau đó điền "Giai đoạn hiện tại" và "Team & đầu mối liên
    hệ" trong `CONTEXT.md` nếu chưa có.

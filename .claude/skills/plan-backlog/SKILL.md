@@ -128,4 +128,8 @@ sau để quyết định có cần tách User Story tiếp không:
    hành vi lỗi, thứ tự ưu tiên khi xung đột...) mà user chưa xác nhận trực tiếp. Với mỗi chi tiết
    như vậy, áp dụng đúng quy tắc "AC phải phủ edge case đụng không tự bịa nội dung" ở trên
    (nhãn `[Agent đề xuất — cần PO xác nhận]` + tạo OQ nếu đủ quan trọng) — không chỉ áp dụng cho
-   chi tiết đã được hỏi tường minh trong hội thoại rồi bỏ qua các chi tiết tương tự khác.
+   chi tiết đã được hỏi tường minh trong hội thoại rồi bỏ qua các chi tiết tương tự khác. Đây là
+   giới hạn cố hữu, không phải checklist làm 1 lần là triệt để: cùng 1 lượt suy luận vừa viết vừa
+   tự rà dễ chỉ nhớ lại đúng những chỗ nó tự thấy "cần chú ý" lúc viết, bỏ sót chi tiết nó không
+   nhớ là đã tự thêm vào. Nếu khả thi, chạy bước này như 1 lượt riêng, đọc lại toàn bộ tài liệu
+   như người ngoài chưa biết trước phiên viết đã cài gì, thay vì xen kẽ ngay trong lúc viết.
