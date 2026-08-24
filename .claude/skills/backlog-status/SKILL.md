@@ -40,6 +40,10 @@ cha-con (vẫn dựa vào `parent_*`, không suy ra Epic sở hữu từ tên su
    - Với mỗi item còn ID trong `depends_on` mà ID đó chưa `status: approved` → đánh dấu riêng
      "chưa thể bắt đầu (chờ <ID> xong)" cạnh item đó, dù `status` hiện tại là `draft`.
    - Không liệt kê item đã `status: approved`/`deprecated` — không còn tính là backlog đang mở.
+   - `blocked` không cascade từ con lên cha (xem AGENTS.md nguyên tắc chung #4): 1 Feature/Epic
+     `draft` có toàn bộ US/Feature con đang `blocked` vẫn liệt kê ở nhóm `draft` như bình thường
+     (không tự chuyển nhóm `blocked`) — nhưng ghi kèm 1 ghi chú riêng "toàn bộ con đang blocked,
+     chưa có việc nào làm được ngay" để user không hiểu nhầm là còn việc thực hiện được.
 
 2. **Cây phân cấp Epic → Feature → User Story**: đọc frontmatter mọi file trong
    `docs/05-backlog/{epics,features,user-stories}/` (đệ quy qua subfolder theo Epic, trừ
