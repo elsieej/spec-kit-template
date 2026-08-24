@@ -64,7 +64,10 @@ riêng.
   `blocked_by_open_questions: [OQ-xxx]` khi ở trạng thái đó (không được để `blocked` mà thiếu
   field này). BR/UR/FR/SYS-CTX/SYS-CTR/SYS-CMP/SYS-IFC không có trạng thái `blocked` — chỉ dùng
   field `related_open_questions` để ghi nhận OQ liên quan (không chặn tiến độ vì tầng sau chỉ
-  cần các tầng này ở trạng thái `approved`, không tự sinh khi còn OQ mở).
+  cần các tầng này ở trạng thái `approved`, không tự sinh khi còn OQ mở). Vì vậy 1 tài liệu ở
+  nhóm này hoàn toàn có thể ở `status: approved` trong khi `related_open_questions` vẫn còn ID
+  chưa trả lời — đặc tính thiết kế (liên kết mềm để biết còn OQ nào liên quan, không phải gate
+  cứng chặn tiến độ), không phải lỗi cần set lại về `draft`.
 - Định dạng commit message: `docs(<prefix>): <ID> <mô tả ngắn>`. Ví dụ:
   `docs(us): US-004 add acceptance criteria for refund flow`. Khi 1 skill tạo nhiều tài liệu
   khác loại cùng lúc trong 1 lần chạy (ví dụ `setup-context` tạo BR-001+UR-001+FR-001), gộp
