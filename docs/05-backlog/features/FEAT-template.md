@@ -24,8 +24,9 @@ priority: null        # P0 | P1 | P2 | P3 — ưu tiên xử lý trong backlog, 
 -
 
 ## Ghi chú
-Lý do các thay đổi không hiển nhiên từ nội dung phía trên — bắt buộc khi đổi `priority` khác
-giá trị suy ra từ MoSCoW gốc (xem AGENTS.md mục "Backlog"), hoặc quyết định tại họp (kèm liên
-kết `MEET-xxx`).
+Lý do các thay đổi không hiển nhiên từ nội dung phía trên — bắt buộc khi **sau này đổi**
+`priority` khác giá trị đã chọn ban đầu (xem AGENTS.md mục "Backlog"), hoặc quyết định tại họp
+(kèm liên kết `MEET-xxx`). KHÔNG bắt buộc ghi lý do lúc **chọn lần đầu** giữa 2 giá trị hợp lệ
+cùng mức MoSCoW khi tạo mới — áp dụng đúng tiêu chí ở AGENTS.md là đủ.
 
 -

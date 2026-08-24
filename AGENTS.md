@@ -2,9 +2,9 @@
 
 ## Nguyên tắc chung
 1. LUÔN đọc `CONTEXT.md` và `docs/00-glossary/glossary.md` trước khi xử lý bất kỳ tài liệu nào — `CONTEXT.md` giới thiệu kit + thành phần chính, không phải nơi nháp WHY/WHO/WHAT (dùng skill `setup-context` để ghi thẳng vào BR/UR/FR).
-2. KHÔNG bỏ qua tầng ở docs/01-04: chỉ sinh tài liệu ở tầng N+1 khi tài liệu tầng N có
-   `status: approved` (BR → UR → FR → System Overview — xem bảng vòng đời status ở
-   `CLAUDE.md`). Tầng backlog (Epic → Feature → User Story) KHÔNG bị chặn bởi status của tầng
+2. KHÔNG bỏ qua tầng ở BR → UR → FR → System Overview: chỉ sinh tài liệu ở tầng N+1 khi tài
+   liệu tầng N có `status: approved` (xem bảng vòng đời status ở `CLAUDE.md`). Tầng backlog
+   (Epic → Feature → User Story) KHÔNG bị chặn bởi status của tầng
    cha — được phép thêm Feature/User Story mới vào một Epic/Feature đang `draft` bất kỳ lúc nào
    (backlog grooming là việc liên tục), miễn `parent_*` trỏ đúng và `status: deprecated` thì
    không thêm con mới nữa.
@@ -22,6 +22,12 @@
    lời (`status: draft`), set `status: blocked` thay vì tiếp tục. BR/UR/FR/SYS-CTX/SYS-CTR/
    SYS-CMP/SYS-IFC KHÔNG có trạng thái `blocked` — dùng `related_open_questions` thay vì
    `blocked_by_open_questions`, không tự chặn tiến độ (xem `CLAUDE.md`, Bước E bên dưới).
+   **Không tự cascade `blocked` lên Feature/Epic cha** khi 1 User Story con bị block — "liên
+   quan tới OQ-xxx" ở trên chỉ áp dụng cho item thực sự liên quan trực tiếp tới OQ đó, không suy
+   ra từ việc con của nó bị block. Nếu toàn bộ US con của 1 Feature đều `blocked`, Feature đó vẫn
+   giữ nguyên `status` hiện tại (thường là `draft`) — "không còn US nào làm được ngay" không
+   đồng nghĩa "Feature bị chặn"; xem skill `backlog-status` để biết cách hiển thị trường hợp này
+   khi tổng hợp backlog.
 5. Spec-kit này dừng ở User Story — không có tầng Task kỹ thuật, Sprint, hay Release riêng.
 
 ## Quy trình theo bước
@@ -110,8 +116,13 @@ nhau:
 
 Khi tạo mới Feature/US ở Bước B, suy `priority` mặc định từ mức MoSCoW của UR nguồn: `Must
 have` → `P0`/`P1`, `Should have` → `P1`/`P2`, `Could have` → `P2`/`P3`, `Won't have` → không
-đưa vào backlog. Mỗi mức MoSCoW ứng với 2 giá trị `priority` liền kề, không phải 1 — tiêu chí
-chọn giữa 2 giá trị đó (đúng 1 trong 3 nhánh, không nhánh nào cần suy đoán thêm):
+đưa vào backlog. Nếu `docs_requirements` của Feature/US trỏ tới **nhiều UR có mức MoSCoW khác
+nhau** (qua FR trung gian) → lấy mức MoSCoW **cao nhất** trong các UR nguồn đó làm cơ sở suy
+`priority` (ví dụ 1 UR `Must have` + 1 UR `Should have` → tính như `Must have`, không lấy trung
+bình hay mức thấp nhất) — item đã phục vụ 1 nhu cầu bắt buộc thì vẫn bắt buộc dù còn phục vụ
+thêm nhu cầu khác ít quan trọng hơn. Mỗi mức MoSCoW ứng với 2 giá trị `priority` liền kề, không
+phải 1 — tiêu chí chọn giữa 2 giá trị đó (đúng 1 trong 3 nhánh, không nhánh nào cần suy đoán
+thêm):
 - Item **chặn** các Feature/US khác (nằm trong `depends_on` của item khác) hoặc thuộc
   container/luồng chính đang triển khai đầu tiên → lấy giá trị cao hơn (`P0` cho `Must have`,
   `P1` cho `Should have`...).

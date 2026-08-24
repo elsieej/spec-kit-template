@@ -34,4 +34,8 @@ này.
 - Glossary liên quan: xem docs/00-glossary/glossary.md
 
 ## Ghi chú kỹ thuật
+Bắt buộc ghi lý do ở đây khi **sau này đổi** `priority` khác giá trị đã chọn ban đầu (xem
+AGENTS.md mục "Backlog"), hoặc quyết định tại họp (kèm liên kết `MEET-xxx`). KHÔNG bắt buộc ghi
+lý do lúc **chọn lần đầu** giữa 2 giá trị hợp lệ cùng mức MoSCoW khi tạo mới.
+
 -
