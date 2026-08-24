@@ -25,3 +25,13 @@ xuống tới class/function cụ thể (đó là Level 4, không thuộc phạm
 ```mermaid
 graph TD
 ```
+
+## Xác nhận với user
+
+Bắt buộc điền trước khi coi file này là chính thức (xem skill `c4-model`, Component Diagram
+bước 5) — ghi **nguyên văn** danh sách candidate component đã trình bày và phản hồi thật của
+user, không chỉ khẳng định suông "đã đề xuất và PO xác nhận". Đây là bằng chứng duy nhất đọc lại
+được độc lập với git log (không phải môi trường nào cũng có) hay trí nhớ phiên làm việc.
+
+- Candidate đã trình bày:
+- Phản hồi user:

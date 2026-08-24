@@ -66,7 +66,11 @@ Component): khi giao tiếp giữa 2 container có dữ liệu thật cần th�
    giới trách nhiệm giữa các phần chưa rõ): hỏi trực tiếp user, ví dụ "hệ thống này gồm bao
    nhiêu service/app độc lập?" — không tự suy đoán ranh giới. Nếu user chưa có tên cụ thể cho
    container, có thể tự đề xuất tên gợi ý theo trách nhiệm (ví dụ `checkout-service`,
-   `notification-service`) nhưng phải để user xác nhận trước khi ghi chính thức vào bảng.
+   `notification-service`) nhưng phải để user xác nhận trước khi ghi chính thức vào bảng. **Ghi
+   nguyên văn** câu hỏi đã hỏi + câu trả lời/xác nhận thật của user vào mục "Xác nhận với user"
+   trong `c4-container.md` (xem template) — không chỉ khẳng định suông "đã đề xuất và được xác
+   nhận" mà không có gì đối chiếu được; bằng chứng nằm ngay trong tài liệu, không phụ thuộc git
+   log hay trí nhớ phiên làm việc.
 4. Vẽ giao tiếp giữa các container: từ đâu → tới đâu, giao thức (REST/HTTPS, gRPC, message
    queue...), mô tả ngắn. Nếu 1 container gọi trực tiếp tới hệ thống ngoài đã liệt kê ở
    `c4-context.md` (payment gateway, hệ thống bên thứ ba...) — thêm 1 hàng riêng cho giao tiếp
@@ -100,7 +104,12 @@ Component): khi giao tiếp giữa 2 container có dữ liệu thật cần th�
    im lặng là đồng ý, và không được tự liệt kê rồi tự đi tiếp ghi file luôn trong cùng lượt —
    đây chính là chỗ 1 component không ai yêu cầu (ví dụ tự thêm 1 cơ chế retry/queue nội bộ) dễ
    lọt vào dữ liệu gốc mà không ai bắt lại, vì các bước tự-rà-soát ở `setup-context`/
-   `plan-backlog` không quét tới tầng C4 (xem 2 skill đó).
+   `plan-backlog` không quét tới tầng C4 (xem 2 skill đó). **Ghi nguyên văn** danh sách candidate
+   đã trình bày + phản hồi thật của user vào mục "Xác nhận với user" trong file Component (xem
+   template) — không chỉ khẳng định suông "đã đề xuất và PO xác nhận". Đây không phải cơ chế
+   mới: `setup-context` đã dùng đúng cách này cho BR/UR/FR từ trước — bằng chứng nằm trong tài
+   liệu, đọc lại được độc lập mà không cần git log (không phải lúc nào cũng có, ví dụ trong môi
+   trường test/sandbox không có git) hay trí nhớ phiên làm việc.
 6. Dừng ở Level 3. Không tự vẽ Code diagram trừ khi user yêu cầu rõ ràng.
 
 ## Quy trình tạo Interface Contract (schema giao tiếp)

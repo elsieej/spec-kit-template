@@ -20,6 +20,16 @@ việc lập kế hoạch sau này tham chiếu theo đúng mã, không nơi nà
 |---|---|---|
 | | | |
 
+## Xác nhận với user
+
+Chỉ cần điền nếu ranh giới container ban đầu còn mơ hồ, phải hỏi user (xem skill `c4-model`,
+Container Diagram bước 3) — ghi **nguyên văn** câu hỏi đã hỏi và câu trả lời/xác nhận thật của
+user, không chỉ khẳng định suông "đã đề xuất và được xác nhận". Đây là bằng chứng duy nhất đọc
+lại được độc lập với git log (không phải môi trường nào cũng có) hay trí nhớ phiên làm việc.
+
+- Hỏi:
+- Trả lời:
+
 ## Giao tiếp
 
 Gồm cả giao tiếp giữa 2 container nội bộ lẫn container ↔ hệ thống ngoài đã liệt kê ở "Hệ thống
