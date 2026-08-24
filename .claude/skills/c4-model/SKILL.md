@@ -207,6 +207,18 @@ dùng trong các file đó có link ở lần xuất hiện đầu tiên chưa (
 `RULES.md` mục 2). Quy tắc này hay bị bỏ quên trong lúc tập trung vẽ diagram/viết schema, kiểm
 lại rõ ràng ở đây thay vì chỉ tin đã làm đúng lúc viết.
 
+Đối chiếu chéo backlink CIC ↔ Component ↔ SIC — cùng 1 lượt vừa viết vừa tự rà dễ bỏ sót lỗi
+chính mình tạo ra (cùng mẫu hình với checkpoint glossary ở trên), nên kiểm lại đây như 1 bước
+riêng, không chỉ tin đã khớp lúc viết:
+
+- Mỗi mã CIC trong bảng tổng hợp (`container-interface-contracts.md` mục 3) có đúng tên
+  component khởi tạo/xử lý khớp với cột "CIC liên quan" trong file `c4-component-*.md` tương
+  ứng — cả 2 chiều: component có tên trong bảng CIC phải backlink đúng mã đó, và mã CIC nào
+  cũng phải có mặt ở backlink của component nó liệt kê (không thiếu, không thừa).
+- Nếu `schema-interface-contracts.md` tồn tại: mọi field ở CIC không trỏ về entity (tự liệt kê
+  field thay vì tham chiếu) phải cùng tên với field tương ứng ở SIC — không để 2 tên khác nhau
+  cho cùng 1 khái niệm (vd `sku` ở CIC nhưng `productId` ở SIC).
+
 ## Lỗi thường gặp cần tránh
 
 - Nhồi chi tiết kỹ thuật vào Context Diagram — sai audience, người phi kỹ thuật không đọc nổi.

@@ -60,8 +60,11 @@ kỹ thuật nào giữ nguyên tiếng Anh, thuật ngữ nào dịch).
   trong ngành (PR, CI/CD, API...); viết tắt lần đầu xuất hiện nên kèm dạng đầy đủ.
 - **Link tham chiếu tới glossary khi trích xuất thuật ngữ.** Ở lần xuất hiện đầu tiên của một
   thuật ngữ trong tài liệu, nếu thuật ngữ đó đã có trong `docs/00-glossary/glossary.md` →
-  gắn link Markdown tới đúng mục (heading) chứa thuật ngữ đó — **số cấp `../` tuỳ độ sâu thư
-  mục của file đang viết so với `docs/`, không cố định 1 con số**:
+  gắn link Markdown tới đúng mục (heading) chứa thuật ngữ đó — **chỉ tính lần xuất hiện trong
+  thân bài (nội dung dưới heading); thuật ngữ chỉ xuất hiện trong chính tiêu đề/heading (H1/H2)
+  của tài liệu không bắt buộc gắn link ở đó**, gắn ở lần xuất hiện đầu tiên trong thân bài ngay
+  sau đó. Số cấp `../` tuỳ độ sâu thư mục của file đang viết so với `docs/`, không cố định 1
+  con số:
   - File nằm ngay trong `docs/{00-04}-.../` (BR/UR/FR, C4 Context/Container/Component) — 1 cấp:
     ví dụ từ `docs/01-business-requirement/BR-001.md`:
     `[sprint](../00-glossary/glossary.md#quy-trình--agile)`.

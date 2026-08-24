@@ -122,8 +122,9 @@ sau để quyết định có cần tách User Story tiếp không:
 5. Với mỗi Feature/User Story vừa tạo, hỏi user: "Có phụ thuộc item nào khác cần xong
    trước không?" → nếu có, điền ID vào `depends_on`.
 6. Cập nhật ngược: liệt kê Feature vào phần "Phạm vi" của Epic, US vào "User stories thuộc
-   feature này" của Feature. **Trước khi coi bước này xong**: mọi Epic/Feature/US vừa tạo đã
-   gắn link glossary ở lần xuất hiện đầu tiên của mỗi thuật ngữ đã có trong glossary chưa (xem
+   feature này" của Feature. **Trước khi coi bước này xong**: kiểm lại **cả 3 cấp — Epic (bước
+   2), Feature (bước 3), US (bước 4) — không chỉ 2 cấp vừa cập nhật ngược ở trên** — đã gắn link
+   glossary ở lần xuất hiện đầu tiên của mỗi thuật ngữ đã có trong glossary chưa (xem
    nguyên tắc ở trên, `RULES.md` mục 2) — quy tắc này tồn tại từ đầu nhưng hay bị bỏ quên trong
    lúc tập trung viết nội dung, kiểm lại rõ ràng ở đây thay vì chỉ tin đã làm đúng lúc viết.
 7. **Trước khi kết thúc phiên**, quét lại toàn bộ Acceptance Criteria/business rule vừa viết
