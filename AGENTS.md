@@ -68,8 +68,9 @@ trừ khi được yêu cầu rõ ràng.
 
 Khi giao tiếp giữa 2 container có dữ liệu thật cần thống nhất trước (để 2 container do 2
 phiên/agent khác nhau thực thi không lệch schema), tạo thêm `docs/04-system-overview/
-interface-contracts.md` (`SYS-IFC-xxx`, xem skill `c4-model`) — chỉ chốt schema dữ liệu (field
-nào bắt buộc/tuỳ chọn, kiểu ở mức khái niệm — text/số/ngày-giờ/boolean/enum, dữ liệu cần
+container-interface-contracts.md` (`SYS-IFC-xxx`, mỗi luồng gán 1 mã `CIC-xxx` cục bộ trong file
+đó — xem skill `c4-model`) — chỉ chốt schema dữ liệu (field nào bắt buộc/tuỳ chọn, kiểu ở mức
+khái niệm — text/số/ngày-giờ/boolean/enum, dữ liệu cần
 gửi/lưu, dữ liệu cần nhận lại/đọc), xác định từ Container/
 Component diagram đã có, KHÔNG thiết kế API hay DB cụ thể (method HTTP, path, status code, tên
 bảng/cột/kiểu SQL) — kể cả với container DB thuần. Đó là Code (Level 4), quyết định ở Bước C.
@@ -174,8 +175,9 @@ Trước khi code, đọc theo thứ tự:
 4. `docs/04-system-overview/c4-container.md` (container liên quan), và `c4-component-<mã
    container>.md` của container đó nếu file này tồn tại (container đơn giản, không có cấu
    trúc nội bộ đáng vẽ, sẽ không có file Component — xem skill `c4-model`)
-5. `docs/04-system-overview/interface-contracts.md` nếu tồn tại — schema dữ liệu cần gửi/nhận
-   qua container liên quan, tránh tự bịa field khác với container ở đầu kia đã thống nhất
+5. `docs/04-system-overview/container-interface-contracts.md` nếu tồn tại — mục CIC-xxx tương
+   ứng luồng giao tiếp qua container liên quan, tránh tự bịa field khác với container ở đầu kia
+   đã thống nhất
 
 ### Bước E — Xử lý Meeting/Open Question
 Khi có input từ cuộc họp: tạo `MEET-*`, nếu phát sinh điều chưa rõ → tạo `OQ-*`
@@ -238,7 +240,7 @@ flowchart TD
     FR -->|rà soát docs_requirements| US
     CTX -->|rà soát source_docs: SYS-CTX-xxx| CTR
     CTR -->|Mã đổi → rà soát source_container| EPIC
-    CTR -->|Mã đổi → đổi tên file + rà soát tham chiếu| CMPIFC["c4-component-&lt;mã&gt;.md<br/>+ interface-contracts.md"]
+    CTR -->|Mã đổi → đổi tên file + rà soát tham chiếu| CMPIFC["c4-component-&lt;mã&gt;.md<br/>+ container-interface-contracts.md"]
     EPIC -->|rà soát parent_epic| FEAT
     FEAT -->|rà soát parent_feature| US
     OQ -->|trả status về trước khi block| EPIC
@@ -254,7 +256,7 @@ flowchart TD
 | UR đã `approved` bị sửa → `status: draft` | FR con, SYS-CTX (`source_docs`), Feature (`docs_requirements`) | như trên |
 | FR đã `approved` bị sửa → `status: draft` | SYS-CTX (`source_docs`), User Story (`docs_requirements`) | như trên |
 | SYS-CTX đã `approved` bị sửa → `status: draft` | SYS-CTR có `source_docs: [SYS-CTX-xxx]` | Bước A |
-| SYS-CTR đổi (đổi/xoá Mã của 1 container) | Epic có `source_container` trỏ tới Mã đó — cập nhật lại `source_container`, hoặc báo "liên kết gãy" nếu Mã bị xoá. Đồng thời: file `c4-component-<mã cũ>.md` (tên file chứa Mã) cần đổi tên theo Mã mới, và mọi tham chiếu tới Mã đó trong `interface-contracts.md` (tên container trong mục "Schema giao tiếp") cần cập nhật — không rà soát 2 chỗ này thì tài liệu vẫn tham chiếu Mã đã lỗi thời | Bước B, mục "Epic ứng với container nào?"; Bước A cho file Component/Interface Contract |
+| SYS-CTR đổi (đổi/xoá Mã của 1 container) | Epic có `source_container` trỏ tới Mã đó — cập nhật lại `source_container`, hoặc báo "liên kết gãy" nếu Mã bị xoá. Đồng thời: file `c4-component-<mã cũ>.md` (tên file chứa Mã) cần đổi tên theo Mã mới, và mọi tham chiếu tới Mã đó trong `container-interface-contracts.md` (cột "Từ"/"Tới" ở mục "Bảng tổng hợp CIC" và các mục CIC chi tiết) cần cập nhật — không rà soát 2 chỗ này thì tài liệu vẫn tham chiếu Mã đã lỗi thời | Bước B, mục "Epic ứng với container nào?"; Bước A cho file Component/Container Interface Contract |
 | Feature/User Story đổi trong cuộc họp | User Story liên quan — còn `draft` thì sửa thẳng, đã `approved` thì tạo item mới cho phần chênh lệch | Bước E, mục "Họp làm thay đổi Feature/User Story" |
 | OQ được trả lời (`status: approved`) | Mọi item trong `blocks: []` của OQ đó — trả `status` về trạng thái trước khi bị block | Bước E |
 | `depends_on` của 1 item đã `approved` hết | Chính item đó — có thể xét bắt đầu thực hiện (Bước C, vẫn cần review, không tự động) | Bước B, mục "Phụ thuộc giữa Feature/User Story" |
