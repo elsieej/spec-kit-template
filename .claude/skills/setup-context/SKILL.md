@@ -61,7 +61,10 @@ Functional Requirement sinh ra từ đó.
 4. Hỏi **WHO**: "Ai dùng hệ thống này — persona nào, pain point hiện tại của họ là gì? Nhu cầu
    cụ thể là gì?" — nếu câu trả lời còn chung chung, brainstorm persona/pain point cụ thể rồi
    hỏi lại → tạo `docs/02-user-requirement/UR-001_<slug>.md`, điền "Đối tượng người
-   dùng (WHO)", "Nhu cầu người dùng", `parent_business_requirement: BR-001`.
+   dùng (WHO)", "Nhu cầu người dùng", `parent_business_requirement: BR-001`. Hỏi tiếp, tường
+   minh, không tự suy đoán: "Nhu cầu này ở mức ưu tiên nào — Must have / Should have / Could
+   have / Won't have (MoSCoW)?" cho từng nhu cầu vừa ghi → điền mục "Ưu tiên" của UR. Đây là
+   field bắt buộc trong `UR-template.md`, không phải nội dung agent tự gán theo cảm nhận.
 5. Hỏi **WHAT**: "Hệ thống cần đạt được kết quả/đầu ra gì để đáp ứng nhu cầu đó? (mô tả
    chức năng ở mức kết quả cần đạt, chưa cần nói cách triển khai kỹ thuật — cách hiện thực sẽ
    quyết định ở System Overview/C4 và khi phân rã Epic/Feature/User Story). Có business rule nào cần
@@ -70,8 +73,10 @@ Functional Requirement sinh ra từ đó.
    chức năng (WHAT)", "Business rules", `parent_user_requirement: UR-001`.
 6. Cập nhật ngược mục "Liên kết" ở BR-001/UR-001 để trỏ xuôi tới UR-001/FR-001 vừa tạo.
 7. **Trước khi kết thúc phiên**, quét lại toàn bộ nội dung BR/UR/FR vừa viết trong phiên (không
-   chỉ mục user vừa hỏi lại tường minh) — tìm mọi chi tiết cụ thể (con số, ngưỡng, business rule,
-   success metric) mà user chưa thực sự xác nhận, kể cả chi tiết agent chèn thêm khi diễn giải
+   chỉ mục user vừa hỏi lại tường minh) — tìm mọi chi tiết cụ thể mà user chưa thực sự xác nhận,
+   cả **định lượng** (con số, ngưỡng, success metric) lẫn **định tính** (business rule diễn đạt
+   kiểu chắc chắn dù chỉ là suy đoán, hành vi lỗi cụ thể, MoSCoW tự gán thay vì hỏi — không chỉ
+   quét chi tiết có số), kể cả chi tiết agent chèn thêm khi diễn giải
    lại câu trả lời chung chung của user. Với mỗi chi tiết như vậy: hỏi lại user, hoặc để nguyên
    placeholder gốc của template (xem nguyên tắc "không bịa nội dung" ở trên) — không chỉ dựa vào
    trí nhớ những chỗ agent tự thấy "cần chú ý" lúc viết, vì cùng 1 lượt suy luận vừa viết vừa tự
