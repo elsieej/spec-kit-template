@@ -20,7 +20,7 @@
    template.
 4. Nếu một **Epic/Feature/User Story/Open Question** liên quan tới `OQ-xxx` khác chưa được trả
    lời (`status: draft`), set `status: blocked` thay vì tiếp tục. BR/UR/FR/SYS-CTX/SYS-CTR/
-   SYS-CMP/SYS-IFC KHÔNG có trạng thái `blocked` — dùng `related_open_questions` thay vì
+   SYS-CMP/SYS-IFC/SYS-SIC KHÔNG có trạng thái `blocked` — dùng `related_open_questions` thay vì
    `blocked_by_open_questions`, không tự chặn tiến độ (xem `CLAUDE.md`, Bước E bên dưới).
    **Không tự cascade `blocked` lên Feature/Epic cha** khi 1 User Story con bị block — "liên
    quan tới OQ-xxx" ở trên chỉ áp dụng cho item thực sự liên quan trực tiếp tới OQ đó, không suy
@@ -74,6 +74,14 @@ khái niệm — text/số/ngày-giờ/boolean/enum, dữ liệu cần
 gửi/lưu, dữ liệu cần nhận lại/đọc), xác định từ Container/
 Component diagram đã có, KHÔNG thiết kế API hay DB cụ thể (method HTTP, path, status code, tên
 bảng/cột/kiểu SQL) — kể cả với container DB thuần. Đó là Code (Level 4), quyết định ở Bước C.
+
+Nếu nhiều entity dùng chung bởi nhiều CIC/container mà mô tả rời rạc trong từng CIC sẽ bị lặp
+hoặc lệch nhau, tạo thêm `docs/04-system-overview/schema-interface-contracts.md` (`SYS-SIC-xxx`,
+xem skill `c4-model`) — định nghĩa entity, field (kiểu khái niệm), và quan hệ giữa các entity
+(1-nhiều, nhiều-nhiều, đệ quy...) ở mức logic, độc lập công nghệ lưu trữ. Không bắt buộc cho mọi
+hệ thống — hệ thống ít entity/quan hệ rời rạc thì field list trong từng CIC là đủ. Tài liệu này
+không thay thế `container-interface-contracts.md`: đây là nguồn sự thật cho hình dạng entity,
+CIC là nguồn sự thật cho thao tác nào gửi/nhận entity đó qua luồng nào.
 
 ### Bước B — Sinh Backlog
 Input: `docs/01-03` (đã approved) và `docs/04-system-overview/c4-container.md` đã tồn tại
@@ -178,6 +186,9 @@ Trước khi code, đọc theo thứ tự:
 5. `docs/04-system-overview/container-interface-contracts.md` nếu tồn tại — mục CIC-xxx tương
    ứng luồng giao tiếp qua container liên quan, tránh tự bịa field khác với container ở đầu kia
    đã thống nhất
+6. `docs/04-system-overview/schema-interface-contracts.md` nếu tồn tại — entity liên quan (field
+   + quan hệ), đặc biệt khi CIC ở bước 5 trỏ về entity trong tài liệu này thay vì liệt kê lại
+   field
 
 ### Bước E — Xử lý Meeting/Open Question
 Khi có input từ cuộc họp: tạo `MEET-*`, nếu phát sinh điều chưa rõ → tạo `OQ-*`

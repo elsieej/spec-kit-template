@@ -16,6 +16,7 @@ không nơi nào khác có: quy ước đặt tên/ID/versioning, và vài ghi c
 | System Overview (Container) | SYS-CTR | SYS-CTR-001 |
 | System Overview (Component) | SYS-CMP | SYS-CMP-001 |
 | System Overview (Container Interface Contract) | SYS-IFC | SYS-IFC-001 |
+| System Overview (Schema/Entity Data Model) | SYS-SIC | SYS-SIC-001 |
 | Epic | EPIC | EPIC-001 |
 | Feature | FEAT | FEAT-001 |
 | User Story | US | US-001 |
@@ -43,13 +44,13 @@ riêng.
 
   | Nhóm tài liệu | Vòng đời `status` |
   |---|---|
-  | BR / UR / FR / SYS-CTX / SYS-CTR / SYS-CMP / SYS-IFC (không có `blocked`, dùng `related_open_questions`) | `draft → approved` (→ `deprecated` khi không còn dùng — bị thay thế hoặc lỗi thời) |
+  | BR / UR / FR / SYS-CTX / SYS-CTR / SYS-CMP / SYS-IFC / SYS-SIC (không có `blocked`, dùng `related_open_questions`) | `draft → approved` (→ `deprecated` khi không còn dùng — bị thay thế hoặc lỗi thời) |
   | Epic, Feature, User Story, Open Question (có `blocked`, dùng `blocked_by_open_questions`) | `draft → approved → blocked → deprecated` |
 
   Ý nghĩa từng giá trị, áp dụng thống nhất cho mọi loại:
   - `draft` — đang soạn hoặc đang thực hiện, CHƯA hoàn tất/CHƯA được chấp nhận là kết quả cuối
     (gộp chung mọi mức "chưa xong" trước đây — chưa bắt đầu, đang làm, đang review).
-  - `approved` — đã hoàn tất và được chấp nhận: với BR/UR/FR/SYS-CTX/SYS-CTR/SYS-CMP/SYS-IFC là
+  - `approved` — đã hoàn tất và được chấp nhận: với BR/UR/FR/SYS-CTX/SYS-CTR/SYS-CMP/SYS-IFC/SYS-SIC là
     nội dung đã chốt, dùng làm nguồn cho tầng sau; với Epic/Feature/User Story/Open Question là
     công việc/mục đó đã xong và được chấp nhận (thay cho `done`/`answered` trước đây).
   - `blocked` — chỉ áp dụng cho Epic/Feature/User Story/Open Question: đang bị chặn bởi ít nhất
@@ -57,12 +58,12 @@ riêng.
     hoặc `approved`), không mặc định về `draft`.
   - `deprecated` — không còn dùng nữa (bị thay thế, huỷ, hoặc lỗi thời).
 
-  Sửa nội dung một tài liệu đã `approved` (BR/UR/FR/SYS-CTX/SYS-CTR/SYS-CMP/SYS-IFC) thì đưa lại
+  Sửa nội dung một tài liệu đã `approved` (BR/UR/FR/SYS-CTX/SYS-CTR/SYS-CMP/SYS-IFC/SYS-SIC) thì đưa lại
   về `draft` để review lại trước khi tiếp tục dùng làm nguồn cho tầng sau.
 
   Mọi tài liệu có `blocked` trong enum của nó đều bắt buộc kèm
   `blocked_by_open_questions: [OQ-xxx]` khi ở trạng thái đó (không được để `blocked` mà thiếu
-  field này). BR/UR/FR/SYS-CTX/SYS-CTR/SYS-CMP/SYS-IFC không có trạng thái `blocked` — chỉ dùng
+  field này). BR/UR/FR/SYS-CTX/SYS-CTR/SYS-CMP/SYS-IFC/SYS-SIC không có trạng thái `blocked` — chỉ dùng
   field `related_open_questions` để ghi nhận OQ liên quan (không chặn tiến độ vì tầng sau chỉ
   cần các tầng này ở trạng thái `approved`, không tự sinh khi còn OQ mở). Vì vậy 1 tài liệu ở
   nhóm này hoàn toàn có thể ở `status: approved` trong khi `related_open_questions` vẫn còn ID
