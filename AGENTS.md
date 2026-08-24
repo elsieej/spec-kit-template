@@ -139,6 +139,14 @@ khác giá trị đã chọn ban đầu. Review định kỳ `priority` của c�
 `approved`) — có thể điều chỉnh nếu bối cảnh thực tế khác lúc tạo, nhưng phải ghi lý do đổi vào
 mục "Ghi chú"/"Ghi chú kỹ thuật" của item đó.
 
+Các dải giá trị `priority` suy ra từ 2 mức MoSCoW liền kề **chồng lấn có chủ đích** (`P1` đạt
+được từ cả `Must have` lẫn `Should have`, `P2` từ cả `Should have` lẫn `Could have`) — không suy
+ngược được mức MoSCoW gốc chỉ từ 1 mình giá trị `priority`. Đây là đặc tính thiết kế, không phải
+lỗi cần thu hẹp dải: cần biết mức MoSCoW gốc thì lần theo `docs_requirements` → UR liên quan →
+đọc mục "Ưu tiên" (MoSCoW) của UR đó trực tiếp, không suy đoán ngược từ `priority` một mình. Mục
+"Ghi chú" chỉ chắc chắn có thông tin khi `priority` từng bị đổi sau này (xem trên) — không phải
+nguồn để tra MoSCoW gốc cho item chưa từng đổi `priority`.
+
 **Ví dụ minh hoạ** (một luồng xuyên suốt, rút gọn):
 `BR-001` "Tăng tỉ lệ chuyển đổi checkout" → `UR-001` "Khách hàng mua sắm online, pain point:
 phải nhập lại thông tin thẻ mỗi lần mua" → `FR-001` "Hệ thống phải hỗ trợ thanh toán 1-click
