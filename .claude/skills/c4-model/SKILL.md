@@ -3,10 +3,11 @@ name: c4-model
 description: >
   Giải thích phương pháp C4 Model (Context, Container, Component, Code — c4model.com) và
   dẫn dắt tạo docs/04-system-overview/c4-context.md + c4-container.md + c4-component-*.md
-  đúng tầng, đúng audience, cùng interface-contracts.md (schema giao tiếp giữa container, khi
-  cần) đúng phạm vi (schema, không phải API/Code). Dùng khi user hỏi "C4 model là gì", "vẽ
-  context/container/component diagram", "system overview", "kiến trúc hệ thống", "interface
-  contract giữa các container", hoặc khi BR/UR/FR đã approved và cần sinh system overview.
+  đúng tầng, đúng audience, cùng container-interface-contracts.md (mỗi luồng giao tiếp giữa
+  container gán 1 mã CIC, khi cần) đúng phạm vi (schema, không phải API/Code). Dùng khi user
+  hỏi "C4 model là gì", "vẽ context/container/component diagram", "system overview", "kiến
+  trúc hệ thống", "interface contract giữa các container", hoặc khi BR/UR/FR đã approved và
+  cần sinh system overview.
 ---
 
 # c4-model
@@ -32,7 +33,8 @@ maintain nổi, nhanh lỗi thời hơn cả code.
 
 Ngoài 4 Level trên (đây KHÔNG phải 1 Level mới, chỉ là phụ lục dữ liệu đi kèm Container/
 Component): khi giao tiếp giữa 2 container có dữ liệu thật cần thống nhất trước, tạo thêm
-`interface-contracts.md` — xem mục "Quy trình tạo Interface Contract" bên dưới.
+`container-interface-contracts.md`, mỗi luồng giao tiếp gán 1 mã `CIC-xxx` — xem mục "Quy
+trình tạo Container Interface Contract" bên dưới.
 
 ## Khi nào dùng skill này
 
@@ -75,7 +77,7 @@ Component): khi giao tiếp giữa 2 container có dữ liệu thật cần th�
    queue...), mô tả ngắn. Nếu 1 container gọi trực tiếp tới hệ thống ngoài đã liệt kê ở
    `c4-context.md` (payment gateway, hệ thống bên thứ ba...) — thêm 1 hàng riêng cho giao tiếp
    đó vào cùng bảng "Giao tiếp" này (không chỉ nhắc ở Context Diagram) — đây là bảng duy nhất mà
-   "Quy trình tạo Interface Contract" bên dưới quét qua để tìm cặp cần chốt schema.
+   "Quy trình tạo Container Interface Contract" bên dưới quét qua để cấp mã CIC cho từng hàng.
 5. Với mỗi container có codebase thực sự (không phải DB thuần/dịch vụ bên thứ ba dùng nguyên
    trạng), tiếp tục sang Quy trình tạo Component Diagram bên dưới. Không tự vẽ Code diagram
    (Level 4) trừ khi user yêu cầu rõ ràng.
@@ -112,48 +114,59 @@ Component): khi giao tiếp giữa 2 container có dữ liệu thật cần th�
    trường test/sandbox không có git) hay trí nhớ phiên làm việc.
 6. Dừng ở Level 3. Không tự vẽ Code diagram trừ khi user yêu cầu rõ ràng.
 
-## Quy trình tạo Interface Contract (schema giao tiếp)
+## Quy trình tạo Container Interface Contract (mã CIC)
 
 Không phải 1 Level của C4 — là phụ lục dữ liệu đi kèm Container/Component, trả lời câu hỏi
-"dữ liệu thật trao đổi giữa 2 container là gì" mà bảng "Giao tiếp" trong `c4-container.md` (chỉ
-có cột giao thức + mô tả ngắn) không đủ chỗ trả lời.
+"dữ liệu thật trao đổi qua 1 luồng giao tiếp là gì" mà bảng "Giao tiếp" trong `c4-container.md`
+(chỉ có cột giao thức + mô tả ngắn) không đủ chỗ trả lời.
 
-1. Chỉ tạo khi có dữ liệu thật cần 2 container thống nhất trước khi Bước C thực thi độc lập
-   (ví dụ 2 User Story ở 2 container khác nhau cùng chạm 1 giao tiếp). Không bắt buộc tạo cho
-   mọi hệ thống.
-1b. **"Cặp container" ở đây cũng áp dụng cho container nội bộ ↔ hệ thống ngoài** đã liệt kê ở
-   bảng "Hệ thống ngoài liên quan" trong `c4-context.md` (ví dụ payment gateway, hệ thống chấm
-   công bên thứ ba) — không chỉ 2 container nội bộ tự thoả thuận với nhau. Điều kiện: giao tiếp
-   đó đã có 1 hàng riêng trong bảng "Giao tiếp" của `c4-container.md` (xem Container Diagram
-   bước 4) — nếu chưa có, thêm vào đó trước, vì đây là bảng duy nhất bước 3 bên dưới quét qua.
-   Khác biệt duy nhất so với cặp container nội bộ:
-   với hệ thống ngoài, mục đích của phần schema là **ghi lại kỳ vọng tích hợp cần xác nhận với
-   bên thứ ba** (dữ liệu team mình cần gửi/nhận theo hiểu biết hiện tại), không phải 1 hợp đồng
-   2 bên nội bộ tự chốt — nếu chưa xác nhận được với bên thứ ba, ghi rõ "chưa xác nhận với
-   <hệ thống ngoài>" thay vì để trống hoặc bỏ qua không ghi gì (bỏ qua là sai, vì đây chính là
-   dữ liệu Bước C cần để không tự bịa hợp đồng tích hợp).
-2. Tạo `docs/04-system-overview/interface-contracts.md` (`SYS-IFC-xxx`, dùng
-   `interface-contracts-template.md`), `source_docs` trỏ về `c4-container.md`/
+1. Chỉ tạo khi có dữ liệu thật cần 2 bên thống nhất trước khi Bước C thực thi độc lập (ví dụ 2
+   User Story ở 2 container khác nhau cùng chạm 1 luồng). Không bắt buộc tạo cho mọi hệ thống.
+1b. **Áp dụng cho cả container nội bộ ↔ hệ thống ngoài** đã liệt kê ở bảng "Hệ thống ngoài liên
+   quan" trong `c4-context.md` (ví dụ payment gateway, hệ thống chấm công bên thứ ba) — không
+   chỉ 2 container nội bộ tự thoả thuận với nhau; luồng đó vẫn được gán mã CIC như bình thường
+   (đánh số chung, không tách bảng riêng). Điều kiện: giao tiếp đó đã có 1 hàng riêng trong bảng
+   "Giao tiếp" của `c4-container.md` (xem Container Diagram bước 4) — nếu chưa có, thêm vào đó
+   trước, vì đây là bảng duy nhất mỗi hàng ứng với 1 mã CIC (xem bước 3). Khác biệt duy nhất so
+   với luồng nội bộ: với hệ thống ngoài, mục đích của phần schema là **ghi lại kỳ vọng tích hợp
+   cần xác nhận với bên thứ ba** (dữ liệu team mình cần gửi/nhận theo hiểu biết hiện tại), không
+   phải 1 hợp đồng 2 bên nội bộ tự chốt — nếu chưa xác nhận được với bên thứ ba, ghi rõ "chưa xác
+   nhận với <hệ thống ngoài>" thay vì để trống hoặc bỏ qua không ghi gì (bỏ qua là sai, vì đây
+   chính là dữ liệu Bước C cần để không tự bịa hợp đồng tích hợp).
+2. Tạo `docs/04-system-overview/container-interface-contracts.md` (`SYS-IFC-xxx`, dùng
+   `container-interface-contracts-template.md`), `source_docs` trỏ về `c4-container.md`/
    `c4-component-*.md` liên quan.
-3. Với mỗi cặp container giao tiếp trong bảng "Giao tiếp" của `c4-container.md` cần chốt trước:
-   liệt kê theo từng thao tác (kèm US liên quan nếu có) — dữ liệu cần gửi đi/lưu và dữ liệu cần
-   nhận lại/đọc, mỗi field kèm kiểu ở mức khái niệm (text/số/ngày-giờ/boolean/enum — liệt kê
-   giá trị hợp lệ nếu là enum) và bắt buộc/tuỳ chọn. Áp dụng **như nhau** cho mọi cặp container,
-   kể cả khi 1 bên là container DB thuần (không có Component diagram) — xác định dữ liệu cần
-   trao đổi từ vai trò của container đó trong Context/Container/Component, không thiết kế riêng
-   cho DB.
-4. **KHÔNG thiết kế API hay DB cụ thể** — không viết method HTTP, path, status code, hình dạng
+3. Gán 1 mã **CIC** (`CIC-001` tăng dần) cho mỗi **hàng (cạnh có hướng)** trong bảng "Giao tiếp"
+   của `c4-container.md` cần chốt trước — 2 container gọi nhau cả 2 chiều, ghi thành 2 hàng ở
+   đó, thì thành 2 mã CIC. Mã đã cấp là cố định: luồng bị bỏ thì đánh dấu ngừng dùng tại chỗ,
+   không đánh số lại các mã còn lại. Điền bảng tổng hợp CIC (mục 3 của template): Từ, Tới, Loại
+   (`nội bộ`/`hệ thống ngoài`), đồng bộ/bất đồng bộ, component khởi tạo/xử lý (lấy tên thật từ
+   `c4-component-*.md` nếu container đó có file Component, ngược lại ghi `—`) — không tự đặt tên
+   component mới ở đây.
+4. Với mỗi mã CIC: liệt kê theo từng thao tác nghiệp vụ (kèm US liên quan nếu có, tên đọc hiểu
+   ngay như "Tạo task mới" — KHÔNG phải tên kỹ thuật của endpoint) — dữ liệu cần gửi đi/lưu và
+   dữ liệu cần nhận lại/đọc, mỗi field kèm kiểu ở mức khái niệm (text/số/ngày-giờ/boolean/enum —
+   liệt kê giá trị hợp lệ nếu là enum) và bắt buộc/tuỳ chọn, cùng ràng buộc nghiệp vụ nếu có (trỏ
+   về mục quy ước chung nếu trùng, xem bước 5). Áp dụng **như nhau** cho mọi CIC, kể cả khi 1 bên
+   là container DB thuần (không có Component diagram) — xác định dữ liệu cần trao đổi từ vai trò
+   của container đó trong Context/Container/Component, không thiết kế riêng cho DB.
+5. Quy ước áp dụng cho nhiều CIC (phân nhóm lỗi, idempotency, khuôn mẫu thao tác chạy lâu, định
+   danh & phiên bản dữ liệu) nêu 1 lần ở mục "Quy ước chung", không lặp lại ở từng CIC — chỉ 4
+   chủ đề này, đây là danh sách đóng (xem template); chủ đề khác (xác thực/token, phân trang,
+   rate limit, giao thức, timeout...) không viết vào tài liệu này dù có vẻ áp dụng cho nhiều CIC.
+6. **KHÔNG thiết kế API hay DB cụ thể** — không viết method HTTP, path, status code, hình dạng
    response chi tiết, hay tên bảng/cột/**kiểu cột SQL/ngôn ngữ cụ thể** (`varchar(255)`,
    `timestamptz`, `int32`...), index. Đó đều là Code (Level 4), quyết định ở Bước C khi thực thi
-   User Story, không phải việc của tài liệu này. Kiểu dữ liệu khái niệm (text/số/ngày-giờ/
-   boolean/enum) vẫn phải ghi — không phải ngoại lệ của quy tắc này, chỉ kiểu cụ thể của DB/
-   ngôn ngữ mới ngoài phạm vi. Chỉ chốt schema dữ liệu, để 2 container độc lập triển khai không
-   lệch nhau.
+   User Story, không phải việc của tài liệu này — kể cả trong mục "Quy ước chung" (bước 5) và
+   nhãn mũi tên nếu vẽ sequence diagram minh hoạ (mục 6 của template, chỉ vẽ khi 1 luồng nghiệp
+   vụ đi qua từ 2 CIC trở lên). Kiểu dữ liệu khái niệm (text/số/ngày-giờ/boolean/enum) vẫn phải
+   ghi — không phải ngoại lệ của quy tắc này, chỉ kiểu cụ thể của DB/ngôn ngữ mới ngoài phạm vi.
+   Chỉ chốt schema dữ liệu, để 2 bên độc lập triển khai không lệch nhau.
 
 ## Trước khi kết thúc phiên
 
 Kiểm lại riêng việc gắn link glossary trên mọi file C4/Interface Contract vừa tạo/sửa trong
-phiên (`c4-context.md`, `c4-container.md`, `c4-component-*.md`, `interface-contracts.md`) — mọi
+phiên (`c4-context.md`, `c4-container.md`, `c4-component-*.md`, `container-interface-contracts.md`) — mọi
 thuật ngữ đã có trong `docs/00-glossary/glossary.md` dùng trong các file đó có link ở lần xuất
 hiện đầu tiên chưa (xem bước 1 ở Context Diagram, `RULES.md` mục 2). Quy tắc này hay bị bỏ quên
 trong lúc tập trung vẽ diagram/viết schema, kiểm lại rõ ràng ở đây thay vì chỉ tin đã làm đúng
@@ -171,8 +184,8 @@ lúc viết.
 - Không cập nhật diagram khi kiến trúc đổi — review lại Container/Component Diagram mỗi khi có Epic mới
   ảnh hưởng kiến trúc (bump `version`, không tạo file mới cho mỗi lần sửa).
 - Nhồi method HTTP/path/status code, hoặc tên bảng/cột/kiểu SQL cụ thể vào
-  `interface-contracts.md` — đó đều là Code (Level 4), ngoài phạm vi tài liệu này (xem mục
-  "Quy trình tạo Interface Contract").
+  `container-interface-contracts.md` — đó đều là Code (Level 4), ngoài phạm vi tài liệu này (xem mục
+  "Quy trình tạo Container Interface Contract").
 - Liệt kê component rồi tự ghi file luôn mà không thực sự dừng lại chờ xác nhận (bước 5 ở Quy
   trình tạo Component Diagram) — dễ để lọt 1 component không ai yêu cầu vào dữ liệu gốc mà
   không cơ chế nào ở tầng sau bắt lại được.
