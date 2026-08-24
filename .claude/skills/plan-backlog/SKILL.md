@@ -122,14 +122,26 @@ sau để quyết định có cần tách User Story tiếp không:
 5. Với mỗi Feature/User Story vừa tạo, hỏi user: "Có phụ thuộc item nào khác cần xong
    trước không?" → nếu có, điền ID vào `depends_on`.
 6. Cập nhật ngược: liệt kê Feature vào phần "Phạm vi" của Epic, US vào "User stories thuộc
-   feature này" của Feature.
+   feature này" của Feature. **Trước khi coi bước này xong**: mọi Epic/Feature/US vừa tạo đã
+   gắn link glossary ở lần xuất hiện đầu tiên của mỗi thuật ngữ đã có trong glossary chưa (xem
+   nguyên tắc ở trên, `RULES.md` mục 2) — quy tắc này tồn tại từ đầu nhưng hay bị bỏ quên trong
+   lúc tập trung viết nội dung, kiểm lại rõ ràng ở đây thay vì chỉ tin đã làm đúng lúc viết.
 7. **Trước khi kết thúc phiên**, quét lại toàn bộ Acceptance Criteria/business rule vừa viết
-   trong phiên (không chỉ chi tiết user đã hỏi tường minh) — tìm mọi chi tiết cụ thể (số/ngưỡng,
-   hành vi lỗi, thứ tự ưu tiên khi xung đột...) mà user chưa xác nhận trực tiếp. Với mỗi chi tiết
-   như vậy, áp dụng đúng quy tắc "AC phải phủ edge case đụng không tự bịa nội dung" ở trên
-   (nhãn `[Agent đề xuất — cần PO xác nhận]` + tạo OQ nếu đủ quan trọng) — không chỉ áp dụng cho
-   chi tiết đã được hỏi tường minh trong hội thoại rồi bỏ qua các chi tiết tương tự khác. Đây là
-   giới hạn cố hữu, không phải checklist làm 1 lần là triệt để: cùng 1 lượt suy luận vừa viết vừa
-   tự rà dễ chỉ nhớ lại đúng những chỗ nó tự thấy "cần chú ý" lúc viết, bỏ sót chi tiết nó không
-   nhớ là đã tự thêm vào. Nếu khả thi, chạy bước này như 1 lượt riêng, đọc lại toàn bộ tài liệu
-   như người ngoài chưa biết trước phiên viết đã cài gì, thay vì xen kẽ ngay trong lúc viết.
+   trong phiên (không chỉ chi tiết user đã hỏi tường minh) — tìm mọi chi tiết cụ thể mà user
+   chưa xác nhận trực tiếp, cả **định lượng** (số/ngưỡng, thứ tự ưu tiên khi xung đột) lẫn
+   **định tính** (hành vi lỗi cụ thể, business rule diễn đạt chắc chắn dù chỉ là suy đoán — không
+   chỉ quét chi tiết có số). Với mỗi chi tiết như vậy, áp dụng đúng quy tắc "AC phải phủ edge
+   case đụng không tự bịa nội dung" ở trên (nhãn `[Agent đề xuất — cần PO xác nhận]` + tạo OQ nếu
+   đủ quan trọng) — không chỉ áp dụng cho chi tiết đã được hỏi tường minh trong hội thoại rồi bỏ
+   qua các chi tiết tương tự khác.
+   **Phạm vi quét bao gồm cả tầng C4** mà backlog vừa tham chiếu tới (`c4-container.md`,
+   `c4-component-*.md`, `interface-contracts.md` trong `source_container`/`Context cho Agent`
+   của Epic/US vừa tạo) — xác minh bước "liệt kê Component rồi chờ user xác nhận" của `c4-model`
+   thực sự đã xảy ra (có phản hồi thật của user), không chỉ được ghi lại như đã xảy ra; nếu phát
+   hiện component/interface contract nào chưa từng được xác nhận, xử lý như 1 chi tiết chưa xác
+   nhận ở trên, không im lặng dùng tiếp.
+   Đây là giới hạn cố hữu, không phải checklist làm 1 lần là triệt để: cùng 1 lượt suy luận vừa
+   viết vừa tự rà dễ chỉ nhớ lại đúng những chỗ nó tự thấy "cần chú ý" lúc viết, bỏ sót chi tiết
+   nó không nhớ là đã tự thêm vào. Nếu khả thi, chạy bước này như 1 lượt riêng, đọc lại toàn bộ
+   tài liệu như người ngoài chưa biết trước phiên viết đã cài gì, thay vì xen kẽ ngay trong lúc
+   viết.
