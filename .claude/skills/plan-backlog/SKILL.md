@@ -123,3 +123,9 @@ sau để quyết định có cần tách User Story tiếp không:
    trước không?" → nếu có, điền ID vào `depends_on`.
 6. Cập nhật ngược: liệt kê Feature vào phần "Phạm vi" của Epic, US vào "User stories thuộc
    feature này" của Feature.
+7. **Trước khi kết thúc phiên**, quét lại toàn bộ Acceptance Criteria/business rule vừa viết
+   trong phiên (không chỉ chi tiết user đã hỏi tường minh) — tìm mọi chi tiết cụ thể (số/ngưỡng,
+   hành vi lỗi, thứ tự ưu tiên khi xung đột...) mà user chưa xác nhận trực tiếp. Với mỗi chi tiết
+   như vậy, áp dụng đúng quy tắc "AC phải phủ edge case đụng không tự bịa nội dung" ở trên
+   (nhãn `[Agent đề xuất — cần PO xác nhận]` + tạo OQ nếu đủ quan trọng) — không chỉ áp dụng cho
+   chi tiết đã được hỏi tường minh trong hội thoại rồi bỏ qua các chi tiết tương tự khác.
