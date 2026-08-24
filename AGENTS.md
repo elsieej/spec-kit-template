@@ -34,10 +34,10 @@ flowchart TD
     (đọc trước mọi bước)"]
 
     A["Bước A — System Overview (C4)
-    Input: docs/01-04 (approved)
+    Input: docs/01-03 (approved)
     Output: c4-context.md + c4-container.md + c4-component-*.md"]
     B["Bước B — Backlog
-    Input: docs/01-04 (approved)
+    Input: docs/01-03 (approved) + c4-container.md (tồn tại)
     Output: Epic → Feature → User Story"]
     C["Bước C — Thực thi User Story
     Đọc US + parent chain + C4 container/component
@@ -69,7 +69,9 @@ Component diagram đã có, KHÔNG thiết kế API hay DB cụ thể (method HT
 bảng/cột/kiểu SQL) — kể cả với container DB thuần. Đó là Code (Level 4), quyết định ở Bước C.
 
 ### Bước B — Sinh Backlog
-Input: `docs/01-04` (đã approved).
+Input: `docs/01-03` (đã approved) và `docs/04-system-overview/c4-container.md` đã tồn tại
+(không bắt buộc `status: approved`, nhưng phải có bảng "Danh sách container" để tra
+`source_container` — xem skill `plan-backlog`).
 Output theo thứ tự: Epic → Feature → User Story, mỗi cấp dùng đúng template
 trong `docs/05-backlog/*/`. Liên kết `parent_*` bắt buộc. Epic nằm phẳng trong
 `docs/05-backlog/epics/`; Feature/User Story nằm trong subfolder theo Epic sở hữu (xem
@@ -109,12 +111,22 @@ nhau:
 Khi tạo mới Feature/US ở Bước B, suy `priority` mặc định từ mức MoSCoW của UR nguồn: `Must
 have` → `P0`/`P1`, `Should have` → `P1`/`P2`, `Could have` → `P2`/`P3`, `Won't have` → không
 đưa vào backlog. Mỗi mức MoSCoW ứng với 2 giá trị `priority` liền kề, không phải 1 — tiêu chí
-chọn giữa 2 giá trị đó: item **chặn** các Feature/US khác (nằm trong `depends_on` của item
-khác) hoặc thuộc container/luồng chính đang triển khai đầu tiên → lấy giá trị cao hơn (`P0` cho
-`Must have`, `P1` cho `Should have`...); item độc lập, không ai chờ nó → lấy giá trị thấp hơn
-liền kề. Review định kỳ `priority` của các item đang `draft` (chưa `approved`) — có
-thể điều chỉnh nếu bối cảnh thực tế khác lúc tạo, nhưng phải ghi lý do đổi vào mục "Ghi chú"/
-"Ghi chú kỹ thuật" của item đó.
+chọn giữa 2 giá trị đó (đúng 1 trong 3 nhánh, không nhánh nào cần suy đoán thêm):
+- Item **chặn** các Feature/US khác (nằm trong `depends_on` của item khác) hoặc thuộc
+  container/luồng chính đang triển khai đầu tiên → lấy giá trị cao hơn (`P0` cho `Must have`,
+  `P1` cho `Should have`...).
+- Item tự nó có `depends_on` trỏ tới item khác, và không có item nào khác `depends_on` nó (không
+  chặn ai) → lấy giá trị thấp hơn liền kề — hợp lý vì nó "chưa tới lượt" theo đúng cơ chế
+  `depends_on`, không cần xử lý sớm hơn các item chặn người khác.
+- Item không có quan hệ `depends_on` theo chiều nào (không chặn ai, không chờ ai) → lấy giá trị
+  thấp hơn liền kề theo mặc định; chỉ lấy giá trị cao hơn nếu có lý do nghiệp vụ cụ thể khác
+  (deadline khách hàng, rủi ro kỹ thuật...) — ghi lý do đó vào "Ghi chú".
+
+Không bắt buộc ghi lý do vào "Ghi chú" khi **chọn lần đầu** giữa 2 giá trị hợp lệ lúc tạo mới
+(áp dụng đúng 1 trong 3 nhánh trên là đủ) — chỉ bắt buộc ghi lý do khi **sau này đổi** `priority`
+khác giá trị đã chọn ban đầu. Review định kỳ `priority` của các item đang `draft` (chưa
+`approved`) — có thể điều chỉnh nếu bối cảnh thực tế khác lúc tạo, nhưng phải ghi lý do đổi vào
+mục "Ghi chú"/"Ghi chú kỹ thuật" của item đó.
 
 **Ví dụ minh hoạ** (một luồng xuyên suốt, rút gọn):
 `BR-001` "Tăng tỉ lệ chuyển đổi checkout" → `UR-001` "Khách hàng mua sắm online, pain point:
