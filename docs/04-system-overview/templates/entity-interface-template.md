@@ -1,6 +1,6 @@
 ---
 id: SYS-SIC-001
-type: schema_interface_contract
+type: entity_interface
 status: draft        # draft | approved | deprecated
 version: 1
 created: YYYY-MM-DD

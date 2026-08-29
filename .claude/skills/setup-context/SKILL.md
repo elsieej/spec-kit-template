@@ -21,10 +21,11 @@ loại và điền đúng tài liệu — không phải kịch bản câu hỏi 
 
 ## Tài liệu tham khảo thêm
 
-- [examples.md](examples.md) — 4 tình huống ĐÚNG/SAI cụ thể (few-shot): câu hỏi mở đầu, câu trả
-  lời đã chứa sẵn nhiều khía cạnh, câu trả lời mơ hồ cần brainstorm, hỏi MoSCoW. Đọc file này
-  khi cần hình dung cụ thể cách diễn đạt câu hỏi — không phải quy tắc bắt buộc, các quy tắc bắt
-  buộc nằm ở phần dưới đây.
+- [examples.md](examples.md) — 5 tình huống ĐÚNG/SAI cụ thể (few-shot): câu hỏi mở đầu, câu trả
+  lời đã chứa sẵn nhiều khía cạnh, câu trả lời mơ hồ cần brainstorm, hỏi MoSCoW, và ranh giới
+  WHAT (kết quả) vs HOW (cách hiện thực) khi viết FR. Đọc file này khi cần hình dung cụ thể cách
+  diễn đạt câu hỏi/nội dung — không phải quy tắc bắt buộc, các quy tắc bắt buộc nằm ở phần dưới
+  đây.
 
 ## Nguyên tắc khi chạy skill này
 

@@ -83,3 +83,31 @@ là chi tiết user chưa từng nói, không phải suy luận hợp lý từ "
 
 Vì sao SAI: MoSCoW là field bắt buộc phải hỏi tường minh (xem `SKILL.md`) — không thể suy ra
 mức ưu tiên chỉ từ cách user diễn đạt hay thứ tự họ kể, kể cả khi có vẻ hợp lý.
+
+## Tình huống 5 — viết FR: WHAT (kết quả) vs HOW (cách hiện thực)
+
+> **User:** Hệ thống cần gửi thông báo cho người phụ trách khi 1 task quá hạn 24 giờ mà chưa
+> hoàn thành.
+
+**ĐÚNG** (chỉ ghi kết quả cần đạt, dừng đúng ở mức WHAT):
+
+> **Agent ghi vào FR-001:** "Khi 1 task quá hạn 24 giờ mà chưa hoàn thành, hệ thống gửi thông
+> báo cho người phụ trách task đó."
+
+**SAI** (tự thêm chi tiết triển khai mà user chưa hề nói):
+
+> **Agent ghi vào FR-001:** "Khi 1 task quá hạn 24 giờ mà chưa hoàn thành, hệ thống gửi thông
+> báo cho người phụ trách task đó. Ngưỡng 24 giờ này cần cấu hình được qua trang quản trị,
+> không hard-code trong code."
+
+Vì sao SAI: "cấu hình được qua trang quản trị, không hard-code" là quyết định **triển khai**
+(HOW) — thuộc System Overview/C4 hoặc Bước C, không phải WHAT. User chỉ nói ngưỡng là 24 giờ,
+không hề nói gì về việc ngưỡng đó có cần đổi được lúc chạy hay không — đây là chi tiết agent tự
+suy diễn thêm khi diễn giải lại câu trả lời, đúng dạng lỗi định tính mà bước quét-lại cuối
+phiên (xem `SKILL.md`) phải bắt được, không chỉ quét chi tiết có số.
+
+Cách phân biệt nhanh: câu mô tả **hệ thống làm được gì / xảy ra khi nào** → WHAT, thuộc FR. Câu
+mô tả **ai/cái gì thay đổi được nó, lưu ở đâu, qua cơ chế nào** (cấu hình được hay hard-code, lưu
+DB hay file config, sửa qua UI nào) → HOW, không viết vào FR trừ khi chính user nói đó là 1 nhu
+cầu thật (vd "tôi muốn tự đổi ngưỡng này mà không cần sửa code" — lúc đó "cấu hình được" lại là
+1 WHAT khác, nhưng phải do user nói ra, không phải do agent suy diễn thêm).
