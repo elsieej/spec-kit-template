@@ -130,7 +130,9 @@ sau để quyết định có cần tách User Story tiếp không:
    sách đó**, kiểm đã gắn link glossary ở lần xuất hiện đầu tiên của mỗi thuật ngữ đã có trong
    glossary chưa (xem nguyên tắc ở trên, `RULES.md` mục 2) — quy tắc này tồn tại từ đầu nhưng hay
    bị bỏ quên trong lúc tập trung viết nội dung, kiểm lại rõ ràng ở đây theo từng file một, không
-   chỉ tin đã làm đúng lúc viết.
+   chỉ tin đã làm đúng lúc viết. **Nếu file đó đã `status: approved`** (ví dụ đang groom lại 1
+   item cũ) khi phát hiện thiếu link — đưa lại về `draft` trước khi sửa (xem `CLAUDE.md`), không
+   sửa thẳng nội dung mà giữ nguyên `approved`.
 7. **Trước khi kết thúc phiên**, quét lại toàn bộ Acceptance Criteria/business rule vừa viết
    trong phiên (không chỉ chi tiết user đã hỏi tường minh) — tìm mọi chi tiết cụ thể mà user
    chưa xác nhận trực tiếp, cả **định lượng** (số/ngưỡng, thứ tự ưu tiên khi xung đột) lẫn
@@ -149,11 +151,12 @@ sau để quyết định có cần tách User Story tiếp không:
    **Phạm vi quét bao gồm cả tầng C4** mà backlog vừa tham chiếu tới (`c4-container.md`,
    `c4-component-*.md`, `container-interface.md`, `entity-interface.md` nếu
    tồn tại, trong `source_container`/`Context cho Agent` của Epic/US vừa tạo) — xác minh bước
-   "liệt kê Component rồi chờ user xác nhận" của `c4-model` thực sự đã xảy ra (có phản hồi thật
-   của user trong mục "Xác nhận với user" của file Component/Container, không chỉ khẳng định
-   suông), và mọi mã CIC được US tham
-   chiếu đều có mặt trong bảng tổng hợp CIC; nếu phát hiện component/CIC nào chưa từng được xác
-   nhận, xử lý như 1 chi tiết chưa xác nhận ở trên, không im lặng dùng tiếp.
+   "liệt kê rồi chờ user xác nhận" của `c4-model` thực sự đã xảy ra (có phản hồi thật của user
+   trong mục "Xác nhận với user" của file Component/Container **và mục "6. Giả định cần xác
+   nhận" của `entity-interface.md`** nếu file này tồn tại, không chỉ khẳng định suông), và mọi mã
+   CIC được US tham chiếu đều có mặt trong bảng tổng hợp CIC; nếu phát hiện component/CIC/giả
+   định entity nào chưa từng được xác nhận, xử lý như 1 chi tiết chưa xác nhận ở trên, không im
+   lặng dùng tiếp.
    Đây là giới hạn cố hữu, không phải checklist làm 1 lần là triệt để: cùng 1 lượt suy luận vừa
    viết vừa tự rà dễ chỉ nhớ lại đúng những chỗ nó tự thấy "cần chú ý" lúc viết, bỏ sót chi tiết
    nó không nhớ là đã tự thêm vào. Nếu khả thi, chạy bước này như 1 lượt riêng, đọc lại toàn bộ

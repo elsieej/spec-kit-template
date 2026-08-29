@@ -103,8 +103,20 @@ của entity. Tài liệu này là nguồn sự thật cho **hình dạng** enti
 
 ## 6. Giả định cần xác nhận
 
-Khi FR/UR chưa đặc tả đủ chi tiết để suy ra field/quan hệ chắc chắn, ghi giả định hợp lý ở đây
-kèm nhãn `[Agent đề xuất — cần PO xác nhận]` (xem `plan-backlog`) — không tự chốt thành sự thật
-khi chưa ai xác nhận.
+Khi FR/UR chưa đặc tả đủ chi tiết để suy ra field/quan hệ chắc chắn (ví dụ tự đề xuất 1 giá trị
+enum, 1 field mới không ai yêu cầu) — **dừng lại, liệt kê đề xuất, chờ user xác nhận thật** trước
+khi ghi chính thức, cùng mức nghiêm ngặt như "Xác nhận với user" ở Container/Component (xem
+`c4-container-template.md`/`c4-component-template.md`, skill `c4-model`) — không chỉ gắn nhãn
+`[Agent đề xuất — cần PO xác nhận]` rồi tự cho qua trong cùng lượt. **Ghi nguyên văn** đề xuất đã
+trình bày + phản hồi thật của user vào đây, không chỉ khẳng định suông "đã đề xuất và được xác
+nhận":
+
+- Đề xuất:
+- Phản hồi:
+
+Nếu chưa xác nhận được (ví dụ đang ở giữa phiên, chưa hỏi tới), vẫn ghi giả định kèm nhãn
+`[Agent đề xuất — cần PO xác nhận]` để không chặn tiến độ, nhưng bước quét-lại cuối phiên (xem
+`c4-model`, `plan-backlog`) phải liệt kê lại mọi mục ở đây chưa có phản hồi thật — không tự chốt
+thành sự thật khi chưa ai xác nhận.
 
 -

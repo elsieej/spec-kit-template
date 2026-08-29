@@ -194,7 +194,13 @@ xuất hiện ở nhiều luồng/nhiều container.
    `1–0..n`, `n–n`, đệ quy...), bên nào là FK, bắt buộc hay tuỳ chọn.
 4. Với mỗi entity: liệt kê field, kiểu ở mức khái niệm (text/số/ngày-giờ/boolean/enum — liệt kê
    giá trị hợp lệ; **định danh** cho field id/FK, không quy định ULID/UUID/số tăng dần cụ thể;
-   **object**/**array\<kiểu\>** cho cấu trúc lồng), bắt buộc/tuỳ chọn.
+   **object**/**array\<kiểu\>** cho cấu trúc lồng), bắt buộc/tuỳ chọn. Field/giá trị nào FR/UR
+   chưa đặc tả đủ để suy chắc chắn (ví dụ tự đề xuất giá trị enum, tự thêm field không ai yêu
+   cầu) — **dừng lại, liệt kê đề xuất, chờ user xác nhận thật** trước khi ghi chính thức, cùng
+   mức nghiêm ngặt như bước xác nhận ở Component Diagram (không được coi im lặng là đồng ý, không
+   tự liệt kê rồi tự ghi file luôn trong cùng lượt). **Ghi nguyên văn** đề xuất + phản hồi thật
+   của user vào mục "6. Giả định cần xác nhận" của `entity-interface.md` (xem template) — không
+   chỉ gắn nhãn `[Agent đề xuất]` rồi tự cho qua.
 5. **KHÔNG thiết kế DDL/collection schema thật** (kiểu cột, index, khoá ngoại vật lý — đó là
    Bước C), **KHÔNG mô tả request/response body của từng thao tác** (đó là CIC trong
    `container-interface.md`), **KHÔNG mô tả định dạng file/wire format cụ thể hay quy
@@ -211,7 +217,9 @@ Liệt kê ra từng file C4/Interface Contract đã tạo/sửa trong phiên �
 file trong danh sách đó** (`c4-context.md`, `c4-container.md`, mỗi `c4-component-<mã>.md`,
 `container-interface.md`, `entity-interface.md`), kiểm lại riêng việc gắn link glossary: mọi
 thuật ngữ đã có trong `docs/00-glossary/glossary.md` dùng trong file đó có link ở lần xuất hiện
-đầu tiên chưa (xem bước 1 ở Context Diagram, `RULES.md` mục 2). Quy tắc này hay bị bỏ quên trong
+đầu tiên chưa (xem bước 1 ở Context Diagram, `RULES.md` mục 2). **Nếu file đó đã `status:
+approved`** khi phát hiện thiếu link — đưa lại về `draft` trước khi sửa (xem `CLAUDE.md`), không
+sửa thẳng nội dung mà giữ nguyên `approved`. Quy tắc này hay bị bỏ quên trong
 lúc tập trung vẽ diagram/viết schema, và lỗi thật đã xảy ra theo đúng mẫu hình: đúng ở file đầu
 tiên mỗi loại, bị quên ở các file cùng loại tạo sau — kiểm lại rõ ràng ở đây theo từng file một,
 không chỉ tin đã làm đúng lúc viết.
@@ -227,6 +235,10 @@ riêng, không chỉ tin đã khớp lúc viết:
 - Nếu `entity-interface.md` tồn tại: mọi field ở CIC không trỏ về entity (tự liệt kê
   field thay vì tham chiếu) phải cùng tên với field tương ứng ở SIC — không để 2 tên khác nhau
   cho cùng 1 khái niệm (vd `sku` ở CIC nhưng `productId` ở SIC).
+- Nếu `entity-interface.md` tồn tại: mọi mục ở "6. Giả định cần xác nhận" có phản hồi thật của
+  user chưa, hay còn giả định mới gắn nhãn `[Agent đề xuất]` mà chưa thực sự hỏi — khác với
+  checkpoint glossary ở trên (chỉ kiểm thiếu link), đây kiểm nội dung có được xác nhận thật hay
+  chưa, cùng mức nghiêm ngặt như "Xác nhận với user" của Component/Container.
 
 ## Lỗi thường gặp cần tránh
 

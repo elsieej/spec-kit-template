@@ -134,7 +134,10 @@ loại và điền đúng tài liệu — không phải kịch bản câu hỏi 
      nhất đang nhớ — lỗi thật đã xảy ra: link đúng ở file đầu tiên mỗi tầng, bị quên hoàn toàn ở
      các file sau cùng tầng), rồi với **từng file trong danh sách đó**, kiểm mọi thuật ngữ đã có
      trong `docs/00-glossary/glossary.md` dùng trong file có link ở lần xuất hiện đầu tiên chưa
-     (xem nguyên tắc ở trên, `RULES.md` mục 2).
+     (xem nguyên tắc ở trên, `RULES.md` mục 2). **Nếu file đó đã `status: approved`** khi phát
+     hiện thiếu link — đưa lại về `status: draft` trước khi sửa (xem `CLAUDE.md`, mục "Đặt tên,
+     ID và versioning": sửa nội dung tài liệu đã approved phải đưa lại draft để review lại), sửa
+     xong mới cân nhắc approve lại; không sửa thẳng nội dung mà giữ nguyên `status: approved`.
    - **Mỗi dòng nhu cầu trong bảng "Nhu cầu người dùng & Ưu tiên" của mọi UR đã tạo phải có ít
      nhất 1 FR** trỏ `parent_user_requirement` về đúng UR đó và cover đúng nhu cầu đó — liệt kê
      từng dòng nhu cầu, đối chiếu xem đã có FR nào cover chưa. Nhu cầu nào chưa có FR (lỗi thật
