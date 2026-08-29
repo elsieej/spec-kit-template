@@ -23,5 +23,4 @@ for dest in "${DESTS[@]}"; do
   cp "$SRC" "$dest"
 done
 
-echo "Synced. sha256 (must all match):"
-sha256sum "$SRC" "${DESTS[@]}"
+echo "Synced $SRC to ${#DESTS[@]} skill folders."

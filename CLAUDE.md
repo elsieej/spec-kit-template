@@ -84,7 +84,7 @@ khác, **trừ** `skills/spec-kit/*/spec-kit-conventions.md` (5 bản sao dẫn 
 bundle kèm mỗi skill để `npx skills add` chạy được không cần `CLAUDE.md`/`AGENTS.md`/`RULES.md`
 trong dự án đích — xem đầu mỗi file đó). Sửa nội dung ở đây thì sửa bản canonical tại
 `skills/spec-kit/setup-context/spec-kit-conventions.md` rồi chạy
-`scripts/sync-conventions.sh` để đồng bộ + verify sha256 sang 4 bản còn lại, không tự `cp` tay.
+`scripts/sync-conventions.sh` để đồng bộ sang 4 bản còn lại, không tự `cp` tay.
 
 ## Tham khảo nhanh
 

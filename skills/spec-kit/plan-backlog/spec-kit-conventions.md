@@ -6,7 +6,7 @@
 > không phụ thuộc file nào khác có tồn tại trong dự án đích hay không. Đi kèm sẵn cạnh `SKILL.md`
 > của cả 5 skill, nội dung **byte-identical** ở cả 5 nơi. **Bản này (`setup-context`) là bản
 > canonical** — sửa nội dung ở đây rồi chạy `scripts/sync-conventions.sh` từ gốc repo để đồng bộ
-> + verify sha256 sang 4 bản còn lại, không tự `cp` tay.
+> sang 4 bản còn lại, không tự `cp` tay.
 
 ## 1. Đặt tên, ID và versioning
 
