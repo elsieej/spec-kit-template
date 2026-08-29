@@ -54,30 +54,4 @@ ngữ kỹ thuật mới trong tài liệu, tra bảng này trước; nếu chư
 | story point | Giữ nguyên "story point" | |
 | user story | Giữ nguyên "user story" | Khi viết mục `## Story`, in đậm 3 từ khoá **Là** / **tôi muốn** / **để** |
 
-### Git
-
-| Thuật ngữ (EN) | Cách dùng trong dự án | Ghi chú / Ví dụ |
-|---|---|---|
-| branch | Giữ nguyên "branch" | |
-| commit | Giữ nguyên "commit" | Không dịch "lần chốt thay đổi" |
-| merge | Giữ nguyên "merge" | |
-| pull request (PR) | Giữ nguyên "pull request" hoặc viết tắt "PR" | |
-
-### Kiến trúc / C4
-
-| Thuật ngữ (EN) | Cách dùng trong dự án | Ghi chú / Ví dụ |
-|---|---|---|
-| container (C4) | Giữ nguyên "container" | Không nhầm với container hoá (Docker) |
-| context diagram | Giữ nguyên "context diagram" hoặc "diagram context" | |
-| endpoint | Giữ nguyên "endpoint" | |
-
-### Trạng thái tài liệu
-
-| Thuật ngữ (EN) | Cách dùng trong dự án | Ghi chú / Ví dụ |
-|---|---|---|
-| approved | Giữ nguyên trong field `status`, có thể dịch "đã duyệt" trong văn xuôi | |
-| blocked | Giữ nguyên trong field `status`, có thể dịch "đang bị chặn" trong văn xuôi | Luôn kèm `blocked_by_open_questions`; không áp dụng cho BR/UR/FR/SYS-CTX/SYS-CTR |
-| deprecated | Giữ nguyên trong field `status`, có thể dịch "không còn dùng"/"lỗi thời" trong văn xuôi | |
-| draft | Giữ nguyên trong field `status`, có thể dịch "bản nháp" trong văn xuôi | |
-
 <!-- Thêm nhóm/thuật ngữ mới bên dưới, giữ đúng định dạng bảng 3 cột. -->
