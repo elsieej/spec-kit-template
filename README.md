@@ -41,10 +41,10 @@ CLAUDE.md                       → quy ước đặt tên + versioning xuyên s
 ## Cách dùng cho dự án mới
 
 1. Copy toàn bộ folder này vào repo dự án (giữ nguyên cấu trúc `docs/` + các file gốc). Hoặc
-   cài trực tiếp 4 skill vào 1 dự án đã có qua `npx skills add <owner>/spec-kit-template` (skill
-   nằm sẵn ở `.claude/skills/`, không cần cấu trúc `skills/` riêng ở gốc repo) — cách này không
-   copy `docs/` mẫu, chỉ cài skill; các file `docs/**/template.md` vẫn cần copy thủ công nếu
-   muốn dùng nguyên cấu trúc tài liệu của kit.
+   cài trực tiếp 4 skill vào 1 dự án đã có qua `npx skills add <owner>/spec-kit-template` (đọc
+   từ `skills/spec-kit/` — bản mirror của `.claude/skills/`, xem `skills/spec-kit/README.md`) —
+   cách này không copy `docs/` mẫu, chỉ cài skill; các file `docs/**/template.md` vẫn cần copy
+   thủ công nếu muốn dùng nguyên cấu trúc tài liệu của kit.
 2. Copy `docs/glossary/template.md` thành `docs/glossary/glossary.md` (giữ nguyên nội
    dung mặc định, điền dần thuật ngữ nghiệp vụ khi viết BR/UR/FR — xem `RULES.md`). Đọc
    `CONTEXT.md` — giới thiệu kit và các thành phần chính — và `glossary.md` vừa tạo.
