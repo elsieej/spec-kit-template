@@ -19,6 +19,13 @@ BR/UR/FR nào trong dự án — Business Requirement là gốc, User Requiremen
 Requirement sinh ra từ đó. WHY/WHO/WHAT ở đây là 3 **nhóm nội dung nội bộ** agent dùng để phân
 loại và điền đúng tài liệu — không phải kịch bản câu hỏi đọc nguyên văn cho user.
 
+## Tài liệu tham khảo thêm
+
+- [examples.md](examples.md) — ví dụ hội thoại minh hoạ cách hỏi tự nhiên (câu trả lời đủ cả 3
+  khía cạnh, câu trả lời chỉ 1 khía cạnh cần hỏi tiếp, câu trả lời mơ hồ cần brainstorm) và 1
+  phản ví dụ (SAI). Đọc file này khi cần hình dung cụ thể cách diễn đạt câu hỏi — không phải
+  quy tắc bắt buộc, các quy tắc bắt buộc nằm ở phần dưới đây.
+
 ## Nguyên tắc khi chạy skill này
 
 - **Câu hỏi mở đầu bằng ngôn ngữ đời thường, không nhắc thuật ngữ WHY/WHO/WHAT.** Hỏi user
