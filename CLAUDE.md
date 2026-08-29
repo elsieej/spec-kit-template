@@ -58,8 +58,15 @@ riêng.
     hoặc `approved`), không mặc định về `draft`.
   - `deprecated` — không còn dùng nữa (bị thay thế, huỷ, hoặc lỗi thời).
 
+  Mũi tên `draft → approved → blocked → deprecated` mô tả các giá trị hợp lệ và hướng chuyển có
+  thể xảy ra, **không bắt buộc đi tuần tự qua từng bước**: 1 item hoàn toàn có thể được **tạo
+  mới thẳng ở `status: blocked`** (ví dụ phát hiện ngay lúc tạo là phụ thuộc 1 OQ chưa trả lời)
+  — không bắt buộc từng là `draft` trước đó.
+
   Sửa nội dung một tài liệu đã `approved` (BR/UR/FR/SYS-CTX/SYS-CTR/SYS-CMP/SYS-IFC/SYS-SIC) thì đưa lại
-  về `draft` để review lại trước khi tiếp tục dùng làm nguồn cho tầng sau.
+  về `draft` để review lại trước khi tiếp tục dùng làm nguồn cho tầng sau. Riêng việc **thêm ID
+  vào mảng `related_open_questions`** của tài liệu đã `approved` KHÔNG tính là "sửa nội dung" —
+  cập nhật liên kết metadata, không cần đưa về `draft` chỉ vì việc này.
 
   Mọi tài liệu có `blocked` trong enum của nó đều bắt buộc kèm
   `blocked_by_open_questions: [OQ-xxx]` khi ở trạng thái đó (không được để `blocked` mà thiếu

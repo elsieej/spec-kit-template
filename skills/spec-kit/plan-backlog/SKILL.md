@@ -124,8 +124,13 @@ prefix/ID, vòng đời `status`, glossary-link, ma trận lan truyền thay đ�
    `docs_requirements: [BR-xxx, ...]` — có thể nhiều BR nếu Epic hiện thực hoá mục tiêu chung
    của nhiều BR) → đối chiếu mục tiêu đó với cột "Trách nhiệm" trong
    `docs/system-overview/c4-container.md` để tìm container khớp, rồi lấy đúng "Mã" của
-   container đó cho `source_container`. Nếu mục tiêu khớp trách nhiệm của nhiều container, tách
-   thành nhiều Epic (mỗi Epic 1 `source_container`) thay vì gán nhiều container cho 1 Epic. Nếu
+   container đó cho `source_container`. Nếu mục tiêu khớp trách nhiệm của nhiều container **vì
+   chúng cùng phục vụ 1 mảng giá trị lớn duy nhất** (ví dụ container UI + API của cùng 1 luồng
+   nghiệp vụ full-stack) → **không tách Epic chỉ vì lý do này** — chọn container **chủ/đại
+   diện** (thường là container người dùng tương tác chính) làm `source_container`, Feature/US
+   bên dưới phản ánh đầy đủ mọi container thực sự tham gia qua "Context cho Agent". Chỉ tách
+   thành nhiều Epic khi Epic thực sự gộp **nhiều mảng giá trị kinh doanh khác nhau** (khác cả
+   mục tiêu/persona được phục vụ, không chỉ khác container), mỗi Epic 1 `source_container`. Nếu
    không container nào khớp, hoặc bảng container chưa có mã/chưa đủ rõ để quyết định — đây
    không phải việc để tự suy đoán ở bước này: dừng lại, hỏi trực tiếp user muốn đặt mã/tên
    container nào (hoặc nhờ user/team bổ sung `docs/system-overview/c4-container.md` trước)
@@ -155,11 +160,12 @@ prefix/ID, vòng đời `status`, glossary-link, ma trận lan truyền thay đ�
    Feature/US đã tạo/sửa trong phiên — không dừng ở mức "đã kiểm cả 3 cấp", vì khi 1 cấp có
    nhiều file (ví dụ 9 User Story), kiểm "cả cấp US" một cách chung chung vẫn có thể chỉ thực sự
    kiểm 1-2 file đầu rồi bỏ sót các file còn lại (lỗi thật đã xảy ra: 0/9 User Story có link
-   glossary thật, dù skill này đã có bước kiểm cả 3 cấp từ trước). Với **từng file trong danh
-   sách đó**, kiểm đã gắn link glossary ở lần xuất hiện đầu tiên của mỗi thuật ngữ đã có trong
-   glossary chưa (xem nguyên tắc ở trên, `docs/spec-kit-conventions.md` mục 3) — quy tắc này tồn tại
-   từ đầu nhưng hay bị bỏ quên trong lúc tập trung viết nội dung, kiểm lại rõ ràng ở đây theo
-   từng file một, không chỉ tin đã làm đúng lúc viết. **Nếu file đó đã `status: approved`** (ví
+   glossary thật, dù skill này đã có bước kiểm cả 3 cấp từ trước). **Đọc lại thủ công không đủ
+   tin cậy cho bước này** (lỗi thật đã tái diễn ở 1 lượt eval khác, 16/19 file, dù đã biết trước
+   rủi ro): liệt kê toàn bộ thuật ngữ có trong `docs/glossary/glossary.md`, dùng công cụ tìm
+   chuỗi sẵn có (search/grep) quét **từng file trong danh sách trên** theo từng thuật ngữ đó,
+   thay vì chỉ đọc mắt — với file nào phát hiện thiếu, kiểm lại đúng lần xuất hiện đầu tiên trong
+   thân bài có link chưa (xem nguyên tắc ở trên, `docs/spec-kit-conventions.md` mục 3). **Nếu file đó đã `status: approved`** (ví
    dụ đang groom lại 1 item cũ) khi phát hiện thiếu link — đưa lại về `draft` trước khi sửa (xem
    `docs/spec-kit-conventions.md` mục 1), không sửa thẳng nội dung mà giữ nguyên `approved`.
 7. **Trước khi kết thúc phiên**, quét lại toàn bộ Acceptance Criteria/business rule vừa viết

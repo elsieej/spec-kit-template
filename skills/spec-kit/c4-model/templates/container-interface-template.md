@@ -38,7 +38,7 @@ Danh sách đóng — chỉ 4 chủ đề dưới đây, không thêm dòng. Xo�
 | Chủ đề | Ghi ở mức này |
 |---|---|
 | **Phân nhóm lỗi** | Bên gọi phân biệt được mấy nhóm lỗi, xử lý khác nhau ra sao (vd lỗi nghiệp vụ — nêu rõ luật bị vi phạm; lỗi tạm thời — cho phép gọi lại) |
-| **Idempotency** | Thao tác ghi nào có thể bị gọi lại, và **field nghiệp vụ nào** xác định 1 bản là trùng (vd `task_id`+`send_at`) |
+| **Idempotency** | Thao tác ghi nào có thể bị gọi lại, và **field nghiệp vụ nào** xác định 1 bản là trùng (vd `taskId`+`sendAt`) |
 | **Thao tác chạy lâu** | Bên gọi submit → nhận định danh lần chạy → hỏi lại trạng thái tới khi xong/thất bại; dữ liệu trạng thái cần đọc là gì |
 | **Định danh & phiên bản dữ liệu** | Định danh 1 đối tượng duy nhất, không đổi sau khi tạo; field nào là định danh, field nào là bản hiển thị |
 
@@ -63,7 +63,9 @@ giống cách `c4-container.md` gán "Mã" cho container. Quy tắc:
 - **Loại**: `nội bộ` (kể cả DB thuần) hoặc `hệ thống ngoài` (đã liệt kê ở "Hệ thống ngoài liên
   quan" trong `c4-context.md`) — quyết định cách viết ở mục 4.
 - **Component khởi tạo/xử lý**: tên thật từ `c4-component-<mã>.md` nếu có; DB thuần/hệ thống
-  ngoài → `—`. Không tự đặt tên component mới ở đây.
+  ngoài → `—`. Không tự đặt tên component mới ở đây. Nhiều component thật cùng khởi tạo/xử lý 1
+  mã → liệt kê tất cả, cách nhau bằng dấu phẩy (không chọn đại 1 cái, không bịa 1 component
+  trung gian đại diện không có trong Component diagram).
 
 ## 4. Chi tiết từng CIC
 
@@ -82,7 +84,9 @@ Cách điền:
 
 - **Thao tác**: tên nghiệp vụ đọc hiểu ngay ("Tạo task mới") — KHÔNG phải tên kỹ thuật endpoint.
 - **Dữ liệu gửi/nhận**: field + kiểu khái niệm (text/số/ngày-giờ/boolean/enum) + bắt buộc/tuỳ
-  chọn. Với container DB thuần: "gửi đi" = ghi, "nhận lại" = đọc — vẫn không thiết kế bảng.
+  chọn. Với container DB thuần: "gửi đi" = ghi, "nhận lại" = đọc — vẫn không thiết kế bảng. Tên
+  field dùng **camelCase** nhất quán (quy ước viết tài liệu, không phải định danh code/DB thật)
+  — khớp với `entity-interface.md` khi field đó thuộc 1 entity đã định nghĩa ở đó.
 - **Ràng buộc nghiệp vụ**: 1 câu, hoặc trỏ về mục 2 nếu trùng. Không có thì `—`.
 - **Loại = `hệ thống ngoài`**: mục đích là ghi lại **kỳ vọng tích hợp cần xác nhận với bên thứ
   ba**, không phải hợp đồng 2 team tự chốt. Chưa xác nhận vẫn phải ghi, kèm "**chưa xác nhận
@@ -96,7 +100,7 @@ Cách điền:
 |---|---|---|---|---|
 | `todo-web`→`todo-api` (CIC-001) | Tạo task mới (US-001) | `title` (text, bắt buộc), `deadline` (ngày-giờ, tuỳ chọn) | Task: `id`, `title`, `deadline`, `status` (enum `open`/`done`) | Đồng bộ |
 | `todo-api`→`todo-db` (CIC-002, DB thuần) | Lưu task mới (US-001) | `title`, `deadline`, `status` (như trên) | (không cần đọc lại ngay) | Đồng bộ |
-| `todo-api`→Notification Service (CIC-003, hệ thống ngoài) | Gửi reminder (US-003) | `task_id`, `title`, kênh (enum `push`/`email`), `send_at` (ngày-giờ) — **chưa xác nhận với Notification Service**: định dạng `send_at` họ yêu cầu | Xác nhận đã nhận yêu cầu (chưa đảm bảo đã gửi) | Bất đồng bộ |
+| `todo-api`→Notification Service (CIC-003, hệ thống ngoài) | Gửi reminder (US-003) | `taskId`, `title`, kênh (enum `push`/`email`), `sendAt` (ngày-giờ) — **chưa xác nhận với Notification Service**: định dạng `sendAt` họ yêu cầu | Xác nhận đã nhận yêu cầu (chưa đảm bảo đã gửi) | Bất đồng bộ |
 
 SAI — bất kỳ dòng nào giống thế này đều thuộc Code (Bước C), KHÔNG viết vào tài liệu này:
 ```

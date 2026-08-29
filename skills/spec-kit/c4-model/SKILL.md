@@ -186,16 +186,23 @@ Không phải 1 Level của C4 — là phụ lục dữ liệu đi kèm Containe
    không đánh số lại các mã còn lại. Điền bảng tổng hợp CIC (mục 3 của template): Từ, Tới, Loại
    (`nội bộ`/`hệ thống ngoài`), đồng bộ/bất đồng bộ, component khởi tạo/xử lý (lấy tên thật từ
    `c4-component-*.md` nếu container đó có file Component, ngược lại ghi `—`) — không tự đặt tên
-   component mới ở đây. Sau khi điền, cập nhật ngược cột "CIC liên quan" ở đúng file
-   `c4-component-*.md` của component vừa ghi tên (xem Component Diagram bước 2) — 2 chỗ phải
-   khớp tên component và mã CIC.
+   component mới ở đây. **Nếu nhiều component thật trong cùng container cùng khởi tạo/xử lý 1 mã
+   CIC** (ví dụ nhiều UI component khác nhau theo persona cùng gọi 1 API) — liệt kê **tất cả tên
+   thật đó, cách nhau bằng dấu phẩy**, không chọn đại 1 trong số đó và không bịa 1 component
+   trung gian không có trong Component diagram để đại diện. Sau khi điền, cập nhật ngược cột "CIC
+   liên quan" ở đúng file `c4-component-*.md` của **từng** component vừa ghi tên (xem Component
+   Diagram bước 2) — 2 chỗ phải khớp tên component và mã CIC, kể cả khi liệt kê nhiều component.
 4. Với mỗi mã CIC: liệt kê theo từng thao tác nghiệp vụ (kèm US liên quan nếu có, tên đọc hiểu
    ngay như "Tạo task mới" — KHÔNG phải tên kỹ thuật của endpoint) — dữ liệu cần gửi đi/lưu và
    dữ liệu cần nhận lại/đọc, mỗi field kèm kiểu ở mức khái niệm (text/số/ngày-giờ/boolean/enum —
    liệt kê giá trị hợp lệ nếu là enum) và bắt buộc/tuỳ chọn, cùng ràng buộc nghiệp vụ nếu có (trỏ
    về mục quy ước chung nếu trùng, xem bước 5). Áp dụng **như nhau** cho mọi CIC, kể cả khi 1 bên
    là container DB thuần (không có Component diagram) — xác định dữ liệu cần trao đổi từ vai trò
-   của container đó trong Context/Container/Component, không thiết kế riêng cho DB.
+   của container đó trong Context/Container/Component, không thiết kế riêng cho DB. **Tên field
+   dùng camelCase nhất quán** — đây là quy ước viết tài liệu để tên field khớp giữa
+   `container-interface.md` và `entity-interface.md` (khi CIC trỏ về 1 entity, xem bước 6 ở "Quy
+   trình tạo Entity Interface"), KHÔNG phải quyết định định danh trong code/DB thật (đó vẫn là
+   Bước C, có thể khác quy ước case của ngôn ngữ/framework thật sự dùng).
 5. Quy ước áp dụng cho nhiều CIC (phân nhóm lỗi, idempotency, khuôn mẫu thao tác chạy lâu, định
    danh & phiên bản dữ liệu) nêu 1 lần ở mục "Quy ước chung", không lặp lại ở từng CIC — chỉ 4
    chủ đề này, đây là danh sách đóng (xem template); chủ đề khác (xác thực/token, phân trang,
@@ -226,7 +233,10 @@ xuất hiện ở nhiều luồng/nhiều container.
    `1–0..n`, `n–n`, đệ quy...), bên nào là FK, bắt buộc hay tuỳ chọn.
 4. Với mỗi entity: liệt kê field, kiểu ở mức khái niệm (text/số/ngày-giờ/boolean/enum — liệt kê
    giá trị hợp lệ; **định danh** cho field id/FK, không quy định ULID/UUID/số tăng dần cụ thể;
-   **object**/**array\<kiểu\>** cho cấu trúc lồng), bắt buộc/tuỳ chọn. Field/giá trị nào FR/UR
+   **object**/**array\<kiểu\>** cho cấu trúc lồng), bắt buộc/tuỳ chọn. **Tên field dùng camelCase
+   nhất quán** — quy ước viết tài liệu để khớp tên với `container-interface.md` khi 1 CIC trỏ về
+   entity này (xem bước 6 bên dưới), không phải quyết định định danh trong code/DB thật. Field/giá
+   trị nào FR/UR
    chưa đặc tả đủ để suy chắc chắn (ví dụ tự đề xuất giá trị enum, tự thêm field không ai yêu
    cầu) — **dừng lại, liệt kê đề xuất, chờ user xác nhận thật** trước khi ghi chính thức, cùng
    mức nghiêm ngặt như bước xác nhận ở Component Diagram (không được coi im lặng là đồng ý, không
@@ -252,14 +262,15 @@ xuất hiện ở nhiều luồng/nhiều container.
 Liệt kê ra từng file C4/Interface Contract đã tạo/sửa trong phiên — **kể cả khi có nhiều file
 `c4-component-*.md`** (1 file/container), không chỉ file đầu tiên hay file đang nhớ. Với **từng
 file trong danh sách đó** (`c4-context.md`, `c4-container.md`, mỗi `c4-component-<mã>.md`,
-`container-interface.md`, `entity-interface.md`), kiểm lại riêng việc gắn link glossary: mọi
-thuật ngữ đã có trong `docs/glossary/glossary.md` dùng trong file đó có link ở lần xuất hiện
-đầu tiên chưa (xem bước 1 ở Context Diagram, `docs/spec-kit-conventions.md` mục 3). **Nếu file đó đã
+`container-interface.md`, `entity-interface.md`). **Đọc lại thủ công không đủ tin cậy cho bước
+này** (lỗi thật đã xảy ra theo đúng mẫu hình: đúng ở file đầu tiên mỗi loại, bị quên ở các file
+cùng loại tạo sau — 1 lượt eval khác ghi nhận 4/5 file C4 thiếu link dù đã biết trước rủi ro và
+cố ý đọc lại): liệt kê toàn bộ thuật ngữ có trong `docs/glossary/glossary.md`, dùng công cụ tìm
+chuỗi sẵn có (search/grep) quét từng file trong danh sách trên theo từng thuật ngữ đó, thay vì
+chỉ đọc mắt. Với file nào phát hiện thiếu, kiểm lại đúng lần xuất hiện đầu tiên trong thân bài có
+link chưa (xem bước 1 ở Context Diagram, `docs/spec-kit-conventions.md` mục 3). **Nếu file đó đã
 `status: approved`** khi phát hiện thiếu link — đưa lại về `draft` trước khi sửa (xem
-`docs/spec-kit-conventions.md` mục 1), không sửa thẳng nội dung mà giữ nguyên `approved`. Quy tắc này hay bị bỏ quên trong
-lúc tập trung vẽ diagram/viết schema, và lỗi thật đã xảy ra theo đúng mẫu hình: đúng ở file đầu
-tiên mỗi loại, bị quên ở các file cùng loại tạo sau — kiểm lại rõ ràng ở đây theo từng file một,
-không chỉ tin đã làm đúng lúc viết.
+`docs/spec-kit-conventions.md` mục 1), không sửa thẳng nội dung mà giữ nguyên `approved`.
 
 Đối chiếu chéo backlink CIC ↔ Component ↔ SIC — cùng 1 lượt vừa viết vừa tự rà dễ bỏ sót lỗi
 chính mình tạo ra (cùng mẫu hình với checkpoint glossary ở trên), nên kiểm lại đây như 1 bước

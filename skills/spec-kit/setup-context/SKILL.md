@@ -168,9 +168,12 @@ khi cần chi tiết hơn.
    viết nội dung, kiểm lại rõ ràng ở đây thay vì chỉ tin đã làm đúng lúc viết:
    - **Glossary link**: liệt kê ra từng file BR/UR/FR đã tạo/sửa trong phiên (không chỉ file gần
      nhất đang nhớ — lỗi thật đã xảy ra: link đúng ở file đầu tiên mỗi tầng, bị quên hoàn toàn ở
-     các file sau cùng tầng), rồi với **từng file trong danh sách đó**, kiểm mọi thuật ngữ đã có
-     trong `docs/glossary/glossary.md` dùng trong file có link ở lần xuất hiện đầu tiên chưa
-     (xem nguyên tắc ở trên, `docs/spec-kit-conventions.md` mục 3). **Nếu file đó đã `status:
+     các file sau cùng tầng). **Đọc lại thủ công không đủ tin cậy cho bước này** (lỗi thật đã
+     xảy ra ngay cả khi biết trước rủi ro và cố ý đọc lại cẩn thận): liệt kê toàn bộ thuật ngữ có
+     trong `docs/glossary/glossary.md`, rồi dùng công cụ tìm chuỗi sẵn có (search/grep trong môi
+     trường đang chạy) quét từng file trong danh sách trên theo từng thuật ngữ đó, thay vì chỉ
+     đọc mắt. Với **từng file** phát hiện thiếu, kiểm lại đúng lần xuất hiện đầu tiên trong thân
+     bài có link chưa (xem nguyên tắc ở trên, `docs/spec-kit-conventions.md` mục 3). **Nếu file đó đã `status:
      approved`** khi phát hiện thiếu link — đưa lại về `status: draft` trước khi sửa (xem
      `docs/spec-kit-conventions.md` mục 1: sửa nội dung tài liệu đã approved phải đưa lại draft để
      review lại), sửa

@@ -106,8 +106,17 @@ nó còn ID chưa `approved`.
 thống đã được chốt từ Bước A (`c4-container.md`, cột "Mã"). Đối chiếu "Mục tiêu" của Epic với
 cột "Trách nhiệm" của từng container trong bảng đó:
 - Khớp đúng 1 container → lấy "Mã" của container đó cho `source_container` của Epic.
-- Khớp Trách nhiệm của nhiều container (Epic cần nhiều hệ thống phối hợp) → tách thành nhiều
-  Epic, mỗi Epic ứng với 1 `source_container`, cùng trỏ `docs_requirements` về BR gốc.
+- Khớp Trách nhiệm của nhiều container **vì các container đó cùng phục vụ 1 mảng giá trị lớn
+  duy nhất** (ví dụ container UI + container API của cùng 1 luồng nghiệp vụ full-stack — Trách
+  nhiệm của chúng thường diễn đạt lại đúng nghiệp vụ chung, không phải 2 mục tiêu kinh doanh khác
+  nhau) → **không tách Epic chỉ vì lý do này**. Chọn container **chủ/đại diện** (thường là
+  container người dùng tương tác chính, hoặc container sở hữu nghiệp vụ) làm `source_container`
+  — đây là container đại diện, không phải container duy nhất được Epic chạm tới; Feature/US bên
+  dưới phản ánh đầy đủ mọi container thực sự tham gia qua "Context cho Agent", không phải qua
+  `source_container` của Epic.
+- Epic thực sự gộp **nhiều mảng giá trị kinh doanh khác nhau** (không chỉ khác container mà
+  khác cả mục tiêu/persona được phục vụ) → tách thành nhiều Epic, mỗi Epic ứng với 1
+  `source_container`, cùng trỏ `docs_requirements` về BR gốc.
 - Không container nào khớp → `c4-container.md` đang thiếu/lỗi thời, quay lại Bước A cập nhật
   container diagram trước, không tự bịa container ở backlog.
 
