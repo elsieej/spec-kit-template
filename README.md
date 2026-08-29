@@ -40,7 +40,8 @@ CLAUDE.md                       → quy ước đặt tên + versioning xuyên s
 
 ## Cách dùng cho dự án mới
 
-1. Cài 4 skill qua `npx skills add <owner>/spec-kit-template` (xem `skills/spec-kit/README.md`).
+1. Cài 4 skill qua `npx skills add <owner>/spec-kit-template` (xem `skills/spec-kit/README.md` —
+   cả cách cài lẫn cách cập nhật sau này qua `npx skills update`).
 2. Copy `docs/glossary/template.md` thành `docs/glossary/glossary.md` (giữ nguyên nội
    dung mặc định, điền dần thuật ngữ nghiệp vụ khi viết BR/UR/FR — xem `RULES.md`). Đọc
    `CONTEXT.md` — giới thiệu kit và các thành phần chính — và `glossary.md` vừa tạo.
