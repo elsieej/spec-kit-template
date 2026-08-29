@@ -16,7 +16,7 @@ related_open_questions: []
 Ở mức đủ để dev trong team sở hữu container hiểu bố cục mà không cần đọc code trước. Không
 xuống tới class/function cụ thể (đó là Level 4, không thuộc phạm vi tài liệu này).
 
-Cột "CIC liên quan" chỉ điền nếu `docs/04-system-overview/container-interface.md` tồn tại và
+Cột "CIC liên quan" chỉ điền nếu `docs/system-overview/container-interface.md` tồn tại và
 component này là component khởi tạo hoặc xử lý của 1 mã CIC (đối chiếu đúng tên component ở cột
 "Component khởi tạo"/"Component xử lý" trong bảng tổng hợp CIC của tài liệu đó) — để trống/`—`
 nếu component chỉ giao tiếp nội bộ trong container. Đây là tham chiếu ngược, không phải nguồn sự

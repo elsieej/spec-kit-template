@@ -19,7 +19,7 @@ attendees: []
 | | | sửa thẳng / huỷ / tạo open question |
 
 ## Open Questions phát sinh
-- OQ-xxx — <tóm tắt> (xem docs/06-meetings/open-questions/)
+- OQ-xxx — <tóm tắt> (xem docs/meetings/open-questions/)
 
 ## Action items
 | Việc | Người phụ trách | Deadline |

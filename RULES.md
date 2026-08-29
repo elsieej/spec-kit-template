@@ -45,7 +45,7 @@ thao tác kỹ thuật, không cần giải thích lại khái niệm phổ thô
 
 ## 2. Thuật ngữ
 
-`docs/00-glossary/glossary.md` gồm hai phần: **Thuật ngữ nghiệp vụ** (định nghĩa
+`docs/glossary/glossary.md` gồm hai phần: **Thuật ngữ nghiệp vụ** (định nghĩa
 business/domain riêng của dự án) và **Thuật ngữ kỹ thuật / văn phong** (quy định thuật ngữ
 kỹ thuật nào giữ nguyên tiếng Anh, thuật ngữ nào dịch).
 
@@ -59,25 +59,25 @@ kỹ thuật nào giữ nguyên tiếng Anh, thuật ngữ nào dịch).
 - **Không viết tắt tự chế.** Chỉ dùng viết tắt đã chuẩn hoá trong glossary hoặc phổ biến
   trong ngành (PR, CI/CD, API...); viết tắt lần đầu xuất hiện nên kèm dạng đầy đủ.
 - **Link tham chiếu tới glossary khi trích xuất thuật ngữ.** Ở lần xuất hiện đầu tiên của một
-  thuật ngữ trong tài liệu, nếu thuật ngữ đó đã có trong `docs/00-glossary/glossary.md` →
+  thuật ngữ trong tài liệu, nếu thuật ngữ đó đã có trong `docs/glossary/glossary.md` →
   gắn link Markdown tới đúng mục (heading) chứa thuật ngữ đó — **chỉ tính lần xuất hiện trong
   thân bài (nội dung dưới heading); thuật ngữ chỉ xuất hiện trong chính tiêu đề/heading (H1/H2)
   của tài liệu không bắt buộc gắn link ở đó**, gắn ở lần xuất hiện đầu tiên trong thân bài ngay
   sau đó. Số cấp `../` tuỳ độ sâu thư mục của file đang viết so với `docs/`, không cố định 1
   con số:
-  - File nằm ngay trong `docs/{00-04}-.../` (BR/UR/FR, C4 Context/Container/Component,
-    Container/Entity Interface) — 1 cấp: ví dụ từ `docs/01-business-requirement/BR-001.md`:
-    `[sprint](../00-glossary/glossary.md#quy-trình--agile)`. Riêng `docs/04-system-overview/`,
+  - File nằm ngay trong `docs/<tầng>/` (BR/UR/FR, C4 Context/Container/Component,
+    Container/Entity Interface) — 1 cấp: ví dụ từ `docs/business-requirement/BR-001.md`:
+    `[sprint](../glossary/glossary.md#quy-trình--agile)`. Riêng `docs/system-overview/`,
     file `*-template.md` nằm trong subfolder `templates/` không cần gắn link (đây là placeholder,
     không phải tài liệu thật của 1 dự án cụ thể).
-  - File nằm trong 1 subfolder của `docs/05-backlog/` hoặc `docs/06-meetings/` (Epic trong
-    `docs/05-backlog/epics/`, meeting notes, open question) — 2 cấp: ví dụ từ
-    `docs/05-backlog/epics/EPIC-001.md`:
-    `[sprint](../../00-glossary/glossary.md#quy-trình--agile)`.
-  - Feature/User Story trong subfolder theo Epic (`docs/05-backlog/{features,user-stories}/
+  - File nằm trong 1 subfolder của `docs/backlog/` hoặc `docs/meetings/` (Epic trong
+    `docs/backlog/epics/`, meeting notes, open question) — 2 cấp: ví dụ từ
+    `docs/backlog/epics/EPIC-001.md`:
+    `[sprint](../../glossary/glossary.md#quy-trình--agile)`.
+  - Feature/User Story trong subfolder theo Epic (`docs/backlog/{features,user-stories}/
     {EPIC-ID}_{slug}/`) — **3 cấp**: ví dụ từ
-    `docs/05-backlog/features/EPIC-001_checkout/FEAT-001.md`:
-    `[sprint](../../../00-glossary/glossary.md#quy-trình--agile)`.
+    `docs/backlog/features/EPIC-001_checkout/FEAT-001.md`:
+    `[sprint](../../../glossary/glossary.md#quy-trình--agile)`.
   Không lặp lại link ở các lần nhắc lại sau trong cùng tài liệu. Nếu thuật ngữ **chưa có** trong
   glossary → không bắt buộc phải thêm link — chỉ thêm vào glossary khi thuật ngữ đó cần chuẩn
   hoá cách dùng (theo quy tắc phía trên), không phải mọi từ đều cần vào glossary chỉ để có chỗ

@@ -31,7 +31,7 @@ này.
 - System overview liên quan: SYS-CTR-001 (container: <mã container, xem c4-container.md>)
 - Container Interface Contract liên quan: <mã CIC-xxx trong container-interface.md —
   nếu file này tồn tại và có luồng giao tiếp liên quan tới US này, xem AGENTS.md Bước C>
-- Glossary liên quan: xem docs/00-glossary/glossary.md
+- Glossary liên quan: xem docs/glossary/glossary.md
 
 ## Ghi chú kỹ thuật
 Bắt buộc ghi lý do ở đây khi **sau này đổi** `priority` khác giá trị đã chọn ban đầu (xem

@@ -2,7 +2,7 @@
 name: c4-model
 description: >
   Giải thích phương pháp C4 Model (Context, Container, Component, Code — c4model.com) và
-  dẫn dắt tạo docs/04-system-overview/c4-context.md + c4-container.md + c4-component-*.md
+  dẫn dắt tạo docs/system-overview/c4-context.md + c4-container.md + c4-component-*.md
   đúng tầng, đúng audience, cùng container-interface.md (mỗi luồng giao tiếp giữa
   container gán 1 mã CIC, khi cần) và entity-interface.md (entity + quan hệ dữ liệu,
   khi nhiều CIC/container dùng chung entity, khi cần) đúng phạm vi (schema, không phải
@@ -39,27 +39,27 @@ trình tạo Container Interface Contract" bên dưới. Nếu nhiều entity d�
 container mà mô tả rời rạc sẽ bị lặp/lệch nhau, tạo thêm `entity-interface.md` —
 xem mục "Quy trình tạo Entity Interface" bên dưới.
 
-Mọi file `*-template.md` skill này dùng đều nằm trong `docs/04-system-overview/templates/`
+Mọi file `*-template.md` skill này dùng đều nằm trong `docs/system-overview/templates/`
 (tách biệt khỏi tài liệu thật để dễ đọc) — ví dụ `templates/c4-context-template.md` dùng để
 tạo `c4-context.md`, `templates/container-interface-template.md` dùng để tạo
 `container-interface.md`. Tài liệu thật (không có suffix `-template`) luôn tạo trực tiếp trong
-`docs/04-system-overview/`, không tạo trong `templates/`.
+`docs/system-overview/`, không tạo trong `templates/`.
 
 ## Khi nào dùng skill này
 
 - User hỏi C4 model là gì / vì sao kit tách riêng Context và Container.
-- `docs/01-business-requirement`, `02-user-requirement`, `03-functional-requirement` liên
+- `docs/business-requirement`, `docs/user-requirement`, `docs/functional-requirement` liên
   quan đã `status: approved`, cần sinh system overview.
 
 ## Quy trình tạo Context Diagram (Level 1)
 
-1. Đọc `docs/00-glossary/glossary.md` (thuật ngữ dự án, dùng nhất quán khi đặt tên hệ thống/
-   container/component), rồi toàn bộ `docs/01-03` đã approved (đặc biệt UR để lấy
+1. Đọc `docs/glossary/glossary.md` (thuật ngữ dự án, dùng nhất quán khi đặt tên hệ thống/
+   container/component), rồi toàn bộ BR/UR/FR đã approved (đặc biệt UR để lấy
    Actor/Persona, FR để lấy hệ thống ngoài cần tích hợp). Khi viết nội dung ở Context/
    Container/Component/Interface Contract, thuật ngữ đã có trong glossary → gắn link Markdown
    tới đúng mục ở lần xuất hiện đầu tiên trong mỗi tài liệu (xem `RULES.md` mục 2).
 2. Viết 1–2 câu mô tả hệ thống trung tâm.
-3. Điền `docs/04-system-overview/c4-context.md`: bảng Actors/Personas, bảng Hệ thống ngoài
+3. Điền `docs/system-overview/c4-context.md`: bảng Actors/Personas, bảng Hệ thống ngoài
    liên quan (mục đích tích hợp + hướng dữ liệu in/out), diagram mermaid `graph TD`.
 4. **Không** đưa chi tiết kỹ thuật (tên container, công nghệ, API) vào tầng này — đó là việc
    của Container Diagram. Audience tầng này gồm cả người phi kỹ thuật.
@@ -94,7 +94,7 @@ tạo `c4-context.md`, `templates/container-interface-template.md` dùng để t
 ## Quy trình tạo Component Diagram (Level 3)
 
 1. Với mỗi container thuộc diện cần Component diagram (xem bước 5 ở trên), tạo file
-   `docs/04-system-overview/c4-component-<mã-container>.md` (`<mã-container>` là "Mã" của
+   `docs/system-overview/c4-component-<mã-container>.md` (`<mã-container>` là "Mã" của
    container đó trong `c4-container.md`), `source_docs: [SYS-CTR-xxx]` trỏ về container cha.
 2. Liệt kê từng component/module bên trong container, mỗi component gán tên ngắn gọn kèm
    trách nhiệm chính — ở mức đủ để dev trong team sở hữu container hiểu bố cục mà không cần
@@ -145,8 +145,8 @@ Không phải 1 Level của C4 — là phụ lục dữ liệu đi kèm Containe
    phải 1 hợp đồng 2 bên nội bộ tự chốt — nếu chưa xác nhận được với bên thứ ba, ghi rõ "chưa xác
    nhận với <hệ thống ngoài>" thay vì để trống hoặc bỏ qua không ghi gì (bỏ qua là sai, vì đây
    chính là dữ liệu Bước C cần để không tự bịa hợp đồng tích hợp).
-2. Tạo `docs/04-system-overview/container-interface.md` (`SYS-IFC-xxx`, dùng
-   `docs/04-system-overview/templates/container-interface-template.md`), `source_docs` trỏ về
+2. Tạo `docs/system-overview/container-interface.md` (`SYS-IFC-xxx`, dùng
+   `docs/system-overview/templates/container-interface-template.md`), `source_docs` trỏ về
    `c4-container.md`/`c4-component-*.md` liên quan.
 3. Gán 1 mã **CIC** (`CIC-001` tăng dần) cho mỗi **hàng (cạnh có hướng)** trong bảng "Giao tiếp"
    của `c4-container.md` cần chốt trước — 2 container gọi nhau cả 2 chiều, ghi thành 2 hàng ở
@@ -187,8 +187,8 @@ xuất hiện ở nhiều luồng/nhiều container.
 1. Chỉ tạo khi nhiều entity dùng chung bởi nhiều CIC/container, và mô tả rời rạc trong từng CIC
    sẽ bị lặp lại hoặc lệch nhau. Không bắt buộc cho mọi hệ thống — hệ thống ít entity/quan hệ
    rời rạc thì field list ngay trong từng CIC là đủ, dừng ở `container-interface.md`.
-2. Tạo `docs/04-system-overview/entity-interface.md` (`SYS-SIC-xxx`, dùng
-   `docs/04-system-overview/templates/entity-interface-template.md`), `source_docs` trỏ về
+2. Tạo `docs/system-overview/entity-interface.md` (`SYS-SIC-xxx`, dùng
+   `docs/system-overview/templates/entity-interface-template.md`), `source_docs` trỏ về
    `c4-container.md` (container/DB sở hữu entity) và/hoặc `container-interface.md` liên quan.
 3. Vẽ sơ đồ quan hệ entity (mermaid `erDiagram`) + bảng mô tả quan hệ: cardinality (`1–1`,
    `1–0..n`, `n–n`, đệ quy...), bên nào là FK, bắt buộc hay tuỳ chọn.
@@ -221,7 +221,7 @@ Liệt kê ra từng file C4/Interface Contract đã tạo/sửa trong phiên �
 `c4-component-*.md`** (1 file/container), không chỉ file đầu tiên hay file đang nhớ. Với **từng
 file trong danh sách đó** (`c4-context.md`, `c4-container.md`, mỗi `c4-component-<mã>.md`,
 `container-interface.md`, `entity-interface.md`), kiểm lại riêng việc gắn link glossary: mọi
-thuật ngữ đã có trong `docs/00-glossary/glossary.md` dùng trong file đó có link ở lần xuất hiện
+thuật ngữ đã có trong `docs/glossary/glossary.md` dùng trong file đó có link ở lần xuất hiện
 đầu tiên chưa (xem bước 1 ở Context Diagram, `RULES.md` mục 2). **Nếu file đó đã `status:
 approved`** khi phát hiện thiếu link — đưa lại về `draft` trước khi sửa (xem `CLAUDE.md`), không
 sửa thẳng nội dung mà giữ nguyên `approved`. Quy tắc này hay bị bỏ quên trong

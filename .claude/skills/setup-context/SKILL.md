@@ -3,16 +3,17 @@ name: setup-context
 description: >
   Dẫn dắt người dùng bằng hội thoại tự nhiên (không đọc nguyên văn 3 câu hỏi cố định) để lộ
   ra WHY (vì sao dự án tồn tại) → WHO (ai dùng) → WHAT (nhu cầu/kết quả cần đạt được, không
-  phải cách hiện thực), rồi tạo trực tiếp BR-001, UR-001, FR-001 (docs/01-03) từ template
+  phải cách hiện thực), rồi tạo trực tiếp BR-001, UR-001, FR-001 (docs/business-requirement,
+  docs/user-requirement, docs/functional-requirement) từ template
   tương ứng của Spec Kit này — không qua bước nháp trung gian. Dùng skill này khi user nói
   "khởi tạo dự án mới", "setup context", "bắt đầu dùng spec kit cho dự án X", hoặc khi
-  docs/01-business-requirement còn trống mà user muốn bắt đầu pipeline.
+  docs/business-requirement còn trống mà user muốn bắt đầu pipeline.
 ---
 
 # setup-context
 
-Mục tiêu: giúp user tạo `BR-001` (`docs/01-business-requirement`), `UR-001`
-(`docs/02-user-requirement`), `FR-001` (`docs/03-functional-requirement`) qua một cuộc hội
+Mục tiêu: giúp user tạo `BR-001` (`docs/business-requirement`), `UR-001`
+(`docs/user-requirement`), `FR-001` (`docs/functional-requirement`) qua một cuộc hội
 thoại tự nhiên về dự án họ muốn làm, thay vì bắt user tự viết đủ 3 tài liệu chuẩn từ đầu hoặc
 trả lời máy móc 3 câu hỏi cố định "WHY của bạn là gì?". Đây là bước đầu tiên khi chưa có
 BR/UR/FR nào trong dự án — Business Requirement là gốc, User Requirement và Functional
@@ -74,7 +75,7 @@ loại và điền đúng tài liệu — không phải kịch bản câu hỏi 
   Requirement) chỉ được tạo khi tài liệu tầng trước đã `status: approved` — không nhảy cấp.
 - Nếu user có nhiều hơn 1 WHY/WHO/WHAT cần tách (ví dụ nhiều persona khác nhau → nhiều UR),
   tạo thêm `UR-002`, `UR-003`... theo đúng naming convention thay vì nhồi vào 1 file.
-- Khi viết nội dung BR/UR/FR, thuật ngữ đã có trong `docs/00-glossary/glossary.md` → gắn link
+- Khi viết nội dung BR/UR/FR, thuật ngữ đã có trong `docs/glossary/glossary.md` → gắn link
   Markdown tới đúng mục ở lần xuất hiện đầu tiên trong tài liệu (xem `RULES.md` mục 2).
 - **Không nhắc tên mã container/hệ thống cụ thể** (dạng slug kỹ thuật như `checkout-api`,
   `maintenance-mobile`) trong BR/UR/FR hay `glossary.md` — mã container chỉ được chốt ở Bước A
@@ -85,12 +86,12 @@ loại và điền đúng tài liệu — không phải kịch bản câu hỏi 
 
 ## Quy trình
 
-1. Kiểm tra `docs/00-glossary/glossary.md` đã tồn tại chưa (AGENTS.md, nguyên tắc chung #1 bắt
+1. Kiểm tra `docs/glossary/glossary.md` đã tồn tại chưa (AGENTS.md, nguyên tắc chung #1 bắt
    buộc đọc file này trước mọi tài liệu). Đây thường là task đầu tiên chạy trên 1 dự án mới nên
    file này nhiều khả năng chưa có — nếu chưa có, copy nguyên trạng
-   `docs/00-glossary/template.md` thành `glossary.md` trước khi hỏi câu mở đầu, không hỏi user,
+   `docs/glossary/template.md` thành `glossary.md` trước khi hỏi câu mở đầu, không hỏi user,
    không bỏ qua bước này. Nếu đã có, đọc qua để nắm thuật ngữ dự án hiện tại.
-2. Kiểm tra `docs/01-business-requirement/` đã có file `BR-*` nào ngoài `template.md` chưa.
+2. Kiểm tra `docs/business-requirement/` đã có file `BR-*` nào ngoài `template.md` chưa.
    Nếu có, hỏi user muốn tạo BR mới hay tiếp tục/refine BR đang có — không tự ý ghi đè.
 3. **Hỏi mở đầu, 1 câu duy nhất, ngôn ngữ tự nhiên** — ví dụ: "Kể tôi nghe về dự án bạn muốn
    làm — bạn đang hình dung xây cái gì, cho ai dùng, và điều gì khiến bạn muốn làm nó?". Không
@@ -103,11 +104,11 @@ loại và điền đúng tài liệu — không phải kịch bản câu hỏi 
      đề/nắm bắt cơ hội gì, không làm thì sao, cải thiện được gì (IMPROVE) và đánh đổi gì (COST).
      Nếu phần này còn thiếu/mờ sau câu hỏi mở, hỏi tiếp tự nhiên theo mạch chuyện (ví dụ dựa
      vào lý do user vừa nêu, hỏi sâu hơn về hệ quả nếu không làm). Khi đủ nội dung → tạo
-     `docs/01-business-requirement/BR-001_<slug>.md` từ `template.md`, điền "Bối cảnh (WHY)",
+     `docs/business-requirement/BR-001_<slug>.md` từ `template.md`, điền "Bối cảnh (WHY)",
      "Mục tiêu kinh doanh", "Lợi ích & chi phí (IMPROVE/COST)".
    - **Đối tượng dùng + nhu cầu (→ UR, khái niệm WHO):** ai dùng — persona nào, pain point hiện
      tại, nhu cầu cụ thể. Nếu còn thiếu/mờ, hỏi tiếp tự nhiên (ví dụ "Còn ai khác cũng dùng cái
-     này không, hay chỉ mình họ?"). Khi đủ → tạo `docs/02-user-requirement/UR-001_<slug>.md`,
+     này không, hay chỉ mình họ?"). Khi đủ → tạo `docs/user-requirement/UR-001_<slug>.md`,
      điền "Đối tượng người dùng (WHO)". Nếu user kể **nhiều nhu cầu khác nhau** trong cùng 1 UR
      (cùng 1 persona nhưng nhiều nhu cầu tách biệt) — điền **mỗi nhu cầu 1 dòng riêng** trong
      bảng "Nhu cầu người dùng & Ưu tiên", **không gộp chung** nhiều nhu cầu vào 1 dòng rồi dùng
@@ -121,7 +122,7 @@ loại và điền đúng tài liệu — không phải kịch bản câu hỏi 
      gì để đáp ứng nhu cầu đó (mô tả ở mức kết quả cần đạt, chưa cần nói cách triển khai kỹ
      thuật — cách hiện thực sẽ quyết định ở System Overview/C4 và khi phân rã Epic/Feature/User
      Story), có business rule nào cần biết trước không. Nếu còn thiếu/mờ, hỏi tiếp tự nhiên.
-     Khi đủ → tạo `docs/03-functional-requirement/FR-001_<slug>.md`, điền "Mô tả chức năng
+     Khi đủ → tạo `docs/functional-requirement/FR-001_<slug>.md`, điền "Mô tả chức năng
      (WHAT)", "Business rules", `parent_user_requirement: UR-001`.
    Thứ tự hỏi-tiếp không bắt buộc theo đúng thứ tự BR→UR→FR ở trên nếu mạch hội thoại tự nhiên
    dẫn sang nhóm khác trước — miễn cuối cùng cả 3 nhóm đều đủ nội dung trước khi tạo file tương
@@ -133,7 +134,7 @@ loại và điền đúng tài liệu — không phải kịch bản câu hỏi 
    - **Glossary link**: liệt kê ra từng file BR/UR/FR đã tạo/sửa trong phiên (không chỉ file gần
      nhất đang nhớ — lỗi thật đã xảy ra: link đúng ở file đầu tiên mỗi tầng, bị quên hoàn toàn ở
      các file sau cùng tầng), rồi với **từng file trong danh sách đó**, kiểm mọi thuật ngữ đã có
-     trong `docs/00-glossary/glossary.md` dùng trong file có link ở lần xuất hiện đầu tiên chưa
+     trong `docs/glossary/glossary.md` dùng trong file có link ở lần xuất hiện đầu tiên chưa
      (xem nguyên tắc ở trên, `RULES.md` mục 2). **Nếu file đó đã `status: approved`** khi phát
      hiện thiếu link — đưa lại về `status: draft` trước khi sửa (xem `CLAUDE.md`, mục "Đặt tên,
      ID và versioning": sửa nội dung tài liệu đã approved phải đưa lại draft để review lại), sửa

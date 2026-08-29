@@ -1,7 +1,7 @@
 # AGENTS.md — Hướng dẫn cho Agent khi làm việc với Spec Kit này
 
 ## Nguyên tắc chung
-1. LUÔN đọc `CONTEXT.md` và `docs/00-glossary/glossary.md` trước khi xử lý bất kỳ tài liệu nào — `CONTEXT.md` giới thiệu kit + thành phần chính, không phải nơi nháp WHY/WHO/WHAT (dùng skill `setup-context` để ghi thẳng vào BR/UR/FR).
+1. LUÔN đọc `CONTEXT.md` và `docs/glossary/glossary.md` trước khi xử lý bất kỳ tài liệu nào — `CONTEXT.md` giới thiệu kit + thành phần chính, không phải nơi nháp WHY/WHO/WHAT (dùng skill `setup-context` để ghi thẳng vào BR/UR/FR).
 2. KHÔNG bỏ qua tầng ở BR → UR → FR → System Overview: chỉ sinh tài liệu ở tầng N+1 khi tài
    liệu tầng N có `status: approved` (xem bảng vòng đời status ở `CLAUDE.md`). Tầng backlog
    (Epic → Feature → User Story) KHÔNG bị chặn bởi status của tầng
@@ -36,14 +36,14 @@
 flowchart TD
     CTX["CONTEXT.md
     (plain text, đọc đầu tiên, nếu có)"]
-    G["docs/00-glossary/glossary.md
+    G["docs/glossary/glossary.md
     (đọc trước mọi bước)"]
 
     A["Bước A — System Overview (C4)
-    Input: docs/01-03 (approved)
+    Input: BR/UR/FR (approved)
     Output: c4-context.md + c4-container.md + c4-component-*.md"]
     B["Bước B — Backlog
-    Input: docs/01-03 (approved) + c4-container.md (tồn tại)
+    Input: BR/UR/FR (approved) + c4-container.md (tồn tại)
     Output: Epic → Feature → User Story"]
     C["Bước C — Thực thi User Story
     Đọc US + parent chain + C4 container/component
@@ -59,16 +59,16 @@ flowchart TD
 ```
 
 ### Bước A — Sinh System Overview (C4)
-Input: `docs/00-glossary/glossary.md` (thuật ngữ dự án, đảm bảo đặt tên container/component
-đúng ngữ cảnh) và toàn bộ `docs/01-business-requirement`, `02-user-requirement`,
-`03-functional-requirement` (status = approved).
-Output: `docs/04-system-overview/c4-context.md`, `c4-container.md`, và 1 `c4-component-*.md`
+Input: `docs/glossary/glossary.md` (thuật ngữ dự án, đảm bảo đặt tên container/component
+đúng ngữ cảnh) và toàn bộ `docs/business-requirement`, `docs/user-requirement`,
+`docs/functional-requirement` (status = approved).
+Output: `docs/system-overview/c4-context.md`, `c4-container.md`, và 1 `c4-component-*.md`
 cho mỗi container có codebase thực sự (xem skill `c4-model`). Không sinh Code diagram (Level 4)
 trừ khi được yêu cầu rõ ràng.
 
 Khi giao tiếp giữa 2 container có dữ liệu thật cần thống nhất trước (để 2 container do 2
 phiên/agent khác nhau thực thi không lệch schema), tạo thêm
-`docs/04-system-overview/container-interface.md` (`SYS-IFC-xxx`,
+`docs/system-overview/container-interface.md` (`SYS-IFC-xxx`,
 mỗi luồng gán 1 mã `CIC-xxx` cục bộ trong file
 đó — xem skill `c4-model`) — chỉ chốt schema dữ liệu (field nào bắt buộc/tuỳ chọn, kiểu ở mức
 khái niệm — text/số/ngày-giờ/boolean/enum, dữ liệu cần
@@ -77,7 +77,7 @@ Component diagram đã có, KHÔNG thiết kế API hay DB cụ thể (method HT
 bảng/cột/kiểu SQL) — kể cả với container DB thuần. Đó là Code (Level 4), quyết định ở Bước C.
 
 Nếu nhiều entity dùng chung bởi nhiều CIC/container mà mô tả rời rạc trong từng CIC sẽ bị lặp
-hoặc lệch nhau, tạo thêm `docs/04-system-overview/entity-interface.md` (`SYS-SIC-xxx`,
+hoặc lệch nhau, tạo thêm `docs/system-overview/entity-interface.md` (`SYS-SIC-xxx`,
 xem skill `c4-model`) — định nghĩa entity, field (kiểu khái niệm), và quan hệ giữa các entity
 (1-nhiều, nhiều-nhiều, đệ quy...) ở mức logic, độc lập công nghệ lưu trữ. Không bắt buộc cho mọi
 hệ thống — hệ thống ít entity/quan hệ rời rạc thì field list trong từng CIC là đủ. Tài liệu này
@@ -85,12 +85,12 @@ không thay thế `container-interface.md`: đây là nguồn sự thật cho h�
 CIC là nguồn sự thật cho thao tác nào gửi/nhận entity đó qua luồng nào.
 
 ### Bước B — Sinh Backlog
-Input: `docs/01-03` (đã approved) và `docs/04-system-overview/c4-container.md` đã tồn tại
+Input: BR/UR/FR (đã approved) và `docs/system-overview/c4-container.md` đã tồn tại
 (không bắt buộc `status: approved`, nhưng phải có bảng "Danh sách container" để tra
 `source_container` — xem skill `plan-backlog`).
 Output theo thứ tự: Epic → Feature → User Story, mỗi cấp dùng đúng template
-trong `docs/05-backlog/*/`. Liên kết `parent_*` bắt buộc. Epic nằm phẳng trong
-`docs/05-backlog/epics/`; Feature/User Story nằm trong subfolder theo Epic sở hữu (xem
+trong `docs/backlog/*/`. Liên kết `parent_*` bắt buộc. Epic nằm phẳng trong
+`docs/backlog/epics/`; Feature/User Story nằm trong subfolder theo Epic sở hữu (xem
 `CLAUDE.md`, mục "Đặt tên, ID và versioning") — không tạo phẳng chung 1 thư mục. Tiêu chí
 phân rã từng cấp (Epic/Feature/User Story) và dấu hiệu User Story đủ nhỏ/đủ rõ: xem skill
 `plan-backlog`.
@@ -112,7 +112,7 @@ cột "Trách nhiệm" của từng container trong bảng đó:
   container diagram trước, không tự bịa container ở backlog.
 
 **"Backlog"** không phải 1 file riêng — đó là trạng thái gộp của mọi Epic/Feature/User Story
-trong `docs/05-backlog` đang `draft` và không `blocked` (chưa `approved` nghĩa là chưa xong).
+trong `docs/backlog` đang `draft` và không `blocked` (chưa `approved` nghĩa là chưa xong).
 Ưu tiên xử lý: loại các item đang `blocked` trước, còn lại sắp theo field `priority` trên
 Feature/US (`P0` xử lý trước, `P3` sau cùng).
 
@@ -179,17 +179,17 @@ nhắc: việc code nằm ngoài phạm vi spec-kit này. Bước C chỉ mô t�
 repo spec-kit này trước khi code, và cập nhật gì lại đây sau khi code xong.
 
 Trước khi code, đọc theo thứ tự:
-1. `docs/00-glossary/glossary.md`
+1. `docs/glossary/glossary.md`
 2. File User Story hiện tại — mục "Context cho Agent" nếu có (US tạo trước khi mục này có
    trong template có thể chưa có; khi đó đi thẳng bước 3)
 3. `parent_feature` → các FR trong `docs_requirements`
-4. `docs/04-system-overview/c4-container.md` (container liên quan), và `c4-component-<mã
+4. `docs/system-overview/c4-container.md` (container liên quan), và `c4-component-<mã
    container>.md` của container đó nếu file này tồn tại (container đơn giản, không có cấu
    trúc nội bộ đáng vẽ, sẽ không có file Component — xem skill `c4-model`)
-5. `docs/04-system-overview/container-interface.md` nếu tồn tại — mục CIC-xxx tương
+5. `docs/system-overview/container-interface.md` nếu tồn tại — mục CIC-xxx tương
    ứng luồng giao tiếp qua container liên quan, tránh tự bịa field khác với container ở đầu kia
    đã thống nhất
-6. `docs/04-system-overview/entity-interface.md` nếu tồn tại — entity liên quan (field
+6. `docs/system-overview/entity-interface.md` nếu tồn tại — entity liên quan (field
    + quan hệ), đặc biệt khi CIC ở bước 5 trỏ về entity trong tài liệu này thay vì liệt kê lại
    field
 

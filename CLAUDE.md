@@ -29,10 +29,10 @@ riêng.
 - Tên file theo mẫu: `{PREFIX}-{ID}_{slug-ngan-gon}.md`, ví dụ `EPIC-003_checkout-flow.md`.
 - Feature/User Story nằm trong subfolder theo Epic sở hữu, KHÔNG để phẳng chung 1 thư mục —
   tránh thư mục có hàng nghìn file khi backlog lớn (nhiều Epic × nhiều Feature × nhiều US):
-  `docs/05-backlog/{features,user-stories}/{EPIC-ID}_{slug-epic}/{PREFIX}-xxx_{slug}.md`,
+  `docs/backlog/{features,user-stories}/{EPIC-ID}_{slug-epic}/{PREFIX}-xxx_{slug}.md`,
   trong đó `{EPIC-ID}_{slug-epic}` trùng đúng tên file Epic sở hữu (bỏ đuôi `.md`), ví dụ
-  `docs/05-backlog/features/EPIC-003_checkout-flow/FEAT-012_luu-the.md`. Epic vẫn nằm phẳng
-  trong `docs/05-backlog/epics/` (số lượng Epic luôn nhỏ, không cần subfolder). Đây chỉ là tổ
+  `docs/backlog/features/EPIC-003_checkout-flow/FEAT-012_luu-the.md`. Epic vẫn nằm phẳng
+  trong `docs/backlog/epics/` (số lượng Epic luôn nhỏ, không cần subfolder). Đây chỉ là tổ
   chức vật lý để dễ duyệt — `parent_*` trong frontmatter mới là nguồn sự thật cho quan hệ cha-con.
 - Frontmatter của mỗi file có `version` (số nguyên tăng dần) và `last_updated`, **trừ Meeting
   Notes** (`MEET-*`) — biên bản họp là bản ghi sự việc đã xảy ra, không theo vòng đời
@@ -76,22 +76,22 @@ riêng.
   trong mô tả ngắn, ví dụ `docs(br): BR-001 setup context (+ UR-001, FR-001)`.
 - Mọi file backlog phải trỏ ngược lên tài liệu đã sinh ra nó: `parent_*` cho quan hệ cha-con
   trong backlog (`parent_epic` trên Feature, `parent_feature` trên User Story), và
-  `docs_requirements` (mảng ID BR/UR/FR) cho liên kết tới tầng 01-03 — để truy vết một User
-  Story qua Feature → Epic → BR/UR/FR liên quan.
+  `docs_requirements` (mảng ID BR/UR/FR) cho liên kết tới tầng Business/User/Functional
+  Requirement — để truy vết một User Story qua Feature → Epic → BR/UR/FR liên quan.
 
 Đây là nguồn duy nhất cho naming convention trong repo — không tạo file trùng nội dung này ở nơi khác.
 
 ## Tham khảo nhanh
 
-- Sơ đồ luồng đầy đủ (docs/01 → backlog): `README.md`.
+- Sơ đồ luồng đầy đủ (BR/UR/FR → system overview → backlog): `README.md`.
 - Nguyên tắc chung + quy trình agent theo Bước A–C, E + "Ma trận lan truyền thay đổi" (sơ đồ
   mermaid: sửa 1 tài liệu thì cần rà soát gì): `AGENTS.md`.
 - Ngôn ngữ/giọng văn, thuật ngữ, traceability, bảo mật, git/commit: `RULES.md`.
-- Thuật ngữ nghiệp vụ + kỹ thuật/văn phong: `docs/00-glossary/glossary.md`.
+- Thuật ngữ nghiệp vụ + kỹ thuật/văn phong: `docs/glossary/glossary.md`.
 - Bối cảnh dự án cụ thể + các thành phần chính của kit: `CONTEXT.md`.
 - Khởi tạo BR/UR/FR qua hội thoại tự nhiên về dự án user muốn làm (không phải 3 câu hỏi cố
   định WHY/WHO/WHAT): skill `setup-context`.
-- Giải thích C4 Model + tạo `docs/04-system-overview`: skill `c4-model`.
+- Giải thích C4 Model + tạo `docs/system-overview`: skill `c4-model`.
 - Phân rã Epic → Feature → User Story: skill `plan-backlog`.
 - Backlog hiện có gì, hoặc cây Epic→Feature→User Story (đọc trực tiếp frontmatter, không có
   dashboard/index riêng): skill `backlog-status`.

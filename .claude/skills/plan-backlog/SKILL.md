@@ -3,8 +3,8 @@ name: plan-backlog
 description: >
   Dẫn dắt team phân rã BR/UR/FR đã approved thành Epic → Feature → User Story. Dùng skill
   này khi user nói "tạo backlog", "phân rã epic/feature/user story", "backlog hoạt động thế
-  nào", hoặc sau khi docs/01-03 đã `status: approved` và `docs/04-system-overview/
-  c4-container.md` đã có mà chưa có Epic nào trong docs/05-backlog.
+  nào", hoặc sau khi BR/UR/FR đã `status: approved` và `docs/system-overview/
+  c4-container.md` đã có mà chưa có Epic nào trong docs/backlog.
 ---
 
 # plan-backlog
@@ -51,11 +51,11 @@ sau để quyết định có cần tách User Story tiếp không:
   Story bên trong Feature. Không nhảy cấp, không hỏi dồn tất cả cùng lúc.
 - Mỗi cấp phải trỏ đúng `parent_*` theo bảng tiêu chí ở trên, và về đúng BR/UR/FR nguồn.
 - Epic cần điền `source_container` (mã container, cột "Mã" trong
-  `docs/04-system-overview/c4-container.md`) — không tự đặt mã container mới ở bước này; để
+  `docs/system-overview/c4-container.md`) — không tự đặt mã container mới ở bước này; để
   trống (`null`) nếu chỉ có 1 container cho toàn hệ thống.
-- Epic nằm phẳng trong `docs/05-backlog/epics/`. Feature/User Story nằm trong subfolder
+- Epic nằm phẳng trong `docs/backlog/epics/`. Feature/User Story nằm trong subfolder
   theo Epic sở hữu (tránh 1 thư mục phẳng chứa hàng nghìn file khi backlog lớn):
-  `docs/05-backlog/{features,user-stories}/{EPIC-ID}_{slug-epic}/{PREFIX}-xxx_{slug}.md`,
+  `docs/backlog/{features,user-stories}/{EPIC-ID}_{slug-epic}/{PREFIX}-xxx_{slug}.md`,
   trong đó `{EPIC-ID}_{slug-epic}` trùng đúng tên file Epic sở hữu (bỏ đuôi `.md`). Tạo
   subfolder này khi tạo Feature đầu tiên của Epic đó.
 - Mọi User Story **mới tạo qua skill này** bắt buộc có Acceptance Criteria dạng Given/When/Then
@@ -75,36 +75,36 @@ sau để quyết định có cần tách User Story tiếp không:
 - Tất cả tạo mới ở `status: draft`. Không tự set `approved` — đó là quyết định của
   team khi review/khi việc thực sự xong.
 - Nếu một item phụ thuộc vào điều chưa rõ, không tự đoán — tạo file mới từ
-  `docs/06-meetings/open-questions/OQ-template.md` và set `status: blocked` kèm
+  `docs/meetings/open-questions/OQ-template.md` và set `status: blocked` kèm
   `blocked_by_open_questions` trên item đó.
 - Nếu một Feature/US chỉ thực hiện được sau khi Feature/US khác xong (phụ thuộc thứ
   tự, không phải chờ quyết định) → ghi ID đó vào field `depends_on` của item, KHÔNG dùng
   `status: blocked`/`blocked_by_open_questions` cho trường hợp này. Không bắt đầu thực hiện
   một item khi `depends_on` còn ID chưa `status: approved`.
-- Khi viết nội dung Epic/Feature/US, thuật ngữ đã có trong `docs/00-glossary/glossary.md` → gắn
+- Khi viết nội dung Epic/Feature/US, thuật ngữ đã có trong `docs/glossary/glossary.md` → gắn
   link Markdown tới đúng mục ở lần xuất hiện đầu tiên trong tài liệu (xem `RULES.md` mục 2).
 
 ## Quy trình
 
-1. Xác nhận `docs/01-business-requirement`, `docs/02-user-requirement`,
-   `docs/03-functional-requirement` liên quan đã `status: approved`, và
-   `docs/04-system-overview/c4-container.md` đã tồn tại (không bắt buộc `status: approved`,
+1. Xác nhận `docs/business-requirement`, `docs/user-requirement`,
+   `docs/functional-requirement` liên quan đã `status: approved`, và
+   `docs/system-overview/c4-container.md` đã tồn tại (không bắt buộc `status: approved`,
    nhưng phải có bảng "Danh sách container" để tra `source_container` ở bước 2). Nếu thiếu điều
    nào, dừng lại và nhắc user hoàn thiện trước.
 2. Hỏi **Epic**: "Mục tiêu kinh doanh lớn nào từ BR-xxx đang cần hiện thực hoá?" (điền
    `docs_requirements: [BR-xxx, ...]` — có thể nhiều BR nếu Epic hiện thực hoá mục tiêu chung
    của nhiều BR) → đối chiếu mục tiêu đó với cột "Trách nhiệm" trong
-   `docs/04-system-overview/c4-container.md` để tìm container khớp, rồi lấy đúng "Mã" của
+   `docs/system-overview/c4-container.md` để tìm container khớp, rồi lấy đúng "Mã" của
    container đó cho `source_container`. Nếu mục tiêu khớp trách nhiệm của nhiều container, tách
    thành nhiều Epic (mỗi Epic 1 `source_container`) thay vì gán nhiều container cho 1 Epic. Nếu
    không container nào khớp, hoặc bảng container chưa có mã/chưa đủ rõ để quyết định — đây
    không phải việc để tự suy đoán ở bước này: dừng lại, hỏi trực tiếp user muốn đặt mã/tên
-   container nào (hoặc nhờ user/team bổ sung `docs/04-system-overview/c4-container.md` trước)
-   rồi mới tiếp tục tạo `docs/05-backlog/epics/EPIC-xxx_<slug>.md`.
+   container nào (hoặc nhờ user/team bổ sung `docs/system-overview/c4-container.md` trước)
+   rồi mới tiếp tục tạo `docs/backlog/epics/EPIC-xxx_<slug>.md`.
 3. Hỏi **Feature** (cho từng Epic vừa tạo): "Epic này gồm những nhóm chức năng con nào?" —
    nếu user chỉ trả lời chung chung, brainstorm 2-4 nhóm chức năng cụ thể dựa trên Mục tiêu của
    Epic + UR/FR nguồn rồi hỏi lại (xem nguyên tắc ở trên) → tạo
-   `docs/05-backlog/features/{EPIC-ID}_{slug-epic}/FEAT-xxx_<slug>.md` cho mỗi Feature
+   `docs/backlog/features/{EPIC-ID}_{slug-epic}/FEAT-xxx_<slug>.md` cho mỗi Feature
    (subfolder trùng tên file Epic sở hữu), `parent_epic` + `docs_requirements` (UR liên quan)
    tương ứng.
    Nếu số Feature sắp vượt ~20, dừng lại nhắc user cân nhắc tách Epic (xem tiêu chí phân rã ở
@@ -112,7 +112,7 @@ sau để quyết định có cần tách User Story tiếp không:
 4. Hỏi **User Story** (cho từng Feature): "Ai (persona từ UR) cần làm gì, để được lợi ích gì?
    Given/When/Then là gì?" — nếu user chỉ trả lời chung chung, brainstorm hành vi/edge case cụ
    thể dựa trên FR nguồn + Feature cha rồi hỏi lại → tạo
-   `docs/05-backlog/user-stories/{EPIC-ID}_{slug-epic}/US-xxx_<slug>.md` (cùng Epic với Feature
+   `docs/backlog/user-stories/{EPIC-ID}_{slug-epic}/US-xxx_<slug>.md` (cùng Epic với Feature
    cha), điền `docs_requirements: [FR-xxx, ...]` và "Context cho Agent" (trỏ tới FR + system
    overview liên quan). Hỏi tiếp: "Còn edge
    case/trường hợp lỗi nào cần thêm vào Acceptance Criteria không?" → bổ sung ngay vào phần

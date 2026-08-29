@@ -5,7 +5,7 @@ status: draft        # draft | approved | deprecated
 version: 1
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
-source_docs: []       # ID BR/UR/FR (docs/01-03, đã approved) dùng để sinh context này
+source_docs: []       # ID BR/UR/FR (đã approved) dùng để sinh context này
 related_open_questions: []
 ---
 
