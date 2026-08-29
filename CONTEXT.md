@@ -16,8 +16,9 @@ Spec Kit là một khung tài liệu tái sử dụng cho việc phân tích ngh
 
 1. Đọc `docs/00-glossary/glossary.md` — từ điển thuật ngữ dự án, đọc trước khi xử lý bất kỳ
    tài liệu nào.
-2. Chạy skill `/setup-context` — sẽ hỏi dẫn dắt qua WHY (vì sao) → WHO (ai dùng) → WHAT (nhu
-   cầu/kết quả cần đạt được, chưa cần nói cách hiện thực), rồi ghi thẳng kết quả vào
+2. Chạy skill `/setup-context` — sẽ hỏi bằng hội thoại tự nhiên về dự án bạn muốn làm (không
+   phải 3 câu hỏi cố định), từ đó lộ ra vì sao dự án tồn tại, ai dùng, và nhu cầu/kết quả cần
+   đạt được (chưa cần nói cách hiện thực), rồi ghi thẳng kết quả vào
    `docs/01-business-requirement`, `02-user-requirement`,
    `03-functional-requirement` (đúng template của từng tầng). Không có bước nháp trung gian —
    trả lời tới đâu, tài liệu chính thức được tạo tới đó, tránh giữ hai bản.

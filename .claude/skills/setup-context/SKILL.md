@@ -1,26 +1,41 @@
 ---
 name: setup-context
 description: >
-  Dẫn dắt người dùng trả lời WHY (vì sao dự án tồn tại) → WHO (ai dùng) → WHAT (nhu cầu/
-  kết quả cần đạt được, không phải cách hiện thực), rồi tạo trực tiếp BR-001, UR-001,
-  FR-001 (docs/01-03) từ template tương ứng của
-  Spec Kit này — không qua bước nháp trung gian. Dùng skill này khi user nói "khởi tạo dự
-  án mới", "setup context", "bắt đầu dùng spec kit cho dự án X", hoặc khi
+  Dẫn dắt người dùng bằng hội thoại tự nhiên (không đọc nguyên văn 3 câu hỏi cố định) để lộ
+  ra WHY (vì sao dự án tồn tại) → WHO (ai dùng) → WHAT (nhu cầu/kết quả cần đạt được, không
+  phải cách hiện thực), rồi tạo trực tiếp BR-001, UR-001, FR-001 (docs/01-03) từ template
+  tương ứng của Spec Kit này — không qua bước nháp trung gian. Dùng skill này khi user nói
+  "khởi tạo dự án mới", "setup context", "bắt đầu dùng spec kit cho dự án X", hoặc khi
   docs/01-business-requirement còn trống mà user muốn bắt đầu pipeline.
 ---
 
 # setup-context
 
 Mục tiêu: giúp user tạo `BR-001` (`docs/01-business-requirement`), `UR-001`
-(`docs/02-user-requirement`), `FR-001` (`docs/03-functional-requirement`) bằng cách hỏi lần
-lượt WHY → WHO → WHAT, thay vì bắt user tự viết đủ 3 tài liệu chuẩn từ đầu. Đây là bước đầu
-tiên khi chưa có BR/UR/FR nào trong dự án — Business Requirement là gốc, User Requirement và
-Functional Requirement sinh ra từ đó.
+(`docs/02-user-requirement`), `FR-001` (`docs/03-functional-requirement`) qua một cuộc hội
+thoại tự nhiên về dự án họ muốn làm, thay vì bắt user tự viết đủ 3 tài liệu chuẩn từ đầu hoặc
+trả lời máy móc 3 câu hỏi cố định "WHY của bạn là gì?". Đây là bước đầu tiên khi chưa có
+BR/UR/FR nào trong dự án — Business Requirement là gốc, User Requirement và Functional
+Requirement sinh ra từ đó. WHY/WHO/WHAT ở đây là 3 **nhóm nội dung nội bộ** agent dùng để phân
+loại và điền đúng tài liệu — không phải kịch bản câu hỏi đọc nguyên văn cho user.
 
 ## Nguyên tắc khi chạy skill này
 
-- Hỏi **từng câu một, đợi trả lời** — WHY trước, vì câu trả lời cho WHO/WHAT thường phụ thuộc
-  vào WHY. Không hỏi dồn.
+- **Câu hỏi mở đầu bằng ngôn ngữ đời thường, không nhắc thuật ngữ WHY/WHO/WHAT.** Hỏi user
+  đang muốn xây dự án gì, theo cách một người bình thường mô tả ý tưởng của họ — không đọc lại
+  3 câu hỏi mẫu cố định như một bảng câu hỏi. Câu trả lời tự do có thể chứa cả 3 khía cạnh
+  (động cơ, đối tượng dùng, kết quả cần đạt) trộn lẫn cùng lúc, hoặc chỉ 1-2 khía cạnh — agent
+  tự nghe và phân loại nội dung vào đúng nhóm (bối cảnh/động cơ → BR, đối tượng+nhu cầu → UR,
+  kết quả/chức năng → FR), không bắt user tự tách bạch.
+- **Hỏi tiếp để lấp khoảng trống, bằng câu hỏi bám sát ngữ cảnh vừa nghe — không đọc lại câu
+  hỏi mẫu.** Sau câu hỏi mở, rà xem nhóm nào (động cơ/đối tượng/kết quả) còn thiếu hoặc còn mờ,
+  rồi hỏi tiếp tự nhiên dựa trên chính những gì user vừa kể — ví dụ nếu user đã kể rõ ai dùng
+  và họ cần gì nhưng chưa nói vì sao dự án cần tồn tại, hỏi tiếp kiểu "Điều gì khiến bạn muốn
+  làm cái này ngay bây giờ? Nếu không làm thì sao?" thay vì hỏi máy móc "WHY của bạn là gì?".
+  Một số câu hỏi (ví dụ MoSCoW cho từng nhu cầu — xem bước 4) vẫn cần hỏi tường minh vì không
+  thể suy ra từ văn phong tự nhiên; những câu đó vẫn nên lồng vào mạch hội thoại, không đọc như
+  đang điền form.
+- Hỏi **từng câu một, đợi trả lời** — không hỏi dồn nhiều câu cùng lúc trong 1 lượt.
 - Ghi thẳng vào file chính thức (BR/UR/FR) — **không** tạo file nháp trung gian. Trả lời tới
   đâu, tài liệu được tạo/cập nhật tới đó, tránh giữ hai bản.
 - Vẫn phải điền đủ frontmatter theo template của từng loại: `id`, `type`, `status: draft`,
@@ -49,34 +64,48 @@ Functional Requirement sinh ra từ đó.
 1. Kiểm tra `docs/00-glossary/glossary.md` đã tồn tại chưa (AGENTS.md, nguyên tắc chung #1 bắt
    buộc đọc file này trước mọi tài liệu). Đây thường là task đầu tiên chạy trên 1 dự án mới nên
    file này nhiều khả năng chưa có — nếu chưa có, copy nguyên trạng
-   `docs/00-glossary/template.md` thành `glossary.md` trước khi hỏi WHY, không hỏi user, không
-   bỏ qua bước này. Nếu đã có, đọc qua để nắm thuật ngữ dự án hiện tại.
+   `docs/00-glossary/template.md` thành `glossary.md` trước khi hỏi câu mở đầu, không hỏi user,
+   không bỏ qua bước này. Nếu đã có, đọc qua để nắm thuật ngữ dự án hiện tại.
 2. Kiểm tra `docs/01-business-requirement/` đã có file `BR-*` nào ngoài `template.md` chưa.
    Nếu có, hỏi user muốn tạo BR mới hay tiếp tục/refine BR đang có — không tự ý ghi đè.
-3. Hỏi **WHY**: "Vì sao dự án này cần tồn tại? Đang giải quyết vấn đề gì, hoặc nắm bắt cơ hội
-   gì? Nếu không làm, điều gì sẽ tệ hơn? Có gì cải thiện được (IMPROVE) và đánh đổi gì
-   (COST)?" — nếu câu trả lời còn chung chung, brainstorm 2-4 hướng cụ thể rồi hỏi lại (xem
-   nguyên tắc ở trên) → tạo `docs/01-business-requirement/BR-001_<slug>.md` từ `template.md`,
-   điền mục "Bối cảnh (WHY)", "Mục tiêu kinh doanh", "Lợi ích & chi phí (IMPROVE/COST)".
-4. Hỏi **WHO**: "Ai dùng hệ thống này — persona nào, pain point hiện tại của họ là gì? Nhu cầu
-   cụ thể là gì?" — nếu câu trả lời còn chung chung, brainstorm persona/pain point cụ thể rồi
-   hỏi lại → tạo `docs/02-user-requirement/UR-001_<slug>.md`, điền "Đối tượng người
-   dùng (WHO)", "Nhu cầu người dùng", `parent_business_requirement: BR-001`. Hỏi tiếp, tường
-   minh, không tự suy đoán: "Nhu cầu này ở mức ưu tiên nào — Must have / Should have / Could
-   have / Won't have (MoSCoW)?" cho từng nhu cầu vừa ghi → điền mục "Ưu tiên" của UR. Đây là
-   field bắt buộc trong `UR-template.md`, không phải nội dung agent tự gán theo cảm nhận.
-5. Hỏi **WHAT**: "Hệ thống cần đạt được kết quả/đầu ra gì để đáp ứng nhu cầu đó? (mô tả
-   chức năng ở mức kết quả cần đạt, chưa cần nói cách triển khai kỹ thuật — cách hiện thực sẽ
-   quyết định ở System Overview/C4 và khi phân rã Epic/Feature/User Story). Có business rule nào cần
-   biết trước không?" — nếu câu trả lời còn chung chung, brainstorm kết quả/business rule cụ
-   thể rồi hỏi lại → tạo `docs/03-functional-requirement/FR-001_<slug>.md`, điền "Mô tả
-   chức năng (WHAT)", "Business rules", `parent_user_requirement: UR-001`.
-6. Cập nhật ngược mục "Liên kết" ở BR-001/UR-001 để trỏ xuôi tới UR-001/FR-001 vừa tạo. **Trước
+3. **Hỏi mở đầu, 1 câu duy nhất, ngôn ngữ tự nhiên** — ví dụ: "Kể tôi nghe về dự án bạn muốn
+   làm — bạn đang hình dung xây cái gì, cho ai dùng, và điều gì khiến bạn muốn làm nó?". Không
+   đọc nguyên văn 3 câu hỏi WHY/WHO/WHAT tách rời, không dùng thuật ngữ này khi hỏi user. Nếu
+   câu trả lời còn chung chung/mơ hồ ngay từ đầu, brainstorm 2-4 hướng cụ thể rồi hỏi lại (xem
+   nguyên tắc ở trên) trước khi đi tiếp.
+4. **Phân loại câu trả lời vừa nghe** vào 3 nhóm nội bộ, rồi hỏi tiếp để lấp phần còn thiếu —
+   mỗi câu hỏi tiếp theo bám vào chính những gì user vừa kể, không đọc lại câu hỏi mẫu:
+   - **Động cơ/bối cảnh (→ BR, khái niệm WHY):** vì sao dự án cần tồn tại, đang giải quyết vấn
+     đề/nắm bắt cơ hội gì, không làm thì sao, cải thiện được gì (IMPROVE) và đánh đổi gì (COST).
+     Nếu phần này còn thiếu/mờ sau câu hỏi mở, hỏi tiếp tự nhiên theo mạch chuyện (ví dụ dựa
+     vào lý do user vừa nêu, hỏi sâu hơn về hệ quả nếu không làm). Khi đủ nội dung → tạo
+     `docs/01-business-requirement/BR-001_<slug>.md` từ `template.md`, điền "Bối cảnh (WHY)",
+     "Mục tiêu kinh doanh", "Lợi ích & chi phí (IMPROVE/COST)".
+   - **Đối tượng dùng + nhu cầu (→ UR, khái niệm WHO):** ai dùng — persona nào, pain point hiện
+     tại, nhu cầu cụ thể. Nếu còn thiếu/mờ, hỏi tiếp tự nhiên (ví dụ "Còn ai khác cũng dùng cái
+     này không, hay chỉ mình họ?"). Khi đủ → tạo `docs/02-user-requirement/UR-001_<slug>.md`,
+     điền "Đối tượng người dùng (WHO)", "Nhu cầu người dùng",
+     `parent_business_requirement: BR-001`. Riêng mục này **luôn phải hỏi tường minh, không tự
+     suy đoán từ văn phong**, vì không thể rút ra từ cách user kể chuyện: "Nhu cầu này ở mức ưu
+     tiên nào — Must have / Should have / Could have / Won't have (MoSCoW)?" cho từng nhu cầu
+     vừa ghi → điền mục "Ưu tiên" của UR. Đây là field bắt buộc trong `UR-template.md`, không
+     phải nội dung agent tự gán theo cảm nhận.
+   - **Kết quả/chức năng cần đạt (→ FR, khái niệm WHAT):** hệ thống cần đạt được kết quả/đầu ra
+     gì để đáp ứng nhu cầu đó (mô tả ở mức kết quả cần đạt, chưa cần nói cách triển khai kỹ
+     thuật — cách hiện thực sẽ quyết định ở System Overview/C4 và khi phân rã Epic/Feature/User
+     Story), có business rule nào cần biết trước không. Nếu còn thiếu/mờ, hỏi tiếp tự nhiên.
+     Khi đủ → tạo `docs/03-functional-requirement/FR-001_<slug>.md`, điền "Mô tả chức năng
+     (WHAT)", "Business rules", `parent_user_requirement: UR-001`.
+   Thứ tự hỏi-tiếp không bắt buộc theo đúng thứ tự BR→UR→FR ở trên nếu mạch hội thoại tự nhiên
+   dẫn sang nhóm khác trước — miễn cuối cùng cả 3 nhóm đều đủ nội dung trước khi tạo file tương
+   ứng (file vẫn phải tạo theo đúng thứ tự BR trước UR trước FR, vì UR/FR cần trỏ `parent_*` về
+   tài liệu đã tồn tại).
+5. Cập nhật ngược mục "Liên kết" ở BR-001/UR-001 để trỏ xuôi tới UR-001/FR-001 vừa tạo. **Trước
    khi coi bước này xong**: kiểm lại riêng việc gắn link glossary — mọi thuật ngữ đã có trong
    `docs/00-glossary/glossary.md` dùng trong BR/UR/FR vừa viết có link ở lần xuất hiện đầu tiên
    chưa (xem nguyên tắc ở trên, `RULES.md` mục 2) — quy tắc này hay bị bỏ quên trong lúc tập
    trung viết nội dung, kiểm lại rõ ràng ở đây thay vì chỉ tin đã làm đúng lúc viết.
-7. **Trước khi kết thúc phiên**, quét lại toàn bộ nội dung BR/UR/FR vừa viết trong phiên (không
+6. **Trước khi kết thúc phiên**, quét lại toàn bộ nội dung BR/UR/FR vừa viết trong phiên (không
    chỉ mục user vừa hỏi lại tường minh) — tìm mọi chi tiết cụ thể mà user chưa thực sự xác nhận,
    cả **định lượng** (con số, ngưỡng, success metric) lẫn **định tính** (business rule diễn đạt
    kiểu chắc chắn dù chỉ là suy đoán, hành vi lỗi cụ thể, MoSCoW tự gán thay vì hỏi — không chỉ
@@ -86,6 +115,6 @@ Functional Requirement sinh ra từ đó.
    trí nhớ những chỗ agent tự thấy "cần chú ý" lúc viết, vì cùng 1 lượt suy luận vừa viết vừa tự
    rà thường bỏ sót đúng những chi tiết nó không nhớ là đã tự thêm vào. Nếu khả thi, chạy bước
    này như 1 lượt riêng sau khi đã viết xong toàn bộ, thay vì xen kẽ ngay trong lúc viết.
-8. Nhắc user: review và set `status: approved` cho từng tầng trước khi tạo System Overview
+7. Nhắc user: review và set `status: approved` cho từng tầng trước khi tạo System Overview
    (C4 Context + Container Diagram). Sau đó điền "Giai đoạn hiện tại" và "Team & đầu mối liên
    hệ" trong `CONTEXT.md` nếu chưa có.

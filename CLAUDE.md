@@ -89,7 +89,8 @@ riêng.
 - Ngôn ngữ/giọng văn, thuật ngữ, traceability, bảo mật, git/commit: `RULES.md`.
 - Thuật ngữ nghiệp vụ + kỹ thuật/văn phong: `docs/00-glossary/glossary.md`.
 - Bối cảnh dự án cụ thể + các thành phần chính của kit: `CONTEXT.md`.
-- Khởi tạo BR/UR/FR bằng câu hỏi WHY/WHO/WHAT: skill `setup-context`.
+- Khởi tạo BR/UR/FR qua hội thoại tự nhiên về dự án user muốn làm (không phải 3 câu hỏi cố
+  định WHY/WHO/WHAT): skill `setup-context`.
 - Giải thích C4 Model + tạo `docs/04-system-overview`: skill `c4-model`.
 - Phân rã Epic → Feature → User Story: skill `plan-backlog`.
 - Backlog hiện có gì, hoặc cây Epic→Feature→User Story (đọc trực tiếp frontmatter, không có

@@ -11,7 +11,7 @@ CONTEXT.md  (giới thiệu kit + thành phần chính — đọc trước tiên
         ▼
 docs/00-glossary  (từ điển thuật ngữ — context nền, agent luôn đọc trước khi làm việc)
         │
-        ▼  (skill /setup-context hỏi WHY→WHO→WHAT, ghi thẳng vào 3 tầng dưới đây)
+        ▼  (skill /setup-context hội thoại tự nhiên về dự án, ghi thẳng vào 3 tầng dưới đây)
 docs/01-business-requirement   (WHY)
         │
         ▼
@@ -44,8 +44,9 @@ CLAUDE.md                         → quy ước đặt tên + versioning xuyên
 2. Copy `docs/00-glossary/template.md` thành `docs/00-glossary/glossary.md` (giữ nguyên nội
    dung mặc định, điền dần thuật ngữ nghiệp vụ khi viết BR/UR/FR — xem `RULES.md`). Đọc
    `CONTEXT.md` — giới thiệu kit và các thành phần chính — và `glossary.md` vừa tạo.
-3. Chạy skill `/setup-context` — hỏi dẫn dắt WHY → WHO → WHAT, ghi thẳng vào `BR-001`, `UR-001`,
-   `FR-001` (`docs/01-03`), không qua bước nháp trung gian. Review từng tầng xong (set
+3. Chạy skill `/setup-context` — hội thoại tự nhiên về dự án muốn làm (không phải 3 câu hỏi cố
+   định), ghi thẳng vào `BR-001`, `UR-001`, `FR-001` (`docs/01-03`), không qua bước nháp trung
+   gian. Review từng tầng xong (set
    `status: approved`) mới sang tầng sau — không nhảy cấp (xem `AGENTS.md`).
 4. Chạy skill `/c4-model` để tạo `docs/04-system-overview` (Context + Container + Component
    Diagram) — xem Bước A trong `AGENTS.md`.
@@ -59,7 +60,8 @@ CLAUDE.md                         → quy ước đặt tên + versioning xuyên
 
 - `CONTEXT.md` — giới thiệu kit + thành phần chính, đọc trước tiên
 - `docs/00-glossary` — từ điển thuật ngữ dự án, agent luôn đọc trước khi làm việc
-- `.claude/skills/setup-context` — skill hỏi WHY/WHO/WHAT rồi tạo thẳng BR-001/UR-001/FR-001
+- `.claude/skills/setup-context` — skill hội thoại tự nhiên về dự án rồi tạo thẳng
+  BR-001/UR-001/FR-001
 - `.claude/skills/c4-model` — skill giải thích C4 Model + dẫn dắt tạo docs/04-system-overview
 - `.claude/skills/plan-backlog` — skill phân rã Epic/Feature/User Story
 - `.claude/skills/backlog-status` — skill đọc frontmatter để trả lời backlog hiện có gì, hoặc
