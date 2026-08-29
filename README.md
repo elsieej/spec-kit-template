@@ -40,11 +40,7 @@ CLAUDE.md                       → quy ước đặt tên + versioning xuyên s
 
 ## Cách dùng cho dự án mới
 
-1. Cài 4 skill qua `npx skills add <owner>/spec-kit-template` (đọc từ `skills/spec-kit/`, xem
-   `skills/spec-kit/README.md`) — CLI tự cài vào đúng thư mục skill của coding agent đang dùng
-   (`.claude/skills/` nếu là Claude Code). Cách này không copy `docs/` mẫu, chỉ cài skill. Muốn
-   dùng nguyên cấu trúc tài liệu của kit (`docs/` + `CONTEXT.md`/`AGENTS.md`/`RULES.md`/
-   `CLAUDE.md`), copy thêm các phần đó từ repo này vào dự án.
+1. Cài 4 skill qua `npx skills add <owner>/spec-kit-template` (xem `skills/spec-kit/README.md`).
 2. Copy `docs/glossary/template.md` thành `docs/glossary/glossary.md` (giữ nguyên nội
    dung mặc định, điền dần thuật ngữ nghiệp vụ khi viết BR/UR/FR — xem `RULES.md`). Đọc
    `CONTEXT.md` — giới thiệu kit và các thành phần chính — và `glossary.md` vừa tạo.
