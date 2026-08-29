@@ -42,11 +42,13 @@ CLAUDE.md                       → quy ước đặt tên + versioning xuyên s
 
 1. Cài 4 skill qua `npx skills add <owner>/spec-kit-template` (xem `skills/spec-kit/README.md` —
    cả cách cài lẫn cách cập nhật sau này qua `npx skills update`). Mỗi skill mang theo sẵn
-   template cần thiết, tự tạo `docs/` khi chưa có — đủ để chạy pipeline, không cần bước nào khác.
-2. (Tuỳ chọn) Muốn có bản đầy đủ `CLAUDE.md`/`AGENTS.md`/`RULES.md`/`CONTEXT.md` ngay trong dự
-   án thay vì chỉ dựa vào phần quy tắc đã nhắc lại trong từng `SKILL.md`, chạy thêm
-   `npx degit <owner>/spec-kit-template .` (xem `skills/spec-kit/README.md` về lưu ý khi thư mục
-   không trống).
+   template cần thiết + `spec-kit-conventions.md` (naming/ID, vòng đời `status`, glossary-link,
+   ma trận lan truyền thay đổi...), tự tạo `docs/` khi chưa có — đủ để chạy pipeline, kể cả cài
+   lẻ 1 skill, không cần bước nào khác.
+2. (Tuỳ chọn) Muốn có bản đầy đủ nhất của `CLAUDE.md`/`AGENTS.md`/`RULES.md`/`CONTEXT.md` gốc
+   (ví dụ cần Bước C — thực thi User Story bằng code, ngoài phạm vi 4 skill sinh tài liệu, hoặc
+   muốn đóng góp lại repo gốc), chạy thêm `npx degit <owner>/spec-kit-template .` (xem
+   `skills/spec-kit/README.md` về lưu ý khi thư mục không trống).
 3. Chạy skill `/setup-context` — hội thoại tự nhiên về dự án muốn làm (không phải 3 câu hỏi cố
    định), ghi thẳng vào `BR-001`, `UR-001`, `FR-001` (`docs/business-requirement`,
    `docs/user-requirement`, `docs/functional-requirement`), không qua bước nháp trung
@@ -66,7 +68,8 @@ CLAUDE.md                       → quy ước đặt tên + versioning xuyên s
 - `docs/glossary` — từ điển thuật ngữ dự án, agent luôn đọc trước khi làm việc
 - `skills/spec-kit/` — nguồn của 4 skill (cài qua `npx skills add`, xem
   `skills/spec-kit/README.md`) — mỗi skill mang theo sẵn template cần thiết trong `templates/`
-  cạnh chính nó, tự scaffold `docs/` khi dự án chưa có:
+  cạnh chính nó (tự scaffold `docs/` khi dự án chưa có) và `spec-kit-conventions.md` (bản dẫn
+  xuất của các quy tắc xuyên suốt kit, đi kèm cả 4 skill):
   - `setup-context` — hội thoại tự nhiên về dự án rồi tạo thẳng BR-001/UR-001/FR-001
   - `c4-model` — giải thích C4 Model + dẫn dắt tạo docs/system-overview
   - `plan-backlog` — phân rã Epic/Feature/User Story

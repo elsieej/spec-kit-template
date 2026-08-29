@@ -47,6 +47,7 @@ Template cần cho Epic/Feature/User Story/OQ đi kèm sẵn trong thư mục `t
 | `docs/backlog/features/.../FEAT-*.md` | `templates/FEAT-template.md` |
 | `docs/backlog/user-stories/.../US-*.md` | `templates/US-template.md` |
 | `docs/meetings/open-questions/OQ-*.md` | `templates/OQ-template.md` |
+| `docs/meetings/notes/MEET-*.md` | `templates/MEET-template.md` |
 
 **Quy tắc chọn nguồn template — áp dụng ở mọi bước "Quy trình" bên dưới cần tạo file mới:** ưu
 tiên `docs/backlog/{epics,features,user-stories}/*-template.md` tương ứng nếu dự án **đã có
@@ -58,8 +59,9 @@ tạo Epic/Feature/US thật. Không tự bịa cấu trúc/tên field khác ngo
 Bước trước, xem skill `setup-context`/`c4-model`) — 2 file này không phải template, không tự
 scaffold được, phải chạy đúng thứ tự Bước A trước Bước B nếu chưa có. `CLAUDE.md`, `AGENTS.md`,
 `RULES.md` KHÔNG bắt buộc phải tồn tại — quy tắc cốt lõi đã được nhắc lại trực tiếp trong các
-mục dưới đây; nếu các file này thực sự có trong dự án, đọc thêm để nắm chi tiết đầy đủ hơn, nếu
-không có, dùng đúng bản rút gọn đã nhắc ở đây.
+mục dưới đây, và đầy đủ hơn ở [spec-kit-conventions.md](spec-kit-conventions.md) (đi kèm sẵn
+cạnh `SKILL.md`) — bảng prefix/ID, vòng đời `status`, glossary-link, ma trận lan truyền thay đổi.
+Nếu dự án có sẵn bản gốc, ưu tiên đọc bản gốc; nếu không có, dùng bản rút gọn ở đây/file đó.
 
 ## Nguyên tắc khi chạy skill này
 

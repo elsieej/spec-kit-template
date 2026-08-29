@@ -40,6 +40,7 @@ Template cần cho `glossary`/BR/UR/FR/OQ đi kèm sẵn trong thư mục `templ
 | `docs/user-requirement/UR-*.md` | `templates/UR-template.md` |
 | `docs/functional-requirement/FR-*.md` | `templates/FR-template.md` |
 | `docs/meetings/open-questions/OQ-*.md` | `templates/OQ-template.md` |
+| `docs/meetings/notes/MEET-*.md` | `templates/MEET-template.md` |
 
 **Quy tắc chọn nguồn template — áp dụng ở mọi bước "Quy trình" bên dưới cần tạo file mới:** ưu
 tiên `docs/<tầng>/template.md` nếu dự án **đã có sẵn** (ví dụ do team tự tuỳ biến, hoặc do dự án
@@ -50,12 +51,14 @@ copy nguyên trạng bản đi kèm skill vào đúng vị trí, giống hệt c
 
 `CLAUDE.md`, `AGENTS.md`, `RULES.md`, `CONTEXT.md` KHÔNG bắt buộc phải tồn tại để chạy skill
 này — quy tắc cốt lõi từ 3 file đầu (naming convention, MoSCoW bắt buộc, không bịa nội dung,
-glossary link...) đã được nhắc lại trực tiếp trong các mục dưới đây. Nếu các file này thực sự
-có trong dự án, đọc thêm để nắm chi tiết đầy đủ hơn (ví dụ định dạng chính xác của link glossary
-theo độ sâu thư mục ở `RULES.md` mục 2, bảng vòng đời `status` đầy đủ ở `CLAUDE.md`); nếu không
-có, dùng đúng bản rút gọn đã nhắc ở đây — không dừng lại chờ các file này xuất hiện, và không
-cần chạy `npx degit` chỉ để có chúng (chỉ cần khi muốn xem tài liệu quy trình đầy đủ, không phải
-điều kiện để skill này chạy được).
+glossary link...) đã được nhắc lại trực tiếp trong các mục dưới đây, và đầy đủ hơn ở
+[spec-kit-conventions.md](spec-kit-conventions.md) (bảng prefix/ID đầy đủ cho mọi loại tài liệu,
+vòng đời `status`, glossary-link theo độ sâu thư mục, ma trận lan truyền thay đổi...) — file này
+đi kèm sẵn cạnh `SKILL.md`, đọc khi cần chi tiết hơn phần tóm tắt ở đây. Nếu dự án có sẵn
+`CLAUDE.md`/`AGENTS.md`/`RULES.md`/`CONTEXT.md` thật, ưu tiên đọc bản gốc đó (đầy đủ nhất, có cả
+Bước C ngoài phạm vi 4 skill). Không dừng lại chờ các file này xuất hiện, và không cần chạy
+`npx degit` chỉ để có chúng (chỉ cần khi muốn xem tài liệu quy trình đầy đủ hoặc đóng góp lại
+repo gốc, không phải điều kiện để skill này chạy được).
 
 ## Nguyên tắc khi chạy skill này
 

@@ -11,6 +11,11 @@ description: >
 
 # backlog-status
 
+Không có "Điều kiện tiên quyết" riêng — skill này chỉ đọc frontmatter đã có, không tạo/scaffold
+file nào. Quy tắc `status`/`blocked`/`parent_*`/`depends_on` dùng ở dưới được tóm tắt đầy đủ hơn
+ở [spec-kit-conventions.md](spec-kit-conventions.md) (đi kèm sẵn cạnh `SKILL.md`) nếu dự án
+không có `CLAUDE.md`/`AGENTS.md`/`RULES.md` gốc.
+
 Skill chỉ đọc (read-only) — không sửa file nào. Mục tiêu: tổng hợp nhanh trạng thái backlog +
 quan hệ cha-con giữa các cấp, từ frontmatter, vì kit này không duy trì file
 dashboard/index riêng (tránh trùng lặp nội dung đã có trong frontmatter, tránh dữ liệu cũ do

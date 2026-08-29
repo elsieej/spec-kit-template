@@ -77,9 +77,11 @@ trình tạo Container Interface Contract" bước 1, "Quy trình tạo Entity I
 `docs/glossary/glossary.md` cần đã tồn tại (thường được `setup-context` tạo trước — chạy skill
 đó trước nếu chưa có). `CLAUDE.md`, `AGENTS.md`, `RULES.md` KHÔNG bắt buộc phải tồn tại — quy
 tắc cốt lõi (không thiết kế API/DB cụ thể, ranh giới Level 1-3, xác nhận với user...) đã được
-nhắc lại trực tiếp trong các mục dưới đây. Nếu các file này thực sự có trong dự án, đọc thêm để
-nắm chi tiết đầy đủ hơn; nếu không có, dùng đúng bản rút gọn đã nhắc ở đây — không dừng lại chờ
-các file này xuất hiện.
+nhắc lại trực tiếp trong các mục dưới đây, và đầy đủ hơn ở
+[spec-kit-conventions.md](spec-kit-conventions.md) (đi kèm sẵn cạnh `SKILL.md`) — bảng prefix/ID,
+vòng đời `status`, glossary-link theo độ sâu thư mục, ma trận lan truyền thay đổi. Nếu dự án có
+sẵn bản gốc, ưu tiên đọc bản gốc (đầy đủ nhất); nếu không có, dùng bản rút gọn ở đây/file đó —
+không dừng lại chờ các file này xuất hiện.
 
 ## Quy trình tạo Context Diagram (Level 1)
 

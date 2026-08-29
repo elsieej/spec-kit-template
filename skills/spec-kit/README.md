@@ -14,18 +14,24 @@ npx skills add <owner>/spec-kit-template
 CLI sẽ đọc skill từ đây, cho chọn skill nào cần, rồi cài vào đúng thư mục skill của coding agent
 đang dùng (`.claude/skills/` nếu là Claude Code, hoặc thư mục tương ứng của agent khác).
 
-**`npx skills add` một mình là đủ để chạy pipeline.** Mỗi skill mang theo sẵn template cần thiết
-(thư mục `templates/` cạnh chính `SKILL.md` của nó — BR/UR/FR/glossary/OQ trong
-`setup-context`, 5 template C4/Interface Contract trong `c4-model`, Epic/Feature/US/OQ trong
-`plan-backlog`) và tự tạo `docs/<tầng>/` + copy đúng template vào khi dự án chưa có, thay vì tự
-bịa cấu trúc (xem mục "Điều kiện tiên quyết" ở đầu mỗi `SKILL.md`).
+**`npx skills add` một mình là đủ để chạy pipeline, kể cả cài lẻ 1 skill.** Mỗi skill mang theo
+sẵn:
+- Template cần thiết (thư mục `templates/` cạnh chính `SKILL.md` của nó — BR/UR/FR/glossary/
+  OQ/MEET trong `setup-context`, 5 template C4/Interface Contract trong `c4-model`,
+  Epic/Feature/US/OQ/MEET trong `plan-backlog`) và tự tạo `docs/<tầng>/` + copy đúng template
+  vào khi dự án chưa có, thay vì tự bịa cấu trúc (xem mục "Điều kiện tiên quyết" ở đầu mỗi
+  `SKILL.md`).
+- `spec-kit-conventions.md` — bản sao dẫn xuất (byte-identical ở cả 4 skill) của phần quy tắc
+  cốt lõi trong `CLAUDE.md`/`AGENTS.md`/`RULES.md`: bảng prefix/ID cho mọi loại tài liệu, vòng
+  đời `status`, quy tắc glossary-link theo độ sâu thư mục, ma trận lan truyền thay đổi... Mỗi
+  `SKILL.md` đã tóm tắt phần áp dụng trực tiếp cho nó, và trỏ tới file này khi cần đầy đủ hơn —
+  không cần `CLAUDE.md`/`AGENTS.md`/`RULES.md` gốc mới chạy đúng quy tắc.
 
-`CLAUDE.md`, `AGENTS.md`, `RULES.md`, `CONTEXT.md` không đi kèm skill — quy tắc cốt lõi của
-chúng đã được nhắc lại trực tiếp trong từng `SKILL.md`, nên không bắt buộc phải có mới chạy
-được. Muốn có bản đầy đủ của các file này (ví dụ để đọc trực tiếp thay vì chỉ dựa vào phần được
-nhắc lại, hoặc cần bảng vòng đời `status` đầy đủ, quy tắc glossary-link chi tiết ở `RULES.md`
-mục 2), sinh scaffold bằng [degit](https://github.com/Rich-Harris/degit) (không kèm lịch sử
-git, không cần tự `clone` rồi xoá `.git`):
+`CLAUDE.md`, `AGENTS.md`, `RULES.md`, `CONTEXT.md` **gốc** không đi kèm skill (chỉ bản dẫn xuất
+`spec-kit-conventions.md` ở trên đi kèm). Muốn có bản đầy đủ nhất của các file gốc (ví dụ để đọc
+trực tiếp, cần Bước C — thực thi User Story bằng code, ngoài phạm vi 4 skill sinh tài liệu — hoặc
+muốn đóng góp lại repo gốc), sinh scaffold bằng [degit](https://github.com/Rich-Harris/degit)
+(không kèm lịch sử git, không cần tự `clone` rồi xoá `.git`):
 
 ```bash
 npx degit <owner>/spec-kit-template .
