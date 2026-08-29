@@ -153,8 +153,10 @@ Các dải giá trị `priority` suy ra từ 2 mức MoSCoW liền kề **chồn
 được từ cả `Must have` lẫn `Should have`, `P2` từ cả `Should have` lẫn `Could have`) — không suy
 ngược được mức MoSCoW gốc chỉ từ 1 mình giá trị `priority`. Đây là đặc tính thiết kế, không phải
 lỗi cần thu hẹp dải: cần biết mức MoSCoW gốc thì lần theo `docs_requirements` tới UR liên quan
-rồi đọc mục "Ưu tiên" (MoSCoW) của UR đó trực tiếp — không suy đoán ngược từ `priority` một
-mình. Số hop khác nhau giữa Feature và User Story vì `docs_requirements` trỏ tới tầng khác nhau
+rồi đọc đúng dòng tương ứng trong bảng "Nhu cầu người dùng & Ưu tiên" của UR đó (1 UR có thể có
+nhiều nhu cầu, mỗi dòng 1 mức MoSCoW riêng — không lấy đại 1 dòng bất kỳ hay trộn nhiều dòng) —
+không suy đoán ngược từ `priority` một mình. Số hop khác nhau giữa Feature và User Story vì
+`docs_requirements` trỏ tới tầng khác nhau
 (xem `plan-backlog`): Feature → `docs_requirements` trỏ thẳng tới UR, 1 hop. User Story →
 `docs_requirements` trỏ tới FR, phải thêm 1 hop qua `parent_user_requirement` của FR đó mới tới
 UR (US → FR → UR), không phải US → UR trực tiếp. Mục "Ghi chú" chỉ chắc chắn có thông tin khi

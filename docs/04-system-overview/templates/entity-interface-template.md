@@ -18,6 +18,11 @@ related_open_questions: []
 > `container-interface.md`, mã CIC), KHÔNG mô tả định dạng file/wire format cụ thể hay
 > quy ước storage key (đó là Bước C khi thực thi User Story). Xem mục 4 để phân biệt rõ ranh
 > giới này bằng ví dụ ĐÚNG/SAI.
+>
+> Số thứ tự mục (1-6) là **cố định**, kể cả mục mang tính hướng dẫn/ví dụ (mục 4): giữ nguyên
+> trong tài liệu thật, không xoá hay đánh số lại — mục 4 vẫn hữu ích cho người đọc sau này khi
+> cần bổ sung entity mới, và các cross-reference dạng "xem SYS-SIC-001 §3.x" phụ thuộc số mục
+> không đổi.
 
 ## 1. Khi nào tạo tài liệu này
 

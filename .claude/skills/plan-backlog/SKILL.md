@@ -122,11 +122,15 @@ sau để quyết định có cần tách User Story tiếp không:
 5. Với mỗi Feature/User Story vừa tạo, hỏi user: "Có phụ thuộc item nào khác cần xong
    trước không?" → nếu có, điền ID vào `depends_on`.
 6. Cập nhật ngược: liệt kê Feature vào phần "Phạm vi" của Epic, US vào "User stories thuộc
-   feature này" của Feature. **Trước khi coi bước này xong**: kiểm lại **cả 3 cấp — Epic (bước
-   2), Feature (bước 3), US (bước 4) — không chỉ 2 cấp vừa cập nhật ngược ở trên** — đã gắn link
-   glossary ở lần xuất hiện đầu tiên của mỗi thuật ngữ đã có trong glossary chưa (xem
-   nguyên tắc ở trên, `RULES.md` mục 2) — quy tắc này tồn tại từ đầu nhưng hay bị bỏ quên trong
-   lúc tập trung viết nội dung, kiểm lại rõ ràng ở đây thay vì chỉ tin đã làm đúng lúc viết.
+   feature này" của Feature. **Trước khi coi bước này xong**: liệt kê ra **từng file** Epic/
+   Feature/US đã tạo/sửa trong phiên — không dừng ở mức "đã kiểm cả 3 cấp", vì khi 1 cấp có
+   nhiều file (ví dụ 9 User Story), kiểm "cả cấp US" một cách chung chung vẫn có thể chỉ thực sự
+   kiểm 1-2 file đầu rồi bỏ sót các file còn lại (lỗi thật đã xảy ra: 0/9 User Story có link
+   glossary thật, dù skill này đã có bước kiểm cả 3 cấp từ trước). Với **từng file trong danh
+   sách đó**, kiểm đã gắn link glossary ở lần xuất hiện đầu tiên của mỗi thuật ngữ đã có trong
+   glossary chưa (xem nguyên tắc ở trên, `RULES.md` mục 2) — quy tắc này tồn tại từ đầu nhưng hay
+   bị bỏ quên trong lúc tập trung viết nội dung, kiểm lại rõ ràng ở đây theo từng file một, không
+   chỉ tin đã làm đúng lúc viết.
 7. **Trước khi kết thúc phiên**, quét lại toàn bộ Acceptance Criteria/business rule vừa viết
    trong phiên (không chỉ chi tiết user đã hỏi tường minh) — tìm mọi chi tiết cụ thể mà user
    chưa xác nhận trực tiếp, cả **định lượng** (số/ngưỡng, thứ tự ưu tiên khi xung đột) lẫn
@@ -135,6 +139,13 @@ sau để quyết định có cần tách User Story tiếp không:
    case đụng không tự bịa nội dung" ở trên (nhãn `[Agent đề xuất — cần PO xác nhận]` + tạo OQ nếu
    đủ quan trọng) — không chỉ áp dụng cho chi tiết đã được hỏi tường minh trong hội thoại rồi bỏ
    qua các chi tiết tương tự khác.
+   **Đối chiếu AC với business rule đã chốt ở FR nguồn**: với mỗi Acceptance Criteria vừa viết,
+   kiểm xem nội dung có **mâu thuẫn** với business rule đã ghi trong FR mà US đó trỏ tới
+   (`docs_requirements`) không — ví dụ FR đã chốt "không tự động gán kỹ thuật viên" nhưng 1 AC
+   lại giả định hệ thống tự gán. Đây là lỗi khác với việc thiếu edge case hay fabricate chi tiết
+   mới: AC đi ngược lại 1 rule đã có sẵn, nguy hiểm hơn vì đọc qua vẫn "có vẻ hợp lý" nếu không
+   chủ động lật lại FR nguồn để so — không suy luận từ trí nhớ nội dung FR lúc viết AC, đọc lại
+   FR gốc để đối chiếu từng AC.
    **Phạm vi quét bao gồm cả tầng C4** mà backlog vừa tham chiếu tới (`c4-container.md`,
    `c4-component-*.md`, `container-interface.md`, `entity-interface.md` nếu
    tồn tại, trong `source_container`/`Context cho Agent` của Epic/US vừa tạo) — xác minh bước

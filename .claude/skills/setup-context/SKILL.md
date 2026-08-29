@@ -58,6 +58,16 @@ loại và điền đúng tài liệu — không phải kịch bản câu hỏi 
 - Nếu sau khi đã brainstorm/hỏi lại mà user vẫn chưa có câu trả lời rõ ràng cho một mục con
   trong template (ví dụ Success metrics, Edge cases), để nguyên placeholder gốc của template —
   không bịa nội dung, không tự suy diễn chi tiết user chưa cung cấp.
+- **Phân biệt "chưa trả lời" với "đã từ chối đoán số/chi tiết".** Khi user **chủ động từ chối**
+  việc đoán một con số/ngưỡng/hành vi cụ thể (ví dụ "đừng tự đặt số nhé", "cái đó chưa biết,
+  đừng đoán") — dù có gắn nhãn `[Agent đề xuất — cần PO xác nhận]` và tạo `OQ-*` cũng **không
+  được chèn bất kỳ con số/giá trị cụ thể nào vào tài liệu**, kể cả một giá trị "tạm dùng" có gắn
+  nhãn rõ ràng; để nguyên placeholder gốc của template + `OQ-*` mô tả rõ điều còn thiếu, không có
+  con số nào trong nội dung chính thức. Khác với trường hợp user **đơn giản là chưa trả lời**
+  (chưa được hỏi, hoặc đã hỏi nhưng chưa có câu trả lời) — trường hợp đó vẫn được đề xuất 1 giá
+  trị cụ thể kèm nhãn `[Agent đề xuất — cần PO xác nhận]` như bình thường. Từ chối tường minh là
+  tín hiệu mạnh hơn "chưa trả lời" — chèn số dù có nhãn vẫn là không tôn trọng đúng những gì user
+  vừa nói.
 - Không tự set `status: approved` — skill chỉ tạo bản `draft`. Review/approve là bước riêng
   của user/team. Quy ước xuyên suốt kit này: tài liệu tầng sau (User Requirement từ Business
   Requirement, Functional Requirement từ User Requirement, System Overview từ Functional
@@ -66,6 +76,12 @@ loại và điền đúng tài liệu — không phải kịch bản câu hỏi 
   tạo thêm `UR-002`, `UR-003`... theo đúng naming convention thay vì nhồi vào 1 file.
 - Khi viết nội dung BR/UR/FR, thuật ngữ đã có trong `docs/00-glossary/glossary.md` → gắn link
   Markdown tới đúng mục ở lần xuất hiện đầu tiên trong tài liệu (xem `RULES.md` mục 2).
+- **Không nhắc tên mã container/hệ thống cụ thể** (dạng slug kỹ thuật như `checkout-api`,
+  `maintenance-mobile`) trong BR/UR/FR hay `glossary.md` — mã container chỉ được chốt ở Bước A
+  (`c4-container.md`, xem skill `c4-model`), chưa tồn tại ở tầng này. Nếu cần nhắc tới 1 phần hệ
+  thống trong BR/UR/FR/glossary, mô tả bằng chức năng/nghiệp vụ (ví dụ "ứng dụng di động cho kỹ
+  thuật viên") thay vì tên mã kỹ thuật — tránh việc BR/glossary tham chiếu ngược tới 1 quyết định
+  đặt tên chưa xảy ra, và tên mã đó sau này có thể đổi/tách khác với lúc viết BR.
 
 ## Quy trình
 
@@ -92,12 +108,15 @@ loại và điền đúng tài liệu — không phải kịch bản câu hỏi 
    - **Đối tượng dùng + nhu cầu (→ UR, khái niệm WHO):** ai dùng — persona nào, pain point hiện
      tại, nhu cầu cụ thể. Nếu còn thiếu/mờ, hỏi tiếp tự nhiên (ví dụ "Còn ai khác cũng dùng cái
      này không, hay chỉ mình họ?"). Khi đủ → tạo `docs/02-user-requirement/UR-001_<slug>.md`,
-     điền "Đối tượng người dùng (WHO)", "Nhu cầu người dùng",
-     `parent_business_requirement: BR-001`. Riêng mục này **luôn phải hỏi tường minh, không tự
-     suy đoán từ văn phong**, vì không thể rút ra từ cách user kể chuyện: "Nhu cầu này ở mức ưu
-     tiên nào — Must have / Should have / Could have / Won't have (MoSCoW)?" cho từng nhu cầu
-     vừa ghi → điền mục "Ưu tiên" của UR. Đây là field bắt buộc trong `UR-template.md`, không
-     phải nội dung agent tự gán theo cảm nhận.
+     điền "Đối tượng người dùng (WHO)". Nếu user kể **nhiều nhu cầu khác nhau** trong cùng 1 UR
+     (cùng 1 persona nhưng nhiều nhu cầu tách biệt) — điền **mỗi nhu cầu 1 dòng riêng** trong
+     bảng "Nhu cầu người dùng & Ưu tiên", **không gộp chung** nhiều nhu cầu vào 1 dòng rồi dùng
+     chung 1 mức ưu tiên (đây là lỗi thật đã xảy ra: 3 nhu cầu khác nhau bị gộp dưới 1 mức MoSCoW
+     duy nhất). `parent_business_requirement: BR-001`. Riêng mức ưu tiên **luôn phải hỏi tường
+     minh, không tự suy đoán từ văn phong**, vì không thể rút ra từ cách user kể chuyện: "Nhu cầu
+     này ở mức ưu tiên nào — Must have / Should have / Could have / Won't have (MoSCoW)?" hỏi
+     **riêng cho từng dòng nhu cầu**, không hỏi 1 lần rồi áp dụng chung cho cả bảng. Đây là field
+     bắt buộc trong `UR-template.md`, không phải nội dung agent tự gán theo cảm nhận.
    - **Kết quả/chức năng cần đạt (→ FR, khái niệm WHAT):** hệ thống cần đạt được kết quả/đầu ra
      gì để đáp ứng nhu cầu đó (mô tả ở mức kết quả cần đạt, chưa cần nói cách triển khai kỹ
      thuật — cách hiện thực sẽ quyết định ở System Overview/C4 và khi phân rã Epic/Feature/User
@@ -109,10 +128,19 @@ loại và điền đúng tài liệu — không phải kịch bản câu hỏi 
    ứng (file vẫn phải tạo theo đúng thứ tự BR trước UR trước FR, vì UR/FR cần trỏ `parent_*` về
    tài liệu đã tồn tại).
 5. Cập nhật ngược mục "Liên kết" ở BR-001/UR-001 để trỏ xuôi tới UR-001/FR-001 vừa tạo. **Trước
-   khi coi bước này xong**: kiểm lại riêng việc gắn link glossary — mọi thuật ngữ đã có trong
-   `docs/00-glossary/glossary.md` dùng trong BR/UR/FR vừa viết có link ở lần xuất hiện đầu tiên
-   chưa (xem nguyên tắc ở trên, `RULES.md` mục 2) — quy tắc này hay bị bỏ quên trong lúc tập
-   trung viết nội dung, kiểm lại rõ ràng ở đây thay vì chỉ tin đã làm đúng lúc viết.
+   khi coi bước này xong**, kiểm lại 2 việc riêng biệt — cả 2 hay bị bỏ quên trong lúc tập trung
+   viết nội dung, kiểm lại rõ ràng ở đây thay vì chỉ tin đã làm đúng lúc viết:
+   - **Glossary link**: liệt kê ra từng file BR/UR/FR đã tạo/sửa trong phiên (không chỉ file gần
+     nhất đang nhớ — lỗi thật đã xảy ra: link đúng ở file đầu tiên mỗi tầng, bị quên hoàn toàn ở
+     các file sau cùng tầng), rồi với **từng file trong danh sách đó**, kiểm mọi thuật ngữ đã có
+     trong `docs/00-glossary/glossary.md` dùng trong file có link ở lần xuất hiện đầu tiên chưa
+     (xem nguyên tắc ở trên, `RULES.md` mục 2).
+   - **Mỗi dòng nhu cầu trong bảng "Nhu cầu người dùng & Ưu tiên" của mọi UR đã tạo phải có ít
+     nhất 1 FR** trỏ `parent_user_requirement` về đúng UR đó và cover đúng nhu cầu đó — liệt kê
+     từng dòng nhu cầu, đối chiếu xem đã có FR nào cover chưa. Nhu cầu nào chưa có FR (lỗi thật
+     đã xảy ra: 1/3 nhu cầu của 1 UR không có FR nào, chỉ phát hiện được khi đối chiếu ngược tới
+     tận User Story) → tạo FR cho nhu cầu đó ngay trong phiên này trước khi coi bước WHAT là
+     xong, không được bỏ sót rồi để tầng sau (Epic/Feature/US) tự phát hiện gap.
 6. **Trước khi kết thúc phiên**, quét lại toàn bộ nội dung BR/UR/FR vừa viết trong phiên (không
    chỉ mục user vừa hỏi lại tường minh) — tìm mọi chi tiết cụ thể mà user chưa thực sự xác nhận,
    cả **định lượng** (con số, ngưỡng, success metric) lẫn **định tính** (business rule diễn đạt

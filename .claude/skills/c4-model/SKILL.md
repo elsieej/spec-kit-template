@@ -206,12 +206,15 @@ xuất hiện ở nhiều luồng/nhiều container.
 
 ## Trước khi kết thúc phiên
 
-Kiểm lại riêng việc gắn link glossary trên mọi file C4/Interface Contract vừa tạo/sửa trong
-phiên (`c4-context.md`, `c4-container.md`, `c4-component-*.md`, `container-interface.md`,
-`entity-interface.md`) — mọi thuật ngữ đã có trong `docs/00-glossary/glossary.md`
-dùng trong các file đó có link ở lần xuất hiện đầu tiên chưa (xem bước 1 ở Context Diagram,
-`RULES.md` mục 2). Quy tắc này hay bị bỏ quên trong lúc tập trung vẽ diagram/viết schema, kiểm
-lại rõ ràng ở đây thay vì chỉ tin đã làm đúng lúc viết.
+Liệt kê ra từng file C4/Interface Contract đã tạo/sửa trong phiên — **kể cả khi có nhiều file
+`c4-component-*.md`** (1 file/container), không chỉ file đầu tiên hay file đang nhớ. Với **từng
+file trong danh sách đó** (`c4-context.md`, `c4-container.md`, mỗi `c4-component-<mã>.md`,
+`container-interface.md`, `entity-interface.md`), kiểm lại riêng việc gắn link glossary: mọi
+thuật ngữ đã có trong `docs/00-glossary/glossary.md` dùng trong file đó có link ở lần xuất hiện
+đầu tiên chưa (xem bước 1 ở Context Diagram, `RULES.md` mục 2). Quy tắc này hay bị bỏ quên trong
+lúc tập trung vẽ diagram/viết schema, và lỗi thật đã xảy ra theo đúng mẫu hình: đúng ở file đầu
+tiên mỗi loại, bị quên ở các file cùng loại tạo sau — kiểm lại rõ ràng ở đây theo từng file một,
+không chỉ tin đã làm đúng lúc viết.
 
 Đối chiếu chéo backlink CIC ↔ Component ↔ SIC — cùng 1 lượt vừa viết vừa tự rà dễ bỏ sót lỗi
 chính mình tạo ra (cùng mẫu hình với checkpoint glossary ở trên), nên kiểm lại đây như 1 bước

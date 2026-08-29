@@ -16,11 +16,13 @@ related_open_questions: []
 |---|---|---|
 | | | |
 
-## Nhu cầu người dùng
-- Là <persona>, tôi cần <nhu cầu> để <lý do>
+## Nhu cầu người dùng & Ưu tiên
+1 dòng cho mỗi nhu cầu riêng biệt — **không gộp nhiều nhu cầu khác nhau vào 1 dòng chỉ để dùng
+chung 1 mức ưu tiên**; mỗi nhu cầu phải hỏi MoSCoW riêng, kể cả khi cùng 1 persona.
 
-## Ưu tiên
-Must have / Should have / Could have / Won't have (MoSCoW)
+| Nhu cầu | Ưu tiên (MoSCoW) |
+|---|---|
+| Là <persona>, tôi cần <nhu cầu> để <lý do> | Must have / Should have / Could have / Won't have |
 
 ## Liên kết
 - Business requirement: BR-001

@@ -17,6 +17,10 @@ related_open_questions: []
 > nhận lại/đọc) — KHÔNG thiết kế API/DB cụ thể (method HTTP, path, status code, kiểu cột SQL,
 > index...). Đó là Code (Level 4), quyết định ở Bước C — kể cả với container DB thuần. Mọi mục
 > phong phú hơn bên dưới đều nằm trong ranh giới này, không nới thêm.
+>
+> Số thứ tự mục (1-7) là **cố định**, kể cả mục mang tính hướng dẫn/ví dụ (mục 5): giữ nguyên
+> trong tài liệu thật, không xoá hay đánh số lại — mục 5 vẫn hữu ích cho người đọc sau này khi
+> cần bổ sung CIC mới, và các cross-reference dạng "xem mục 3" phụ thuộc số mục không đổi.
 
 ## 1. Mục đích & phạm vi
 
