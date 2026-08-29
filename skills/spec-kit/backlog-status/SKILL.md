@@ -12,8 +12,10 @@ description: >
 # backlog-status
 
 Không có "Điều kiện tiên quyết" riêng — skill này chỉ đọc frontmatter đã có, không tạo/scaffold
-file nào. Quy tắc `status`/`blocked`/`parent_*`/`depends_on` dùng ở dưới được tóm tắt đầy đủ hơn
-ở [spec-kit-conventions.md](spec-kit-conventions.md), đi kèm sẵn cạnh `SKILL.md`.
+file nào (kể cả `docs/spec-kit-conventions.md` — đọc nếu đã có trong dự án; nếu chưa có, đọc
+trực tiếp bản đi kèm skill tại `templates/spec-kit-conventions.md` thay vì tự tạo file mới, đúng
+tinh thần read-only của skill này). Quy tắc `status`/`blocked`/`parent_*`/`depends_on` dùng ở
+dưới được tóm tắt đầy đủ hơn ở đó.
 
 Skill chỉ đọc (read-only) — không sửa file nào. Mục tiêu: tổng hợp nhanh trạng thái backlog +
 quan hệ cha-con giữa các cấp, từ frontmatter, vì kit này không duy trì file
@@ -44,7 +46,7 @@ cha-con (vẫn dựa vào `parent_*`, không suy ra Epic sở hữu từ tên su
    - Với mỗi item còn ID trong `depends_on` mà ID đó chưa `status: approved` → đánh dấu riêng
      "chưa thể bắt đầu (chờ <ID> xong)" cạnh item đó, dù `status` hiện tại là `draft`.
    - Không liệt kê item đã `status: approved`/`deprecated` — không còn tính là backlog đang mở.
-   - `blocked` không cascade từ con lên cha (xem `spec-kit-conventions.md` mục 2, nguyên tắc
+   - `blocked` không cascade từ con lên cha (xem `docs/spec-kit-conventions.md` mục 2, nguyên tắc
      chung #4): 1 Feature/Epic
      `draft` có toàn bộ US/Feature con đang `blocked` vẫn liệt kê ở nhóm `draft` như bình thường
      (không tự chuyển nhóm `blocked`) — nhưng ghi kèm 1 ghi chú riêng "toàn bộ con đang blocked,

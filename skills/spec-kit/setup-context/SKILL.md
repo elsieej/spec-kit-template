@@ -35,6 +35,7 @@ Template cần cho `glossary`/BR/UR/FR/OQ đi kèm sẵn trong thư mục `templ
 
 | Tài liệu | Template đi kèm skill |
 |---|---|
+| `docs/spec-kit-conventions.md` | `templates/spec-kit-conventions.md` |
 | `docs/glossary/glossary.md` | `templates/glossary-template.md` |
 | `docs/business-requirement/BR-*.md` | `templates/BR-template.md` |
 | `docs/user-requirement/UR-*.md` | `templates/UR-template.md` |
@@ -49,11 +50,12 @@ khi dự án **chưa có** file template tương ứng — lúc đó tự tạo 
 copy nguyên trạng bản đi kèm skill vào đúng vị trí, giống hệt cách bước 1 dưới đây scaffold
 `glossary.md`. Không tự bịa cấu trúc/tên field khác ngoài 2 nguồn này.
 
-Quy tắc cốt lõi (naming convention, MoSCoW bắt buộc, không bịa nội dung, glossary link...) đã
-được nhắc lại trực tiếp trong các mục dưới đây, và đầy đủ hơn ở
-[spec-kit-conventions.md](spec-kit-conventions.md) (bảng prefix/ID đầy đủ cho mọi loại tài liệu,
-vòng đời `status`, glossary-link theo độ sâu thư mục, ma trận lan truyền thay đổi...) — file này
-đi kèm sẵn cạnh `SKILL.md`, đọc khi cần chi tiết hơn phần tóm tắt ở đây.
+`docs/spec-kit-conventions.md` dùng đúng quy tắc trên: kiểm tồn tại chưa **trước cả bước 1**, nếu
+chưa có thì copy nguyên trạng từ `templates/spec-kit-conventions.md` (không hỏi user, không tạo
+subfolder — file nằm ngay `docs/`). File này chứa quy tắc cốt lõi dùng xuyên suốt Spec Kit
+(naming convention, vòng đời `status`, glossary-link theo độ sâu thư mục, ma trận lan truyền
+thay đổi...) — cũng đã được tóm tắt trực tiếp trong các mục dưới đây, đọc `docs/spec-kit-conventions.md`
+khi cần chi tiết hơn.
 
 ## Nguyên tắc khi chạy skill này
 
@@ -105,7 +107,7 @@ vòng đời `status`, glossary-link theo độ sâu thư mục, ma trận lan t
 - Nếu user có nhiều hơn 1 WHY/WHO/WHAT cần tách (ví dụ nhiều persona khác nhau → nhiều UR),
   tạo thêm `UR-002`, `UR-003`... theo đúng naming convention thay vì nhồi vào 1 file.
 - Khi viết nội dung BR/UR/FR, thuật ngữ đã có trong `docs/glossary/glossary.md` → gắn link
-  Markdown tới đúng mục ở lần xuất hiện đầu tiên trong tài liệu (xem `spec-kit-conventions.md`
+  Markdown tới đúng mục ở lần xuất hiện đầu tiên trong tài liệu (xem `docs/spec-kit-conventions.md`
   mục 3).
 - **Không nhắc tên mã container/hệ thống cụ thể** (dạng slug kỹ thuật như `checkout-api`,
   `maintenance-mobile`) trong BR/UR/FR hay `glossary.md` — mã container chỉ được chốt ở Bước A
@@ -116,7 +118,7 @@ vòng đời `status`, glossary-link theo độ sâu thư mục, ma trận lan t
 
 ## Quy trình
 
-1. Kiểm tra `docs/glossary/glossary.md` đã tồn tại chưa (`spec-kit-conventions.md`, mục 2,
+1. Kiểm tra `docs/glossary/glossary.md` đã tồn tại chưa (`docs/spec-kit-conventions.md`, mục 2,
    nguyên tắc chung #1 bắt buộc đọc file này trước mọi tài liệu). Đây thường là task đầu tiên chạy trên 1 dự án mới nên
    file này nhiều khả năng chưa có — nếu chưa có, copy nguyên trạng template đúng theo quy tắc
    chọn nguồn ở "Điều kiện tiên quyết" (ưu tiên `docs/glossary/template.md` nếu dự án đã có,
@@ -168,9 +170,9 @@ vòng đời `status`, glossary-link theo độ sâu thư mục, ma trận lan t
      nhất đang nhớ — lỗi thật đã xảy ra: link đúng ở file đầu tiên mỗi tầng, bị quên hoàn toàn ở
      các file sau cùng tầng), rồi với **từng file trong danh sách đó**, kiểm mọi thuật ngữ đã có
      trong `docs/glossary/glossary.md` dùng trong file có link ở lần xuất hiện đầu tiên chưa
-     (xem nguyên tắc ở trên, `spec-kit-conventions.md` mục 3). **Nếu file đó đã `status:
+     (xem nguyên tắc ở trên, `docs/spec-kit-conventions.md` mục 3). **Nếu file đó đã `status:
      approved`** khi phát hiện thiếu link — đưa lại về `status: draft` trước khi sửa (xem
-     `spec-kit-conventions.md` mục 1: sửa nội dung tài liệu đã approved phải đưa lại draft để
+     `docs/spec-kit-conventions.md` mục 1: sửa nội dung tài liệu đã approved phải đưa lại draft để
      review lại), sửa
      xong mới cân nhắc approve lại; không sửa thẳng nội dung mà giữ nguyên `status: approved`.
    - **Mỗi dòng nhu cầu trong bảng "Nhu cầu người dùng & Ưu tiên" của mọi UR đã tạo phải có ít

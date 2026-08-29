@@ -1,12 +1,9 @@
 # spec-kit-conventions
 
 > Quy tắc dùng xuyên suốt Spec Kit (naming/ID/versioning, vòng đời `status`, glossary-link,
-> ma trận lan truyền thay đổi...) — mọi thứ 5 skill (`setup-context`, `c4-model`, `plan-backlog`,
-> `backlog-status`, `about-spec-kit`) cần để chạy đúng quy tắc ngay khi cài qua `npx skills add`,
-> không phụ thuộc file nào khác có tồn tại trong dự án đích hay không. Đi kèm sẵn cạnh `SKILL.md`
-> của cả 5 skill, nội dung **byte-identical** ở cả 5 nơi. **Bản này (`setup-context`) là bản
-> canonical** — sửa nội dung ở đây rồi chạy `scripts/sync-conventions.sh` từ gốc repo để đồng bộ
-> sang 4 bản còn lại, không tự `cp` tay.
+> ma trận lan truyền thay đổi...). Mỗi skill (`setup-context`, `c4-model`, `plan-backlog`,
+> `backlog-status`, `about-spec-kit`) đọc file này trước khi tạo/sửa tài liệu — xem mục "Điều
+> kiện tiên quyết" ở `SKILL.md` của từng skill.
 
 ## 1. Đặt tên, ID và versioning
 

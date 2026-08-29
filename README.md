@@ -42,9 +42,9 @@ CLAUDE.md                       → quy ước đặt tên + versioning xuyên s
 
 Chỉ cần 1 bước: cài 5 skill qua `npx skills add <owner>/spec-kit-template` (xem
 `skills/spec-kit/README.md` — cả cách cài lẫn cách cập nhật sau này qua `npx skills update`).
-Mỗi skill mang theo sẵn template cần thiết + `spec-kit-conventions.md` (naming/ID, vòng đời
-`status`, glossary-link, ma trận lan truyền thay đổi, commit format...), tự tạo `docs/` khi chưa
-có.
+Mỗi skill mang theo sẵn template cần thiết, tự tạo `docs/` khi chưa có — bao gồm cả
+`docs/spec-kit-conventions.md` (naming/ID, vòng đời `status`, glossary-link, ma trận lan truyền
+thay đổi, commit format...), scaffold thành đúng 1 bản trong dự án dù skill nào chạy trước.
 
 Sau khi cài, chạy skill `/about-spec-kit` — skill này liệt kê đủ các bước tiếp theo (chạy skill
 nào, theo thứ tự nào) và không bị lặp lại ở đây để tránh 2 nơi cùng mô tả 1 flow dễ lệch nhau.
@@ -52,12 +52,17 @@ nào, theo thứ tự nào) và không bị lặp lại ở đây để tránh 2
 ## Cấu trúc
 
 - `CONTEXT.md` — giới thiệu kit + thành phần chính, đọc trước tiên
+- `docs/spec-kit-conventions.md` — bản canonical của quy tắc xuyên suốt kit (naming/ID, vòng
+  đời `status`, glossary-link, ma trận lan truyền thay đổi...); mỗi skill trong `skills/spec-kit/`
+  bundle 1 bản seed và tự scaffold file này cho dự án đích khi chưa có — sửa ở đây rồi chạy
+  `scripts/sync-conventions.sh` để đồng bộ các bản seed
 - `docs/glossary` — từ điển thuật ngữ dự án, agent luôn đọc trước khi làm việc
 - `skills/spec-kit/` — nguồn của 5 skill (cài qua `npx skills add`, xem
   `skills/spec-kit/README.md`) — mỗi skill mang theo sẵn template cần thiết trong `templates/`
-  cạnh chính nó (tự scaffold `docs/` khi dự án chưa có) và `spec-kit-conventions.md` (bản dẫn
-  xuất của các quy tắc xuyên suốt kit, đi kèm cả 5 skill):
-  - `about-spec-kit` — giới thiệu kit là gì, liệt kê skill nào dùng khi nào (không tạo file)
+  cạnh chính nó, tự scaffold `docs/` khi dự án chưa có (kể cả `docs/spec-kit-conventions.md`,
+  bản dẫn xuất của các quy tắc xuyên suốt kit — bundle sẵn ở cả 5 skill nhưng chỉ scaffold thành
+  1 bản trong dự án):
+  - `about-spec-kit` — giới thiệu kit là gì, liệt kê skill nào dùng khi nào
   - `setup-context` — hội thoại tự nhiên về dự án rồi tạo thẳng BR-001/UR-001/FR-001
   - `c4-model` — giải thích C4 Model + dẫn dắt tạo docs/system-overview
   - `plan-backlog` — phân rã Epic/Feature/User Story

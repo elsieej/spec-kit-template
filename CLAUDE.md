@@ -79,12 +79,13 @@ riêng.
   `docs_requirements` (mảng ID BR/UR/FR) cho liên kết tới tầng Business/User/Functional
   Requirement — để truy vết một User Story qua Feature → Epic → BR/UR/FR liên quan.
 
-Đây là nguồn duy nhất cho naming convention trong repo — không tạo file trùng nội dung này ở nơi
-khác, **trừ** `skills/spec-kit/*/spec-kit-conventions.md` (5 bản sao dẫn xuất, byte-identical,
-bundle kèm mỗi skill để `npx skills add` chạy được không cần `CLAUDE.md`/`AGENTS.md`/`RULES.md`
-trong dự án đích — xem đầu mỗi file đó). Sửa nội dung ở đây thì sửa bản canonical tại
-`skills/spec-kit/setup-context/spec-kit-conventions.md` rồi chạy
-`scripts/sync-conventions.sh` để đồng bộ sang 4 bản còn lại, không tự `cp` tay.
+Đây là nguồn duy nhất cho naming convention trong repo, cùng với bản dẫn xuất
+`docs/spec-kit-conventions.md` (đọc trước khi sửa: mọi nội dung liên quan tới naming/ID/
+versioning/status ở đó phải khớp nội dung ở đây). `docs/spec-kit-conventions.md` được mỗi skill
+trong `skills/spec-kit/*/templates/spec-kit-conventions.md` bundle 1 bản seed và tự scaffold cho
+dự án đích khi chưa có (để `npx skills add` chạy được không cần `CLAUDE.md`/`AGENTS.md`/
+`RULES.md` trong dự án đích) — sửa `docs/spec-kit-conventions.md` xong thì chạy
+`scripts/sync-conventions.sh` để đồng bộ các bản seed đó, không tự `cp` tay.
 
 ## Tham khảo nhanh
 

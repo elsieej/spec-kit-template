@@ -16,16 +16,14 @@ CLI sẽ đọc skill từ đây, cho chọn skill nào cần, rồi cài vào �
 đang dùng (`.claude/skills/` nếu là Claude Code, hoặc thư mục tương ứng của agent khác).
 
 **`npx skills add` một mình là đủ để chạy pipeline, kể cả cài lẻ 1 skill.** Mỗi skill mang theo
-sẵn:
-- Template cần thiết (thư mục `templates/` cạnh chính `SKILL.md` của nó — BR/UR/FR/glossary/
-  OQ/MEET trong `setup-context`, 5 template C4/Interface Contract trong `c4-model`,
-  Epic/Feature/US/OQ/MEET trong `plan-backlog`) và tự tạo `docs/<tầng>/` + copy đúng template
-  vào khi dự án chưa có, thay vì tự bịa cấu trúc (xem mục "Điều kiện tiên quyết" ở đầu mỗi
-  `SKILL.md`).
-- `spec-kit-conventions.md` — quy tắc cốt lõi dùng xuyên suốt Spec Kit: bảng prefix/ID cho mọi
-  loại tài liệu, vòng đời `status`, quy tắc glossary-link theo độ sâu thư mục, ma trận lan
-  truyền thay đổi... Mỗi `SKILL.md` đã tóm tắt phần áp dụng trực tiếp cho nó, và trỏ tới file
-  này khi cần đầy đủ hơn.
+template cần thiết (thư mục `templates/` cạnh chính `SKILL.md` của nó — BR/UR/FR/glossary/OQ/MEET
+trong `setup-context`, 5 template C4/Interface Contract trong `c4-model`, Epic/Feature/US/OQ/MEET
+trong `plan-backlog`, và `spec-kit-conventions.md` — quy tắc cốt lõi xuyên suốt kit: bảng
+prefix/ID, vòng đời `status`, glossary-link, ma trận lan truyền thay đổi... — trong cả 5 skill)
+và tự tạo `docs/<tầng>/` + copy đúng template vào khi dự án chưa có, thay vì tự bịa cấu trúc (xem
+mục "Điều kiện tiên quyết" ở đầu mỗi `SKILL.md`). `spec-kit-conventions.md` chỉ scaffold thành
+**1 bản duy nhất** tại `docs/spec-kit-conventions.md` của dự án đích dù bundle sẵn ở cả 5 skill —
+không phải 5 bản trùng lặp.
 
 ## Cập nhật
 
