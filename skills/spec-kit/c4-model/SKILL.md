@@ -51,6 +51,30 @@ tạo `c4-context.md`, `templates/container-interface-template.md` dùng để t
 - `docs/business-requirement`, `docs/user-requirement`, `docs/functional-requirement` liên
   quan đã `status: approved`, cần sinh system overview.
 
+## Điều kiện tiên quyết
+
+Trước khi tạo bất kỳ file C4/Interface Contract nào, kiểm tra các file sau đã tồn tại trong dự
+án đang làm việc:
+
+- `CLAUDE.md`, `AGENTS.md`, `RULES.md`
+- `docs/system-overview/templates/c4-context-template.md`,
+  `docs/system-overview/templates/c4-container-template.md`,
+  `docs/system-overview/templates/c4-component-template.md`
+- `docs/glossary/glossary.md` (đã tạo từ Bước trước, xem skill `setup-context`)
+- `docs/system-overview/templates/container-interface-template.md` và
+  `docs/system-overview/templates/entity-interface-template.md` — chỉ bắt buộc kiểm tra **khi**
+  điều kiện tạo tương ứng (mục "Quy trình tạo Container Interface Contract" bước 1, "Quy trình
+  tạo Entity Interface" bước 1) đã đúng, tức sắp thực sự cần tạo file đó — không kiểm trước nếu
+  hệ thống chưa cần tới.
+
+**Nếu 1 file bắt buộc ở trên không tồn tại — DỪNG LẠI, không tự đi tiếp.** Cài skill này qua
+`npx skills add` chỉ mang theo đúng file `SKILL.md`, KHÔNG mang theo template/quy tắc ở trên —
+lỗi thật đã xảy ra khi thiếu: agent tự bịa toàn bộ tên bảng/section trong `c4-context.md`/
+`c4-container.md`/`c4-component-*.md` chỉ dựa vào văn xuôi SKILL.md tình cờ nhắc tới, tạo ra
+tài liệu trông hợp lệ nhưng không khớp schema thật của kit. Báo cho user: liệt kê rõ file nào
+thiếu, và rằng dự án cần scaffold từ repo gốc của skill trước (xem `source` trong
+`skills-lock.json` ở gốc dự án nếu có) — không tự tạo file thay thế bằng nội dung tự bịa.
+
 ## Quy trình tạo Context Diagram (Level 1)
 
 1. Đọc `docs/glossary/glossary.md` (thuật ngữ dự án, dùng nhất quán khi đặt tên hệ thống/

@@ -28,6 +28,28 @@ loại và điền đúng tài liệu — không phải kịch bản câu hỏi 
   diễn đạt câu hỏi/nội dung — không phải quy tắc bắt buộc, các quy tắc bắt buộc nằm ở phần dưới
   đây.
 
+## Điều kiện tiên quyết
+
+Trước khi chạy bất kỳ bước nào ở "Quy trình" bên dưới, kiểm tra các file sau đã tồn tại trong
+dự án đang làm việc (không phải chỉ trong bản cài của skill này):
+
+- `CLAUDE.md`, `AGENTS.md`, `RULES.md`
+- `docs/glossary/template.md`
+- `docs/business-requirement/template.md`
+- `docs/user-requirement/template.md`
+- `docs/functional-requirement/template.md`
+- `docs/meetings/open-questions/OQ-template.md` (cần khi PO từ chối/chưa trả lời 1 chi tiết cụ
+  thể — xem nguyên tắc "không bịa nội dung" bên dưới)
+
+**Nếu bất kỳ file nào ở trên không tồn tại — DỪNG LẠI, không tự đi tiếp.** Cài skill này qua
+`npx skills add` chỉ mang theo đúng file `SKILL.md` (+ `examples.md`), KHÔNG mang theo
+template/quy tắc ở trên — lỗi thật đã xảy ra khi thiếu: agent tự bịa toàn bộ tên field
+frontmatter/tên section chỉ dựa vào văn xuôi SKILL.md tình cờ nhắc tới, tạo ra tài liệu trông
+hợp lệ nhưng không khớp schema thật của kit, không ai được cảnh báo. Báo cho user: liệt kê rõ
+file nào thiếu, và rằng dự án cần scaffold từ repo gốc của skill trước (xem `source` trong
+`skills-lock.json` ở gốc dự án nếu có, để biết chính xác repo cần clone) — không tự tạo file
+thay thế bằng nội dung tự bịa.
+
 ## Nguyên tắc khi chạy skill này
 
 - **Câu hỏi mở đầu bằng ngôn ngữ đời thường, không nhắc thuật ngữ WHY/WHO/WHAT.** Hỏi user
@@ -61,10 +83,12 @@ loại và điền đúng tài liệu — không phải kịch bản câu hỏi 
   không bịa nội dung, không tự suy diễn chi tiết user chưa cung cấp.
 - **Phân biệt "chưa trả lời" với "đã từ chối đoán số/chi tiết".** Khi user **chủ động từ chối**
   việc đoán một con số/ngưỡng/hành vi cụ thể (ví dụ "đừng tự đặt số nhé", "cái đó chưa biết,
-  đừng đoán") — dù có gắn nhãn `[Agent đề xuất — cần PO xác nhận]` và tạo `OQ-*` cũng **không
-  được chèn bất kỳ con số/giá trị cụ thể nào vào tài liệu**, kể cả một giá trị "tạm dùng" có gắn
-  nhãn rõ ràng; để nguyên placeholder gốc của template + `OQ-*` mô tả rõ điều còn thiếu, không có
-  con số nào trong nội dung chính thức. Khác với trường hợp user **đơn giản là chưa trả lời**
+  đừng đoán") — dù có gắn nhãn `[Agent đề xuất — cần PO xác nhận]` và tạo file mới từ
+  `docs/meetings/open-questions/OQ-template.md` (đặt tên `OQ-xxx_<slug>.md`, cùng path
+  `plan-backlog` dùng — không tự đoán path khác) cũng **không được chèn bất kỳ con số/giá trị cụ
+  thể nào vào tài liệu**, kể cả một giá trị "tạm dùng" có gắn nhãn rõ ràng; để nguyên placeholder
+  gốc của template + OQ mô tả rõ điều còn thiếu, không có con số nào trong nội dung chính thức.
+  Khác với trường hợp user **đơn giản là chưa trả lời**
   (chưa được hỏi, hoặc đã hỏi nhưng chưa có câu trả lời) — trường hợp đó vẫn được đề xuất 1 giá
   trị cụ thể kèm nhãn `[Agent đề xuất — cần PO xác nhận]` như bình thường. Từ chối tường minh là
   tín hiệu mạnh hơn "chưa trả lời" — chèn số dù có nhãn vẫn là không tôn trọng đúng những gì user
@@ -89,8 +113,9 @@ loại và điền đúng tài liệu — không phải kịch bản câu hỏi 
 1. Kiểm tra `docs/glossary/glossary.md` đã tồn tại chưa (AGENTS.md, nguyên tắc chung #1 bắt
    buộc đọc file này trước mọi tài liệu). Đây thường là task đầu tiên chạy trên 1 dự án mới nên
    file này nhiều khả năng chưa có — nếu chưa có, copy nguyên trạng
-   `docs/glossary/template.md` thành `glossary.md` trước khi hỏi câu mở đầu, không hỏi user,
-   không bỏ qua bước này. Nếu đã có, đọc qua để nắm thuật ngữ dự án hiện tại.
+   `docs/glossary/template.md` (đã xác nhận tồn tại ở "Điều kiện tiên quyết") thành
+   `glossary.md` trước khi hỏi câu mở đầu, không hỏi user, không bỏ qua bước này. Nếu đã có, đọc
+   qua để nắm thuật ngữ dự án hiện tại.
 2. Kiểm tra `docs/business-requirement/` đã có file `BR-*` nào ngoài `template.md` chưa.
    Nếu có, hỏi user muốn tạo BR mới hay tiếp tục/refine BR đang có — không tự ý ghi đè.
 3. **Hỏi mở đầu, 1 câu duy nhất, ngôn ngữ tự nhiên** — ví dụ: "Kể tôi nghe về dự án bạn muốn
@@ -156,5 +181,7 @@ loại và điền đúng tài liệu — không phải kịch bản câu hỏi 
    rà thường bỏ sót đúng những chi tiết nó không nhớ là đã tự thêm vào. Nếu khả thi, chạy bước
    này như 1 lượt riêng sau khi đã viết xong toàn bộ, thay vì xen kẽ ngay trong lúc viết.
 7. Nhắc user: review và set `status: approved` cho từng tầng trước khi tạo System Overview
-   (C4 Context + Container Diagram). Sau đó điền "Giai đoạn hiện tại" và "Team & đầu mối liên
-   hệ" trong `CONTEXT.md` nếu chưa có.
+   (C4 Context + Container Diagram). Nếu file `CONTEXT.md` tồn tại trong dự án, điền tiếp "Giai
+   đoạn hiện tại" và "Team & đầu mối liên hệ" trong đó nếu 2 mục này còn để trống — `CONTEXT.md`
+   không thuộc "Điều kiện tiên quyết" ở trên (không chặn pipeline), nên nếu file này không tồn
+   tại, bỏ qua phần nhắc này, không tự tạo `CONTEXT.md` mới hay coi đây là lỗi.

@@ -14,6 +14,14 @@ npx skills add <owner>/spec-kit-template
 CLI sẽ đọc skill từ đây, cho chọn skill nào cần, rồi cài vào đúng thư mục skill của coding agent
 đang dùng (`.claude/skills/` nếu là Claude Code, hoặc thư mục tương ứng của agent khác).
 
+**Cài qua `npx` một mình KHÔNG đủ để chạy pipeline** — nó chỉ mang theo đúng 4 file `SKILL.md`
+(+ `examples.md`), không mang theo `docs/**/template.md`, `CLAUDE.md`, `AGENTS.md`, hay
+`RULES.md` mà cả 4 skill tham chiếu cứng. Thiếu các file đó, mỗi skill sẽ tự dừng lại và báo
+thiếu (xem mục "Điều kiện tiên quyết" ở đầu mỗi `SKILL.md`) thay vì tự bịa cấu trúc thay thế.
+Muốn chạy được pipeline, clone toàn bộ repo `spec-kit-template` này làm scaffold cho dự án
+(giữ nguyên `docs/`, `CLAUDE.md`, `AGENTS.md`, `RULES.md`, `CONTEXT.md`) — `npx skills add` chỉ
+nên dùng để lấy skill mới nhất, không thay thế được bước clone scaffold này.
+
 ## Cập nhật
 
 Khi repo này có bản cập nhật, ở dự án đã cài, chạy:

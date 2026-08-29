@@ -36,6 +36,24 @@ sau để quyết định có cần tách User Story tiếp không:
    user hoặc tách tiếp trước khi tạo. Liệt kê cả edge case/trường hợp lỗi quan trọng, không chỉ
    happy path.
 
+## Điều kiện tiên quyết
+
+Trước khi tạo bất kỳ Epic/Feature/User Story nào, kiểm tra các file sau đã tồn tại trong dự án
+đang làm việc:
+
+- `CLAUDE.md`, `AGENTS.md`, `RULES.md`
+- `docs/backlog/epics/EPIC-template.md`, `docs/backlog/features/FEAT-template.md`,
+  `docs/backlog/user-stories/US-template.md`
+- `docs/meetings/open-questions/OQ-template.md`
+- `docs/glossary/glossary.md`, `docs/system-overview/c4-container.md`
+
+**Nếu 1 file bắt buộc ở trên không tồn tại — DỪNG LẠI, không tự đi tiếp.** Cài skill này qua
+`npx skills add` chỉ mang theo đúng file `SKILL.md`, KHÔNG mang theo template/quy tắc ở trên —
+thiếu template Epic/Feature/US khiến agent tự bịa tên field frontmatter/tên section, tạo ra
+backlog trông hợp lệ nhưng không khớp schema thật của kit. Báo cho user: liệt kê rõ file nào
+thiếu, và rằng dự án cần scaffold từ repo gốc của skill trước (xem `source` trong
+`skills-lock.json` ở gốc dự án nếu có) — không tự tạo file thay thế bằng nội dung tự bịa.
+
 ## Nguyên tắc khi chạy skill này
 
 - **BR/UR/FR nguồn còn sơ sài/chưa đủ chi tiết để phân rã → brainstorm rồi hỏi lại, đừng hỏi
