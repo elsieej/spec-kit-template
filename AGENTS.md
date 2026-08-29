@@ -68,7 +68,7 @@ trừ khi được yêu cầu rõ ràng.
 
 Khi giao tiếp giữa 2 container có dữ liệu thật cần thống nhất trước (để 2 container do 2
 phiên/agent khác nhau thực thi không lệch schema), tạo thêm
-`docs/04-system-overview/interface-contracts/container-interface-contracts.md` (`SYS-IFC-xxx`,
+`docs/04-system-overview/container-interface.md` (`SYS-IFC-xxx`,
 mỗi luồng gán 1 mã `CIC-xxx` cục bộ trong file
 đó — xem skill `c4-model`) — chỉ chốt schema dữ liệu (field nào bắt buộc/tuỳ chọn, kiểu ở mức
 khái niệm — text/số/ngày-giờ/boolean/enum, dữ liệu cần
@@ -77,11 +77,11 @@ Component diagram đã có, KHÔNG thiết kế API hay DB cụ thể (method HT
 bảng/cột/kiểu SQL) — kể cả với container DB thuần. Đó là Code (Level 4), quyết định ở Bước C.
 
 Nếu nhiều entity dùng chung bởi nhiều CIC/container mà mô tả rời rạc trong từng CIC sẽ bị lặp
-hoặc lệch nhau, tạo thêm `docs/04-system-overview/interface-contracts/schema-interface-contracts.md` (`SYS-SIC-xxx`,
+hoặc lệch nhau, tạo thêm `docs/04-system-overview/entity-interface.md` (`SYS-SIC-xxx`,
 xem skill `c4-model`) — định nghĩa entity, field (kiểu khái niệm), và quan hệ giữa các entity
 (1-nhiều, nhiều-nhiều, đệ quy...) ở mức logic, độc lập công nghệ lưu trữ. Không bắt buộc cho mọi
 hệ thống — hệ thống ít entity/quan hệ rời rạc thì field list trong từng CIC là đủ. Tài liệu này
-không thay thế `container-interface-contracts.md`: đây là nguồn sự thật cho hình dạng entity,
+không thay thế `container-interface.md`: đây là nguồn sự thật cho hình dạng entity,
 CIC là nguồn sự thật cho thao tác nào gửi/nhận entity đó qua luồng nào.
 
 ### Bước B — Sinh Backlog
@@ -184,10 +184,10 @@ Trước khi code, đọc theo thứ tự:
 4. `docs/04-system-overview/c4-container.md` (container liên quan), và `c4-component-<mã
    container>.md` của container đó nếu file này tồn tại (container đơn giản, không có cấu
    trúc nội bộ đáng vẽ, sẽ không có file Component — xem skill `c4-model`)
-5. `docs/04-system-overview/interface-contracts/container-interface-contracts.md` nếu tồn tại — mục CIC-xxx tương
+5. `docs/04-system-overview/container-interface.md` nếu tồn tại — mục CIC-xxx tương
    ứng luồng giao tiếp qua container liên quan, tránh tự bịa field khác với container ở đầu kia
    đã thống nhất
-6. `docs/04-system-overview/interface-contracts/schema-interface-contracts.md` nếu tồn tại — entity liên quan (field
+6. `docs/04-system-overview/entity-interface.md` nếu tồn tại — entity liên quan (field
    + quan hệ), đặc biệt khi CIC ở bước 5 trỏ về entity trong tài liệu này thay vì liệt kê lại
    field
 
@@ -252,7 +252,7 @@ flowchart TD
     FR -->|rà soát docs_requirements| US
     CTX -->|rà soát source_docs: SYS-CTX-xxx| CTR
     CTR -->|Mã đổi → rà soát source_container| EPIC
-    CTR -->|Mã đổi → đổi tên file + rà soát tham chiếu| CMPIFC["c4-component-&lt;mã&gt;.md<br/>+ container-interface-contracts.md"]
+    CTR -->|Mã đổi → đổi tên file + rà soát tham chiếu| CMPIFC["c4-component-&lt;mã&gt;.md<br/>+ container-interface.md"]
     EPIC -->|rà soát parent_epic| FEAT
     FEAT -->|rà soát parent_feature| US
     OQ -->|trả status về trước khi block| EPIC
@@ -268,7 +268,7 @@ flowchart TD
 | UR đã `approved` bị sửa → `status: draft` | FR con, SYS-CTX (`source_docs`), Feature (`docs_requirements`) | như trên |
 | FR đã `approved` bị sửa → `status: draft` | SYS-CTX (`source_docs`), User Story (`docs_requirements`) | như trên |
 | SYS-CTX đã `approved` bị sửa → `status: draft` | SYS-CTR có `source_docs: [SYS-CTX-xxx]` | Bước A |
-| SYS-CTR đổi (đổi/xoá Mã của 1 container) | Epic có `source_container` trỏ tới Mã đó — cập nhật lại `source_container`, hoặc báo "liên kết gãy" nếu Mã bị xoá. Đồng thời: file `c4-component-<mã cũ>.md` (tên file chứa Mã) cần đổi tên theo Mã mới, và mọi tham chiếu tới Mã đó trong `container-interface-contracts.md` (cột "Từ"/"Tới" ở mục "Bảng tổng hợp CIC" và các mục CIC chi tiết) cần cập nhật — không rà soát 2 chỗ này thì tài liệu vẫn tham chiếu Mã đã lỗi thời | Bước B, mục "Epic ứng với container nào?"; Bước A cho file Component/Container Interface Contract |
+| SYS-CTR đổi (đổi/xoá Mã của 1 container) | Epic có `source_container` trỏ tới Mã đó — cập nhật lại `source_container`, hoặc báo "liên kết gãy" nếu Mã bị xoá. Đồng thời: file `c4-component-<mã cũ>.md` (tên file chứa Mã) cần đổi tên theo Mã mới, và mọi tham chiếu tới Mã đó trong `container-interface.md` (cột "Từ"/"Tới" ở mục "Bảng tổng hợp CIC" và các mục CIC chi tiết) cần cập nhật — không rà soát 2 chỗ này thì tài liệu vẫn tham chiếu Mã đã lỗi thời | Bước B, mục "Epic ứng với container nào?"; Bước A cho file Component/Container Interface Contract |
 | Feature/User Story đổi trong cuộc họp | User Story liên quan — còn `draft` thì sửa thẳng, đã `approved` thì tạo item mới cho phần chênh lệch | Bước E, mục "Họp làm thay đổi Feature/User Story" |
 | OQ được trả lời (`status: approved`) | Mọi item trong `blocks: []` của OQ đó — trả `status` về trạng thái trước khi bị block | Bước E |
 | `depends_on` của 1 item đã `approved` hết | Chính item đó — có thể xét bắt đầu thực hiện (Bước C, vẫn cần review, không tự động) | Bước B, mục "Phụ thuộc giữa Feature/User Story" |

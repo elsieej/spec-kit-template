@@ -24,7 +24,7 @@ related_open_questions: []
   trước: ai gọi ai, thao tác nào, gửi/nhận gì.
 - Chỉ đào sâu đúng các hàng đã duyệt trong bảng "Giao tiếp" của `c4-container.md` — **không tự
   thêm/bớt luồng giao tiếp**; `c4-container.md` là nguồn sự thật cho ranh giới đó.
-- Nếu `schema-interface-contracts.md` (`SYS-SIC-xxx`) đã định nghĩa entity mà 1 CIC gửi/nhận,
+- Nếu `entity-interface.md` (`SYS-SIC-xxx`) đã định nghĩa entity mà 1 CIC gửi/nhận,
   trỏ về entity đó thay vì liệt kê lại field.
 
 ## 2. Quy ước chung (nêu 1 lần, không lặp ở từng CIC)

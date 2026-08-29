@@ -29,7 +29,7 @@ này.
 ## Context cho Agent (đọc trước khi thực hiện)
 - Business/Functional requirement liên quan: FR-001
 - System overview liên quan: SYS-CTR-001 (container: <mã container, xem c4-container.md>)
-- Container Interface Contract liên quan: <mã CIC-xxx trong container-interface-contracts.md —
+- Container Interface Contract liên quan: <mã CIC-xxx trong container-interface.md —
   nếu file này tồn tại và có luồng giao tiếp liên quan tới US này, xem AGENTS.md Bước C>
 - Glossary liên quan: xem docs/00-glossary/glossary.md
 

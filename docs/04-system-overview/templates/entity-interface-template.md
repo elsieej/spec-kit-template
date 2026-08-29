@@ -5,17 +5,17 @@ status: draft        # draft | approved | deprecated
 version: 1
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
-source_docs: []       # SYS-CTR-xxx (container/DB sở hữu entity) và/hoặc container-interface-contracts.md liên quan
+source_docs: []       # SYS-CTR-xxx (container/DB sở hữu entity) và/hoặc container-interface.md liên quan
 related_open_questions: []
 ---
 
-# SYS-SIC-001 — Schema dữ liệu & quan hệ entity (<Tên hệ thống>)
+# SYS-SIC-001 — Entity Interface (<Tên hệ thống>)
 
 > Tài liệu này định nghĩa **entity nào tồn tại trong hệ thống, field của mỗi entity, và quan hệ
 > giữa các entity** (1-nhiều, nhiều-nhiều, đệ quy...) — ở mức **logic/khái niệm**, độc lập công
 > nghệ lưu trữ (chưa chọn SQL hay NoSQL). KHÔNG thiết kế DDL/collection schema thật (kiểu cột,
 > index, khoá ngoại vật lý), KHÔNG mô tả request/response body của từng thao tác giao tiếp (đó là
-> `container-interface-contracts.md`, mã CIC), KHÔNG mô tả định dạng file/wire format cụ thể hay
+> `container-interface.md`, mã CIC), KHÔNG mô tả định dạng file/wire format cụ thể hay
 > quy ước storage key (đó là Bước C khi thực thi User Story). Xem mục 4 để phân biệt rõ ranh
 > giới này bằng ví dụ ĐÚNG/SAI.
 
@@ -23,7 +23,7 @@ related_open_questions: []
 
 Không bắt buộc cho mọi hệ thống. Chỉ tạo khi có **nhiều entity liên quan chặt với nhau** (nhiều
 cạnh quan hệ, entity dùng chung bởi nhiều CIC/container) mà mô tả rời rạc trong từng mục CIC của
-`container-interface-contracts.md` sẽ bị lặp lại hoặc lệch nhau giữa các chỗ. Hệ thống đơn giản,
+`container-interface.md` sẽ bị lặp lại hoặc lệch nhau giữa các chỗ. Hệ thống đơn giản,
 ít entity, quan hệ rời rạc → field list ngay trong từng CIC là đủ, không cần tài liệu riêng này.
 
 ## 2. Sơ đồ quan hệ entity
@@ -78,7 +78,7 @@ CREATE TABLE tasks (
 ```
 
 SAI — đây là request/response body của 1 thao tác giao tiếp cụ thể, thuộc
-`container-interface-contracts.md` (mã CIC) hoặc Code, KHÔNG viết vào tài liệu này:
+`container-interface.md` (mã CIC) hoặc Code, KHÔNG viết vào tài liệu này:
 ```
 POST /tasks
 Request: { "title": string, "assignedTo": string | null }
@@ -90,7 +90,7 @@ liệu (entity, field, quan hệ), không quan tâm nó di chuyển qua luồng 
 
 ## 5. Liên kết với Container Interface Contract
 
-Khi 1 mã CIC trong `container-interface-contracts.md` gửi/nhận đúng 1 entity (hoặc 1 phần field
+Khi 1 mã CIC trong `container-interface.md` gửi/nhận đúng 1 entity (hoặc 1 phần field
 của entity) đã định nghĩa ở đây, CIC đó nên trỏ về entity này (`xem SYS-SIC-001 §3.x`) thay vì
 liệt kê lại toàn bộ field — chỉ ghi thêm field khác biệt/subset nếu CIC đó không dùng hết field
 của entity. Tài liệu này là nguồn sự thật cho **hình dạng** entity; CIC là nguồn sự thật cho

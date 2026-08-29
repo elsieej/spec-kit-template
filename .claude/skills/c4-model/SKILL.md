@@ -3,8 +3,8 @@ name: c4-model
 description: >
   Giải thích phương pháp C4 Model (Context, Container, Component, Code — c4model.com) và
   dẫn dắt tạo docs/04-system-overview/c4-context.md + c4-container.md + c4-component-*.md
-  đúng tầng, đúng audience, cùng container-interface-contracts.md (mỗi luồng giao tiếp giữa
-  container gán 1 mã CIC, khi cần) và schema-interface-contracts.md (entity + quan hệ dữ liệu,
+  đúng tầng, đúng audience, cùng container-interface.md (mỗi luồng giao tiếp giữa
+  container gán 1 mã CIC, khi cần) và entity-interface.md (entity + quan hệ dữ liệu,
   khi nhiều CIC/container dùng chung entity, khi cần) đúng phạm vi (schema, không phải
   API/Code). Dùng khi user hỏi "C4 model là gì", "vẽ context/container/component diagram",
   "system overview", "kiến trúc hệ thống", "interface contract giữa các container", "entity/
@@ -34,10 +34,16 @@ maintain nổi, nhanh lỗi thời hơn cả code.
 
 Ngoài 4 Level trên (đây KHÔNG phải 1 Level mới, chỉ là phụ lục dữ liệu đi kèm Container/
 Component): khi giao tiếp giữa 2 container có dữ liệu thật cần thống nhất trước, tạo thêm
-`container-interface-contracts.md`, mỗi luồng giao tiếp gán 1 mã `CIC-xxx` — xem mục "Quy
+`container-interface.md`, mỗi luồng giao tiếp gán 1 mã `CIC-xxx` — xem mục "Quy
 trình tạo Container Interface Contract" bên dưới. Nếu nhiều entity dùng chung bởi nhiều CIC/
-container mà mô tả rời rạc sẽ bị lặp/lệch nhau, tạo thêm `schema-interface-contracts.md` —
-xem mục "Quy trình tạo Schema Interface Contract" bên dưới.
+container mà mô tả rời rạc sẽ bị lặp/lệch nhau, tạo thêm `entity-interface.md` —
+xem mục "Quy trình tạo Entity Interface" bên dưới.
+
+Mọi file `*-template.md` skill này dùng đều nằm trong `docs/04-system-overview/templates/`
+(tách biệt khỏi tài liệu thật để dễ đọc) — ví dụ `templates/c4-context-template.md` dùng để
+tạo `c4-context.md`, `templates/container-interface-template.md` dùng để tạo
+`container-interface.md`. Tài liệu thật (không có suffix `-template`) luôn tạo trực tiếp trong
+`docs/04-system-overview/`, không tạo trong `templates/`.
 
 ## Khi nào dùng skill này
 
@@ -93,10 +99,10 @@ xem mục "Quy trình tạo Schema Interface Contract" bên dưới.
 2. Liệt kê từng component/module bên trong container, mỗi component gán tên ngắn gọn kèm
    trách nhiệm chính — ở mức đủ để dev trong team sở hữu container hiểu bố cục mà không cần
    đọc code trước. Không xuống tới class/function cụ thể (đó là Level 4, không thuộc phạm vi
-   skill này). Nếu `container-interface-contracts.md` đã tồn tại và container này tham gia ít
+   skill này). Nếu `container-interface.md` đã tồn tại và container này tham gia ít
    nhất 1 mã CIC, điền cột "CIC liên quan" cho đúng component khởi tạo/xử lý CIC đó (đối chiếu
    tên component phải khớp với bảng tổng hợp CIC — không tự đặt tên khác ở đây); nếu chưa tạo
-   `container-interface-contracts.md`, để trống cột này, không tự suy đoán mã CIC chưa tồn tại.
+   `container-interface.md`, để trống cột này, không tự suy đoán mã CIC chưa tồn tại.
 3. Vẽ giao tiếp giữa các component trong cùng container (gọi hàm, event nội bộ...) bằng
    diagram mermaid `graph TD`.
 4. Trước khi kết luận "container quá đơn giản, bỏ qua Component diagram": phải thử liệt kê
@@ -139,9 +145,9 @@ Không phải 1 Level của C4 — là phụ lục dữ liệu đi kèm Containe
    phải 1 hợp đồng 2 bên nội bộ tự chốt — nếu chưa xác nhận được với bên thứ ba, ghi rõ "chưa xác
    nhận với <hệ thống ngoài>" thay vì để trống hoặc bỏ qua không ghi gì (bỏ qua là sai, vì đây
    chính là dữ liệu Bước C cần để không tự bịa hợp đồng tích hợp).
-2. Tạo `docs/04-system-overview/interface-contracts/container-interface-contracts.md` (`SYS-IFC-xxx`, dùng
-   `container-interface-contracts-template.md`), `source_docs` trỏ về `c4-container.md`/
-   `c4-component-*.md` liên quan.
+2. Tạo `docs/04-system-overview/container-interface.md` (`SYS-IFC-xxx`, dùng
+   `docs/04-system-overview/templates/container-interface-template.md`), `source_docs` trỏ về
+   `c4-container.md`/`c4-component-*.md` liên quan.
 3. Gán 1 mã **CIC** (`CIC-001` tăng dần) cho mỗi **hàng (cạnh có hướng)** trong bảng "Giao tiếp"
    của `c4-container.md` cần chốt trước — 2 container gọi nhau cả 2 chiều, ghi thành 2 hàng ở
    đó, thì thành 2 mã CIC. Mã đã cấp là cố định: luồng bị bỏ thì đánh dấu ngừng dùng tại chỗ,
@@ -171,7 +177,7 @@ Không phải 1 Level của C4 — là phụ lục dữ liệu đi kèm Containe
    ghi — không phải ngoại lệ của quy tắc này, chỉ kiểu cụ thể của DB/ngôn ngữ mới ngoài phạm vi.
    Chỉ chốt schema dữ liệu, để 2 bên độc lập triển khai không lệch nhau.
 
-## Quy trình tạo Schema Interface Contract (entity + quan hệ, mã SYS-SIC)
+## Quy trình tạo Entity Interface (entity + quan hệ, mã SYS-SIC)
 
 Không phải 1 Level của C4 — là phụ lục dữ liệu riêng, tách khỏi Container/Component/CIC, trả
 lời câu hỏi "entity nào tồn tại trong hệ thống và quan hệ giữa chúng là gì" — câu hỏi mà từng
@@ -180,10 +186,10 @@ xuất hiện ở nhiều luồng/nhiều container.
 
 1. Chỉ tạo khi nhiều entity dùng chung bởi nhiều CIC/container, và mô tả rời rạc trong từng CIC
    sẽ bị lặp lại hoặc lệch nhau. Không bắt buộc cho mọi hệ thống — hệ thống ít entity/quan hệ
-   rời rạc thì field list ngay trong từng CIC là đủ, dừng ở `container-interface-contracts.md`.
-2. Tạo `docs/04-system-overview/interface-contracts/schema-interface-contracts.md` (`SYS-SIC-xxx`, dùng
-   `schema-interface-contracts-template.md`), `source_docs` trỏ về `c4-container.md` (container/
-   DB sở hữu entity) và/hoặc `container-interface-contracts.md` liên quan.
+   rời rạc thì field list ngay trong từng CIC là đủ, dừng ở `container-interface.md`.
+2. Tạo `docs/04-system-overview/entity-interface.md` (`SYS-SIC-xxx`, dùng
+   `docs/04-system-overview/templates/entity-interface-template.md`), `source_docs` trỏ về
+   `c4-container.md` (container/DB sở hữu entity) và/hoặc `container-interface.md` liên quan.
 3. Vẽ sơ đồ quan hệ entity (mermaid `erDiagram`) + bảng mô tả quan hệ: cardinality (`1–1`,
    `1–0..n`, `n–n`, đệ quy...), bên nào là FK, bắt buộc hay tuỳ chọn.
 4. Với mỗi entity: liệt kê field, kiểu ở mức khái niệm (text/số/ngày-giờ/boolean/enum — liệt kê
@@ -191,7 +197,7 @@ xuất hiện ở nhiều luồng/nhiều container.
    **object**/**array\<kiểu\>** cho cấu trúc lồng), bắt buộc/tuỳ chọn.
 5. **KHÔNG thiết kế DDL/collection schema thật** (kiểu cột, index, khoá ngoại vật lý — đó là
    Bước C), **KHÔNG mô tả request/response body của từng thao tác** (đó là CIC trong
-   `container-interface-contracts.md`), **KHÔNG mô tả định dạng file/wire format cụ thể hay quy
+   `container-interface.md`), **KHÔNG mô tả định dạng file/wire format cụ thể hay quy
    ước storage key** (đó là Bước C). Tài liệu này chỉ mô tả bản thân dữ liệu (entity, field,
    quan hệ) — không quan tâm nó di chuyển qua luồng nào hay lưu trữ ra sao.
 6. Khi 1 mã CIC gửi/nhận đúng 1 entity (hoặc subset field) đã định nghĩa ở đây, cập nhật CIC đó
@@ -201,8 +207,8 @@ xuất hiện ở nhiều luồng/nhiều container.
 ## Trước khi kết thúc phiên
 
 Kiểm lại riêng việc gắn link glossary trên mọi file C4/Interface Contract vừa tạo/sửa trong
-phiên (`c4-context.md`, `c4-container.md`, `c4-component-*.md`, `container-interface-contracts.md`,
-`schema-interface-contracts.md`) — mọi thuật ngữ đã có trong `docs/00-glossary/glossary.md`
+phiên (`c4-context.md`, `c4-container.md`, `c4-component-*.md`, `container-interface.md`,
+`entity-interface.md`) — mọi thuật ngữ đã có trong `docs/00-glossary/glossary.md`
 dùng trong các file đó có link ở lần xuất hiện đầu tiên chưa (xem bước 1 ở Context Diagram,
 `RULES.md` mục 2). Quy tắc này hay bị bỏ quên trong lúc tập trung vẽ diagram/viết schema, kiểm
 lại rõ ràng ở đây thay vì chỉ tin đã làm đúng lúc viết.
@@ -211,11 +217,11 @@ lại rõ ràng ở đây thay vì chỉ tin đã làm đúng lúc viết.
 chính mình tạo ra (cùng mẫu hình với checkpoint glossary ở trên), nên kiểm lại đây như 1 bước
 riêng, không chỉ tin đã khớp lúc viết:
 
-- Mỗi mã CIC trong bảng tổng hợp (`container-interface-contracts.md` mục 3) có đúng tên
+- Mỗi mã CIC trong bảng tổng hợp (`container-interface.md` mục 3) có đúng tên
   component khởi tạo/xử lý khớp với cột "CIC liên quan" trong file `c4-component-*.md` tương
   ứng — cả 2 chiều: component có tên trong bảng CIC phải backlink đúng mã đó, và mã CIC nào
   cũng phải có mặt ở backlink của component nó liệt kê (không thiếu, không thừa).
-- Nếu `schema-interface-contracts.md` tồn tại: mọi field ở CIC không trỏ về entity (tự liệt kê
+- Nếu `entity-interface.md` tồn tại: mọi field ở CIC không trỏ về entity (tự liệt kê
   field thay vì tham chiếu) phải cùng tên với field tương ứng ở SIC — không để 2 tên khác nhau
   cho cùng 1 khái niệm (vd `sku` ở CIC nhưng `productId` ở SIC).
 
@@ -231,13 +237,13 @@ riêng, không chỉ tin đã khớp lúc viết:
 - Không cập nhật diagram khi kiến trúc đổi — review lại Container/Component Diagram mỗi khi có Epic mới
   ảnh hưởng kiến trúc (bump `version`, không tạo file mới cho mỗi lần sửa).
 - Nhồi method HTTP/path/status code, hoặc tên bảng/cột/kiểu SQL cụ thể vào
-  `container-interface-contracts.md` — đó đều là Code (Level 4), ngoài phạm vi tài liệu này (xem mục
+  `container-interface.md` — đó đều là Code (Level 4), ngoài phạm vi tài liệu này (xem mục
   "Quy trình tạo Container Interface Contract").
 - Liệt kê component rồi tự ghi file luôn mà không thực sự dừng lại chờ xác nhận (bước 5 ở Quy
   trình tạo Component Diagram) — dễ để lọt 1 component không ai yêu cầu vào dữ liệu gốc mà
   không cơ chế nào ở tầng sau bắt lại được.
-- Tạo `schema-interface-contracts.md` cho hệ thống ít entity/quan hệ rời rạc — không cần thiết,
-  field list ngay trong từng CIC đã đủ (xem bước 1 ở Quy trình tạo Schema Interface Contract).
-- Để field của cùng 1 entity lệch nhau giữa `schema-interface-contracts.md` và các mục CIC trong
-  `container-interface-contracts.md` — khi cả 2 file cùng tồn tại, CIC phải trỏ về entity thay
-  vì tự liệt kê lại field (xem bước 6 ở Quy trình tạo Schema Interface Contract).
+- Tạo `entity-interface.md` cho hệ thống ít entity/quan hệ rời rạc — không cần thiết,
+  field list ngay trong từng CIC đã đủ (xem bước 1 ở Quy trình tạo Entity Interface).
+- Để field của cùng 1 entity lệch nhau giữa `entity-interface.md` và các mục CIC trong
+  `container-interface.md` — khi cả 2 file cùng tồn tại, CIC phải trỏ về entity thay
+  vì tự liệt kê lại field (xem bước 6 ở Quy trình tạo Entity Interface).

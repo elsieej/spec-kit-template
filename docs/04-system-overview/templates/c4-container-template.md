@@ -57,7 +57,7 @@ component đã xét qua trước khi kết luận, xem skill `c4-model`).
 
 ## Ghi chú Container Interface Contract
 
-Hàng nào ở bảng "Giao tiếp" trên cần `container-interface-contracts.md` (mã CIC + schema dữ
+Hàng nào ở bảng "Giao tiếp" trên cần `container-interface.md` (mã CIC + schema dữ
 liệu trao đổi) — chỉ cần khi có dữ liệu thật phải thống nhất trước lúc 2 bên được thực thi độc
 lập; áp dụng cho cả container nội bộ ↔ hệ thống ngoài đã liệt kê ở "Hệ thống ngoài liên quan"
 trong `c4-context.md` (payment gateway, hệ thống bên thứ ba...), không chỉ 2 container nội bộ —

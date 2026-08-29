@@ -136,7 +136,7 @@ sau để quyết định có cần tách User Story tiếp không:
    đủ quan trọng) — không chỉ áp dụng cho chi tiết đã được hỏi tường minh trong hội thoại rồi bỏ
    qua các chi tiết tương tự khác.
    **Phạm vi quét bao gồm cả tầng C4** mà backlog vừa tham chiếu tới (`c4-container.md`,
-   `c4-component-*.md`, `container-interface-contracts.md`, `schema-interface-contracts.md` nếu
+   `c4-component-*.md`, `container-interface.md`, `entity-interface.md` nếu
    tồn tại, trong `source_container`/`Context cho Agent` của Epic/US vừa tạo) — xác minh bước
    "liệt kê Component rồi chờ user xác nhận" của `c4-model` thực sự đã xảy ra (có phản hồi thật
    của user trong mục "Xác nhận với user" của file Component/Container, không chỉ khẳng định

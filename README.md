@@ -68,8 +68,10 @@ CLAUDE.md                         → quy ước đặt tên + versioning xuyên
   cây Epic→Feature→User Story (không có dashboard/file trạng thái riêng, luôn tính lại từ
   frontmatter)
 - `docs/01-04` — 3 tầng yêu cầu + system overview (C4 Context/Container/Component +
-  container-interface-contracts, mã CIC, khi có dữ liệu thật cần thống nhất trước giữa 2 container
-  + schema-interface-contracts, entity/quan hệ dữ liệu, khi nhiều CIC/container dùng chung entity)
+  container-interface, mã CIC, khi có dữ liệu thật cần thống nhất trước giữa 2 container
+  + entity-interface, entity/quan hệ dữ liệu, khi nhiều CIC/container dùng chung entity — mọi
+  template của tầng system overview nằm trong `docs/04-system-overview/templates/`, tách biệt
+  khỏi tài liệu thật)
 - `docs/05-backlog` — Epic/Feature/User Story (Epic phẳng, Feature/US nằm trong subfolder
   theo Epic — xem `CLAUDE.md`)
 - `docs/06-meetings` — biên bản họp + open questions (luồng ngoài)
