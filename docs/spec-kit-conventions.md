@@ -141,13 +141,68 @@ User Story → `docs_requirements` trỏ FR, phải thêm 1 hop qua `parent_user
   - Không lặp lại link ở các lần nhắc lại sau trong cùng tài liệu. Thuật ngữ chưa có trong
     glossary → không bắt buộc thêm link.
 
-## 4. Bảo mật
+## 4. Priority backlog (MoSCoW → P0-P3)
+
+"Backlog" không phải 1 file riêng — đó là trạng thái gộp của mọi Epic/Feature/User Story trong
+`docs/backlog` đang `draft` và không `blocked`. Ưu tiên xử lý: loại các item đang `blocked`
+trước, còn lại sắp theo field `priority` trên Feature/US (`P0` xử lý trước, `P3` sau cùng).
+
+**`priority` khác gì với "Ưu tiên" (MoSCoW) ở UR?** Hai lớp riêng biệt, không dùng thay cho
+nhau: MoSCoW ở UR (`Must/Should/Could/Won't have`) là ưu tiên **của yêu cầu**, chốt 1 lần lúc UR
+được approve, hiếm khi đổi. `priority` (`P0`-`P3`) trên Feature/User Story là ưu tiên **xử lý
+trong backlog**, có thể khác giá trị suy ra từ MoSCoW gốc vì bối cảnh thay đổi (deadline khách
+hàng, rủi ro kỹ thuật mới phát sinh...).
+
+Khi tạo mới Feature/US, suy `priority` mặc định từ mức MoSCoW của UR nguồn: `Must have` →
+`P0`/`P1`, `Should have` → `P1`/`P2`, `Could have` → `P2`/`P3`, `Won't have` → không đưa vào
+backlog. Nếu `docs_requirements` của Feature/US trỏ tới **nhiều UR có mức MoSCoW khác nhau** (qua
+FR trung gian) → lấy mức MoSCoW **cao nhất** trong các UR nguồn đó làm cơ sở suy `priority` (ví
+dụ 1 UR `Must have` + 1 UR `Should have` → tính như `Must have`, không lấy trung bình hay mức
+thấp nhất). Mỗi mức MoSCoW ứng với 2 giá trị `priority` liền kề, không phải 1 — tiêu chí chọn
+giữa 2 giá trị đó (đúng 1 trong 3 nhánh, không nhánh nào cần suy đoán thêm):
+- Item **chặn** các Feature/US khác (nằm trong `depends_on` của item khác) hoặc thuộc
+  container/luồng chính đang triển khai đầu tiên → lấy giá trị cao hơn (`P0` cho `Must have`,
+  `P1` cho `Should have`...).
+- Item tự nó có `depends_on` trỏ tới item khác, và không có item nào khác `depends_on` nó (không
+  chặn ai) → lấy giá trị thấp hơn liền kề — nó "chưa tới lượt", không cần xử lý sớm hơn item chặn
+  người khác.
+- Item không có quan hệ `depends_on` theo chiều nào → lấy giá trị thấp hơn liền kề theo mặc định;
+  chỉ lấy giá trị cao hơn nếu có lý do nghiệp vụ cụ thể khác (deadline khách hàng, rủi ro kỹ
+  thuật...) — ghi lý do vào "Ghi chú".
+
+Không bắt buộc ghi lý do khi **chọn lần đầu** giữa 2 giá trị hợp lệ lúc tạo mới — chỉ bắt buộc
+khi **sau này đổi** `priority` khác giá trị đã chọn ban đầu (ghi vào "Ghi chú"/"Ghi chú kỹ thuật"
+của item đó).
+
+Các dải giá trị `priority` suy ra từ 2 mức MoSCoW liền kề **chồng lấn có chủ đích** (`P1` đạt được
+từ cả `Must have` lẫn `Should have`) — không suy ngược được mức MoSCoW gốc chỉ từ 1 mình giá trị
+`priority`. Cần biết mức MoSCoW gốc thì lần theo `docs_requirements` tới UR liên quan rồi đọc
+đúng dòng tương ứng trong bảng "Nhu cầu người dùng & Ưu tiên" của UR đó (1 UR có thể có nhiều nhu
+cầu, mỗi dòng 1 mức MoSCoW riêng — không lấy đại 1 dòng bất kỳ hay trộn nhiều dòng).
+
+**Khi `docs_requirements` trỏ tới nguyên 1 file UR (không tới dòng cụ thể), chọn dòng nào?** Lấy
+(các) dòng nhu cầu mà nội dung Feature/US đó thực sự phục vụ — xác định bằng cách khớp nội dung
+("Mục tiêu"/"Mô tả chức năng" của Feature/US, hoặc của FR trung gian với US) với diễn giải của
+từng dòng trong bảng "Nhu cầu người dùng & Ưu tiên", cùng cách template Functional Requirement tự
+phân biệt 1 FR có phục vụ nhiều UR/persona hay không (2 câu hỏi: Input/Output khác nhau? Business
+rule khác nhau?) — không phải lấy dòng đầu tiên hay dòng có MoSCoW cao nhất trong toàn UR một
+cách máy móc. Nếu Feature/US thực sự phục vụ nhiều dòng nhu cầu cùng lúc, áp dụng đúng quy tắc
+"lấy mức MoSCoW cao nhất" ở trên cho đúng tập hợp các dòng đó — không phải toàn bộ UR bất kể dòng
+nào liên quan hay không.
+
+Số hop khác nhau giữa Feature và User Story vì `docs_requirements` trỏ tới tầng khác nhau:
+Feature → `docs_requirements` trỏ thẳng tới UR, 1 hop. User Story → `docs_requirements` trỏ tới
+FR, phải thêm 1 hop qua `parent_user_requirement` của FR đó mới tới UR (US → FR → UR, không phải
+US → UR trực tiếp). Mục "Ghi chú" chỉ chắc chắn có thông tin khi `priority` từng bị đổi sau này —
+không phải nguồn để tra MoSCoW gốc cho item chưa từng đổi `priority`.
+
+## 5. Bảo mật
 
 Không đưa credential, API key, token, hoặc dữ liệu cá nhân thật vào bất kỳ tài liệu nào (kể cả
 ví dụ minh hoạ) — dùng placeholder rõ ràng (`<token>`, `xxx-xxx-xxx`...). Khi trích dẫn từ
 meeting notes/nguồn ngoài, rà lại để loại bỏ thông tin nhạy cảm không cần thiết.
 
-## 5. Meeting / Open Question (Bước E)
+## 6. Meeting / Open Question (Bước E)
 
 Khi có input từ cuộc họp: tạo `MEET-*`, nếu phát sinh điều chưa rõ → tạo `OQ-*` (`status: draft`)
 và cập nhật `blocked_by_open_questions` + `status: blocked` trên Epic/Feature/Story liên quan
@@ -162,7 +217,7 @@ Khi OQ được trả lời: điền mục "Trả lời" trong `OQ-xxx`, set `st
 trên mọi item trong `blocks: []` của OQ đó — đưa `status` của từng item về **trạng thái trước
 khi bị block** (không mặc định về `draft`).
 
-## 6. Ma trận lan truyền thay đổi
+## 7. Ma trận lan truyền thay đổi
 
 Không có cơ chế tự động (không hook, không CI) — mọi lan truyền dưới đây cần chủ động rà soát
 khi 1 tài liệu chuyển sang trạng thái kích hoạt. Ghi lại việc đã rà soát trong message của commit

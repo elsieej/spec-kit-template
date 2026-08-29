@@ -8,8 +8,8 @@
    cha — được phép thêm Feature/User Story mới vào một Epic/Feature đang `draft` bất kỳ lúc nào
    (backlog grooming là việc liên tục), miễn `parent_*` trỏ đúng và `status: deprecated` thì
    không thêm con mới nữa.
-3. Mọi tài liệu mới phải điền đủ **toàn bộ** field frontmatter đúng theo `template.md`/
-   `*-template.md` của loại tài liệu đó — KHÔNG chỉ `id`/`type`/`status`/`version`/`parent_*`
+3. Mọi tài liệu mới phải điền đủ **toàn bộ** field frontmatter đúng theo `<PREFIX>-template.md`
+   của loại tài liệu đó — KHÔNG chỉ `id`/`type`/`status`/`version`/`parent_*`
    (danh sách này không đầy đủ, mỗi loại có thêm field riêng, ví dụ: Epic/Feature/US còn có
    `docs_requirements`, `blocked_by_open_questions`; Feature/US thêm `depends_on`, `priority`;
    User Story thêm `story_points`, `assignee`; SYS-CTX/CTR/CMP/IFC có `source_docs` (SYS-CTR có
@@ -120,57 +120,9 @@ cột "Trách nhiệm" của từng container trong bảng đó:
 - Không container nào khớp → `c4-container.md` đang thiếu/lỗi thời, quay lại Bước A cập nhật
   container diagram trước, không tự bịa container ở backlog.
 
-**"Backlog"** không phải 1 file riêng — đó là trạng thái gộp của mọi Epic/Feature/User Story
-trong `docs/backlog` đang `draft` và không `blocked` (chưa `approved` nghĩa là chưa xong).
-Ưu tiên xử lý: loại các item đang `blocked` trước, còn lại sắp theo field `priority` trên
-Feature/US (`P0` xử lý trước, `P3` sau cùng).
-
-**`priority` khác gì với "Ưu tiên" (MoSCoW) ở UR?** Hai lớp riêng biệt, không dùng thay cho
-nhau:
-- MoSCoW ở UR (`Must/Should/Could/Won't have`) là ưu tiên **của yêu cầu**, chốt 1 lần lúc UR
-  được approve, hiếm khi đổi.
-- `priority` (`P0`-`P3`) trên Feature/User Story là ưu tiên **xử lý trong backlog**, có thể
-  khác giá trị suy ra từ MoSCoW gốc vì bối cảnh thay đổi (deadline khách hàng, rủi ro kỹ thuật
-  mới phát sinh...).
-
-Khi tạo mới Feature/US ở Bước B, suy `priority` mặc định từ mức MoSCoW của UR nguồn: `Must
-have` → `P0`/`P1`, `Should have` → `P1`/`P2`, `Could have` → `P2`/`P3`, `Won't have` → không
-đưa vào backlog. Nếu `docs_requirements` của Feature/US trỏ tới **nhiều UR có mức MoSCoW khác
-nhau** (qua FR trung gian) → lấy mức MoSCoW **cao nhất** trong các UR nguồn đó làm cơ sở suy
-`priority` (ví dụ 1 UR `Must have` + 1 UR `Should have` → tính như `Must have`, không lấy trung
-bình hay mức thấp nhất) — item đã phục vụ 1 nhu cầu bắt buộc thì vẫn bắt buộc dù còn phục vụ
-thêm nhu cầu khác ít quan trọng hơn. Mỗi mức MoSCoW ứng với 2 giá trị `priority` liền kề, không
-phải 1 — tiêu chí chọn giữa 2 giá trị đó (đúng 1 trong 3 nhánh, không nhánh nào cần suy đoán
-thêm):
-- Item **chặn** các Feature/US khác (nằm trong `depends_on` của item khác) hoặc thuộc
-  container/luồng chính đang triển khai đầu tiên → lấy giá trị cao hơn (`P0` cho `Must have`,
-  `P1` cho `Should have`...).
-- Item tự nó có `depends_on` trỏ tới item khác, và không có item nào khác `depends_on` nó (không
-  chặn ai) → lấy giá trị thấp hơn liền kề — hợp lý vì nó "chưa tới lượt" theo đúng cơ chế
-  `depends_on`, không cần xử lý sớm hơn các item chặn người khác.
-- Item không có quan hệ `depends_on` theo chiều nào (không chặn ai, không chờ ai) → lấy giá trị
-  thấp hơn liền kề theo mặc định; chỉ lấy giá trị cao hơn nếu có lý do nghiệp vụ cụ thể khác
-  (deadline khách hàng, rủi ro kỹ thuật...) — ghi lý do đó vào "Ghi chú".
-
-Không bắt buộc ghi lý do vào "Ghi chú" khi **chọn lần đầu** giữa 2 giá trị hợp lệ lúc tạo mới
-(áp dụng đúng 1 trong 3 nhánh trên là đủ) — chỉ bắt buộc ghi lý do khi **sau này đổi** `priority`
-khác giá trị đã chọn ban đầu. Review định kỳ `priority` của các item đang `draft` (chưa
-`approved`) — có thể điều chỉnh nếu bối cảnh thực tế khác lúc tạo, nhưng phải ghi lý do đổi vào
-mục "Ghi chú"/"Ghi chú kỹ thuật" của item đó.
-
-Các dải giá trị `priority` suy ra từ 2 mức MoSCoW liền kề **chồng lấn có chủ đích** (`P1` đạt
-được từ cả `Must have` lẫn `Should have`, `P2` từ cả `Should have` lẫn `Could have`) — không suy
-ngược được mức MoSCoW gốc chỉ từ 1 mình giá trị `priority`. Đây là đặc tính thiết kế, không phải
-lỗi cần thu hẹp dải: cần biết mức MoSCoW gốc thì lần theo `docs_requirements` tới UR liên quan
-rồi đọc đúng dòng tương ứng trong bảng "Nhu cầu người dùng & Ưu tiên" của UR đó (1 UR có thể có
-nhiều nhu cầu, mỗi dòng 1 mức MoSCoW riêng — không lấy đại 1 dòng bất kỳ hay trộn nhiều dòng) —
-không suy đoán ngược từ `priority` một mình. Số hop khác nhau giữa Feature và User Story vì
-`docs_requirements` trỏ tới tầng khác nhau
-(xem `plan-backlog`): Feature → `docs_requirements` trỏ thẳng tới UR, 1 hop. User Story →
-`docs_requirements` trỏ tới FR, phải thêm 1 hop qua `parent_user_requirement` của FR đó mới tới
-UR (US → FR → UR), không phải US → UR trực tiếp. Mục "Ghi chú" chỉ chắc chắn có thông tin khi
-`priority` từng bị đổi sau này (xem trên) — không phải nguồn để tra MoSCoW gốc cho item chưa
-từng đổi `priority`.
+**Ưu tiên xử lý backlog và thuật toán suy `priority` (MoSCoW → P0-P3)**: xem
+`docs/spec-kit-conventions.md` mục 4 — nguồn duy nhất cho quy tắc này, dùng chung cho cả agent
+chạy full pipeline trong repo này lẫn agent chỉ cài lẻ skill `plan-backlog`.
 
 **Ví dụ minh hoạ** (một luồng xuyên suốt, rút gọn):
 `BR-001` "Tăng tỉ lệ chuyển đổi checkout" → `UR-001` "Khách hàng mua sắm online, pain point:

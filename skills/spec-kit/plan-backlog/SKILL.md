@@ -198,3 +198,12 @@ prefix/ID, vòng đời `status`, glossary-link, ma trận lan truyền thay đ�
    nó không nhớ là đã tự thêm vào. Nếu khả thi, chạy bước này như 1 lượt riêng, đọc lại toàn bộ
    tài liệu như người ngoài chưa biết trước phiên viết đã cài gì, thay vì xen kẽ ngay trong lúc
    viết.
+   **Re-verify `priority` theo đúng thuật toán 3 nhánh** (xem `docs/spec-kit-conventions.md` mục
+   4) thay vì gán theo cảm tính: với **từng** Feature/US vừa tạo/sửa trong phiên, lần theo
+   `docs_requirements` tới đúng dòng nhu cầu MoSCoW nguồn (nếu trỏ nguyên 1 UR, chọn dòng khớp
+   nội dung, không lấy đại dòng đầu/dòng cao nhất — xem mục 4), xác định item đó rơi vào đúng
+   1 trong 3 nhánh `depends_on` (chặn ai / bị ai chặn / không quan hệ nào), rồi đối chiếu giá trị
+   `priority` đã gán có khớp nhánh đó không. Đây là lỗi thật đã xảy ra: agent gán `priority` cảm
+   tính, bỏ qua thuật toán dù đã có sẵn — kiểm tra sai giống hệt kiểu sai của bước glossary-link
+   ở trên (đọc lướt/suy đoán thay vì đối chiếu từng file), nên áp dụng cùng mức nghiêm ngặt: liệt
+   kê **từng file** Feature/US, không dừng ở mức "đã kiểm cả cấp".

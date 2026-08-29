@@ -113,4 +113,4 @@ dự án đích khi chưa có (để `npx skills add` chạy được không c�
 
 - Không có code ứng dụng, nên không có gì để build/lint/run — công việc hoàn toàn nằm trong các tài liệu Markdown dưới `docs/` cùng các file gốc (`CONTEXT.md`, `AGENTS.md`, `RULES.md`).
 - Khi được yêu cầu "thực hiện bước X", quy trình thực tế cần tuân theo là những gì `AGENTS.md` quy định cho bước đó — coi nó là spec vận hành, không phải file này.
-- Template trong mỗi `docs/**/template.md` (hoặc `*-template.md`) định nghĩa cấu trúc/frontmatter bắt buộc cho loại tài liệu đó; luôn bắt đầu tài liệu mới từ template của nó.
+- Template trong mỗi `docs/**/<PREFIX>-template.md` định nghĩa cấu trúc/frontmatter bắt buộc cho loại tài liệu đó; luôn bắt đầu tài liệu mới từ template của nó.

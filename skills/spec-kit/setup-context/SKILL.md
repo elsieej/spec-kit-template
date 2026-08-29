@@ -44,11 +44,12 @@ Template cần cho `glossary`/BR/UR/FR/OQ đi kèm sẵn trong thư mục `templ
 | `docs/meetings/notes/MEET-*.md` | `templates/MEET-template.md` |
 
 **Quy tắc chọn nguồn template — áp dụng ở mọi bước "Quy trình" bên dưới cần tạo file mới:** ưu
-tiên `docs/<tầng>/template.md` nếu dự án **đã có sẵn** (ví dụ do team tự tuỳ biến, hoặc do dự án
-đã scaffold đầy đủ bằng cách khác); chỉ dùng bản `templates/<tên>-template.md` đi kèm skill này
-khi dự án **chưa có** file template tương ứng — lúc đó tự tạo thư mục `docs/<tầng>/` trước rồi
-copy nguyên trạng bản đi kèm skill vào đúng vị trí, giống hệt cách bước 1 dưới đây scaffold
-`glossary.md`. Không tự bịa cấu trúc/tên field khác ngoài 2 nguồn này.
+tiên `docs/<tầng>/<PREFIX>-template.md` (ví dụ `docs/glossary/glossary-template.md`,
+`docs/business-requirement/BR-template.md`) nếu dự án **đã có sẵn** (ví dụ do team tự tuỳ biến,
+hoặc do dự án đã scaffold đầy đủ bằng cách khác); chỉ dùng bản `templates/<tên>-template.md` đi
+kèm skill này khi dự án **chưa có** file template tương ứng — lúc đó tự tạo thư mục `docs/<tầng>/`
+trước rồi copy nguyên trạng bản đi kèm skill vào đúng vị trí (cùng tên file), giống hệt cách bước
+1 dưới đây scaffold `glossary.md`. Không tự bịa cấu trúc/tên field khác ngoài 2 nguồn này.
 
 `docs/spec-kit-conventions.md` dùng đúng quy tắc trên: kiểm tồn tại chưa **trước cả bước 1**, nếu
 chưa có thì copy nguyên trạng từ `templates/spec-kit-conventions.md` (không hỏi user, không tạo
@@ -121,11 +122,11 @@ khi cần chi tiết hơn.
 1. Kiểm tra `docs/glossary/glossary.md` đã tồn tại chưa (`docs/spec-kit-conventions.md`, mục 2,
    nguyên tắc chung #1 bắt buộc đọc file này trước mọi tài liệu). Đây thường là task đầu tiên chạy trên 1 dự án mới nên
    file này nhiều khả năng chưa có — nếu chưa có, copy nguyên trạng template đúng theo quy tắc
-   chọn nguồn ở "Điều kiện tiên quyết" (ưu tiên `docs/glossary/template.md` nếu dự án đã có,
-   không thì dùng `templates/glossary-template.md` đi kèm skill này) thành `glossary.md` trước
-   khi hỏi câu mở đầu, không hỏi user, không bỏ qua bước này. Nếu đã có, đọc qua để nắm thuật
-   ngữ dự án hiện tại.
-2. Kiểm tra `docs/business-requirement/` đã có file `BR-*` nào ngoài `template.md` chưa.
+   chọn nguồn ở "Điều kiện tiên quyết" (ưu tiên `docs/glossary/glossary-template.md` nếu dự án đã
+   có, không thì dùng `templates/glossary-template.md` đi kèm skill này) thành `glossary.md`
+   trước khi hỏi câu mở đầu, không hỏi user, không bỏ qua bước này. Nếu đã có, đọc qua để nắm
+   thuật ngữ dự án hiện tại.
+2. Kiểm tra `docs/business-requirement/` đã có file `BR-*` nào ngoài `BR-template.md` chưa.
    Nếu có, hỏi user muốn tạo BR mới hay tiếp tục/refine BR đang có — không tự ý ghi đè.
 3. **Hỏi mở đầu, 1 câu duy nhất, ngôn ngữ tự nhiên** — ví dụ: "Kể tôi nghe về dự án bạn muốn
    làm — bạn đang hình dung xây cái gì, cho ai dùng, và điều gì khiến bạn muốn làm nó?". Không
@@ -173,7 +174,12 @@ khi cần chi tiết hơn.
      trong `docs/glossary/glossary.md`, rồi dùng công cụ tìm chuỗi sẵn có (search/grep trong môi
      trường đang chạy) quét từng file trong danh sách trên theo từng thuật ngữ đó, thay vì chỉ
      đọc mắt. Với **từng file** phát hiện thiếu, kiểm lại đúng lần xuất hiện đầu tiên trong thân
-     bài có link chưa (xem nguyên tắc ở trên, `docs/spec-kit-conventions.md` mục 3). **Nếu file đó đã `status:
+     bài có link chưa (xem nguyên tắc ở trên, `docs/spec-kit-conventions.md` mục 3). **Tìm thấy
+     link chưa đủ — còn phải xác nhận link đó resolve đúng file, không chỉ "có xuất hiện"** (lỗi
+     thật đã xảy ra: 21/21 file sai độ sâu `../` vẫn qua được checkpoint vì có link, chỉ trỏ sai
+     chỗ): đếm số `../` trong từng link tìm được có đúng 1 cấp không — BR/UR/FR nằm ngay trong
+     `docs/<tầng>/`, luôn đúng 1 cấp (`../glossary/glossary.md`, xem bảng độ sâu mục 3); sai số
+     cấp thì sửa lại link, không chỉ tính là "đã có link" rồi bỏ qua. **Nếu file đó đã `status:
      approved`** khi phát hiện thiếu link — đưa lại về `status: draft` trước khi sửa (xem
      `docs/spec-kit-conventions.md` mục 1: sửa nội dung tài liệu đã approved phải đưa lại draft để
      review lại), sửa

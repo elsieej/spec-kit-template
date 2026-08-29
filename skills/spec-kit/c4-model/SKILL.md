@@ -268,7 +268,12 @@ cùng loại tạo sau — 1 lượt eval khác ghi nhận 4/5 file C4 thiếu l
 cố ý đọc lại): liệt kê toàn bộ thuật ngữ có trong `docs/glossary/glossary.md`, dùng công cụ tìm
 chuỗi sẵn có (search/grep) quét từng file trong danh sách trên theo từng thuật ngữ đó, thay vì
 chỉ đọc mắt. Với file nào phát hiện thiếu, kiểm lại đúng lần xuất hiện đầu tiên trong thân bài có
-link chưa (xem bước 1 ở Context Diagram, `docs/spec-kit-conventions.md` mục 3). **Nếu file đó đã
+link chưa (xem bước 1 ở Context Diagram, `docs/spec-kit-conventions.md` mục 3). **Tìm thấy link
+chưa đủ — còn phải xác nhận link đó resolve đúng file, không chỉ "có xuất hiện"** (lỗi thật đã
+xảy ra: 21/21 file sai độ sâu `../` vẫn qua được checkpoint vì có link, chỉ trỏ sai chỗ): đếm số
+`../` trong từng link tìm được có đúng 1 cấp không — mọi file C4/Interface Contract nằm ngay
+trong `docs/system-overview/`, luôn đúng 1 cấp (`../glossary/glossary.md`, xem bảng độ sâu mục
+3); sai số cấp thì sửa lại link, không chỉ tính là "đã có link" rồi bỏ qua. **Nếu file đó đã
 `status: approved`** khi phát hiện thiếu link — đưa lại về `draft` trước khi sửa (xem
 `docs/spec-kit-conventions.md` mục 1), không sửa thẳng nội dung mà giữ nguyên `approved`.
 

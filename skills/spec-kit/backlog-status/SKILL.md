@@ -57,7 +57,7 @@ cha-con (vẫn dựa vào `parent_*`, không suy ra Epic sở hữu từ tên su
    `*-template.md`), dựng cây từ
    `parent_epic` (Feature), `parent_feature` (User Story). Đọc thêm frontmatter (chỉ để lấy
    `id`) của `docs/business-requirement/`, `docs/user-requirement/`,
-   `docs/functional-requirement/` (trừ `template.md`) để verify các field `parent_*` trỏ
+   `docs/functional-requirement/` (trừ `*-template.md`) để verify các field `parent_*` trỏ
    sang BR/UR/FR dưới đây có tồn tại thật:
    - Với 1 Epic cụ thể được hỏi tới, hoặc toàn bộ backlog nếu user không chỉ định: in cây thụt
      lề theo cấp, mỗi node kèm ID + tên + `status` (ví dụ
