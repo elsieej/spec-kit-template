@@ -40,10 +40,12 @@ CLAUDE.md                       → quy ước đặt tên + versioning xuyên s
 
 ## Cách dùng cho dự án mới
 
-1. Clone/copy toàn bộ repo này vào dự án làm scaffold (giữ nguyên `docs/`, `CLAUDE.md`,
-   `AGENTS.md`, `RULES.md`, `CONTEXT.md`) — bắt buộc, vì `npx skills add` (bước 2) chỉ mang
-   theo 4 file `SKILL.md`, không mang theo các file này; thiếu chúng, mỗi skill sẽ tự dừng lại
-   và báo thiếu thay vì chạy được (xem "Điều kiện tiên quyết" đầu mỗi `SKILL.md`).
+1. Sinh scaffold (`docs/`, `CLAUDE.md`, `AGENTS.md`, `RULES.md`, `CONTEXT.md`) vào dự án bằng
+   `npx degit <owner>/spec-kit-template .` (chạy trong thư mục dự án — xem
+   `skills/spec-kit/README.md` về lưu ý khi thư mục không trống) — bắt buộc, vì `npx skills add`
+   (bước 2) chỉ mang theo 4 file `SKILL.md`, không mang theo các file này; thiếu chúng, mỗi
+   skill sẽ tự dừng lại và báo thiếu thay vì chạy được (xem "Điều kiện tiên quyết" đầu mỗi
+   `SKILL.md`).
 2. Cài/cập nhật 4 skill qua `npx skills add <owner>/spec-kit-template` (xem
    `skills/spec-kit/README.md` — cả cách cài lẫn cách cập nhật sau này qua `npx skills update`).
 3. Copy `docs/glossary/template.md` thành `docs/glossary/glossary.md` (giữ nguyên nội
