@@ -48,18 +48,18 @@ có — **không cần** `npx degit`/clone repo này hay bất kỳ file nào �
 (`CLAUDE.md`/`AGENTS.md`/`RULES.md`/`CONTEXT.md`) để dự án khác chạy đúng pipeline, kể cả khi chỉ
 cài lẻ 1 trong 5 skill.
 
-0. Chưa rõ kit này là gì hoặc bắt đầu từ đâu? Chạy skill `/about-spec-kit` — giới thiệu kit +
+1. Chưa rõ kit này là gì hoặc bắt đầu từ đâu? Chạy skill `/about-spec-kit` — giới thiệu kit +
    liệt kê skill nào dùng khi nào.
-1. Chạy skill `/setup-context` — hội thoại tự nhiên về dự án muốn làm (không phải 3 câu hỏi cố
+2. Chạy skill `/setup-context` — hội thoại tự nhiên về dự án muốn làm (không phải 3 câu hỏi cố
    định), ghi thẳng vào `BR-001`, `UR-001`, `FR-001` (`docs/business-requirement`,
    `docs/user-requirement`, `docs/functional-requirement`), không qua bước nháp trung
    gian. Review từng tầng xong (set `status: approved`) mới sang tầng sau — không nhảy cấp (xem
    "Vòng đời `status`" trong `spec-kit-conventions.md` đi kèm skill).
-2. Chạy skill `/c4-model` để tạo `docs/system-overview` (Context + Container + Component
+3. Chạy skill `/c4-model` để tạo `docs/system-overview` (Context + Container + Component
    Diagram).
-3. Chạy skill `/plan-backlog` để phân rã thành Epic → Feature → User Story.
-4. Chạy skill `/backlog-status` bất kỳ lúc nào để xem backlog hiện có gì.
-5. Mọi thay đổi tài liệu = 1 commit git theo định dạng trong "Commit" ở `spec-kit-conventions.md`.
+4. Chạy skill `/plan-backlog` để phân rã thành Epic → Feature → User Story.
+5. Chạy skill `/backlog-status` bất kỳ lúc nào để xem backlog hiện có gì.
+6. Mọi thay đổi tài liệu = 1 commit git theo định dạng trong "Commit" ở `spec-kit-conventions.md`.
 
 `npx degit <owner>/spec-kit-template .` (xem `skills/spec-kit/README.md`) chỉ dành cho việc sửa/
 đóng góp vào chính repo nguồn này (`spec-kit-template`) — **không phải bước cần cho dự án khác**.
