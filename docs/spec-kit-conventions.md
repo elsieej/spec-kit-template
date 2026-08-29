@@ -230,7 +230,7 @@ downstream change needed") — git log là nơi duy nhất giữ bằng chứng 
 | UR đã `approved` bị sửa → `status: draft` | FR con, SYS-CTX (`source_docs`), Feature (`docs_requirements`) |
 | FR đã `approved` bị sửa → `status: draft` | SYS-CTX (`source_docs`), User Story (`docs_requirements`) |
 | SYS-CTX đã `approved` bị sửa → `status: draft` | SYS-CTR có `source_docs: [SYS-CTX-xxx]` |
-| SYS-CTR đổi (đổi/xoá Mã của 1 container) | Epic có `source_container` trỏ tới Mã đó; file `c4-component-<mã cũ>.md` cần đổi tên; mọi tham chiếu Mã đó trong `container-interface.md` (cột "Từ"/"Tới") cần cập nhật |
+| SYS-CTR đổi (đổi/xoá Mã của 1 container) | Epic có `source_container` trỏ tới Mã đó; file `c4-component-<mã cũ>.md` cần đổi tên; mọi tham chiếu Mã đó trong `container-interface.md` (cột "Từ"/"Tới") cần cập nhật; **mọi User Story có mục "Context cho Agent" ghi nguyên văn Mã đó** (dòng "System overview liên quan: SYS-CTR-xxx (container: <mã>)") cũng cần quét và cập nhật — Mã xuất hiện ở mọi US tham chiếu container đó, không chỉ 3 nơi trên |
 | Feature/User Story đổi trong cuộc họp | User Story liên quan — còn `draft` thì sửa thẳng, đã `approved` thì tạo item mới cho phần chênh lệch |
 | OQ được trả lời (`status: approved`) | Mọi item trong `blocks: []` của OQ đó — trả `status` về trạng thái trước khi bị block |
 | `depends_on` của 1 item đã `approved` hết | Chính item đó — có thể xét bắt đầu thực hiện (vẫn cần review, không tự động) |
