@@ -28,20 +28,24 @@ sẵn:
   không cần `CLAUDE.md`/`AGENTS.md`/`RULES.md` gốc mới chạy đúng quy tắc.
 
 `CLAUDE.md`, `AGENTS.md`, `RULES.md`, `CONTEXT.md` **gốc** không đi kèm skill (chỉ bản dẫn xuất
-`spec-kit-conventions.md` ở trên đi kèm). Muốn có bản đầy đủ nhất của các file gốc (ví dụ để đọc
-trực tiếp, cần Bước C — thực thi User Story bằng code, ngoài phạm vi 4 skill sinh tài liệu — hoặc
-muốn đóng góp lại repo gốc), sinh scaffold bằng [degit](https://github.com/Rich-Harris/degit)
-(không kèm lịch sử git, không cần tự `clone` rồi xoá `.git`):
+`spec-kit-conventions.md` ở trên đi kèm) và **không cần thiết cho dự án đã cài skill** — không có
+bước nào trong dự án đó cần clone lại 4 file này.
+
+### Chỉ khi muốn sửa/đóng góp vào chính repo `spec-kit-template` này
+
+Không liên quan tới việc dùng skill ở dự án khác. Nếu bạn muốn lấy toàn bộ nội dung gốc của repo
+này (ví dụ đọc Bước C — thực thi User Story bằng code, phần duy nhất ngoài phạm vi 4 skill sinh
+tài liệu — hoặc sửa `CLAUDE.md`/`AGENTS.md`/`RULES.md` để gửi PR ngược lại repo), dùng
+[degit](https://github.com/Rich-Harris/degit) (không kèm lịch sử git, không cần tự `clone` rồi
+xoá `.git`):
 
 ```bash
 npx degit <owner>/spec-kit-template .
 ```
 
-Chạy trong 1 thư mục trống (dự án hoàn toàn mới). Với dự án đã có sẵn file, `degit` từ chối
-chạy trừ khi thêm `--force` — cờ này **ghi đè mọi file trùng tên** (kể cả `README.md` của chính
-dự án, nếu có), không hỏi lại; xem trước file nào sẽ trùng trước khi thêm `--force`, hoặc chạy
-vào 1 thư mục con rồi tự merge `CLAUDE.md`/`AGENTS.md`/`RULES.md`/`CONTEXT.md` sang. Bước này là
-tuỳ chọn — không bắt buộc để chạy được pipeline.
+Chạy trong 1 thư mục trống. Với thư mục đã có sẵn file, `degit` từ chối chạy trừ khi thêm
+`--force` — cờ này **ghi đè mọi file trùng tên** (kể cả `README.md` của thư mục đích, nếu có),
+không hỏi lại; xem trước file nào sẽ trùng trước khi thêm `--force`.
 
 ## Cập nhật
 

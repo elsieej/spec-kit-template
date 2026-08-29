@@ -40,27 +40,27 @@ CLAUDE.md                       → quy ước đặt tên + versioning xuyên s
 
 ## Cách dùng cho dự án mới
 
-1. Cài 4 skill qua `npx skills add <owner>/spec-kit-template` (xem `skills/spec-kit/README.md` —
-   cả cách cài lẫn cách cập nhật sau này qua `npx skills update`). Mỗi skill mang theo sẵn
-   template cần thiết + `spec-kit-conventions.md` (naming/ID, vòng đời `status`, glossary-link,
-   ma trận lan truyền thay đổi...), tự tạo `docs/` khi chưa có — đủ để chạy pipeline, kể cả cài
-   lẻ 1 skill, không cần bước nào khác.
-2. (Tuỳ chọn) Muốn có bản đầy đủ nhất của `CLAUDE.md`/`AGENTS.md`/`RULES.md`/`CONTEXT.md` gốc
-   (ví dụ cần Bước C — thực thi User Story bằng code, ngoài phạm vi 4 skill sinh tài liệu, hoặc
-   muốn đóng góp lại repo gốc), chạy thêm `npx degit <owner>/spec-kit-template .` (xem
-   `skills/spec-kit/README.md` về lưu ý khi thư mục không trống).
-3. Chạy skill `/setup-context` — hội thoại tự nhiên về dự án muốn làm (không phải 3 câu hỏi cố
+Chỉ cần 1 bước: cài 4 skill qua `npx skills add <owner>/spec-kit-template` (xem
+`skills/spec-kit/README.md` — cả cách cài lẫn cách cập nhật sau này qua `npx skills update`).
+Mỗi skill mang theo sẵn template cần thiết + `spec-kit-conventions.md` (naming/ID, vòng đời
+`status`, glossary-link, ma trận lan truyền thay đổi, commit format...), tự tạo `docs/` khi chưa
+có — **không cần** `npx degit`/clone repo này hay bất kỳ file nào ở repo gốc
+(`CLAUDE.md`/`AGENTS.md`/`RULES.md`/`CONTEXT.md`) để dự án khác chạy đúng pipeline, kể cả khi chỉ
+cài lẻ 1 trong 4 skill.
+
+1. Chạy skill `/setup-context` — hội thoại tự nhiên về dự án muốn làm (không phải 3 câu hỏi cố
    định), ghi thẳng vào `BR-001`, `UR-001`, `FR-001` (`docs/business-requirement`,
    `docs/user-requirement`, `docs/functional-requirement`), không qua bước nháp trung
-   gian. Review từng tầng xong (set
-   `status: approved`) mới sang tầng sau — không nhảy cấp (xem `AGENTS.md`).
-4. Chạy skill `/c4-model` để tạo `docs/system-overview` (Context + Container + Component
-   Diagram) — xem Bước A trong `AGENTS.md`.
-5. Chạy skill `/plan-backlog` để phân rã thành Epic → Feature → User Story — xem tiêu chí
-   phân rã + ví dụ minh hoạ ở `AGENTS.md` (Bước B).
-6. Khi cần sinh nội dung khác, giao cho agent kèm chỉ dẫn: "Đọc `AGENTS.md` rồi thực hiện
-   bước X".
-7. Mọi thay đổi tài liệu = 1 commit git với message theo `CLAUDE.md` (mục "Đặt tên, ID và versioning").
+   gian. Review từng tầng xong (set `status: approved`) mới sang tầng sau — không nhảy cấp (xem
+   "Vòng đời `status`" trong `spec-kit-conventions.md` đi kèm skill).
+2. Chạy skill `/c4-model` để tạo `docs/system-overview` (Context + Container + Component
+   Diagram).
+3. Chạy skill `/plan-backlog` để phân rã thành Epic → Feature → User Story.
+4. Chạy skill `/backlog-status` bất kỳ lúc nào để xem backlog hiện có gì.
+5. Mọi thay đổi tài liệu = 1 commit git theo định dạng trong "Commit" ở `spec-kit-conventions.md`.
+
+`npx degit <owner>/spec-kit-template .` (xem `skills/spec-kit/README.md`) chỉ dành cho việc sửa/
+đóng góp vào chính repo nguồn này (`spec-kit-template`) — **không phải bước cần cho dự án khác**.
 
 ## Cấu trúc
 
