@@ -7,13 +7,15 @@ last_updated: YYYY-MM-DD
 
 > Agent PHẢI đọc file này trước khi thực hiện bất kỳ task nào, để hiểu đúng ngữ cảnh
 > các thuật ngữ riêng của dự án (tránh hiểu theo nghĩa phổ thông sai lệch), đồng thời
-> dùng nhất quán thuật ngữ kỹ thuật khi viết tài liệu (xem quy tắc tone ở `RULES.md`).
+> dùng nhất quán thuật ngữ kỹ thuật khi viết tài liệu (xem mục "Ngôn ngữ, thuật ngữ,
+> glossary-link" ở `spec-kit-conventions.md`).
 
 ## Thuật ngữ nghiệp vụ
 
-Định nghĩa thuật ngữ business/domain riêng của dự án — điền dần khi viết BR/UR/FR (xem
-`RULES.md`, mục "Thuật ngữ": tra glossary trước khi dùng 1 thuật ngữ, thêm dòng mới nếu
-chưa có). Gom theo nhóm chủ đề, ví dụ "Vai trò người dùng" (persona), các nhóm domain khác
+Định nghĩa thuật ngữ business/domain riêng của dự án — điền dần khi viết BR/UR/FR (tra glossary
+trước khi dùng 1 thuật ngữ, thêm dòng mới nếu chưa có — xem mục "Ngôn ngữ, thuật ngữ,
+glossary-link" ở `spec-kit-conventions.md`). Gom theo nhóm chủ đề, ví dụ "Vai trò người dùng"
+(persona), các nhóm domain khác
 tuỳ dự án. Định nghĩa ở tầng này bằng khái niệm nghiệp vụ — **không nhắc tên mã
 container/hệ thống cụ thể** (mã đó chỉ chốt ở Bước A, `c4-container.md`, chưa tồn tại khi
 viết BR/UR/FR).

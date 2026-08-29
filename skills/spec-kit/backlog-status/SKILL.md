@@ -13,8 +13,7 @@ description: >
 
 Không có "Điều kiện tiên quyết" riêng — skill này chỉ đọc frontmatter đã có, không tạo/scaffold
 file nào. Quy tắc `status`/`blocked`/`parent_*`/`depends_on` dùng ở dưới được tóm tắt đầy đủ hơn
-ở [spec-kit-conventions.md](spec-kit-conventions.md) (đi kèm sẵn cạnh `SKILL.md`) nếu dự án
-không có `CLAUDE.md`/`AGENTS.md`/`RULES.md` gốc.
+ở [spec-kit-conventions.md](spec-kit-conventions.md), đi kèm sẵn cạnh `SKILL.md`.
 
 Skill chỉ đọc (read-only) — không sửa file nào. Mục tiêu: tổng hợp nhanh trạng thái backlog +
 quan hệ cha-con giữa các cấp, từ frontmatter, vì kit này không duy trì file
@@ -41,11 +40,12 @@ cha-con (vẫn dựa vào `parent_*`, không suy ra Epic sở hữu từ tên su
    - `blocked` → liệt kê riêng, kèm `blocked_by_open_questions` để user biết đang chờ OQ nào.
    - `draft` → liệt kê theo nhóm (đây là phần có thể bắt đầu thực hiện), sắp xếp theo field
      `priority` trên Feature/US (`P0` trước, `P3` sau cùng, `null` xếp cuối) — đúng thứ tự xử
-     lý backlog theo `AGENTS.md` mục "Backlog". Epic không có `priority`, giữ nguyên nhóm.
+     lý backlog. Epic không có `priority`, giữ nguyên nhóm.
    - Với mỗi item còn ID trong `depends_on` mà ID đó chưa `status: approved` → đánh dấu riêng
      "chưa thể bắt đầu (chờ <ID> xong)" cạnh item đó, dù `status` hiện tại là `draft`.
    - Không liệt kê item đã `status: approved`/`deprecated` — không còn tính là backlog đang mở.
-   - `blocked` không cascade từ con lên cha (xem AGENTS.md nguyên tắc chung #4): 1 Feature/Epic
+   - `blocked` không cascade từ con lên cha (xem `spec-kit-conventions.md` mục 2, nguyên tắc
+     chung #4): 1 Feature/Epic
      `draft` có toàn bộ US/Feature con đang `blocked` vẫn liệt kê ở nhóm `draft` như bình thường
      (không tự chuyển nhóm `blocked`) — nhưng ghi kèm 1 ghi chú riêng "toàn bộ con đang blocked,
      chưa có việc nào làm được ngay" để user không hiểu nhầm là còn việc thực hiện được.

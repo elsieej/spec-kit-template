@@ -40,14 +40,16 @@ CLAUDE.md                       → quy ước đặt tên + versioning xuyên s
 
 ## Cách dùng cho dự án mới
 
-Chỉ cần 1 bước: cài 4 skill qua `npx skills add <owner>/spec-kit-template` (xem
+Chỉ cần 1 bước: cài 5 skill qua `npx skills add <owner>/spec-kit-template` (xem
 `skills/spec-kit/README.md` — cả cách cài lẫn cách cập nhật sau này qua `npx skills update`).
 Mỗi skill mang theo sẵn template cần thiết + `spec-kit-conventions.md` (naming/ID, vòng đời
 `status`, glossary-link, ma trận lan truyền thay đổi, commit format...), tự tạo `docs/` khi chưa
 có — **không cần** `npx degit`/clone repo này hay bất kỳ file nào ở repo gốc
 (`CLAUDE.md`/`AGENTS.md`/`RULES.md`/`CONTEXT.md`) để dự án khác chạy đúng pipeline, kể cả khi chỉ
-cài lẻ 1 trong 4 skill.
+cài lẻ 1 trong 5 skill.
 
+0. Chưa rõ kit này là gì hoặc bắt đầu từ đâu? Chạy skill `/about-spec-kit` — giới thiệu kit +
+   liệt kê skill nào dùng khi nào.
 1. Chạy skill `/setup-context` — hội thoại tự nhiên về dự án muốn làm (không phải 3 câu hỏi cố
    định), ghi thẳng vào `BR-001`, `UR-001`, `FR-001` (`docs/business-requirement`,
    `docs/user-requirement`, `docs/functional-requirement`), không qua bước nháp trung
@@ -66,10 +68,11 @@ cài lẻ 1 trong 4 skill.
 
 - `CONTEXT.md` — giới thiệu kit + thành phần chính, đọc trước tiên
 - `docs/glossary` — từ điển thuật ngữ dự án, agent luôn đọc trước khi làm việc
-- `skills/spec-kit/` — nguồn của 4 skill (cài qua `npx skills add`, xem
+- `skills/spec-kit/` — nguồn của 5 skill (cài qua `npx skills add`, xem
   `skills/spec-kit/README.md`) — mỗi skill mang theo sẵn template cần thiết trong `templates/`
   cạnh chính nó (tự scaffold `docs/` khi dự án chưa có) và `spec-kit-conventions.md` (bản dẫn
-  xuất của các quy tắc xuyên suốt kit, đi kèm cả 4 skill):
+  xuất của các quy tắc xuyên suốt kit, đi kèm cả 5 skill):
+  - `about-spec-kit` — giới thiệu kit là gì, liệt kê skill nào dùng khi nào (không tạo file)
   - `setup-context` — hội thoại tự nhiên về dự án rồi tạo thẳng BR-001/UR-001/FR-001
   - `c4-model` — giải thích C4 Model + dẫn dắt tạo docs/system-overview
   - `plan-backlog` — phân rã Epic/Feature/User Story

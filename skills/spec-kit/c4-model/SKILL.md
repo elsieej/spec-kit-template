@@ -75,13 +75,10 @@ trình tạo Container Interface Contract" bước 1, "Quy trình tạo Entity I
 đúng — không scaffold trước nếu hệ thống chưa cần tới.
 
 `docs/glossary/glossary.md` cần đã tồn tại (thường được `setup-context` tạo trước — chạy skill
-đó trước nếu chưa có). `CLAUDE.md`, `AGENTS.md`, `RULES.md` KHÔNG bắt buộc phải tồn tại — quy
-tắc cốt lõi (không thiết kế API/DB cụ thể, ranh giới Level 1-3, xác nhận với user...) đã được
-nhắc lại trực tiếp trong các mục dưới đây, và đầy đủ hơn ở
+đó trước nếu chưa có). Quy tắc cốt lõi (không thiết kế API/DB cụ thể, ranh giới Level 1-3, xác
+nhận với user...) đã được nhắc lại trực tiếp trong các mục dưới đây, và đầy đủ hơn ở
 [spec-kit-conventions.md](spec-kit-conventions.md) (đi kèm sẵn cạnh `SKILL.md`) — bảng prefix/ID,
-vòng đời `status`, glossary-link theo độ sâu thư mục, ma trận lan truyền thay đổi. Nếu dự án có
-sẵn bản gốc, ưu tiên đọc bản gốc (đầy đủ nhất); nếu không có, dùng bản rút gọn ở đây/file đó —
-không dừng lại chờ các file này xuất hiện.
+vòng đời `status`, glossary-link theo độ sâu thư mục, ma trận lan truyền thay đổi.
 
 ## Quy trình tạo Context Diagram (Level 1)
 
@@ -89,7 +86,7 @@ không dừng lại chờ các file này xuất hiện.
    container/component), rồi toàn bộ BR/UR/FR đã approved (đặc biệt UR để lấy
    Actor/Persona, FR để lấy hệ thống ngoài cần tích hợp). Khi viết nội dung ở Context/
    Container/Component/Interface Contract, thuật ngữ đã có trong glossary → gắn link Markdown
-   tới đúng mục ở lần xuất hiện đầu tiên trong mỗi tài liệu (xem `RULES.md` mục 2).
+   tới đúng mục ở lần xuất hiện đầu tiên trong mỗi tài liệu (xem `spec-kit-conventions.md` mục 3).
 2. Viết 1–2 câu mô tả hệ thống trung tâm.
 3. Điền `docs/system-overview/c4-context.md`: bảng Actors/Personas, bảng Hệ thống ngoài
    liên quan (mục đích tích hợp + hướng dữ liệu in/out), diagram mermaid `graph TD`.
@@ -254,9 +251,9 @@ Liệt kê ra từng file C4/Interface Contract đã tạo/sửa trong phiên �
 file trong danh sách đó** (`c4-context.md`, `c4-container.md`, mỗi `c4-component-<mã>.md`,
 `container-interface.md`, `entity-interface.md`), kiểm lại riêng việc gắn link glossary: mọi
 thuật ngữ đã có trong `docs/glossary/glossary.md` dùng trong file đó có link ở lần xuất hiện
-đầu tiên chưa (xem bước 1 ở Context Diagram, `RULES.md` mục 2). **Nếu file đó đã `status:
-approved`** khi phát hiện thiếu link — đưa lại về `draft` trước khi sửa (xem `CLAUDE.md`), không
-sửa thẳng nội dung mà giữ nguyên `approved`. Quy tắc này hay bị bỏ quên trong
+đầu tiên chưa (xem bước 1 ở Context Diagram, `spec-kit-conventions.md` mục 3). **Nếu file đó đã
+`status: approved`** khi phát hiện thiếu link — đưa lại về `draft` trước khi sửa (xem
+`spec-kit-conventions.md` mục 1), không sửa thẳng nội dung mà giữ nguyên `approved`. Quy tắc này hay bị bỏ quên trong
 lúc tập trung vẽ diagram/viết schema, và lỗi thật đã xảy ra theo đúng mẫu hình: đúng ở file đầu
 tiên mỗi loại, bị quên ở các file cùng loại tạo sau — kiểm lại rõ ràng ở đây theo từng file một,
 không chỉ tin đã làm đúng lúc viết.

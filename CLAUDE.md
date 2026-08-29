@@ -80,10 +80,10 @@ riêng.
   Requirement — để truy vết một User Story qua Feature → Epic → BR/UR/FR liên quan.
 
 Đây là nguồn duy nhất cho naming convention trong repo — không tạo file trùng nội dung này ở nơi
-khác, **trừ** `skills/spec-kit/*/spec-kit-conventions.md` (4 bản sao dẫn xuất, byte-identical,
+khác, **trừ** `skills/spec-kit/*/spec-kit-conventions.md` (5 bản sao dẫn xuất, byte-identical,
 bundle kèm mỗi skill để `npx skills add` chạy được không cần `CLAUDE.md`/`AGENTS.md`/`RULES.md`
 trong dự án đích — xem đầu mỗi file đó). Sửa nội dung ở đây thì copy lại nguyên trạng phần liên
-quan sang cả 4 bản sao đó.
+quan sang cả 5 bản sao đó.
 
 ## Tham khảo nhanh
 

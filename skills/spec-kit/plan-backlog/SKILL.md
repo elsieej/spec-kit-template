@@ -57,11 +57,10 @@ tạo Epic/Feature/US thật. Không tự bịa cấu trúc/tên field khác ngo
 
 `docs/glossary/glossary.md` và `docs/system-overview/c4-container.md` cần đã tồn tại (tạo từ
 Bước trước, xem skill `setup-context`/`c4-model`) — 2 file này không phải template, không tự
-scaffold được, phải chạy đúng thứ tự Bước A trước Bước B nếu chưa có. `CLAUDE.md`, `AGENTS.md`,
-`RULES.md` KHÔNG bắt buộc phải tồn tại — quy tắc cốt lõi đã được nhắc lại trực tiếp trong các
-mục dưới đây, và đầy đủ hơn ở [spec-kit-conventions.md](spec-kit-conventions.md) (đi kèm sẵn
-cạnh `SKILL.md`) — bảng prefix/ID, vòng đời `status`, glossary-link, ma trận lan truyền thay đổi.
-Nếu dự án có sẵn bản gốc, ưu tiên đọc bản gốc; nếu không có, dùng bản rút gọn ở đây/file đó.
+scaffold được, phải chạy đúng thứ tự Bước A trước Bước B nếu chưa có. Quy tắc cốt lõi đã được
+nhắc lại trực tiếp trong các mục dưới đây, và đầy đủ hơn ở
+[spec-kit-conventions.md](spec-kit-conventions.md) (đi kèm sẵn cạnh `SKILL.md`) — bảng prefix/ID,
+vòng đời `status`, glossary-link, ma trận lan truyền thay đổi.
 
 ## Nguyên tắc khi chạy skill này
 
@@ -96,7 +95,7 @@ Nếu dự án có sẵn bản gốc, ưu tiên đọc bản gốc; nếu không
   brainstorm 1 đề xuất cụ thể (xem nguyên tắc brainstorm-rồi-hỏi ở trên), viết vào dòng AC kèm
   nhãn `[Agent đề xuất — cần PO xác nhận]`, và nếu edge case này đủ quan trọng để không thể bắt
   đầu Bước C mà chưa rõ → tạo `OQ-*` + set `blocked_by_open_questions` trên US đó (theo
-  AGENTS.md nguyên tắc chung #4), không chỉ ghi chú suông rồi bỏ qua.
+  `spec-kit-conventions.md` mục 2, nguyên tắc chung #4), không chỉ ghi chú suông rồi bỏ qua.
 - User Story phải đủ nhỏ theo 2 dấu hiệu ở trên; nếu user mô tả một User Story không đạt, đề
   xuất tách thành nhiều User Story.
 - Tất cả tạo mới ở `status: draft`. Không tự set `approved` — đó là quyết định của
@@ -109,7 +108,8 @@ Nếu dự án có sẵn bản gốc, ưu tiên đọc bản gốc; nếu không
   `status: blocked`/`blocked_by_open_questions` cho trường hợp này. Không bắt đầu thực hiện
   một item khi `depends_on` còn ID chưa `status: approved`.
 - Khi viết nội dung Epic/Feature/US, thuật ngữ đã có trong `docs/glossary/glossary.md` → gắn
-  link Markdown tới đúng mục ở lần xuất hiện đầu tiên trong tài liệu (xem `RULES.md` mục 2).
+  link Markdown tới đúng mục ở lần xuất hiện đầu tiên trong tài liệu (xem
+  `spec-kit-conventions.md` mục 3).
 
 ## Quy trình
 
@@ -155,11 +155,11 @@ Nếu dự án có sẵn bản gốc, ưu tiên đọc bản gốc; nếu không
    kiểm 1-2 file đầu rồi bỏ sót các file còn lại (lỗi thật đã xảy ra: 0/9 User Story có link
    glossary thật, dù skill này đã có bước kiểm cả 3 cấp từ trước). Với **từng file trong danh
    sách đó**, kiểm đã gắn link glossary ở lần xuất hiện đầu tiên của mỗi thuật ngữ đã có trong
-   glossary chưa (xem nguyên tắc ở trên, `RULES.md` mục 2) — quy tắc này tồn tại từ đầu nhưng hay
-   bị bỏ quên trong lúc tập trung viết nội dung, kiểm lại rõ ràng ở đây theo từng file một, không
-   chỉ tin đã làm đúng lúc viết. **Nếu file đó đã `status: approved`** (ví dụ đang groom lại 1
-   item cũ) khi phát hiện thiếu link — đưa lại về `draft` trước khi sửa (xem `CLAUDE.md`), không
-   sửa thẳng nội dung mà giữ nguyên `approved`.
+   glossary chưa (xem nguyên tắc ở trên, `spec-kit-conventions.md` mục 3) — quy tắc này tồn tại
+   từ đầu nhưng hay bị bỏ quên trong lúc tập trung viết nội dung, kiểm lại rõ ràng ở đây theo
+   từng file một, không chỉ tin đã làm đúng lúc viết. **Nếu file đó đã `status: approved`** (ví
+   dụ đang groom lại 1 item cũ) khi phát hiện thiếu link — đưa lại về `draft` trước khi sửa (xem
+   `spec-kit-conventions.md` mục 1), không sửa thẳng nội dung mà giữ nguyên `approved`.
 7. **Trước khi kết thúc phiên**, quét lại toàn bộ Acceptance Criteria/business rule vừa viết
    trong phiên (không chỉ chi tiết user đã hỏi tường minh) — tìm mọi chi tiết cụ thể mà user
    chưa xác nhận trực tiếp, cả **định lượng** (số/ngưỡng, thứ tự ưu tiên khi xung đột) lẫn

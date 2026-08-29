@@ -1,7 +1,8 @@
 # skills/spec-kit
 
-Nguồn duy nhất (source of truth) cho 4 skill của kit này — `setup-context`, `c4-model`,
-`plan-backlog`, `backlog-status`. Theo đúng convention `skills/<category>/<name>/SKILL.md` mà
+Nguồn duy nhất (source of truth) cho 5 skill của kit này — `about-spec-kit`, `setup-context`,
+`c4-model`, `plan-backlog`, `backlog-status`. Theo đúng convention
+`skills/<category>/<name>/SKILL.md` mà
 CLI [vercel-labs/skills](https://github.com/vercel-labs/skills) (công cụ mattpocock/skills cũng
 dùng) và hệ sinh thái xung quanh nó nhận diện — agent-agnostic, không riêng Claude Code.
 
@@ -21,20 +22,15 @@ sẵn:
   Epic/Feature/US/OQ/MEET trong `plan-backlog`) và tự tạo `docs/<tầng>/` + copy đúng template
   vào khi dự án chưa có, thay vì tự bịa cấu trúc (xem mục "Điều kiện tiên quyết" ở đầu mỗi
   `SKILL.md`).
-- `spec-kit-conventions.md` — bản sao dẫn xuất (byte-identical ở cả 4 skill) của phần quy tắc
-  cốt lõi trong `CLAUDE.md`/`AGENTS.md`/`RULES.md`: bảng prefix/ID cho mọi loại tài liệu, vòng
-  đời `status`, quy tắc glossary-link theo độ sâu thư mục, ma trận lan truyền thay đổi... Mỗi
-  `SKILL.md` đã tóm tắt phần áp dụng trực tiếp cho nó, và trỏ tới file này khi cần đầy đủ hơn —
-  không cần `CLAUDE.md`/`AGENTS.md`/`RULES.md` gốc mới chạy đúng quy tắc.
-
-`CLAUDE.md`, `AGENTS.md`, `RULES.md`, `CONTEXT.md` **gốc** không đi kèm skill (chỉ bản dẫn xuất
-`spec-kit-conventions.md` ở trên đi kèm) và **không cần thiết cho dự án đã cài skill** — không có
-bước nào trong dự án đó cần clone lại 4 file này.
+- `spec-kit-conventions.md` — quy tắc cốt lõi dùng xuyên suốt Spec Kit: bảng prefix/ID cho mọi
+  loại tài liệu, vòng đời `status`, quy tắc glossary-link theo độ sâu thư mục, ma trận lan
+  truyền thay đổi... Mỗi `SKILL.md` đã tóm tắt phần áp dụng trực tiếp cho nó, và trỏ tới file
+  này khi cần đầy đủ hơn.
 
 ### Chỉ khi muốn sửa/đóng góp vào chính repo `spec-kit-template` này
 
 Không liên quan tới việc dùng skill ở dự án khác. Nếu bạn muốn lấy toàn bộ nội dung gốc của repo
-này (ví dụ đọc Bước C — thực thi User Story bằng code, phần duy nhất ngoài phạm vi 4 skill sinh
+này (ví dụ đọc Bước C — thực thi User Story bằng code, phần duy nhất ngoài phạm vi 5 skill sinh
 tài liệu — hoặc sửa `CLAUDE.md`/`AGENTS.md`/`RULES.md` để gửi PR ngược lại repo), dùng
 [degit](https://github.com/Rich-Harris/degit) (không kèm lịch sử git, không cần tự `clone` rồi
 xoá `.git`):

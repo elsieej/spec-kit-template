@@ -11,7 +11,7 @@ story_points: null
 assignee: null
 blocked_by_open_questions: []
 depends_on: []         # ID Feature/US khác phải status:approved trước khi story này thực hiện được
-priority: null         # P0 | P1 | P2 | P3 — ưu tiên xử lý trong backlog, xem AGENTS.md mục "Backlog"
+priority: null         # P0 | P1 | P2 | P3 — ưu tiên xử lý trong backlog (P0 xử lý trước, P3 sau cùng)
 ---
 
 # US-001 — <Tên user story>
@@ -30,12 +30,12 @@ này.
 - Business/Functional requirement liên quan: FR-001
 - System overview liên quan: SYS-CTR-001 (container: <mã container, xem c4-container.md>)
 - Container Interface Contract liên quan: <mã CIC-xxx trong container-interface.md —
-  nếu file này tồn tại và có luồng giao tiếp liên quan tới US này, xem AGENTS.md Bước C>
+  nếu file này tồn tại và có luồng giao tiếp liên quan tới US này>
 - Glossary liên quan: xem docs/glossary/glossary.md
 
 ## Ghi chú kỹ thuật
-Bắt buộc ghi lý do ở đây khi **sau này đổi** `priority` khác giá trị đã chọn ban đầu (xem
-AGENTS.md mục "Backlog"), hoặc quyết định tại họp (kèm liên kết `MEET-xxx`). KHÔNG bắt buộc ghi
-lý do lúc **chọn lần đầu** giữa 2 giá trị hợp lệ cùng mức MoSCoW khi tạo mới.
+Bắt buộc ghi lý do ở đây khi **sau này đổi** `priority` khác giá trị đã chọn ban đầu, hoặc quyết
+định tại họp (kèm liên kết `MEET-xxx`). KHÔNG bắt buộc ghi lý do lúc **chọn lần đầu** giữa 2 giá
+trị hợp lệ cùng mức MoSCoW khi tạo mới.
 
 -

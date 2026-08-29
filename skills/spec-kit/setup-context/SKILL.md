@@ -49,16 +49,11 @@ khi dự án **chưa có** file template tương ứng — lúc đó tự tạo 
 copy nguyên trạng bản đi kèm skill vào đúng vị trí, giống hệt cách bước 1 dưới đây scaffold
 `glossary.md`. Không tự bịa cấu trúc/tên field khác ngoài 2 nguồn này.
 
-`CLAUDE.md`, `AGENTS.md`, `RULES.md`, `CONTEXT.md` KHÔNG bắt buộc phải tồn tại để chạy skill
-này — quy tắc cốt lõi từ 3 file đầu (naming convention, MoSCoW bắt buộc, không bịa nội dung,
-glossary link...) đã được nhắc lại trực tiếp trong các mục dưới đây, và đầy đủ hơn ở
+Quy tắc cốt lõi (naming convention, MoSCoW bắt buộc, không bịa nội dung, glossary link...) đã
+được nhắc lại trực tiếp trong các mục dưới đây, và đầy đủ hơn ở
 [spec-kit-conventions.md](spec-kit-conventions.md) (bảng prefix/ID đầy đủ cho mọi loại tài liệu,
 vòng đời `status`, glossary-link theo độ sâu thư mục, ma trận lan truyền thay đổi...) — file này
-đi kèm sẵn cạnh `SKILL.md`, đọc khi cần chi tiết hơn phần tóm tắt ở đây. Nếu dự án có sẵn
-`CLAUDE.md`/`AGENTS.md`/`RULES.md`/`CONTEXT.md` thật, ưu tiên đọc bản gốc đó (đầy đủ nhất, có cả
-Bước C ngoài phạm vi 4 skill). Không dừng lại chờ các file này xuất hiện, và không cần chạy
-`npx degit` chỉ để có chúng (chỉ cần khi muốn xem tài liệu quy trình đầy đủ hoặc đóng góp lại
-repo gốc, không phải điều kiện để skill này chạy được).
+đi kèm sẵn cạnh `SKILL.md`, đọc khi cần chi tiết hơn phần tóm tắt ở đây.
 
 ## Nguyên tắc khi chạy skill này
 
@@ -110,7 +105,8 @@ repo gốc, không phải điều kiện để skill này chạy được).
 - Nếu user có nhiều hơn 1 WHY/WHO/WHAT cần tách (ví dụ nhiều persona khác nhau → nhiều UR),
   tạo thêm `UR-002`, `UR-003`... theo đúng naming convention thay vì nhồi vào 1 file.
 - Khi viết nội dung BR/UR/FR, thuật ngữ đã có trong `docs/glossary/glossary.md` → gắn link
-  Markdown tới đúng mục ở lần xuất hiện đầu tiên trong tài liệu (xem `RULES.md` mục 2).
+  Markdown tới đúng mục ở lần xuất hiện đầu tiên trong tài liệu (xem `spec-kit-conventions.md`
+  mục 3).
 - **Không nhắc tên mã container/hệ thống cụ thể** (dạng slug kỹ thuật như `checkout-api`,
   `maintenance-mobile`) trong BR/UR/FR hay `glossary.md` — mã container chỉ được chốt ở Bước A
   (`c4-container.md`, xem skill `c4-model`), chưa tồn tại ở tầng này. Nếu cần nhắc tới 1 phần hệ
@@ -120,8 +116,8 @@ repo gốc, không phải điều kiện để skill này chạy được).
 
 ## Quy trình
 
-1. Kiểm tra `docs/glossary/glossary.md` đã tồn tại chưa (AGENTS.md, nguyên tắc chung #1 bắt
-   buộc đọc file này trước mọi tài liệu). Đây thường là task đầu tiên chạy trên 1 dự án mới nên
+1. Kiểm tra `docs/glossary/glossary.md` đã tồn tại chưa (`spec-kit-conventions.md`, mục 2,
+   nguyên tắc chung #1 bắt buộc đọc file này trước mọi tài liệu). Đây thường là task đầu tiên chạy trên 1 dự án mới nên
    file này nhiều khả năng chưa có — nếu chưa có, copy nguyên trạng template đúng theo quy tắc
    chọn nguồn ở "Điều kiện tiên quyết" (ưu tiên `docs/glossary/template.md` nếu dự án đã có,
    không thì dùng `templates/glossary-template.md` đi kèm skill này) thành `glossary.md` trước
@@ -172,9 +168,10 @@ repo gốc, không phải điều kiện để skill này chạy được).
      nhất đang nhớ — lỗi thật đã xảy ra: link đúng ở file đầu tiên mỗi tầng, bị quên hoàn toàn ở
      các file sau cùng tầng), rồi với **từng file trong danh sách đó**, kiểm mọi thuật ngữ đã có
      trong `docs/glossary/glossary.md` dùng trong file có link ở lần xuất hiện đầu tiên chưa
-     (xem nguyên tắc ở trên, `RULES.md` mục 2). **Nếu file đó đã `status: approved`** khi phát
-     hiện thiếu link — đưa lại về `status: draft` trước khi sửa (xem `CLAUDE.md`, mục "Đặt tên,
-     ID và versioning": sửa nội dung tài liệu đã approved phải đưa lại draft để review lại), sửa
+     (xem nguyên tắc ở trên, `spec-kit-conventions.md` mục 3). **Nếu file đó đã `status:
+     approved`** khi phát hiện thiếu link — đưa lại về `status: draft` trước khi sửa (xem
+     `spec-kit-conventions.md` mục 1: sửa nội dung tài liệu đã approved phải đưa lại draft để
+     review lại), sửa
      xong mới cân nhắc approve lại; không sửa thẳng nội dung mà giữ nguyên `status: approved`.
    - **Mỗi dòng nhu cầu trong bảng "Nhu cầu người dùng & Ưu tiên" của mọi UR đã tạo phải có ít
      nhất 1 FR** trỏ `parent_user_requirement` về đúng UR đó và cover đúng nhu cầu đó — liệt kê
@@ -193,7 +190,4 @@ repo gốc, không phải điều kiện để skill này chạy được).
    rà thường bỏ sót đúng những chi tiết nó không nhớ là đã tự thêm vào. Nếu khả thi, chạy bước
    này như 1 lượt riêng sau khi đã viết xong toàn bộ, thay vì xen kẽ ngay trong lúc viết.
 7. Nhắc user: review và set `status: approved` cho từng tầng trước khi tạo System Overview
-   (C4 Context + Container Diagram). Nếu file `CONTEXT.md` tồn tại trong dự án, điền tiếp "Giai
-   đoạn hiện tại" và "Team & đầu mối liên hệ" trong đó nếu 2 mục này còn để trống — `CONTEXT.md`
-   không thuộc "Điều kiện tiên quyết" ở trên (không chặn pipeline), nên nếu file này không tồn
-   tại, bỏ qua phần nhắc này, không tự tạo `CONTEXT.md` mới hay coi đây là lỗi.
+   (C4 Context + Container Diagram).
