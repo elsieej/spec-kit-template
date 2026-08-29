@@ -201,7 +201,11 @@ xuất hiện ở nhiều luồng/nhiều container.
    tự liệt kê rồi tự ghi file luôn trong cùng lượt). **Ghi nguyên văn** đề xuất + phản hồi thật
    của user vào đúng mục ghi giả định cần xác nhận trong `entity-interface.md` (tên/số mục theo
    đúng template hiện tại — không hardcode ở đây, template là nguồn sự thật cho cấu trúc) — không
-   chỉ gắn nhãn `[Agent đề xuất]` rồi tự cho qua.
+   chỉ gắn nhãn `[Agent đề xuất]` rồi tự cho qua. **Nếu phản hồi thật làm thay đổi đề xuất ban
+   đầu** (thêm/bớt/sửa giá trị) — ghi phản hồi thôi chưa đủ, phải quay lại cập nhật đúng bảng
+   field/quan hệ của entity đó cho khớp (xoá giá trị bị từ chối, thêm giá trị mới được yêu cầu),
+   không để bảng field giữ nguyên theo đề xuất cũ trong khi mục xác nhận đã ghi rõ đề xuất đó bị
+   từ chối/thay đổi — 2 chỗ lệch nhau là tài liệu tự mâu thuẫn.
 5. **KHÔNG thiết kế DDL/collection schema thật** (kiểu cột, index, khoá ngoại vật lý — đó là
    Bước C), **KHÔNG mô tả request/response body của từng thao tác** (đó là CIC trong
    `container-interface.md`), **KHÔNG mô tả định dạng file/wire format cụ thể hay quy
@@ -240,7 +244,11 @@ riêng, không chỉ tin đã khớp lúc viết:
   nhận (xem template hiện tại để biết đúng tên/số mục) có phản hồi thật của user chưa, hay còn
   giả định mới gắn nhãn `[Agent đề xuất]` mà chưa thực sự hỏi — khác với checkpoint glossary ở
   trên (chỉ kiểm thiếu link), đây kiểm nội dung có được xác nhận thật hay chưa, cùng mức nghiêm
-  ngặt như bước "Xác nhận với user" của Component/Container.
+  ngặt như bước "Xác nhận với user" của Component/Container. Với mỗi mục đã có phản hồi thật:
+  nếu phản hồi đó thay đổi đề xuất ban đầu (thêm/bớt/sửa giá trị), đối chiếu xem bảng field/quan
+  hệ của entity tương ứng đã cập nhật khớp theo phản hồi chưa — lỗi thật đã xảy ra: phản hồi ghi
+  rõ 1 giá trị bị từ chối, nhưng bảng field vẫn giữ nguyên giá trị đó như đã chốt, khiến tài liệu
+  tự mâu thuẫn ngay trong chính nó.
 
 ## Lỗi thường gặp cần tránh
 

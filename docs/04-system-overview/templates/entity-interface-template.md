@@ -119,4 +119,10 @@ Nếu chưa xác nhận được (ví dụ đang ở giữa phiên, chưa hỏi 
 `c4-model`, `plan-backlog`) phải liệt kê lại mọi mục ở đây chưa có phản hồi thật — không tự chốt
 thành sự thật khi chưa ai xác nhận.
 
+**Nếu phản hồi thật làm thay đổi đề xuất ban đầu** (thêm/bớt/sửa giá trị so với lúc đề xuất) —
+ghi phản hồi vào đây KHÔNG đủ, còn phải quay lại cập nhật đúng bảng field/quan hệ của entity đó
+ở mục Entity schema cho khớp với phản hồi thật (xoá giá trị bị từ chối, thêm giá trị mới được
+yêu cầu). Chỉ ghi phản hồi rồi dừng ở đây — để nguyên bảng field theo đề xuất cũ — là sai: tài
+liệu sẽ tự mâu thuẫn (mục này ghi "đã từ chối X" trong khi bảng field vẫn liệt kê X như đã chốt).
+
 -
