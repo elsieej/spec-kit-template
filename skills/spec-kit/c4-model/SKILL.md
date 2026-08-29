@@ -39,11 +39,12 @@ trình tạo Container Interface Contract" bên dưới. Nếu nhiều entity d�
 container mà mô tả rời rạc sẽ bị lặp/lệch nhau, tạo thêm `entity-interface.md` —
 xem mục "Quy trình tạo Entity Interface" bên dưới.
 
-Mọi file `*-template.md` skill này dùng đều nằm trong `docs/system-overview/templates/`
-(tách biệt khỏi tài liệu thật để dễ đọc) — ví dụ `templates/c4-context-template.md` dùng để
-tạo `c4-context.md`, `templates/container-interface-template.md` dùng để tạo
-`container-interface.md`. Tài liệu thật (không có suffix `-template`) luôn tạo trực tiếp trong
-`docs/system-overview/`, không tạo trong `templates/`.
+Mọi file `*-template.md` skill này dùng nằm trong `docs/system-overview/templates/` nếu dự án
+đã có (tách biệt khỏi tài liệu thật để dễ đọc), hoặc trong thư mục `templates/` đi kèm chính
+skill này nếu dự án chưa có — xem quy tắc chọn nguồn ở "Điều kiện tiên quyết". Ví dụ
+`c4-context-template.md` dùng để tạo `c4-context.md`, `container-interface-template.md` dùng để
+tạo `container-interface.md`. Tài liệu thật (không có suffix `-template`) luôn tạo trực tiếp
+trong `docs/system-overview/`, không tạo trong `templates/`.
 
 ## Khi nào dùng skill này
 
@@ -53,27 +54,32 @@ tạo `c4-context.md`, `templates/container-interface-template.md` dùng để t
 
 ## Điều kiện tiên quyết
 
-Trước khi tạo bất kỳ file C4/Interface Contract nào, kiểm tra các file sau đã tồn tại trong dự
-án đang làm việc:
+Template cần cho mọi file C4/Interface Contract đi kèm sẵn trong thư mục `templates/` cạnh
+chính `SKILL.md` này — không cần cài/copy gì thêm để có chúng:
 
-- `CLAUDE.md`, `AGENTS.md`, `RULES.md`
-- `docs/system-overview/templates/c4-context-template.md`,
-  `docs/system-overview/templates/c4-container-template.md`,
-  `docs/system-overview/templates/c4-component-template.md`
-- `docs/glossary/glossary.md` (đã tạo từ Bước trước, xem skill `setup-context`)
-- `docs/system-overview/templates/container-interface-template.md` và
-  `docs/system-overview/templates/entity-interface-template.md` — chỉ bắt buộc kiểm tra **khi**
-  điều kiện tạo tương ứng (mục "Quy trình tạo Container Interface Contract" bước 1, "Quy trình
-  tạo Entity Interface" bước 1) đã đúng, tức sắp thực sự cần tạo file đó — không kiểm trước nếu
-  hệ thống chưa cần tới.
+| Tài liệu | Template đi kèm skill |
+|---|---|
+| `docs/system-overview/c4-context.md` | `templates/c4-context-template.md` |
+| `docs/system-overview/c4-container.md` | `templates/c4-container-template.md` |
+| `docs/system-overview/c4-component-*.md` | `templates/c4-component-template.md` |
+| `docs/system-overview/container-interface.md` | `templates/container-interface-template.md` |
+| `docs/system-overview/entity-interface.md` | `templates/entity-interface-template.md` |
 
-**Nếu 1 file bắt buộc ở trên không tồn tại — DỪNG LẠI, không tự đi tiếp.** Cài skill này qua
-`npx skills add` chỉ mang theo đúng file `SKILL.md`, KHÔNG mang theo template/quy tắc ở trên —
-lỗi thật đã xảy ra khi thiếu: agent tự bịa toàn bộ tên bảng/section trong `c4-context.md`/
-`c4-container.md`/`c4-component-*.md` chỉ dựa vào văn xuôi SKILL.md tình cờ nhắc tới, tạo ra
-tài liệu trông hợp lệ nhưng không khớp schema thật của kit. Báo cho user: liệt kê rõ file nào
-thiếu, và rằng dự án cần scaffold từ repo gốc của skill trước (xem `source` trong
-`skills-lock.json` ở gốc dự án nếu có) — không tự tạo file thay thế bằng nội dung tự bịa.
+**Quy tắc chọn nguồn template — áp dụng ở mọi "Quy trình" bên dưới:** ưu tiên
+`docs/system-overview/templates/<tên>-template.md` nếu dự án **đã có sẵn**; chỉ dùng bản
+`templates/<tên>-template.md` đi kèm skill này khi dự án **chưa có** — lúc đó tự tạo
+`docs/system-overview/templates/` (nếu chưa có) rồi copy nguyên trạng bản đi kèm skill vào đúng
+vị trí trước khi tạo tài liệu thật. Không tự bịa cấu trúc/tên bảng/section khác ngoài 2 nguồn
+này. Container/Entity Interface Contract chỉ cần scaffold khi điều kiện tạo tương ứng (mục "Quy
+trình tạo Container Interface Contract" bước 1, "Quy trình tạo Entity Interface" bước 1) đã
+đúng — không scaffold trước nếu hệ thống chưa cần tới.
+
+`docs/glossary/glossary.md` cần đã tồn tại (thường được `setup-context` tạo trước — chạy skill
+đó trước nếu chưa có). `CLAUDE.md`, `AGENTS.md`, `RULES.md` KHÔNG bắt buộc phải tồn tại — quy
+tắc cốt lõi (không thiết kế API/DB cụ thể, ranh giới Level 1-3, xác nhận với user...) đã được
+nhắc lại trực tiếp trong các mục dưới đây. Nếu các file này thực sự có trong dự án, đọc thêm để
+nắm chi tiết đầy đủ hơn; nếu không có, dùng đúng bản rút gọn đã nhắc ở đây — không dừng lại chờ
+các file này xuất hiện.
 
 ## Quy trình tạo Context Diagram (Level 1)
 
@@ -169,8 +175,8 @@ Không phải 1 Level của C4 — là phụ lục dữ liệu đi kèm Containe
    phải 1 hợp đồng 2 bên nội bộ tự chốt — nếu chưa xác nhận được với bên thứ ba, ghi rõ "chưa xác
    nhận với <hệ thống ngoài>" thay vì để trống hoặc bỏ qua không ghi gì (bỏ qua là sai, vì đây
    chính là dữ liệu Bước C cần để không tự bịa hợp đồng tích hợp).
-2. Tạo `docs/system-overview/container-interface.md` (`SYS-IFC-xxx`, dùng
-   `docs/system-overview/templates/container-interface-template.md`), `source_docs` trỏ về
+2. Tạo `docs/system-overview/container-interface.md` (`SYS-IFC-xxx`, dùng template đúng theo
+   quy tắc chọn nguồn ở "Điều kiện tiên quyết"), `source_docs` trỏ về
    `c4-container.md`/`c4-component-*.md` liên quan.
 3. Gán 1 mã **CIC** (`CIC-001` tăng dần) cho mỗi **hàng (cạnh có hướng)** trong bảng "Giao tiếp"
    của `c4-container.md` cần chốt trước — 2 container gọi nhau cả 2 chiều, ghi thành 2 hàng ở
@@ -211,9 +217,9 @@ xuất hiện ở nhiều luồng/nhiều container.
 1. Chỉ tạo khi nhiều entity dùng chung bởi nhiều CIC/container, và mô tả rời rạc trong từng CIC
    sẽ bị lặp lại hoặc lệch nhau. Không bắt buộc cho mọi hệ thống — hệ thống ít entity/quan hệ
    rời rạc thì field list ngay trong từng CIC là đủ, dừng ở `container-interface.md`.
-2. Tạo `docs/system-overview/entity-interface.md` (`SYS-SIC-xxx`, dùng
-   `docs/system-overview/templates/entity-interface-template.md`), `source_docs` trỏ về
-   `c4-container.md` (container/DB sở hữu entity) và/hoặc `container-interface.md` liên quan.
+2. Tạo `docs/system-overview/entity-interface.md` (`SYS-SIC-xxx`, dùng template đúng theo quy
+   tắc chọn nguồn ở "Điều kiện tiên quyết"), `source_docs` trỏ về `c4-container.md`
+   (container/DB sở hữu entity) và/hoặc `container-interface.md` liên quan.
 3. Vẽ sơ đồ quan hệ entity (mermaid `erDiagram`) + bảng mô tả quan hệ: cardinality (`1–1`,
    `1–0..n`, `n–n`, đệ quy...), bên nào là FK, bắt buộc hay tuỳ chọn.
 4. Với mỗi entity: liệt kê field, kiểu ở mức khái niệm (text/số/ngày-giờ/boolean/enum — liệt kê

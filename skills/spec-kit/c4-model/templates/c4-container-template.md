@@ -1,0 +1,66 @@
+---
+id: SYS-CTR-001
+type: system_container
+status: draft        # draft | approved | deprecated
+version: 1
+created: YYYY-MM-DD
+last_updated: YYYY-MM-DD
+source_docs: [SYS-CTX-001]
+related_open_questions: []
+---
+
+# SYS-CTR-001 — <Tên hệ thống> (Container Diagram)
+
+## Danh sách container
+
+Mỗi container gán 1 mã (slug ngắn, duy nhất) — dữ liệu gốc mà Epic (`source_container`) và mọi
+việc lập kế hoạch sau này tham chiếu theo đúng mã, không nơi nào khác tự đặt mã container mới.
+
+| Mã | Loại | Trách nhiệm |
+|---|---|---|
+| | | |
+
+## Xác nhận với user
+
+Chỉ cần điền nếu ranh giới container ban đầu còn mơ hồ, phải hỏi user (xem skill `c4-model`,
+Container Diagram bước 3) — ghi **nguyên văn** câu hỏi đã hỏi và câu trả lời/xác nhận thật của
+user, không chỉ khẳng định suông "đã đề xuất và được xác nhận". Đây là bằng chứng duy nhất đọc
+lại được độc lập với git log (không phải môi trường nào cũng có) hay trí nhớ phiên làm việc.
+
+- Hỏi:
+- Trả lời:
+
+## Giao tiếp
+
+Gồm cả giao tiếp giữa 2 container nội bộ lẫn container ↔ hệ thống ngoài đã liệt kê ở "Hệ thống
+ngoài liên quan" trong `c4-context.md`, nếu container đó gọi trực tiếp hệ thống ngoài — đây là
+bảng duy nhất mà Container Interface Contract (nếu cần tạo) quét qua: mỗi hàng (cạnh có hướng)
+ở đây ứng với đúng 1 mã CIC bên đó.
+
+| Từ | Tới | Giao thức | Mô tả |
+|---|---|---|---|
+| | | | |
+
+## Diagram
+
+```mermaid
+graph TD
+```
+
+## Ghi chú Component diagram
+
+Với mỗi container: có tạo `c4-component-<mã>.md` hay không, và vì sao (container DB thuần/
+dịch vụ bên thứ ba dùng nguyên trạng → không tạo; container quá đơn giản → ghi rõ candidate
+component đã xét qua trước khi kết luận, xem skill `c4-model`).
+
+-
+
+## Ghi chú Container Interface Contract
+
+Hàng nào ở bảng "Giao tiếp" trên cần `container-interface.md` (mã CIC + schema dữ
+liệu trao đổi) — chỉ cần khi có dữ liệu thật phải thống nhất trước lúc 2 bên được thực thi độc
+lập; áp dụng cho cả container nội bộ ↔ hệ thống ngoài đã liệt kê ở "Hệ thống ngoài liên quan"
+trong `c4-context.md` (payment gateway, hệ thống bên thứ ba...), không chỉ 2 container nội bộ —
+xem skill `c4-model`, mục "Quy trình tạo Container Interface Contract".
+
+-

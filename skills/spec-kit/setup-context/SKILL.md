@@ -30,25 +30,32 @@ loại và điền đúng tài liệu — không phải kịch bản câu hỏi 
 
 ## Điều kiện tiên quyết
 
-Trước khi chạy bất kỳ bước nào ở "Quy trình" bên dưới, kiểm tra các file sau đã tồn tại trong
-dự án đang làm việc (không phải chỉ trong bản cài của skill này):
+Template cần cho `glossary`/BR/UR/FR/OQ đi kèm sẵn trong thư mục `templates/` cạnh chính
+`SKILL.md` này — không cần cài/copy gì thêm để có chúng:
 
-- `CLAUDE.md`, `AGENTS.md`, `RULES.md`
-- `docs/glossary/template.md`
-- `docs/business-requirement/template.md`
-- `docs/user-requirement/template.md`
-- `docs/functional-requirement/template.md`
-- `docs/meetings/open-questions/OQ-template.md` (cần khi PO từ chối/chưa trả lời 1 chi tiết cụ
-  thể — xem nguyên tắc "không bịa nội dung" bên dưới)
+| Tài liệu | Template đi kèm skill |
+|---|---|
+| `docs/glossary/glossary.md` | `templates/glossary-template.md` |
+| `docs/business-requirement/BR-*.md` | `templates/BR-template.md` |
+| `docs/user-requirement/UR-*.md` | `templates/UR-template.md` |
+| `docs/functional-requirement/FR-*.md` | `templates/FR-template.md` |
+| `docs/meetings/open-questions/OQ-*.md` | `templates/OQ-template.md` |
 
-**Nếu bất kỳ file nào ở trên không tồn tại — DỪNG LẠI, không tự đi tiếp.** Cài skill này qua
-`npx skills add` chỉ mang theo đúng file `SKILL.md` (+ `examples.md`), KHÔNG mang theo
-template/quy tắc ở trên — lỗi thật đã xảy ra khi thiếu: agent tự bịa toàn bộ tên field
-frontmatter/tên section chỉ dựa vào văn xuôi SKILL.md tình cờ nhắc tới, tạo ra tài liệu trông
-hợp lệ nhưng không khớp schema thật của kit, không ai được cảnh báo. Báo cho user: liệt kê rõ
-file nào thiếu, và rằng dự án cần scaffold từ repo gốc của skill trước (xem `source` trong
-`skills-lock.json` ở gốc dự án nếu có, để biết chính xác repo cần clone) — không tự tạo file
-thay thế bằng nội dung tự bịa.
+**Quy tắc chọn nguồn template — áp dụng ở mọi bước "Quy trình" bên dưới cần tạo file mới:** ưu
+tiên `docs/<tầng>/template.md` nếu dự án **đã có sẵn** (ví dụ do team tự tuỳ biến, hoặc do dự án
+đã scaffold đầy đủ bằng cách khác); chỉ dùng bản `templates/<tên>-template.md` đi kèm skill này
+khi dự án **chưa có** file template tương ứng — lúc đó tự tạo thư mục `docs/<tầng>/` trước rồi
+copy nguyên trạng bản đi kèm skill vào đúng vị trí, giống hệt cách bước 1 dưới đây scaffold
+`glossary.md`. Không tự bịa cấu trúc/tên field khác ngoài 2 nguồn này.
+
+`CLAUDE.md`, `AGENTS.md`, `RULES.md`, `CONTEXT.md` KHÔNG bắt buộc phải tồn tại để chạy skill
+này — quy tắc cốt lõi từ 3 file đầu (naming convention, MoSCoW bắt buộc, không bịa nội dung,
+glossary link...) đã được nhắc lại trực tiếp trong các mục dưới đây. Nếu các file này thực sự
+có trong dự án, đọc thêm để nắm chi tiết đầy đủ hơn (ví dụ định dạng chính xác của link glossary
+theo độ sâu thư mục ở `RULES.md` mục 2, bảng vòng đời `status` đầy đủ ở `CLAUDE.md`); nếu không
+có, dùng đúng bản rút gọn đã nhắc ở đây — không dừng lại chờ các file này xuất hiện, và không
+cần chạy `npx degit` chỉ để có chúng (chỉ cần khi muốn xem tài liệu quy trình đầy đủ, không phải
+điều kiện để skill này chạy được).
 
 ## Nguyên tắc khi chạy skill này
 
@@ -112,10 +119,11 @@ thay thế bằng nội dung tự bịa.
 
 1. Kiểm tra `docs/glossary/glossary.md` đã tồn tại chưa (AGENTS.md, nguyên tắc chung #1 bắt
    buộc đọc file này trước mọi tài liệu). Đây thường là task đầu tiên chạy trên 1 dự án mới nên
-   file này nhiều khả năng chưa có — nếu chưa có, copy nguyên trạng
-   `docs/glossary/template.md` (đã xác nhận tồn tại ở "Điều kiện tiên quyết") thành
-   `glossary.md` trước khi hỏi câu mở đầu, không hỏi user, không bỏ qua bước này. Nếu đã có, đọc
-   qua để nắm thuật ngữ dự án hiện tại.
+   file này nhiều khả năng chưa có — nếu chưa có, copy nguyên trạng template đúng theo quy tắc
+   chọn nguồn ở "Điều kiện tiên quyết" (ưu tiên `docs/glossary/template.md` nếu dự án đã có,
+   không thì dùng `templates/glossary-template.md` đi kèm skill này) thành `glossary.md` trước
+   khi hỏi câu mở đầu, không hỏi user, không bỏ qua bước này. Nếu đã có, đọc qua để nắm thuật
+   ngữ dự án hiện tại.
 2. Kiểm tra `docs/business-requirement/` đã có file `BR-*` nào ngoài `template.md` chưa.
    Nếu có, hỏi user muốn tạo BR mới hay tiếp tục/refine BR đang có — không tự ý ghi đè.
 3. **Hỏi mở đầu, 1 câu duy nhất, ngôn ngữ tự nhiên** — ví dụ: "Kể tôi nghe về dự án bạn muốn
@@ -129,8 +137,9 @@ thay thế bằng nội dung tự bịa.
      đề/nắm bắt cơ hội gì, không làm thì sao, cải thiện được gì (IMPROVE) và đánh đổi gì (COST).
      Nếu phần này còn thiếu/mờ sau câu hỏi mở, hỏi tiếp tự nhiên theo mạch chuyện (ví dụ dựa
      vào lý do user vừa nêu, hỏi sâu hơn về hệ quả nếu không làm). Khi đủ nội dung → tạo
-     `docs/business-requirement/BR-001_<slug>.md` từ `template.md`, điền "Bối cảnh (WHY)",
-     "Mục tiêu kinh doanh", "Lợi ích & chi phí (IMPROVE/COST)".
+     `docs/business-requirement/BR-001_<slug>.md` từ template đúng theo quy tắc chọn nguồn ở
+     "Điều kiện tiên quyết", điền "Bối cảnh (WHY)", "Mục tiêu kinh doanh",
+     "Lợi ích & chi phí (IMPROVE/COST)".
    - **Đối tượng dùng + nhu cầu (→ UR, khái niệm WHO):** ai dùng — persona nào, pain point hiện
      tại, nhu cầu cụ thể. Nếu còn thiếu/mờ, hỏi tiếp tự nhiên (ví dụ "Còn ai khác cũng dùng cái
      này không, hay chỉ mình họ?"). Khi đủ → tạo `docs/user-requirement/UR-001_<slug>.md`,

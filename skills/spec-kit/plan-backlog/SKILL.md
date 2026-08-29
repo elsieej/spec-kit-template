@@ -38,21 +38,28 @@ sau để quyết định có cần tách User Story tiếp không:
 
 ## Điều kiện tiên quyết
 
-Trước khi tạo bất kỳ Epic/Feature/User Story nào, kiểm tra các file sau đã tồn tại trong dự án
-đang làm việc:
+Template cần cho Epic/Feature/User Story/OQ đi kèm sẵn trong thư mục `templates/` cạnh chính
+`SKILL.md` này — không cần cài/copy gì thêm để có chúng:
 
-- `CLAUDE.md`, `AGENTS.md`, `RULES.md`
-- `docs/backlog/epics/EPIC-template.md`, `docs/backlog/features/FEAT-template.md`,
-  `docs/backlog/user-stories/US-template.md`
-- `docs/meetings/open-questions/OQ-template.md`
-- `docs/glossary/glossary.md`, `docs/system-overview/c4-container.md`
+| Tài liệu | Template đi kèm skill |
+|---|---|
+| `docs/backlog/epics/EPIC-*.md` | `templates/EPIC-template.md` |
+| `docs/backlog/features/.../FEAT-*.md` | `templates/FEAT-template.md` |
+| `docs/backlog/user-stories/.../US-*.md` | `templates/US-template.md` |
+| `docs/meetings/open-questions/OQ-*.md` | `templates/OQ-template.md` |
 
-**Nếu 1 file bắt buộc ở trên không tồn tại — DỪNG LẠI, không tự đi tiếp.** Cài skill này qua
-`npx skills add` chỉ mang theo đúng file `SKILL.md`, KHÔNG mang theo template/quy tắc ở trên —
-thiếu template Epic/Feature/US khiến agent tự bịa tên field frontmatter/tên section, tạo ra
-backlog trông hợp lệ nhưng không khớp schema thật của kit. Báo cho user: liệt kê rõ file nào
-thiếu, và rằng dự án cần scaffold từ repo gốc của skill trước (xem `source` trong
-`skills-lock.json` ở gốc dự án nếu có) — không tự tạo file thay thế bằng nội dung tự bịa.
+**Quy tắc chọn nguồn template — áp dụng ở mọi bước "Quy trình" bên dưới cần tạo file mới:** ưu
+tiên `docs/backlog/{epics,features,user-stories}/*-template.md` tương ứng nếu dự án **đã có
+sẵn**; chỉ dùng bản `templates/<tên>-template.md` đi kèm skill này khi dự án **chưa có** — lúc
+đó tự tạo thư mục con tương ứng rồi copy nguyên trạng bản đi kèm skill vào đúng vị trí trước khi
+tạo Epic/Feature/US thật. Không tự bịa cấu trúc/tên field khác ngoài 2 nguồn này.
+
+`docs/glossary/glossary.md` và `docs/system-overview/c4-container.md` cần đã tồn tại (tạo từ
+Bước trước, xem skill `setup-context`/`c4-model`) — 2 file này không phải template, không tự
+scaffold được, phải chạy đúng thứ tự Bước A trước Bước B nếu chưa có. `CLAUDE.md`, `AGENTS.md`,
+`RULES.md` KHÔNG bắt buộc phải tồn tại — quy tắc cốt lõi đã được nhắc lại trực tiếp trong các
+mục dưới đây; nếu các file này thực sự có trong dự án, đọc thêm để nắm chi tiết đầy đủ hơn, nếu
+không có, dùng đúng bản rút gọn đã nhắc ở đây.
 
 ## Nguyên tắc khi chạy skill này
 
