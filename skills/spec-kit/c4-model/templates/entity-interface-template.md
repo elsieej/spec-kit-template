@@ -5,7 +5,7 @@ status: draft        # draft | approved | deprecated
 version: 1
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
-source_docs: []       # SYS-CTR-xxx (container/DB sở hữu entity) và/hoặc container-interface.md liên quan
+source_docs: []       # SYS-CTR-xxx (container/DB sở hữu entity) và/hoặc SYS-IFC-xxx liên quan
 related_open_questions: []
 ---
 

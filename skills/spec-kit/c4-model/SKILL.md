@@ -293,6 +293,16 @@ riêng, không chỉ tin đã khớp lúc viết:
   rõ 1 giá trị bị từ chối, nhưng bảng field vẫn giữ nguyên giá trị đó như đã chốt, khiến tài liệu
   tự mâu thuẫn ngay trong chính nó.
 
+**Đối chiếu ngược mỗi hàng "Giao tiếp" với FR nguồn** — System Overview chỉ được sinh từ FR/UR/BR
+đã `approved` (nguyên tắc chung #2), nhưng viết Container Diagram vẫn có thể lỡ thêm 1 hàng giao
+tiếp không thực sự bắt nguồn từ yêu cầu nào (lỗi thật đã xảy ra: 1 chiều giao tiếp 2 chiều với hệ
+thống ngoài được vẽ vì "nghe hợp lý về mặt kỹ thuật", nhưng không FR/US nào yêu cầu chiều đó). Với
+**mỗi hàng mới/sửa** trong bảng "Giao tiếp" của `c4-container.md` (và mã CIC tương ứng nếu
+`container-interface.md` tồn tại): xác nhận có ít nhất 1 FR (trực tiếp, hoặc gián tiếp qua US đã
+tham chiếu tới hàng đó) yêu cầu đúng chiều giao tiếp này — không chỉ tồn tại vì "có vẻ cần". Hàng
+nào không truy vết được về FR nào → hoặc xoá hàng đó, hoặc quay lại Bước A/hỏi user bổ sung FR
+trước khi giữ lại, không để nguyên không giải thích.
+
 ## Lỗi thường gặp cần tránh
 
 - Nhồi chi tiết kỹ thuật vào Context Diagram — sai audience, người phi kỹ thuật không đọc nổi.
