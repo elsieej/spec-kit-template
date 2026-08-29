@@ -199,7 +199,8 @@ xuất hiện ở nhiều luồng/nhiều container.
    cầu) — **dừng lại, liệt kê đề xuất, chờ user xác nhận thật** trước khi ghi chính thức, cùng
    mức nghiêm ngặt như bước xác nhận ở Component Diagram (không được coi im lặng là đồng ý, không
    tự liệt kê rồi tự ghi file luôn trong cùng lượt). **Ghi nguyên văn** đề xuất + phản hồi thật
-   của user vào mục "6. Giả định cần xác nhận" của `entity-interface.md` (xem template) — không
+   của user vào đúng mục ghi giả định cần xác nhận trong `entity-interface.md` (tên/số mục theo
+   đúng template hiện tại — không hardcode ở đây, template là nguồn sự thật cho cấu trúc) — không
    chỉ gắn nhãn `[Agent đề xuất]` rồi tự cho qua.
 5. **KHÔNG thiết kế DDL/collection schema thật** (kiểu cột, index, khoá ngoại vật lý — đó là
    Bước C), **KHÔNG mô tả request/response body của từng thao tác** (đó là CIC trong
@@ -235,10 +236,11 @@ riêng, không chỉ tin đã khớp lúc viết:
 - Nếu `entity-interface.md` tồn tại: mọi field ở CIC không trỏ về entity (tự liệt kê
   field thay vì tham chiếu) phải cùng tên với field tương ứng ở SIC — không để 2 tên khác nhau
   cho cùng 1 khái niệm (vd `sku` ở CIC nhưng `productId` ở SIC).
-- Nếu `entity-interface.md` tồn tại: mọi mục ở "6. Giả định cần xác nhận" có phản hồi thật của
-  user chưa, hay còn giả định mới gắn nhãn `[Agent đề xuất]` mà chưa thực sự hỏi — khác với
-  checkpoint glossary ở trên (chỉ kiểm thiếu link), đây kiểm nội dung có được xác nhận thật hay
-  chưa, cùng mức nghiêm ngặt như "Xác nhận với user" của Component/Container.
+- Nếu `entity-interface.md` tồn tại: mọi giả định/đề xuất đã ghi trong mục ghi giả định cần xác
+  nhận (xem template hiện tại để biết đúng tên/số mục) có phản hồi thật của user chưa, hay còn
+  giả định mới gắn nhãn `[Agent đề xuất]` mà chưa thực sự hỏi — khác với checkpoint glossary ở
+  trên (chỉ kiểm thiếu link), đây kiểm nội dung có được xác nhận thật hay chưa, cùng mức nghiêm
+  ngặt như bước "Xác nhận với user" của Component/Container.
 
 ## Lỗi thường gặp cần tránh
 

@@ -152,8 +152,9 @@ sau để quyết định có cần tách User Story tiếp không:
    `c4-component-*.md`, `container-interface.md`, `entity-interface.md` nếu
    tồn tại, trong `source_container`/`Context cho Agent` của Epic/US vừa tạo) — xác minh bước
    "liệt kê rồi chờ user xác nhận" của `c4-model` thực sự đã xảy ra (có phản hồi thật của user
-   trong mục "Xác nhận với user" của file Component/Container **và mục "6. Giả định cần xác
-   nhận" của `entity-interface.md`** nếu file này tồn tại, không chỉ khẳng định suông), và mọi mã
+   trong mục "Xác nhận với user" của file Component/Container **và trong mục ghi giả định cần
+   xác nhận của `entity-interface.md`** nếu file này tồn tại — tên/số mục theo đúng template hiện
+   tại, không cứng theo số cụ thể ở đây, không chỉ khẳng định suông), và mọi mã
    CIC được US tham chiếu đều có mặt trong bảng tổng hợp CIC; nếu phát hiện component/CIC/giả
    định entity nào chưa từng được xác nhận, xử lý như 1 chi tiết chưa xác nhận ở trên, không im
    lặng dùng tiếp.
