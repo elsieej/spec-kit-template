@@ -27,22 +27,6 @@ sẵn:
   truyền thay đổi... Mỗi `SKILL.md` đã tóm tắt phần áp dụng trực tiếp cho nó, và trỏ tới file
   này khi cần đầy đủ hơn.
 
-### Chỉ khi muốn sửa/đóng góp vào chính repo `spec-kit-template` này
-
-Không liên quan tới việc dùng skill ở dự án khác. Nếu bạn muốn lấy toàn bộ nội dung gốc của repo
-này (ví dụ đọc Bước C — thực thi User Story bằng code, phần duy nhất ngoài phạm vi 5 skill sinh
-tài liệu — hoặc sửa `CLAUDE.md`/`AGENTS.md`/`RULES.md` để gửi PR ngược lại repo), dùng
-[degit](https://github.com/Rich-Harris/degit) (không kèm lịch sử git, không cần tự `clone` rồi
-xoá `.git`):
-
-```bash
-npx degit <owner>/spec-kit-template .
-```
-
-Chạy trong 1 thư mục trống. Với thư mục đã có sẵn file, `degit` từ chối chạy trừ khi thêm
-`--force` — cờ này **ghi đè mọi file trùng tên** (kể cả `README.md` của thư mục đích, nếu có),
-không hỏi lại; xem trước file nào sẽ trùng trước khi thêm `--force`.
-
 ## Cập nhật
 
 Khi repo này có bản cập nhật, ở dự án đã cài, chạy:

@@ -49,9 +49,6 @@ có.
 Sau khi cài, chạy skill `/about-spec-kit` — skill này liệt kê đủ các bước tiếp theo (chạy skill
 nào, theo thứ tự nào) và không bị lặp lại ở đây để tránh 2 nơi cùng mô tả 1 flow dễ lệch nhau.
 
-`npx degit <owner>/spec-kit-template .` (xem `skills/spec-kit/README.md`) chỉ dành cho việc sửa/
-đóng góp vào chính repo nguồn này (`spec-kit-template`) — **không phải bước cần cho dự án khác**.
-
 ## Cấu trúc
 
 - `CONTEXT.md` — giới thiệu kit + thành phần chính, đọc trước tiên
