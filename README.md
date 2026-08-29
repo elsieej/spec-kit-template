@@ -44,9 +44,7 @@ Chỉ cần 1 bước: cài 5 skill qua `npx skills add <owner>/spec-kit-templat
 `skills/spec-kit/README.md` — cả cách cài lẫn cách cập nhật sau này qua `npx skills update`).
 Mỗi skill mang theo sẵn template cần thiết + `spec-kit-conventions.md` (naming/ID, vòng đời
 `status`, glossary-link, ma trận lan truyền thay đổi, commit format...), tự tạo `docs/` khi chưa
-có — **không cần** `npx degit`/clone repo này hay bất kỳ file nào ở repo gốc
-(`CLAUDE.md`/`AGENTS.md`/`RULES.md`/`CONTEXT.md`) để dự án khác chạy đúng pipeline, kể cả khi chỉ
-cài lẻ 1 trong 5 skill.
+có.
 
 1. Chưa rõ kit này là gì hoặc bắt đầu từ đâu? Chạy skill `/about-spec-kit` — giới thiệu kit +
    liệt kê skill nào dùng khi nào.
