@@ -40,11 +40,11 @@ CLAUDE.md                       → quy ước đặt tên + versioning xuyên s
 
 ## Cách dùng cho dự án mới
 
-1. Copy toàn bộ folder này vào repo dự án (giữ nguyên cấu trúc `docs/` + các file gốc). Hoặc
-   cài trực tiếp 4 skill vào 1 dự án đã có qua `npx skills add <owner>/spec-kit-template` (đọc
-   từ `skills/spec-kit/` — bản mirror của `.claude/skills/`, xem `skills/spec-kit/README.md`) —
-   cách này không copy `docs/` mẫu, chỉ cài skill; các file `docs/**/template.md` vẫn cần copy
-   thủ công nếu muốn dùng nguyên cấu trúc tài liệu của kit.
+1. Cài 4 skill qua `npx skills add <owner>/spec-kit-template` (đọc từ `skills/spec-kit/`, xem
+   `skills/spec-kit/README.md`) — CLI tự cài vào đúng thư mục skill của coding agent đang dùng
+   (`.claude/skills/` nếu là Claude Code). Cách này không copy `docs/` mẫu, chỉ cài skill. Muốn
+   dùng nguyên cấu trúc tài liệu của kit (`docs/` + `CONTEXT.md`/`AGENTS.md`/`RULES.md`/
+   `CLAUDE.md`), copy thêm các phần đó từ repo này vào dự án.
 2. Copy `docs/glossary/template.md` thành `docs/glossary/glossary.md` (giữ nguyên nội
    dung mặc định, điền dần thuật ngữ nghiệp vụ khi viết BR/UR/FR — xem `RULES.md`). Đọc
    `CONTEXT.md` — giới thiệu kit và các thành phần chính — và `glossary.md` vừa tạo.
@@ -65,13 +65,14 @@ CLAUDE.md                       → quy ước đặt tên + versioning xuyên s
 
 - `CONTEXT.md` — giới thiệu kit + thành phần chính, đọc trước tiên
 - `docs/glossary` — từ điển thuật ngữ dự án, agent luôn đọc trước khi làm việc
-- `.claude/skills/setup-context` — skill hội thoại tự nhiên về dự án rồi tạo thẳng
-  BR-001/UR-001/FR-001
-- `.claude/skills/c4-model` — skill giải thích C4 Model + dẫn dắt tạo docs/system-overview
-- `.claude/skills/plan-backlog` — skill phân rã Epic/Feature/User Story
-- `.claude/skills/backlog-status` — skill đọc frontmatter để trả lời backlog hiện có gì, hoặc
-  cây Epic→Feature→User Story (không có dashboard/file trạng thái riêng, luôn tính lại từ
-  frontmatter)
+- `skills/spec-kit/` — nguồn của 4 skill (cài qua `npx skills add`, xem
+  `skills/spec-kit/README.md`):
+  - `setup-context` — hội thoại tự nhiên về dự án rồi tạo thẳng BR-001/UR-001/FR-001
+  - `c4-model` — giải thích C4 Model + dẫn dắt tạo docs/system-overview
+  - `plan-backlog` — phân rã Epic/Feature/User Story
+  - `backlog-status` — đọc frontmatter để trả lời backlog hiện có gì, hoặc cây
+    Epic→Feature→User Story (không có dashboard/file trạng thái riêng, luôn tính lại từ
+    frontmatter)
 - `docs/business-requirement`, `docs/user-requirement`, `docs/functional-requirement`,
   `docs/system-overview` — 3 tầng yêu cầu + system overview (C4 Context/Container/Component +
   container-interface, mã CIC, khi có dữ liệu thật cần thống nhất trước giữa 2 container
