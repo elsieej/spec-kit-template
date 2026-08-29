@@ -198,6 +198,14 @@ prefix/ID, vòng đời `status`, glossary-link, ma trận lan truyền thay đ�
    nó không nhớ là đã tự thêm vào. Nếu khả thi, chạy bước này như 1 lượt riêng, đọc lại toàn bộ
    tài liệu như người ngoài chưa biết trước phiên viết đã cài gì, thay vì xen kẽ ngay trong lúc
    viết.
+   **Đối chiếu tên container ghi trong "Context cho Agent" với hành vi thật của US đó** — khác
+   với bước trên (chỉ xác nhận CIC/component *có tồn tại*, không xác nhận *đúng container*): với
+   mỗi User Story, đọc lại Acceptance Criteria để xác định container nào thực sự thực hiện hành
+   vi đó, rồi so với dòng "System overview liên quan: SYS-CTR-xxx (container: ...)" đã ghi — lỗi
+   thật đã xảy ra: US mô tả hành vi hệ thống tự động (không qua UI) nhưng bị ghi nhầm thành
+   container UI mà cùng persona/Epic đó dùng cho 1 tác vụ khác. Container đúng phải là
+   service/backend thực sự xử lý hành vi trong AC, không phải suy theo persona hay theo container
+   Epic cha đang dùng cho tác vụ liên quan.
    **Re-verify `priority` theo đúng thuật toán 3 nhánh** (xem `docs/spec-kit-conventions.md` mục
    4) thay vì gán theo cảm tính: với **từng** Feature/US vừa tạo/sửa trong phiên, lần theo
    `docs_requirements` tới đúng dòng nhu cầu MoSCoW nguồn (nếu trỏ nguyên 1 UR, chọn dòng khớp
