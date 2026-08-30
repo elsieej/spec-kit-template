@@ -1,0 +1,21 @@
+name: sync-conventions
+
+on:
+  push:
+    paths:
+      - "docs/spec-kit-conventions.md"
+      - "skills/spec-kit/*/templates/spec-kit-conventions.md"
+      - "scripts/sync-conventions.sh"
+  pull_request:
+    paths:
+      - "docs/spec-kit-conventions.md"
+      - "skills/spec-kit/*/templates/spec-kit-conventions.md"
+      - "scripts/sync-conventions.sh"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify 5 bundled seeds match docs/spec-kit-conventions.md
+        run: bash scripts/sync-conventions.sh --check
