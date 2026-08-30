@@ -2,7 +2,7 @@
 name: about-spec-kit
 description: >
   Giới thiệu Spec Kit là gì, các thành phần chính, và nên chạy skill nào khi nào (setup-context
-  → c4-model → plan-backlog → backlog-status). Dùng skill này khi user hỏi "spec kit này là
+  → c4-model → plan-backlog → list-backlog). Dùng skill này khi user hỏi "spec kit này là
   gì", "kit này dùng sao", "bắt đầu thế nào", "có những skill nào", hoặc ngay sau khi cài skill
   lần đầu và chưa biết bắt đầu từ đâu.
 ---
@@ -26,7 +26,7 @@ thay đổi...) nằm ở `docs/spec-kit-conventions.md` — đọc khi cần ch
 | `setup-context` | Chưa có `docs/business-requirement` nào, muốn bắt đầu dự án mới | `BR-001`, `UR-001`, `FR-001` |
 | `c4-model` | BR/UR/FR đã `status: approved`, cần kiến trúc hệ thống | `docs/system-overview` (C4 Context/Container/Component + Interface Contract) |
 | `plan-backlog` | BR/UR/FR đã approved và `c4-container.md` đã có, cần chia việc | `docs/backlog` (Epic → Feature → User Story) |
-| `backlog-status` | Muốn biết backlog hiện có gì, hoặc cây Epic→Feature→User Story | Không tạo file — chỉ đọc và tổng hợp |
+| `list-backlog` | Muốn biết backlog hiện có gì, hoặc cây Epic→Feature→User Story | Không tạo file — chỉ đọc và tổng hợp |
 | `about-spec-kit` (skill này) | Chưa rõ kit này là gì hoặc bắt đầu từ đâu | Chỉ giải thích, trừ scaffold `docs/spec-kit-conventions.md` nếu chưa có (xem dưới) |
 
 ## Điều kiện tiên quyết
@@ -46,7 +46,7 @@ thay đổi...) nằm ở `docs/spec-kit-conventions.md` — đọc khi cần ch
 3. Chạy skill `/c4-model` để tạo `docs/system-overview` (Context + Container + Component
    Diagram, và Container/Entity Interface Contract khi cần).
 4. Chạy skill `/plan-backlog` để phân rã thành Epic → Feature → User Story.
-5. Chạy skill `/backlog-status` bất kỳ lúc nào để xem backlog hiện có gì hoặc cây phân cấp.
+5. Chạy skill `/list-backlog` bất kỳ lúc nào để xem backlog hiện có gì hoặc cây phân cấp.
 6. Mọi thay đổi tài liệu = 1 commit git riêng, định dạng xem `docs/spec-kit-conventions.md` mục
    "Commit".
 

@@ -1,7 +1,7 @@
 # skills/spec-kit
 
 Nguồn duy nhất (source of truth) cho 5 skill của kit này — `about-spec-kit`, `setup-context`,
-`c4-model`, `plan-backlog`, `backlog-status`. Theo đúng convention
+`c4-model`, `plan-backlog`, `list-backlog`. Theo đúng convention
 `skills/<category>/<name>/SKILL.md` mà
 CLI [vercel-labs/skills](https://github.com/vercel-labs/skills) (công cụ mattpocock/skills cũng
 dùng) và hệ sinh thái xung quanh nó nhận diện — agent-agnostic, không riêng Claude Code.

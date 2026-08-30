@@ -66,7 +66,7 @@ nào, theo thứ tự nào) và không bị lặp lại ở đây để tránh 2
   - `setup-context` — hội thoại tự nhiên về dự án rồi tạo thẳng BR-001/UR-001/FR-001
   - `c4-model` — giải thích C4 Model + dẫn dắt tạo docs/system-overview
   - `plan-backlog` — phân rã Epic/Feature/User Story
-  - `backlog-status` — đọc frontmatter để trả lời backlog hiện có gì, hoặc cây
+  - `list-backlog` — đọc frontmatter để trả lời backlog hiện có gì, hoặc cây
     Epic→Feature→User Story (không có dashboard/file trạng thái riêng, luôn tính lại từ
     frontmatter)
 - `docs/business-requirement`, `docs/user-requirement`, `docs/functional-requirement`,

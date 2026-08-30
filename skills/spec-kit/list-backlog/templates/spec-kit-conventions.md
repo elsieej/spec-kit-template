@@ -2,7 +2,7 @@
 
 > Quy tắc dùng xuyên suốt Spec Kit (naming/ID/versioning, vòng đời `status`, glossary-link,
 > ma trận lan truyền thay đổi...). Mỗi skill (`setup-context`, `c4-model`, `plan-backlog`,
-> `backlog-status`, `about-spec-kit`) đọc file này trước khi tạo/sửa tài liệu — xem mục "Điều
+> `list-backlog`, `about-spec-kit`) đọc file này trước khi tạo/sửa tài liệu — xem mục "Điều
 > kiện tiên quyết" ở `SKILL.md` của từng skill.
 
 ## 1. Đặt tên, ID và versioning

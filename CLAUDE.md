@@ -107,7 +107,7 @@ dự án đích khi chưa có (để `npx skills add` chạy được không c�
 - Giải thích C4 Model + tạo `docs/system-overview`: skill `c4-model`.
 - Phân rã Epic → Feature → User Story: skill `plan-backlog`.
 - Backlog hiện có gì, hoặc cây Epic→Feature→User Story (đọc trực tiếp frontmatter, không có
-  dashboard/index riêng): skill `backlog-status`.
+  dashboard/index riêng): skill `list-backlog`.
 
 ## Làm việc trong repo này
 

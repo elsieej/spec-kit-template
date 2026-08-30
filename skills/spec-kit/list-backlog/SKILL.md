@@ -1,5 +1,5 @@
 ---
-name: backlog-status
+name: list-backlog
 description: >
   Trả lời "backlog đang có gì", "Feature nào thuộc Epic nào", "cây Epic/Feature/User Story",
   "EPIC-xxx có gì bên trong", "tình trạng dự án hiện tại đang thế nào" bằng cách đọc trực tiếp
@@ -9,7 +9,7 @@ description: >
   cha-con giữa các cấp backlog.
 ---
 
-# backlog-status
+# list-backlog
 
 Không có "Điều kiện tiên quyết" riêng — skill này chỉ đọc frontmatter đã có, không tạo/scaffold
 file nào (kể cả `docs/spec-kit-conventions.md` — đọc nếu đã có trong dự án; nếu chưa có, đọc

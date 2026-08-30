@@ -2,7 +2,7 @@
 
 > Quy tắc dùng xuyên suốt Spec Kit (naming/ID/versioning, vòng đời `status`, glossary-link,
 > ma trận lan truyền thay đổi...). Đây là **bản canonical** trong repo `spec-kit-template` —
-> mỗi skill (`setup-context`, `c4-model`, `plan-backlog`, `backlog-status`, `about-spec-kit`)
+> mỗi skill (`setup-context`, `c4-model`, `plan-backlog`, `list-backlog`, `about-spec-kit`)
 > mang theo 1 bản seed tại `templates/spec-kit-conventions.md` cạnh chính nó, và tự scaffold
 > file này vào `docs/spec-kit-conventions.md` của dự án đích nếu chưa có (xem mục "Điều kiện
 > tiên quyết" của từng `SKILL.md` — cùng cơ chế source-selection đang dùng cho

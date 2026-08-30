@@ -26,7 +26,7 @@
    quan tới OQ-xxx" ở trên chỉ áp dụng cho item thực sự liên quan trực tiếp tới OQ đó, không suy
    ra từ việc con của nó bị block. Nếu toàn bộ US con của 1 Feature đều `blocked`, Feature đó vẫn
    giữ nguyên `status` hiện tại (thường là `draft`) — "không còn US nào làm được ngay" không
-   đồng nghĩa "Feature bị chặn"; xem skill `backlog-status` để biết cách hiển thị trường hợp này
+   đồng nghĩa "Feature bị chặn"; xem skill `list-backlog` để biết cách hiển thị trường hợp này
    khi tổng hợp backlog.
 5. Spec-kit này dừng ở User Story — không có tầng Task kỹ thuật, Sprint, hay Release riêng.
 
