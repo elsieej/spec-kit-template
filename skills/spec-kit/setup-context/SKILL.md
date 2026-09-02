@@ -200,5 +200,16 @@ khi cần chi tiết hơn.
    trí nhớ những chỗ agent tự thấy "cần chú ý" lúc viết, vì cùng 1 lượt suy luận vừa viết vừa tự
    rà thường bỏ sót đúng những chi tiết nó không nhớ là đã tự thêm vào. Nếu khả thi, chạy bước
    này như 1 lượt riêng sau khi đã viết xong toàn bộ, thay vì xen kẽ ngay trong lúc viết.
+   **Đối chiếu từng Business rule trong mỗi FR với đúng dòng nhu cầu ở bảng "Nhu cầu người dùng &
+   Ưu tiên" của UR nguồn (`parent_user_requirement`)** — khác với việc quét chi tiết chưa xác
+   nhận ở trên (chỉ bắt con số/ngưỡng cụ thể), đây là kiểm FR có tự **thêm hẳn 1 quyền/hành vi**
+   mà không dòng nhu cầu UR nào yêu cầu: lỗi thật đã xảy ra — FR tự thêm quyền "hủy booking bất
+   kỳ" cho admin trong khi UR nguồn chưa có dòng nhu cầu tương ứng, chỉ bị bắt muộn ở bước
+   "đối chiếu AC với business rule nguồn" của `plan-backlog` (xem `docs/spec-kit-conventions.md`
+   mục 7, ma trận lan truyền) thay vì bị chặn ngay ở đây. Với **mỗi** Business rule vừa viết,
+   truy ngược xem nó phục vụ đúng dòng nhu cầu cụ thể nào của UR nguồn; rule nào không truy được
+   về dòng nhu cầu nào → hoặc bỏ rule đó, hoặc thêm dòng nhu cầu mới vào UR (hỏi lại user MoSCoW
+   cho dòng đó, không tự gán) trước khi giữ lại rule trong FR — không để FR mở rộng phạm vi vượt
+   UR nguồn rồi để tầng backlog tự phát hiện.
 7. Nhắc user: review và set `status: approved` cho từng tầng trước khi tạo System Overview
    (C4 Context + Container Diagram).
